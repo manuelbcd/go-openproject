@@ -17,22 +17,16 @@ type WorkPackageService struct {
 	Issue represents an OpenProject WorkPackage.
  */
 type WorkPackage struct {
+	Type           string               `json:"_type,omitempty" structs:"_type,omitempty"`
 	ID             string               `json:"id,omitempty" structs:"id,omitempty"`
-	Self           string               `json:"self,omitempty" structs:"self,omitempty"`
-	Key            string               `json:"key,omitempty" structs:"key,omitempty"`
-	Fields         *IssueFields         `json:"fields,omitempty" structs:"fields,omitempty"`
-	RenderedFields *IssueRenderedFields `json:"renderedFields,omitempty" structs:"renderedFields,omitempty"`
-	Changelog      *Changelog           `json:"changelog,omitempty" structs:"changelog,omitempty"`
-	Transitions    []Transition         `json:"transitions,omitempty" structs:"transitions,omitempty"`
-	Names          map[string]string    `json:"names,omitempty" structs:"names,omitempty"`
+	Subject		   string				`json:"subject,omitempty" structs:"subject,omitempty"`
 }
-
 /**
 	GetWithContext returns a full representation of the issue for the given OpenProject key.
  	The given options will be appended to the query string
  */
-func (s *WorkPackageService) GetWithContext(ctx context.Context, issueID string, options *GetQueryOptions) (*Issue, *Response, error) {
-	apiEndpoint := fmt.Sprintf("rest/api/2/issue/%s", issueID)
+func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID string, options *GetQueryOptions) (*Issue, *Response, error) {
+	apiEndpoint := fmt.Sprintf("api/v3/work_packages/%s", workpackageID)
 	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
 	if err != nil {
 		return nil, nil, err
