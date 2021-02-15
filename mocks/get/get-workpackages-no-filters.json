@@ -1,0 +1,2672 @@
+{
+    "_type": "WorkPackageCollection",
+    "total": 17,
+    "count": 17,
+    "pageSize": 20,
+    "offset": 1,
+    "_embedded": {
+        "elements": [
+            {
+                "_type": "WorkPackage",
+                "id": 1,
+                "lockVersion": 0,
+                "subject": "Project kick-off",
+                "description": {
+                    "format": "markdown",
+                    "raw": "Plan and execute the project kick-off.",
+                    "html": "<p>Plan and execute the project kick-off.</p>"
+                },
+                "date": "2019-12-20",
+                "estimatedTime": "PT8H",
+                "derivedEstimatedTime": null,
+                "percentageDone": 50,
+                "createdAt": "2019-12-18T15:55:33Z",
+                "updatedAt": "2019-12-18T15:55:33Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/1/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/1",
+                        "title": "Project kick-off"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-2"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/1/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/1/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/1/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/1/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/1",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/2",
+                        "title": "Milestone"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/9",
+                        "title": "High"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/6",
+                        "title": "Scheduled"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "ancestors": [],
+                    "parent": {
+                        "href": null,
+                        "title": null
+                    },
+                    "customActions": []
+                }
+            },
+            {
+                "_type": "WorkPackage",
+                "id": 2,
+                "lockVersion": 1,
+                "subject": "Project planning",
+                "description": {
+                    "format": "markdown",
+                    "raw": "Please execute the related tasks:\n\n* ##3\n* ##4\n* ##5\n* ##6\n* ##7\n* ##8\n* ##9\n",
+                    "html": "<p>Please execute the related tasks:</p>\n<ul>\n<li><a class=\"issue work_package preview-trigger\" href=\"/work_packages/3\">#3</a></li>\n<li><a class=\"issue work_package preview-trigger\" href=\"/work_packages/4\">#4</a></li>\n<li><a class=\"issue work_package preview-trigger\" href=\"/work_packages/5\">#5</a></li>\n<li><a class=\"issue work_package preview-trigger\" href=\"/work_packages/6\">#6</a></li>\n<li><a class=\"issue work_package preview-trigger\" href=\"/work_packages/7\">#7</a></li>\n<li><a class=\"issue work_package preview-trigger\" href=\"/work_packages/8\">#8</a></li>\n<li><a class=\"issue work_package preview-trigger\" href=\"/work_packages/9\">#9</a></li>\n</ul>"
+                },
+                "startDate": "2019-12-16",
+                "dueDate": "2019-12-19",
+                "estimatedTime": "PT8H",
+                "derivedEstimatedTime": null,
+                "percentageDone": 0,
+                "createdAt": "2019-12-18T15:55:34Z",
+                "updatedAt": "2019-12-18T15:55:44Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/2/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/2",
+                        "title": "Project planning"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-3"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/2/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/2/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/2/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/2/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/2",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/3",
+                        "title": "Phase"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/9",
+                        "title": "High"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/6",
+                        "title": "Scheduled"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "children": [
+                        {
+                            "href": "/api/v3/work_packages/3",
+                            "title": "Create a new project"
+                        },
+                        {
+                            "href": "/api/v3/work_packages/4",
+                            "title": "Customize project overview page"
+                        },
+                        {
+                            "href": "/api/v3/work_packages/5",
+                            "title": "Activate further modules"
+                        },
+                        {
+                            "href": "/api/v3/work_packages/6",
+                            "title": "Invite new team members"
+                        },
+                        {
+                            "href": "/api/v3/work_packages/7",
+                            "title": "Create work packages"
+                        },
+                        {
+                            "href": "/api/v3/work_packages/8",
+                            "title": "Create a project plan"
+                        },
+                        {
+                            "href": "/api/v3/work_packages/9",
+                            "title": "Edit a work package"
+                        }
+                    ],
+                    "ancestors": [],
+                    "parent": {
+                        "href": null,
+                        "title": null
+                    },
+                    "customActions": []
+                }
+            },
+            {
+                "_type": "WorkPackage",
+                "id": 3,
+                "lockVersion": 2,
+                "subject": "Create a new project",
+                "description": {
+                    "format": "markdown",
+                    "raw": "Please [create a new project](/projects/new) from the project drop down menu in the left hand header navigation.\n\n**You can:**\n* give your project a name,\n* add a project description,\n* create a project structure,\n* set a project to public.\n\n**Visuals:**\n![new project](/api/v3/attachments/1/content)\n\n**Find out more:**\n* https://docs.openproject.org/system-admin-guide/manage-projects/\n",
+                    "html": "<p>Please <a href=\"/projects/new\" rel=\"noopener noreferrer\">create a new project</a> from the project drop down menu in the left hand header navigation.</p>\n<p><strong>You can:</strong></p>\n<ul>\n<li>give your project a name,</li>\n<li>add a project description,</li>\n<li>create a project structure,</li>\n<li>set a project to public.</li>\n</ul>\n<p><strong>Visuals:</strong><br>\n<img src=\"/api/v3/attachments/1/content\" alt=\"new project\"></p>\n<p><strong>Find out more:</strong></p>\n<ul>\n<li><a href=\"https://docs.openproject.org/system-admin-guide/manage-projects/\" class=\"rinku-autolink\">https://docs.openproject.org/system-admin-guide/manage-projects/</a></li>\n</ul>"
+                },
+                "startDate": "2019-12-16",
+                "dueDate": "2019-12-16",
+                "estimatedTime": null,
+                "derivedEstimatedTime": null,
+                "percentageDone": 0,
+                "createdAt": "2019-12-18T15:55:34Z",
+                "updatedAt": "2019-12-18T15:55:36Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/3/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/3",
+                        "title": "Create a new project"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-1"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/3/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/3/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/3/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/3/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/3",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/1",
+                        "title": "Task"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/8",
+                        "title": "Normal"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/7",
+                        "title": "In progress"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "ancestors": [
+                        {
+                            "href": "/api/v3/work_packages/2",
+                            "title": "Project planning"
+                        }
+                    ],
+                    "parent": {
+                        "href": "/api/v3/work_packages/2",
+                        "title": "Project planning"
+                    },
+                    "customActions": []
+                }
+            },
+            {
+                "_type": "WorkPackage",
+                "id": 4,
+                "lockVersion": 2,
+                "subject": "Customize project overview page",
+                "description": {
+                    "format": "markdown",
+                    "raw": "You can [customize your project overview page](/my_projects_overview/demo-project/page_layout) to add important information, such as project description, important links, work packages overview, news, and much more.\n\n**You can:**\n* edit the project overview by clicking on the gear icon,\n* add a project description,\n* add links to important project information or custom reports,\n* insert news or work packages,\n* and much more.\n\n**Visuals:**\n![project overview](/api/v3/attachments/2/content)\n\n**Find out more:**\n* https://docs.openproject.org/user-guide/project-overview/\n",
+                    "html": "<p>You can <a href=\"/my_projects_overview/demo-project/page_layout\" rel=\"noopener noreferrer\">customize your project overview page</a> to add important information, such as project description, important links, work packages overview, news, and much more.</p>\n<p><strong>You can:</strong></p>\n<ul>\n<li>edit the project overview by clicking on the gear icon,</li>\n<li>add a project description,</li>\n<li>add links to important project information or custom reports,</li>\n<li>insert news or work packages,</li>\n<li>and much more.</li>\n</ul>\n<p><strong>Visuals:</strong><br>\n<img src=\"/api/v3/attachments/2/content\" alt=\"project overview\"></p>\n<p><strong>Find out more:</strong></p>\n<ul>\n<li><a href=\"https://docs.openproject.org/user-guide/project-overview/\" class=\"rinku-autolink\">https://docs.openproject.org/user-guide/project-overview/</a></li>\n</ul>"
+                },
+                "startDate": "2019-12-16",
+                "dueDate": "2019-12-16",
+                "estimatedTime": null,
+                "derivedEstimatedTime": null,
+                "percentageDone": 0,
+                "createdAt": "2019-12-18T15:55:36Z",
+                "updatedAt": "2019-12-18T15:55:37Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/4/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/4",
+                        "title": "Customize project overview page"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-1"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/4/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/4/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/4/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/4/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/4",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/1",
+                        "title": "Task"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/8",
+                        "title": "Normal"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/7",
+                        "title": "In progress"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "ancestors": [
+                        {
+                            "href": "/api/v3/work_packages/2",
+                            "title": "Project planning"
+                        }
+                    ],
+                    "parent": {
+                        "href": "/api/v3/work_packages/2",
+                        "title": "Project planning"
+                    },
+                    "customActions": []
+                }
+            },
+            {
+                "_type": "WorkPackage",
+                "id": 5,
+                "lockVersion": 2,
+                "subject": "Activate further modules",
+                "description": {
+                    "format": "markdown",
+                    "raw": "Please activate further [Modules](/projects/demo-project/settings/modules) in the Project settings in order to have more features in your project.\n\n**You can:**\n* add a Scrum module (Backlogs),\n* add time tracking, reporting, and budgets (Time Tracking, Cost Reports, Budgets),\n* add a wiki,\n* add meetings,\n* and more.\n\n**Visuals:**\n![project modules](/api/v3/attachments/3/content)\n\n**Find out more:**\n* https://www.openproject.org/help/activate-deactivate-modules/\n",
+                    "html": "<p>Please activate further <a href=\"/projects/demo-project/settings/modules\" rel=\"noopener noreferrer\">Modules</a> in the Project settings in order to have more features in your project.</p>\n<p><strong>You can:</strong></p>\n<ul>\n<li>add a Scrum module (Backlogs),</li>\n<li>add time tracking, reporting, and budgets (Time Tracking, Cost Reports, Budgets),</li>\n<li>add a wiki,</li>\n<li>add meetings,</li>\n<li>and more.</li>\n</ul>\n<p><strong>Visuals:</strong><br>\n<img src=\"/api/v3/attachments/3/content\" alt=\"project modules\"></p>\n<p><strong>Find out more:</strong></p>\n<ul>\n<li><a href=\"https://www.openproject.org/help/activate-deactivate-modules/\" class=\"rinku-autolink\">https://www.openproject.org/help/activate-deactivate-modules/</a></li>\n</ul>"
+                },
+                "startDate": "2019-12-16",
+                "dueDate": "2019-12-16",
+                "estimatedTime": null,
+                "derivedEstimatedTime": null,
+                "percentageDone": 0,
+                "createdAt": "2019-12-18T15:55:37Z",
+                "updatedAt": "2019-12-18T15:55:38Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/5/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/5",
+                        "title": "Activate further modules"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-1"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/5/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/5/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/5/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/5/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/5",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/1",
+                        "title": "Task"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/8",
+                        "title": "Normal"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/1",
+                        "title": "New"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "ancestors": [
+                        {
+                            "href": "/api/v3/work_packages/2",
+                            "title": "Project planning"
+                        }
+                    ],
+                    "parent": {
+                        "href": "/api/v3/work_packages/2",
+                        "title": "Project planning"
+                    },
+                    "customActions": []
+                }
+            },
+            {
+                "_type": "WorkPackage",
+                "id": 6,
+                "lockVersion": 2,
+                "subject": "Invite new team members",
+                "description": {
+                    "format": "markdown",
+                    "raw": "Please invite new team members by going to [Members](/projects/demo-project/members) in the project navigation.\n\n**You can:**\n* add existing users to  a project by typing in their names,\n* invite new users to OpenProject by typing in their email address,\n* assign a certain role in this project for each user.\n\n**Visuals:**\n![project members](/api/v3/attachments/4/content)\n\n**Find out more:**\n* https://docs.openproject.org/user-guide/members/\n",
+                    "html": "<p>Please invite new team members by going to <a href=\"/projects/demo-project/members\" rel=\"noopener noreferrer\">Members</a> in the project navigation.</p>\n<p><strong>You can:</strong></p>\n<ul>\n<li>add existing users to  a project by typing in their names,</li>\n<li>invite new users to OpenProject by typing in their email address,</li>\n<li>assign a certain role in this project for each user.</li>\n</ul>\n<p><strong>Visuals:</strong><br>\n<img src=\"/api/v3/attachments/4/content\" alt=\"project members\"></p>\n<p><strong>Find out more:</strong></p>\n<ul>\n<li><a href=\"https://docs.openproject.org/user-guide/members/\" class=\"rinku-autolink\">https://docs.openproject.org/user-guide/members/</a></li>\n</ul>"
+                },
+                "startDate": "2019-12-17",
+                "dueDate": "2019-12-17",
+                "estimatedTime": null,
+                "derivedEstimatedTime": null,
+                "percentageDone": 0,
+                "createdAt": "2019-12-18T15:55:39Z",
+                "updatedAt": "2019-12-18T15:55:40Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/6/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/6",
+                        "title": "Invite new team members"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-1"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/6/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/6/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/6/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/6/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/6",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/1",
+                        "title": "Task"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/9",
+                        "title": "High"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/1",
+                        "title": "New"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "ancestors": [
+                        {
+                            "href": "/api/v3/work_packages/2",
+                            "title": "Project planning"
+                        }
+                    ],
+                    "parent": {
+                        "href": "/api/v3/work_packages/2",
+                        "title": "Project planning"
+                    },
+                    "customActions": []
+                }
+            },
+            {
+                "_type": "WorkPackage",
+                "id": 7,
+                "lockVersion": 2,
+                "subject": "Create work packages",
+                "description": {
+                    "format": "markdown",
+                    "raw": "Please create work packages for your project. Go to [Work package](/projects/demo-project/work_packages) and click the green +Create button.\n\n**You can**:\n* create any type of work, e.g. features, tasks, bugs, risks, ideas,\n* add a title and description,\n* add attachments via copy and paste to the description,\n* set status, priority and assign it to a team member,\n* insert any custom field to the forms.\n\n**Visuals**:\n![create work package](/api/v3/attachments/5/content)\n\n**Find out more**:\n* https://docs.openproject.org/user-guide/work-packages/create-work-package/\n",
+                    "html": "<p>Please create work packages for your project. Go to <a href=\"/projects/demo-project/work_packages\" rel=\"noopener noreferrer\">Work package</a> and click the green +Create button.</p>\n<p><strong>You can</strong>:</p>\n<ul>\n<li>create any type of work, e.g. features, tasks, bugs, risks, ideas,</li>\n<li>add a title and description,</li>\n<li>add attachments via copy and paste to the description,</li>\n<li>set status, priority and assign it to a team member,</li>\n<li>insert any custom field to the forms.</li>\n</ul>\n<p><strong>Visuals</strong>:<br>\n<img src=\"/api/v3/attachments/5/content\" alt=\"create work package\"></p>\n<p><strong>Find out more</strong>:</p>\n<ul>\n<li><a href=\"https://docs.openproject.org/user-guide/work-packages/create-work-package/\" class=\"rinku-autolink\">https://docs.openproject.org/user-guide/work-packages/create-work-package/</a></li>\n</ul>"
+                },
+                "startDate": "2019-12-17",
+                "dueDate": "2019-12-17",
+                "estimatedTime": null,
+                "derivedEstimatedTime": null,
+                "percentageDone": 0,
+                "createdAt": "2019-12-18T15:55:40Z",
+                "updatedAt": "2019-12-18T15:55:41Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/7/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/7",
+                        "title": "Create work packages"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-1"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/7/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/7/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/7/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/7/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/7",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/1",
+                        "title": "Task"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/9",
+                        "title": "High"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/7",
+                        "title": "In progress"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "ancestors": [
+                        {
+                            "href": "/api/v3/work_packages/2",
+                            "title": "Project planning"
+                        }
+                    ],
+                    "parent": {
+                        "href": "/api/v3/work_packages/2",
+                        "title": "Project planning"
+                    },
+                    "customActions": []
+                }
+            },
+            {
+                "_type": "WorkPackage",
+                "id": 8,
+                "lockVersion": 2,
+                "subject": "Create a project plan",
+                "description": {
+                    "format": "markdown",
+                    "raw": "Please create a project plan by going to [Project plan](/projects/demo-project/work_packages?query_id=2) in the project navigation.\n\n**You can:**\n* create new phases and milestones by simply clicking in the project plan,\n* change phases and milestones with drag and drop,\n* add labels, such as start and finish date, title, or assignee,\n* add dependencies by right clicking on a phase or milestone and choose pre-decessor or follower,\n* custom columns, group, filter and save timeline reports to have them at your fingertips.\n\n**Visuals:**\n![gantt chart](/api/v3/attachments/6/content)\n\n**Find out more:**\n* https://docs.openproject.org/user-guide/gantt-chart/\n",
+                    "html": "<p>Please create a project plan by going to <a href=\"/projects/demo-project/work_packages?query_id=2\" rel=\"noopener noreferrer\">Project plan</a> in the project navigation.</p>\n<p><strong>You can:</strong></p>\n<ul>\n<li>create new phases and milestones by simply clicking in the project plan,</li>\n<li>change phases and milestones with drag and drop,</li>\n<li>add labels, such as start and finish date, title, or assignee,</li>\n<li>add dependencies by right clicking on a phase or milestone and choose pre-decessor or follower,</li>\n<li>custom columns, group, filter and save timeline reports to have them at your fingertips.</li>\n</ul>\n<p><strong>Visuals:</strong><br>\n<img src=\"/api/v3/attachments/6/content\" alt=\"gantt chart\"></p>\n<p><strong>Find out more:</strong></p>\n<ul>\n<li><a href=\"https://docs.openproject.org/user-guide/gantt-chart/\" class=\"rinku-autolink\">https://docs.openproject.org/user-guide/gantt-chart/</a></li>\n</ul>"
+                },
+                "startDate": "2019-12-18",
+                "dueDate": "2019-12-18",
+                "estimatedTime": null,
+                "derivedEstimatedTime": null,
+                "percentageDone": 0,
+                "createdAt": "2019-12-18T15:55:42Z",
+                "updatedAt": "2019-12-18T15:55:43Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/8/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/8",
+                        "title": "Create a project plan"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-1"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/8/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/8/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/8/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/8/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/8",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/1",
+                        "title": "Task"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/9",
+                        "title": "High"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/1",
+                        "title": "New"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "ancestors": [
+                        {
+                            "href": "/api/v3/work_packages/2",
+                            "title": "Project planning"
+                        }
+                    ],
+                    "parent": {
+                        "href": "/api/v3/work_packages/2",
+                        "title": "Project planning"
+                    },
+                    "customActions": []
+                }
+            },
+            {
+                "_type": "WorkPackage",
+                "id": 9,
+                "lockVersion": 2,
+                "subject": "Edit a work package",
+                "description": {
+                    "format": "markdown",
+                    "raw": "[Edit a work package](/projects/demo-project/work_packages/41/activity) by double clicking on a row in the list view or open the split screen with the \"i\".\n\n**You can**:\n* change title or description,\n* assign it to a team member,\n* comment on topics or notify team members with @-notifications,\n* set status, priority, finish dates or other custom fields,\n* include documents or screenshots with copy & paste,\n* add relations to other work packages,\n* change forms in the Administration settings.\n\n**Visuals**:\n![edit work package](/api/v3/attachments/7/content)\n\n**Find out more**:\n* https://docs.openproject.org/user-guide/work-packages/\n",
+                    "html": "<p><a href=\"/projects/demo-project/work_packages/41/activity\" rel=\"noopener noreferrer\">Edit a work package</a> by double clicking on a row in the list view or open the split screen with the \"i\".</p>\n<p><strong>You can</strong>:</p>\n<ul>\n<li>change title or description,</li>\n<li>assign it to a team member,</li>\n<li>comment on topics or notify team members with @-notifications,</li>\n<li>set status, priority, finish dates or other custom fields,</li>\n<li>include documents or screenshots with copy &amp; paste,</li>\n<li>add relations to other work packages,</li>\n<li>change forms in the Administration settings.</li>\n</ul>\n<p><strong>Visuals</strong>:<br>\n<img src=\"/api/v3/attachments/7/content\" alt=\"edit work package\"></p>\n<p><strong>Find out more</strong>:</p>\n<ul>\n<li><a href=\"https://docs.openproject.org/user-guide/work-packages/\" class=\"rinku-autolink\">https://docs.openproject.org/user-guide/work-packages/</a></li>\n</ul>"
+                },
+                "startDate": "2019-12-19",
+                "dueDate": "2019-12-19",
+                "estimatedTime": null,
+                "derivedEstimatedTime": null,
+                "percentageDone": 0,
+                "createdAt": "2019-12-18T15:55:43Z",
+                "updatedAt": "2019-12-18T15:55:44Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/9/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/9",
+                        "title": "Edit a work package"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-1"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/9/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/9/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/9/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/9/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/9",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/1",
+                        "title": "Task"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/9",
+                        "title": "High"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/1",
+                        "title": "New"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "ancestors": [
+                        {
+                            "href": "/api/v3/work_packages/2",
+                            "title": "Project planning"
+                        }
+                    ],
+                    "parent": {
+                        "href": "/api/v3/work_packages/2",
+                        "title": "Project planning"
+                    },
+                    "customActions": []
+                }
+            },
+            {
+                "_type": "WorkPackage",
+                "id": 10,
+                "lockVersion": 0,
+                "subject": "Develop v1.0",
+                "description": {
+                    "format": "markdown",
+                    "raw": null,
+                    "html": ""
+                },
+                "startDate": "2019-12-23",
+                "dueDate": "2020-01-09",
+                "estimatedTime": null,
+                "derivedEstimatedTime": null,
+                "percentageDone": 0,
+                "createdAt": "2019-12-18T15:55:45Z",
+                "updatedAt": "2019-12-18T15:55:45Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/10/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/10",
+                        "title": "Develop v1.0"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-3"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/10/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/10/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/10/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/10/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/10",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/3",
+                        "title": "Phase"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/8",
+                        "title": "Normal"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/6",
+                        "title": "Scheduled"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "children": [
+                        {
+                            "href": "/api/v3/work_packages/11",
+                            "title": "Great feature"
+                        },
+                        {
+                            "href": "/api/v3/work_packages/12",
+                            "title": "Best feature"
+                        },
+                        {
+                            "href": "/api/v3/work_packages/13",
+                            "title": "Terrible bug"
+                        }
+                    ],
+                    "ancestors": [],
+                    "parent": {
+                        "href": null,
+                        "title": null
+                    },
+                    "customActions": []
+                }
+            },
+            {
+                "_type": "WorkPackage",
+                "id": 11,
+                "lockVersion": 1,
+                "subject": "Great feature",
+                "description": {
+                    "format": "markdown",
+                    "raw": null,
+                    "html": ""
+                },
+                "startDate": "2019-12-23",
+                "dueDate": "2019-12-31",
+                "estimatedTime": null,
+                "derivedEstimatedTime": null,
+                "percentageDone": 0,
+                "createdAt": "2019-12-18T15:55:45Z",
+                "updatedAt": "2019-12-18T15:55:45Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/11/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/11",
+                        "title": "Great feature"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-4"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/11/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/11/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/11/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/11/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/11",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/4",
+                        "title": "Feature"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/8",
+                        "title": "Normal"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/8",
+                        "title": "Developed"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "ancestors": [
+                        {
+                            "href": "/api/v3/work_packages/10",
+                            "title": "Develop v1.0"
+                        }
+                    ],
+                    "parent": {
+                        "href": "/api/v3/work_packages/10",
+                        "title": "Develop v1.0"
+                    },
+                    "customActions": []
+                }
+            },
+            {
+                "_type": "WorkPackage",
+                "id": 12,
+                "lockVersion": 1,
+                "subject": "Best feature",
+                "description": {
+                    "format": "markdown",
+                    "raw": null,
+                    "html": ""
+                },
+                "startDate": "2020-01-01",
+                "dueDate": "2020-01-06",
+                "estimatedTime": null,
+                "derivedEstimatedTime": null,
+                "percentageDone": 0,
+                "createdAt": "2019-12-18T15:55:45Z",
+                "updatedAt": "2019-12-18T15:55:46Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/12/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/12",
+                        "title": "Best feature"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-4"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/12/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/12/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/12/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/12/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/12",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/4",
+                        "title": "Feature"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/8",
+                        "title": "Normal"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/3",
+                        "title": "Specified"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "ancestors": [
+                        {
+                            "href": "/api/v3/work_packages/10",
+                            "title": "Develop v1.0"
+                        }
+                    ],
+                    "parent": {
+                        "href": "/api/v3/work_packages/10",
+                        "title": "Develop v1.0"
+                    },
+                    "customActions": []
+                }
+            },
+            {
+                "_type": "WorkPackage",
+                "id": 13,
+                "lockVersion": 1,
+                "subject": "Terrible bug",
+                "description": {
+                    "format": "markdown",
+                    "raw": null,
+                    "html": ""
+                },
+                "startDate": "2020-01-07",
+                "dueDate": "2020-01-09",
+                "estimatedTime": null,
+                "derivedEstimatedTime": null,
+                "percentageDone": 0,
+                "createdAt": "2019-12-18T15:55:46Z",
+                "updatedAt": "2019-12-18T15:55:46Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/13/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/13",
+                        "title": "Terrible bug"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-7"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/13/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/13/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/13/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/13/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/13",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/7",
+                        "title": "Bug"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/8",
+                        "title": "Normal"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/4",
+                        "title": "Confirmed"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "ancestors": [
+                        {
+                            "href": "/api/v3/work_packages/10",
+                            "title": "Develop v1.0"
+                        }
+                    ],
+                    "parent": {
+                        "href": "/api/v3/work_packages/10",
+                        "title": "Develop v1.0"
+                    },
+                    "customActions": []
+                }
+            },
+            {
+                "_type": "WorkPackage",
+                "id": 14,
+                "lockVersion": 0,
+                "subject": "Go-Live v1.0",
+                "description": {
+                    "format": "markdown",
+                    "raw": null,
+                    "html": ""
+                },
+                "date": "2020-01-10",
+                "estimatedTime": null,
+                "derivedEstimatedTime": null,
+                "percentageDone": 0,
+                "createdAt": "2019-12-18T15:55:47Z",
+                "updatedAt": "2019-12-18T15:55:47Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/14/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/14",
+                        "title": "Go-Live v1.0"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-2"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/14/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/14/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/14/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/14/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/14",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/2",
+                        "title": "Milestone"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/8",
+                        "title": "Normal"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/6",
+                        "title": "Scheduled"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "ancestors": [],
+                    "parent": {
+                        "href": null,
+                        "title": null
+                    },
+                    "customActions": []
+                }
+            },
+            {
+                "_type": "WorkPackage",
+                "id": 15,
+                "lockVersion": 0,
+                "subject": "Develop v1.1",
+                "description": {
+                    "format": "markdown",
+                    "raw": null,
+                    "html": ""
+                },
+                "startDate": "2020-01-13",
+                "dueDate": "2020-01-15",
+                "estimatedTime": null,
+                "derivedEstimatedTime": null,
+                "percentageDone": 0,
+                "createdAt": "2019-12-18T15:55:47Z",
+                "updatedAt": "2019-12-18T15:55:47Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/15/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/15",
+                        "title": "Develop v1.1"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-3"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/15/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/15/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/15/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/15/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/15",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/3",
+                        "title": "Phase"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/8",
+                        "title": "Normal"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/6",
+                        "title": "Scheduled"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "children": [
+                        {
+                            "href": "/api/v3/work_packages/16",
+                            "title": "Wonderful feature"
+                        },
+                        {
+                            "href": "/api/v3/work_packages/17",
+                            "title": "Ugly bug"
+                        }
+                    ],
+                    "ancestors": [],
+                    "parent": {
+                        "href": null,
+                        "title": null
+                    },
+                    "customActions": []
+                }
+            },
+            {
+                "_type": "WorkPackage",
+                "id": 16,
+                "lockVersion": 1,
+                "subject": "Wonderful feature",
+                "description": {
+                    "format": "markdown",
+                    "raw": null,
+                    "html": ""
+                },
+                "startDate": "2020-01-13",
+                "dueDate": "2020-01-13",
+                "estimatedTime": null,
+                "derivedEstimatedTime": null,
+                "percentageDone": 0,
+                "createdAt": "2019-12-18T15:55:47Z",
+                "updatedAt": "2019-12-18T15:55:48Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/16/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/16",
+                        "title": "Wonderful feature"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-4"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/16/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/16/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/16/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/16/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/16",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/4",
+                        "title": "Feature"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/8",
+                        "title": "Normal"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/1",
+                        "title": "New"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "ancestors": [
+                        {
+                            "href": "/api/v3/work_packages/15",
+                            "title": "Develop v1.1"
+                        }
+                    ],
+                    "parent": {
+                        "href": "/api/v3/work_packages/15",
+                        "title": "Develop v1.1"
+                    },
+                    "customActions": []
+                }
+            },
+            {
+                "_type": "WorkPackage",
+                "id": 18,
+                "lockVersion": 0,
+                "subject": "Go-Live v1.1",
+                "description": {
+                    "format": "markdown",
+                    "raw": null,
+                    "html": ""
+                },
+                "date": "2020-01-17",
+                "estimatedTime": null,
+                "derivedEstimatedTime": null,
+                "percentageDone": 0,
+                "createdAt": "2019-12-18T15:55:49Z",
+                "updatedAt": "2019-12-18T15:55:49Z",
+                "_links": {
+                    "attachments": {
+                        "href": "/api/v3/work_packages/18/attachments"
+                    },
+                    "self": {
+                        "href": "/api/v3/work_packages/18",
+                        "title": "Go-Live v1.1"
+                    },
+                    "schema": {
+                        "href": "/api/v3/work_packages/schemas/1-2"
+                    },
+                    "availableRelationCandidates": {
+                        "href": "/api/v3/work_packages/18/available_relation_candidates",
+                        "title": "Potential work packages to relate to"
+                    },
+                    "activities": {
+                        "href": "/api/v3/work_packages/18/activities"
+                    },
+                    "relations": {
+                        "href": "/api/v3/work_packages/18/relations"
+                    },
+                    "revisions": {
+                        "href": "/api/v3/work_packages/18/revisions"
+                    },
+                    "previewMarkup": {
+                        "href": "/api/v3/render/markdown?context=/api/v3/work_packages/18",
+                        "method": "post"
+                    },
+                    "category": {
+                        "href": null
+                    },
+                    "type": {
+                        "href": "/api/v3/types/2",
+                        "title": "Milestone"
+                    },
+                    "priority": {
+                        "href": "/api/v3/priorities/8",
+                        "title": "Normal"
+                    },
+                    "project": {
+                        "href": "/api/v3/projects/1",
+                        "title": "Demo project"
+                    },
+                    "status": {
+                        "href": "/api/v3/statuses/5",
+                        "title": "To be scheduled"
+                    },
+                    "author": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "responsible": {
+                        "href": null
+                    },
+                    "assignee": {
+                        "href": "/api/v3/users/2",
+                        "title": "OpenProject Admin"
+                    },
+                    "version": {
+                        "href": null
+                    },
+                    "ancestors": [],
+                    "parent": {
+                        "href": null,
+                        "title": null
+                    },
+                    "customActions": []
+                }
+            }
+        ],
+        "schemas": {
+            "_type": "Collection",
+            "total": 5,
+            "count": 5,
+            "_embedded": {
+                "elements": [
+                    {
+                        "_attributeGroups": [
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "People",
+                                "attributes": [
+                                    "assignee",
+                                    "responsible"
+                                ]
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Estimates and time",
+                                "attributes": [
+                                    "estimatedTime",
+                                    "spentTime"
+                                ]
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Details",
+                                "attributes": [
+                                    "date",
+                                    "percentageDone",
+                                    "category",
+                                    "version",
+                                    "priority"
+                                ]
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Costs",
+                                "attributes": []
+                            }
+                        ],
+                        "_type": "Schema",
+                        "_dependencies": [],
+                        "lockVersion": {
+                            "type": "Integer",
+                            "name": "Lock Version",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "id": {
+                            "type": "Integer",
+                            "name": "ID",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "subject": {
+                            "type": "String",
+                            "name": "Subject",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "minLength": 1,
+                            "maxLength": 255,
+                            "options": {}
+                        },
+                        "description": {
+                            "type": "Formattable",
+                            "name": "Description",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "date": {
+                            "type": "Date",
+                            "name": "Date",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "options": {}
+                        },
+                        "estimatedTime": {
+                            "type": "Duration",
+                            "name": "Estimated time",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Estimates and time",
+                            "options": {}
+                        },
+                        "percentageDone": {
+                            "type": "Integer",
+                            "name": "Progress (%)",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "options": {}
+                        },
+                        "createdAt": {
+                            "type": "DateTime",
+                            "name": "Created on",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "updatedAt": {
+                            "type": "DateTime",
+                            "name": "Updated on",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "author": {
+                            "type": "User",
+                            "name": "Author",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "project": {
+                            "type": "Project",
+                            "name": "Project",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "_links": {}
+                        },
+                        "parent": {
+                            "type": "WorkPackage",
+                            "name": "Parent",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": true,
+                            "options": {}
+                        },
+                        "assignee": {
+                            "type": "User",
+                            "name": "Assignee",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "People",
+                            "_links": {}
+                        },
+                        "responsible": {
+                            "type": "User",
+                            "name": "Accountable",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "People",
+                            "_links": {}
+                        },
+                        "type": {
+                            "type": "Type",
+                            "name": "Type",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "_links": {}
+                        },
+                        "status": {
+                            "type": "Status",
+                            "name": "Status",
+                            "required": true,
+                            "hasDefault": true,
+                            "writable": false,
+                            "_links": {}
+                        },
+                        "category": {
+                            "type": "Category",
+                            "name": "Category",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "_links": {}
+                        },
+                        "version": {
+                            "type": "Version",
+                            "name": "Version",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "_links": {}
+                        },
+                        "priority": {
+                            "type": "Priority",
+                            "name": "Priority",
+                            "required": false,
+                            "hasDefault": true,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "_links": {}
+                        },
+                        "_links": {
+                            "self": {
+                                "href": "/api/v3/work_packages/schemas/1-2"
+                            }
+                        }
+                    },
+                    {
+                        "_attributeGroups": [
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "People",
+                                "attributes": [
+                                    "assignee",
+                                    "responsible"
+                                ]
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Estimates and time",
+                                "attributes": [
+                                    "estimatedTime",
+                                    "spentTime"
+                                ]
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Details",
+                                "attributes": [
+                                    "date",
+                                    "percentageDone",
+                                    "category",
+                                    "version",
+                                    "priority"
+                                ]
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Costs",
+                                "attributes": []
+                            }
+                        ],
+                        "_type": "Schema",
+                        "_dependencies": [],
+                        "lockVersion": {
+                            "type": "Integer",
+                            "name": "Lock Version",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "id": {
+                            "type": "Integer",
+                            "name": "ID",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "subject": {
+                            "type": "String",
+                            "name": "Subject",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "minLength": 1,
+                            "maxLength": 255,
+                            "options": {}
+                        },
+                        "description": {
+                            "type": "Formattable",
+                            "name": "Description",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "startDate": {
+                            "type": "Date",
+                            "name": "Start date",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "dueDate": {
+                            "type": "Date",
+                            "name": "Finish date",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "estimatedTime": {
+                            "type": "Duration",
+                            "name": "Estimated time",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Estimates and time",
+                            "options": {}
+                        },
+                        "percentageDone": {
+                            "type": "Integer",
+                            "name": "Progress (%)",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "options": {}
+                        },
+                        "createdAt": {
+                            "type": "DateTime",
+                            "name": "Created on",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "updatedAt": {
+                            "type": "DateTime",
+                            "name": "Updated on",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "author": {
+                            "type": "User",
+                            "name": "Author",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "project": {
+                            "type": "Project",
+                            "name": "Project",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "_links": {}
+                        },
+                        "parent": {
+                            "type": "WorkPackage",
+                            "name": "Parent",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": true,
+                            "options": {}
+                        },
+                        "assignee": {
+                            "type": "User",
+                            "name": "Assignee",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "People",
+                            "_links": {}
+                        },
+                        "responsible": {
+                            "type": "User",
+                            "name": "Accountable",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "People",
+                            "_links": {}
+                        },
+                        "type": {
+                            "type": "Type",
+                            "name": "Type",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "_links": {}
+                        },
+                        "status": {
+                            "type": "Status",
+                            "name": "Status",
+                            "required": true,
+                            "hasDefault": true,
+                            "writable": false,
+                            "_links": {}
+                        },
+                        "category": {
+                            "type": "Category",
+                            "name": "Category",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "_links": {}
+                        },
+                        "version": {
+                            "type": "Version",
+                            "name": "Version",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "_links": {}
+                        },
+                        "priority": {
+                            "type": "Priority",
+                            "name": "Priority",
+                            "required": false,
+                            "hasDefault": true,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "_links": {}
+                        },
+                        "_links": {
+                            "self": {
+                                "href": "/api/v3/work_packages/schemas/1-3"
+                            }
+                        }
+                    },
+                    {
+                        "_attributeGroups": [
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "People",
+                                "attributes": [
+                                    "assignee",
+                                    "responsible"
+                                ]
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Estimates and time",
+                                "attributes": [
+                                    "estimatedTime",
+                                    "spentTime"
+                                ]
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Details",
+                                "attributes": [
+                                    "date",
+                                    "percentageDone",
+                                    "category",
+                                    "version",
+                                    "priority"
+                                ]
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Costs",
+                                "attributes": []
+                            }
+                        ],
+                        "_type": "Schema",
+                        "_dependencies": [],
+                        "lockVersion": {
+                            "type": "Integer",
+                            "name": "Lock Version",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "id": {
+                            "type": "Integer",
+                            "name": "ID",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "subject": {
+                            "type": "String",
+                            "name": "Subject",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "minLength": 1,
+                            "maxLength": 255,
+                            "options": {}
+                        },
+                        "description": {
+                            "type": "Formattable",
+                            "name": "Description",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "startDate": {
+                            "type": "Date",
+                            "name": "Start date",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "dueDate": {
+                            "type": "Date",
+                            "name": "Finish date",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "estimatedTime": {
+                            "type": "Duration",
+                            "name": "Estimated time",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Estimates and time",
+                            "options": {}
+                        },
+                        "percentageDone": {
+                            "type": "Integer",
+                            "name": "Progress (%)",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "options": {}
+                        },
+                        "createdAt": {
+                            "type": "DateTime",
+                            "name": "Created on",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "updatedAt": {
+                            "type": "DateTime",
+                            "name": "Updated on",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "author": {
+                            "type": "User",
+                            "name": "Author",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "project": {
+                            "type": "Project",
+                            "name": "Project",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "_links": {}
+                        },
+                        "parent": {
+                            "type": "WorkPackage",
+                            "name": "Parent",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": true,
+                            "options": {}
+                        },
+                        "assignee": {
+                            "type": "User",
+                            "name": "Assignee",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "People",
+                            "_links": {}
+                        },
+                        "responsible": {
+                            "type": "User",
+                            "name": "Accountable",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "People",
+                            "_links": {}
+                        },
+                        "type": {
+                            "type": "Type",
+                            "name": "Type",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "_links": {}
+                        },
+                        "status": {
+                            "type": "Status",
+                            "name": "Status",
+                            "required": true,
+                            "hasDefault": true,
+                            "writable": false,
+                            "_links": {}
+                        },
+                        "category": {
+                            "type": "Category",
+                            "name": "Category",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "_links": {}
+                        },
+                        "version": {
+                            "type": "Version",
+                            "name": "Version",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "_links": {}
+                        },
+                        "priority": {
+                            "type": "Priority",
+                            "name": "Priority",
+                            "required": false,
+                            "hasDefault": true,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "_links": {}
+                        },
+                        "_links": {
+                            "self": {
+                                "href": "/api/v3/work_packages/schemas/1-1"
+                            }
+                        }
+                    },
+                    {
+                        "_attributeGroups": [
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "People",
+                                "attributes": [
+                                    "assignee",
+                                    "responsible"
+                                ]
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Estimates and time",
+                                "attributes": [
+                                    "estimatedTime",
+                                    "spentTime"
+                                ]
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Details",
+                                "attributes": [
+                                    "date",
+                                    "percentageDone",
+                                    "category",
+                                    "version",
+                                    "priority"
+                                ]
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Other",
+                                "attributes": []
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Costs",
+                                "attributes": []
+                            }
+                        ],
+                        "_type": "Schema",
+                        "_dependencies": [],
+                        "lockVersion": {
+                            "type": "Integer",
+                            "name": "Lock Version",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "id": {
+                            "type": "Integer",
+                            "name": "ID",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "subject": {
+                            "type": "String",
+                            "name": "Subject",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "minLength": 1,
+                            "maxLength": 255,
+                            "options": {}
+                        },
+                        "description": {
+                            "type": "Formattable",
+                            "name": "Description",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "startDate": {
+                            "type": "Date",
+                            "name": "Start date",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "dueDate": {
+                            "type": "Date",
+                            "name": "Finish date",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "estimatedTime": {
+                            "type": "Duration",
+                            "name": "Estimated time",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Estimates and time",
+                            "options": {}
+                        },
+                        "percentageDone": {
+                            "type": "Integer",
+                            "name": "Progress (%)",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "options": {}
+                        },
+                        "createdAt": {
+                            "type": "DateTime",
+                            "name": "Created on",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "updatedAt": {
+                            "type": "DateTime",
+                            "name": "Updated on",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "author": {
+                            "type": "User",
+                            "name": "Author",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "project": {
+                            "type": "Project",
+                            "name": "Project",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "_links": {}
+                        },
+                        "parent": {
+                            "type": "WorkPackage",
+                            "name": "Parent",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": true,
+                            "options": {}
+                        },
+                        "assignee": {
+                            "type": "User",
+                            "name": "Assignee",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "People",
+                            "_links": {}
+                        },
+                        "responsible": {
+                            "type": "User",
+                            "name": "Accountable",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "People",
+                            "_links": {}
+                        },
+                        "type": {
+                            "type": "Type",
+                            "name": "Type",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "_links": {}
+                        },
+                        "status": {
+                            "type": "Status",
+                            "name": "Status",
+                            "required": true,
+                            "hasDefault": true,
+                            "writable": false,
+                            "_links": {}
+                        },
+                        "category": {
+                            "type": "Category",
+                            "name": "Category",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "_links": {}
+                        },
+                        "version": {
+                            "type": "Version",
+                            "name": "Version",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "_links": {}
+                        },
+                        "priority": {
+                            "type": "Priority",
+                            "name": "Priority",
+                            "required": false,
+                            "hasDefault": true,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "_links": {}
+                        },
+                        "_links": {
+                            "self": {
+                                "href": "/api/v3/work_packages/schemas/1-4"
+                            }
+                        }
+                    },
+                    {
+                        "_attributeGroups": [
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "People",
+                                "attributes": [
+                                    "assignee",
+                                    "responsible"
+                                ]
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Estimates and time",
+                                "attributes": [
+                                    "estimatedTime",
+                                    "spentTime"
+                                ]
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Details",
+                                "attributes": [
+                                    "date",
+                                    "percentageDone",
+                                    "category",
+                                    "version",
+                                    "priority"
+                                ]
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Other",
+                                "attributes": []
+                            },
+                            {
+                                "_type": "WorkPackageFormAttributeGroup",
+                                "name": "Costs",
+                                "attributes": []
+                            }
+                        ],
+                        "_type": "Schema",
+                        "_dependencies": [],
+                        "lockVersion": {
+                            "type": "Integer",
+                            "name": "Lock Version",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "id": {
+                            "type": "Integer",
+                            "name": "ID",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "subject": {
+                            "type": "String",
+                            "name": "Subject",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "minLength": 1,
+                            "maxLength": 255,
+                            "options": {}
+                        },
+                        "description": {
+                            "type": "Formattable",
+                            "name": "Description",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "startDate": {
+                            "type": "Date",
+                            "name": "Start date",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "dueDate": {
+                            "type": "Date",
+                            "name": "Finish date",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "estimatedTime": {
+                            "type": "Duration",
+                            "name": "Estimated time",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Estimates and time",
+                            "options": {}
+                        },
+                        "percentageDone": {
+                            "type": "Integer",
+                            "name": "Progress (%)",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "options": {}
+                        },
+                        "createdAt": {
+                            "type": "DateTime",
+                            "name": "Created on",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "updatedAt": {
+                            "type": "DateTime",
+                            "name": "Updated on",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "author": {
+                            "type": "User",
+                            "name": "Author",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "options": {}
+                        },
+                        "project": {
+                            "type": "Project",
+                            "name": "Project",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "_links": {}
+                        },
+                        "parent": {
+                            "type": "WorkPackage",
+                            "name": "Parent",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": true,
+                            "options": {}
+                        },
+                        "assignee": {
+                            "type": "User",
+                            "name": "Assignee",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "People",
+                            "_links": {}
+                        },
+                        "responsible": {
+                            "type": "User",
+                            "name": "Accountable",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "People",
+                            "_links": {}
+                        },
+                        "type": {
+                            "type": "Type",
+                            "name": "Type",
+                            "required": true,
+                            "hasDefault": false,
+                            "writable": false,
+                            "_links": {}
+                        },
+                        "status": {
+                            "type": "Status",
+                            "name": "Status",
+                            "required": true,
+                            "hasDefault": true,
+                            "writable": false,
+                            "_links": {}
+                        },
+                        "category": {
+                            "type": "Category",
+                            "name": "Category",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "_links": {}
+                        },
+                        "version": {
+                            "type": "Version",
+                            "name": "Version",
+                            "required": false,
+                            "hasDefault": false,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "_links": {}
+                        },
+                        "priority": {
+                            "type": "Priority",
+                            "name": "Priority",
+                            "required": false,
+                            "hasDefault": true,
+                            "writable": false,
+                            "attributeGroup": "Details",
+                            "_links": {}
+                        },
+                        "_links": {
+                            "self": {
+                                "href": "/api/v3/work_packages/schemas/1-7"
+                            }
+                        }
+                    }
+                ]
+            },
+            "_links": {
+                "self": {
+                    "href": "/api/v3/work_packages/schemas?filters=%5B%7B%3Aid%3D%3E%7B%3Aoperator%3D%3E%22%3D%22%2C+%3Avalues%3D%3E%5B%221-2%22%2C+%221-3%22%2C+%221-1%22%2C+%221-4%22%2C+%221-7%22%5D%7D%7D%5D"
+                }
+            }
+        }
+    },
+    "_links": {
+        "self": {
+            "href": "/api/v3/projects/1/work_packages?filters=%5B%7B%22status%22%3A%7B%22operator%22%3A%22o%22%2C%22values%22%3A%5B%22%22%5D%7D%7D%5D&offset=1&pageSize=20&showHierarchies=true&showSums=false&sortBy=%5B%5B%22id%22%2C%22asc%22%5D%5D"
+        },
+        "jumpTo": {
+            "href": "/api/v3/projects/1/work_packages?filters=%5B%7B%22status%22%3A%7B%22operator%22%3A%22o%22%2C%22values%22%3A%5B%22%22%5D%7D%7D%5D&offset=%7Boffset%7D&pageSize=20&showHierarchies=true&showSums=false&sortBy=%5B%5B%22id%22%2C%22asc%22%5D%5D",
+            "templated": true
+        },
+        "changeSize": {
+            "href": "/api/v3/projects/1/work_packages?filters=%5B%7B%22status%22%3A%7B%22operator%22%3A%22o%22%2C%22values%22%3A%5B%22%22%5D%7D%7D%5D&offset=1&pageSize=%7Bsize%7D&showHierarchies=true&showSums=false&sortBy=%5B%5B%22id%22%2C%22asc%22%5D%5D",
+            "templated": true
+        },
+        "schemas": {
+            "href": "/api/v3/work_packages/schemas?filters=%5B%7B%3Aid%3D%3E%7B%3Aoperator%3D%3E%22%3D%22%2C+%3Avalues%3D%3E%5B%221-2%22%2C+%221-3%22%2C+%221-1%22%2C+%221-4%22%2C+%221-7%22%5D%7D%7D%5D"
+        }
+    }
+}
