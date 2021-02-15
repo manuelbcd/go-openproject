@@ -13,14 +13,35 @@ import (
 	"reflect"
 	"sort"
 	"strings"
+	"time"
 )
 
-// httpClient defines an interface for an http.Client implementation
+/**
+	GetQueryOptions specifies the optional parameters for Get methods
+ 	TODO: Review and adapt
+*/
+type GetQueryOptions struct {
+	// Fields is the list of fields to return for the issue. By default, all fields are returned.
+	Fields string `url:"fields,omitempty"`
+	Expand string `url:"expand,omitempty"`
+	// Properties is the list of properties to return for the issue. By default no properties are returned.
+	Properties string `url:"properties,omitempty"`
+	// FieldsByKeys if true then fields in issues will be referenced by keys instead of ids
+	FieldsByKeys  bool   `url:"fieldsByKeys,omitempty"`
+	UpdateHistory bool   `url:"updateHistory,omitempty"`
+	ProjectKeys   string `url:"projectKeys,omitempty"`
+}
+
+/**
+httpClient defines an interface for an http.Client implementation
+*/
 type httpClient interface {
 	Do(request *http.Request) (response *http.Response, err error)
 }
 
-// A Client manages communication with the OpenProject API.
+/**
+A Client manages communication with the OpenProject API.
+*/
 type Client struct {
 	// HTTP client used to communicate with the API.
 	client httpClient
@@ -32,14 +53,16 @@ type Client struct {
 	session *Session
 
 	// Services used for talking to different parts of OpenProject API.
-	Authentication   *AuthenticationService
-	WorkPackage      *WPService
-	Project          *ProjectService
-	User             *UserService
+	Authentication *AuthenticationService
+	WorkPackage    *WPService
+	Project        *ProjectService
+	User           *UserService
 }
 
-// NewClient returns a new OpenProject API client.
-// If a nil httpClient is provided, http.DefaultClient will be used.
+/**
+NewClient returns a new OpenProject API client.
+If a nil httpClient is provided, http.DefaultClient will be used.
+*/
 func NewClient(httpClient httpClient, baseURL string) (*Client, error) {
 	if httpClient == nil {
 		httpClient = http.DefaultClient
@@ -67,9 +90,11 @@ func NewClient(httpClient httpClient, baseURL string) (*Client, error) {
 	return c, nil
 }
 
-// NewRawRequestWithContext creates an API request.
-// A relative URL can be provided in urlStr, in which case it is resolved relative to the baseURL of the Client.
-// Allows using an optional native io.Reader for sourcing the request body.
+/**
+NewRawRequestWithContext creates an API request.
+A relative URL can be provided in urlStr, in which case it is resolved relative to the baseURL of the Client.
+Allows using an optional native io.Reader for sourcing the request body.
+*/
 func (c *Client) NewRawRequestWithContext(ctx context.Context, method, urlStr string, body io.Reader) (*http.Request, error) {
 	rel, err := url.Parse(urlStr)
 	if err != nil {
@@ -105,14 +130,18 @@ func (c *Client) NewRawRequestWithContext(ctx context.Context, method, urlStr st
 	return req, nil
 }
 
-// NewRawRequest wraps NewRawRequestWithContext using the background context.
+/**
+NewRawRequest wraps NewRawRequestWithContext using the background context.
+*/
 func (c *Client) NewRawRequest(method, urlStr string, body io.Reader) (*http.Request, error) {
 	return c.NewRawRequestWithContext(context.Background(), method, urlStr, body)
 }
 
-// NewRequestWithContext creates an API request.
-// A relative URL can be provided in urlStr, in which case it is resolved relative to the baseURL of the Client.
-// If specified, the value pointed to by body is JSON encoded and included as the request body.
+/**
+NewRequestWithContext creates an API request.
+A relative URL can be provided in urlStr, in which case it is resolved relative to the baseURL of the Client.
+If specified, the value pointed to by body is JSON encoded and included as the request body.
+*/
 func (c *Client) NewRequestWithContext(ctx context.Context, method, urlStr string, body interface{}) (*http.Request, error) {
 	rel, err := url.Parse(urlStr)
 	if err != nil {
@@ -157,13 +186,17 @@ func (c *Client) NewRequestWithContext(ctx context.Context, method, urlStr strin
 	return req, nil
 }
 
-// NewRequest wraps NewRequestWithContext using the background context.
+/**
+NewRequest wraps NewRequestWithContext using the background context.
+*/
 func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Request, error) {
 	return c.NewRequestWithContext(context.Background(), method, urlStr, body)
 }
 
-// addOptions adds the parameters in opt as URL query parameters to s.  opt
-// must be a struct whose fields may contain "url" tags.
+/**
+addOptions adds the parameters in opt as URL query parameters to s.  opt
+must be a struct whose fields may contain "url" tags.
+*/
 func addOptions(s string, opt interface{}) (string, error) {
 	v := reflect.ValueOf(opt)
 	if v.Kind() == reflect.Ptr && v.IsNil() {
@@ -184,9 +217,11 @@ func addOptions(s string, opt interface{}) (string, error) {
 	return u.String(), nil
 }
 
-// NewMultiPartRequestWithContext creates an API request including a multi-part file.
-// A relative URL can be provided in urlStr, in which case it is resolved relative to the baseURL of the Client.
-// If specified, the value pointed to by buf is a multipart form.
+/**
+NewMultiPartRequestWithContext creates an API request including a multi-part file.
+A relative URL can be provided in urlStr, in which case it is resolved relative to the baseURL of the Client.
+If specified, the value pointed to by buf is a multipart form.
+*/
 func (c *Client) NewMultiPartRequestWithContext(ctx context.Context, method, urlStr string, buf *bytes.Buffer) (*http.Request, error) {
 	rel, err := url.Parse(urlStr)
 	if err != nil {
@@ -223,13 +258,17 @@ func (c *Client) NewMultiPartRequestWithContext(ctx context.Context, method, url
 	return req, nil
 }
 
-// NewMultiPartRequest wraps NewMultiPartRequestWithContext using the background context.
+/**
+NewMultiPartRequest wraps NewMultiPartRequestWithContext using the background context.
+*/
 func (c *Client) NewMultiPartRequest(method, urlStr string, buf *bytes.Buffer) (*http.Request, error) {
 	return c.NewMultiPartRequestWithContext(context.Background(), method, urlStr, buf)
 }
 
-// Do sends an API request and returns the API response.
-// The API response is JSON decoded and stored in the value pointed to by v, or returned as an error if an API error has occurred.
+/**
+Do sends an API request and returns the API response.
+The API response is JSON decoded and stored in the value pointed to by v, or returned as an error if an API error has occurred.
+*/
 func (c *Client) Do(req *http.Request, v interface{}) (*Response, error) {
 	httpResp, err := c.client.Do(req)
 	if err != nil {
@@ -253,9 +292,11 @@ func (c *Client) Do(req *http.Request, v interface{}) (*Response, error) {
 	return resp, err
 }
 
-// CheckResponse checks the API response for errors, and returns them if present.
-// A response is considered an error if it has a status code outside the 200 range.
-// The caller is responsible to analyze the response body.
+/**
+CheckResponse checks the API response for errors, and returns them if present.
+A response is considered an error if it has a status code outside the 200 range.
+The caller is responsible to analyze the response body.
+*/
 func CheckResponse(r *http.Response) error {
 	if c := r.StatusCode; 200 <= c && c <= 299 {
 		return nil
@@ -265,14 +306,18 @@ func CheckResponse(r *http.Response) error {
 	return err
 }
 
-// GetBaseURL will return you the Base URL.
-// This is the same URL as in the NewClient constructor
+/**
+GetBaseURL will return you the Base URL.
+This is the same URL as in the NewClient constructor
+*/
 func (c *Client) GetBaseURL() url.URL {
 	return *c.baseURL
 }
 
-// Response represents OpenProject API response. It wraps http.Response returned from
-// API and provides information about paging.
+/**
+Response represents OpenProject API response. It wraps http.Response returned from
+API and provides information about paging.
+*/
 type Response struct {
 	*http.Response
 
@@ -281,14 +326,19 @@ type Response struct {
 	Total      int
 }
 
+/**
+New response
+*/
 func newResponse(r *http.Response, v interface{}) *Response {
 	resp := &Response{Response: r}
 	resp.populatePageValues(v)
 	return resp
 }
 
-// Sets paging values if response json was parsed to searchResult type
-// (can be extended with other types if they also need paging info)
+/**
+Sets paging values if response json was parsed to searchResult type
+(can be extended with other types if they also need paging info)
+*/
 func (r *Response) populatePageValues(v interface{}) {
 	switch value := v.(type) {
 	case *searchResult:
@@ -302,8 +352,10 @@ func (r *Response) populatePageValues(v interface{}) {
 	}
 }
 
-// BasicAuthTransport is an http.RoundTripper that authenticates all requests
-// using HTTP Basic Authentication with the provided username and password.
+/**
+BasicAuthTransport is an http.RoundTripper that authenticates all requests
+using HTTP Basic Authentication with the provided username and password.
+*/
 type BasicAuthTransport struct {
 	Username string
 	Password string
@@ -313,8 +365,10 @@ type BasicAuthTransport struct {
 	Transport http.RoundTripper
 }
 
-// RoundTrip implements the RoundTripper interface.  We just add the
-// basic auth and return the RoundTripper for this transport type.
+/**
+RoundTrip implements the RoundTripper interface.  We just add the
+basic auth and return the RoundTripper for this transport type.
+*/
 func (t *BasicAuthTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	req2 := cloneRequest(req) // per RoundTripper contract
 
@@ -322,15 +376,20 @@ func (t *BasicAuthTransport) RoundTrip(req *http.Request) (*http.Response, error
 	return t.transport().RoundTrip(req2)
 }
 
-// Client returns an *http.Client that makes requests that are authenticated
-// using HTTP Basic Authentication.  This is a nice little bit of sugar
-// so we can just get the client instead of creating the client in the calling code.
-// If it's necessary to send more information on client init, the calling code can
-// always skip this and set the transport itself.
+/**
+Client returns an *http.Client that makes requests that are authenticated
+using HTTP Basic Authentication.  This is a nice little bit of sugar
+so we can just get the client instead of creating the client in the calling code.
+If it's necessary to send more information on client init, the calling code can
+always skip this and set the transport itself.
+*/
 func (t *BasicAuthTransport) Client() *http.Client {
 	return &http.Client{Transport: t}
 }
 
+/**
+Transport
+*/
 func (t *BasicAuthTransport) transport() http.RoundTripper {
 	if t.Transport != nil {
 		return t.Transport
@@ -338,10 +397,12 @@ func (t *BasicAuthTransport) transport() http.RoundTripper {
 	return http.DefaultTransport
 }
 
-// CookieAuthTransport is an http.RoundTripper that authenticates all requests
-// using cookie-based authentication.
-//
-// Note that it is generally preferable to use HTTP BASIC authentication with the REST API.
+/**
+CookieAuthTransport is an http.RoundTripper that authenticates all requests
+using cookie-based authentication.
+
+Note that it is generally preferable to use HTTP BASIC authentication with the REST API.
+*/
 type CookieAuthTransport struct {
 	Username string
 	Password string
@@ -356,7 +417,9 @@ type CookieAuthTransport struct {
 	Transport http.RoundTripper
 }
 
-// RoundTrip adds the session object to the request.
+/**
+RoundTrip adds the session object to the request.
+*/
 func (t *CookieAuthTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	if t.SessionObject == nil {
 		err := t.setSessionObject()
@@ -376,14 +439,18 @@ func (t *CookieAuthTransport) RoundTrip(req *http.Request) (*http.Response, erro
 	return t.transport().RoundTrip(req2)
 }
 
-// Client returns an *http.Client that makes requests that are authenticated
-// using cookie authentication
+/**
+Client returns an *http.Client that makes requests that are authenticated
+using cookie authentication
+*/
 func (t *CookieAuthTransport) Client() *http.Client {
 	return &http.Client{Transport: t}
 }
 
-// setSessionObject attempts to authenticate the user and set
-// the session object (e.g. cookie)
+/**
+setSessionObject attempts to authenticate the user and set
+the session object (e.g. cookie)
+*/
 func (t *CookieAuthTransport) setSessionObject() error {
 	req, err := t.buildAuthRequest()
 	if err != nil {
@@ -402,7 +469,9 @@ func (t *CookieAuthTransport) setSessionObject() error {
 	return nil
 }
 
-// getAuthRequest assembles the request to get the authenticated cookie
+/**
+getAuthRequest assembles the request to get the authenticated cookie
+*/
 func (t *CookieAuthTransport) buildAuthRequest() (*http.Request, error) {
 	body := struct {
 		Username string `json:"username"`
@@ -431,11 +500,11 @@ func (t *CookieAuthTransport) transport() http.RoundTripper {
 	return http.DefaultTransport
 }
 
-// JWTAuthTransport is an http.RoundTripper that authenticates all requests
-// using JWT based authentication.
-//
-// NOTE: this form of auth should be used by add-ons installed from the Atlassian marketplace.
-//
+/**
+JWTAuthTransport is an http.RoundTripper that authenticates all requests
+using JWT based authentication.
+NOTE: this form of auth should be used by add-ons installed from the Atlassian marketplace.
+*/
 type JWTAuthTransport struct {
 	Secret []byte
 	Issuer string
@@ -445,10 +514,16 @@ type JWTAuthTransport struct {
 	Transport http.RoundTripper
 }
 
+/**
+JWTAuthTransport Client
+*/
 func (t *JWTAuthTransport) Client() *http.Client {
 	return &http.Client{Transport: t}
 }
 
+/**
+JWTAuthTransport transport
+*/
 func (t *JWTAuthTransport) transport() http.RoundTripper {
 	if t.Transport != nil {
 		return t.Transport
@@ -456,7 +531,9 @@ func (t *JWTAuthTransport) transport() http.RoundTripper {
 	return http.DefaultTransport
 }
 
-// RoundTrip adds the session object to the request.
+/**
+RoundTrip adds the session object to the request.
+*/
 func (t *JWTAuthTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	req2 := cloneRequest(req) // per RoundTripper contract
 	exp := time.Duration(59) * time.Second
@@ -477,12 +554,18 @@ func (t *JWTAuthTransport) RoundTrip(req *http.Request) (*http.Response, error) 
 	return t.transport().RoundTrip(req2)
 }
 
+/**
+CreateQueryStringHash
+*/
 func (t *JWTAuthTransport) createQueryStringHash(httpMethod string, openprojURL *url.URL) string {
 	canonicalRequest := t.canonicalizeRequest(httpMethod, openprojURL)
 	h := sha256.Sum256([]byte(canonicalRequest))
 	return hex.EncodeToString(h[:])
 }
 
+/**
+CanonicalizeRequest
+*/
 func (t *JWTAuthTransport) canonicalizeRequest(httpMethod string, openprojURL *url.URL) string {
 	path := "/" + strings.Replace(strings.Trim(openprojURL.Path, "/"), "&", "%26", -1)
 
@@ -499,8 +582,10 @@ func (t *JWTAuthTransport) canonicalizeRequest(httpMethod string, openprojURL *u
 	return fmt.Sprintf("%s&%s&%s", strings.ToUpper(httpMethod), path, strings.Join(canonicalQueryString, "&"))
 }
 
-// cloneRequest returns a clone of the provided *http.Request.
-// The clone is a shallow copy of the struct and its Header map.
+/**
+cloneRequest returns a clone of the provided *http.Request.
+The clone is a shallow copy of the struct and its Header map.
+*/
 func cloneRequest(r *http.Request) *http.Request {
 	// shallow copy of the struct
 	r2 := new(http.Request)
