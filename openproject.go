@@ -54,7 +54,7 @@ type Client struct {
 
 	// Services used for talking to different parts of OpenProject API.
 	Authentication *AuthenticationService
-	WorkPackage    *WPService
+	WorkPackage    *WorkPackageService
 	Project        *ProjectService
 	User           *UserService
 }
@@ -83,7 +83,7 @@ func NewClient(httpClient httpClient, baseURL string) (*Client, error) {
 		baseURL: parsedBaseURL,
 	}
 	c.Authentication = &AuthenticationService{client: c}
-	c.WorkPackage = &IssueService{client: c}
+	c.WorkPackage = &WorkPackageService{client: c}
 	c.Project = &ProjectService{client: c}
 	c.User = &UserService{client: c}
 

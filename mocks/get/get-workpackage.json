@@ -1,0 +1,262 @@
+{
+    "_embedded": {
+        "attachments": {
+            "_type": "Collection",
+            "total": 0,
+            "count": 0,
+            "_embedded": {
+                "elements": []
+            },
+            "_links": {
+                "self": {
+                    "href": "/api/v3/work_packages/1/attachments"
+                }
+            }
+        },
+        "relations": {
+            "_type": "Collection",
+            "total": 1,
+            "count": 1,
+            "_embedded": {
+                "elements": [
+                    {
+                        "_type": "Relation",
+                        "id": 1,
+                        "name": "translation missing: en.label_",
+                        "delay": null,
+                        "description": null,
+                        "_links": {
+                            "self": {
+                                "href": "/api/v3/relations/1"
+                            },
+                            "from": {
+                                "href": "/api/v3/work_packages/1",
+                                "title": "Project kick-off"
+                            },
+                            "to": {
+                                "href": "/api/v3/work_packages/1",
+                                "title": "Project kick-off"
+                            }
+                        }
+                    }
+                ]
+            },
+            "_links": {
+                "self": {
+                    "href": "/api/v3/work_packages/1/relations"
+                }
+            }
+        },
+        "type": {
+            "_type": "Type",
+            "id": 2,
+            "name": "Milestone",
+            "color": "#35C53F",
+            "position": 2,
+            "isDefault": true,
+            "isMilestone": true,
+            "createdAt": "2019-12-18T15:55:10Z",
+            "updatedAt": "2019-12-18T15:55:10Z",
+            "_links": {
+                "self": {
+                    "href": "/api/v3/types/2",
+                    "title": "Milestone"
+                }
+            }
+        },
+        "priority": {
+            "_type": "Priority",
+            "id": 9,
+            "name": "High",
+            "position": 3,
+            "color": "#FFEC99",
+            "isDefault": false,
+            "isActive": true,
+            "_links": {
+                "self": {
+                    "href": "/api/v3/priorities/9",
+                    "title": "High"
+                }
+            }
+        },
+        "project": {
+            "_type": "Project",
+            "id": 1,
+            "identifier": "demo-project",
+            "name": "Demo project",
+            "active": true,
+            "public": true,
+            "description": {
+                "format": "markdown",
+                "raw": "**This is a demo project**. You can edit the description in the [Project settings -> Description](/projects/demo-project/settings).\n",
+                "html": "<p><strong>This is a demo project</strong>. You can edit the description in the <a href=\"/projects/demo-project/settings\" rel=\"noopener noreferrer\">Project settings -&gt; Description</a>.</p>"
+            },
+            "createdAt": "2019-12-18T15:55:32Z",
+            "updatedAt": "2019-12-18T15:55:32Z",
+            "status": "on track",
+            "statusExplanation": {
+                "format": "markdown",
+                "raw": "All tasks are on schedule. The people involved know their tasks. The system is completely set up.",
+                "html": "<p>All tasks are on schedule. The people involved know their tasks. The system is completely set up.</p>"
+            },
+            "_links": {
+                "self": {
+                    "href": "/api/v3/projects/1",
+                    "title": "Demo project"
+                },
+                "workPackages": {
+                    "href": "/api/v3/projects/1/work_packages"
+                },
+                "categories": {
+                    "href": "/api/v3/projects/1/categories"
+                },
+                "versions": {
+                    "href": "/api/v3/projects/1/versions"
+                },
+                "types": {
+                    "href": "/api/v3/projects/1/types"
+                },
+                "schema": {
+                    "href": "/api/v3/projects/schema"
+                },
+                "parent": {
+                    "href": null,
+                    "title": null
+                }
+            }
+        },
+        "status": {
+            "_type": "Status",
+            "id": 6,
+            "name": "Scheduled",
+            "isClosed": false,
+            "color": "#D8F5A2",
+            "isDefault": false,
+            "isReadonly": false,
+            "defaultDoneRatio": null,
+            "position": 6,
+            "_links": {
+                "self": {
+                    "href": "/api/v3/statuses/6",
+                    "title": "Scheduled"
+                }
+            }
+        },
+        "author": {
+            "_type": "User",
+            "id": 2,
+            "name": "OpenProject Admin",
+            "avatar": "https://secure.gravatar.com/avatar/dbe0d14bc4003fbe096cb43b9fe7b00a?default=404&secure=true",
+            "_links": {
+                "self": {
+                    "href": "/api/v3/users/2",
+                    "title": "OpenProject Admin"
+                },
+                "showUser": {
+                    "href": "/users/2",
+                    "type": "text/html"
+                }
+            }
+        },
+        "assignee": {
+            "_type": "User",
+            "id": 2,
+            "name": "OpenProject Admin",
+            "avatar": "https://secure.gravatar.com/avatar/dbe0d14bc4003fbe096cb43b9fe7b00a?default=404&secure=true",
+            "_links": {
+                "self": {
+                    "href": "/api/v3/users/2",
+                    "title": "OpenProject Admin"
+                },
+                "showUser": {
+                    "href": "/users/2",
+                    "type": "text/html"
+                }
+            }
+        },
+        "customActions": []
+    },
+    "_type": "WorkPackage",
+    "id": 1,
+    "lockVersion": 0,
+    "subject": "Project kick-off",
+    "description": {
+        "format": "markdown",
+        "raw": "Plan and execute the project kick-off.",
+        "html": "<p>Plan and execute the project kick-off.</p>"
+    },
+    "date": "2019-12-20",
+    "estimatedTime": "PT8H",
+    "derivedEstimatedTime": null,
+    "percentageDone": 50,
+    "createdAt": "2019-12-18T15:55:33Z",
+    "updatedAt": "2019-12-18T15:55:33Z",
+    "_links": {
+        "attachments": {
+            "href": "/api/v3/work_packages/1/attachments"
+        },
+        "self": {
+            "href": "/api/v3/work_packages/1",
+            "title": "Project kick-off"
+        },
+        "schema": {
+            "href": "/api/v3/work_packages/schemas/1-2"
+        },
+        "availableRelationCandidates": {
+            "href": "/api/v3/work_packages/1/available_relation_candidates",
+            "title": "Potential work packages to relate to"
+        },
+        "activities": {
+            "href": "/api/v3/work_packages/1/activities"
+        },
+        "relations": {
+            "href": "/api/v3/work_packages/1/relations"
+        },
+        "revisions": {
+            "href": "/api/v3/work_packages/1/revisions"
+        },
+        "previewMarkup": {
+            "href": "/api/v3/render/markdown?context=/api/v3/work_packages/1",
+            "method": "post"
+        },
+        "category": {
+            "href": null
+        },
+        "type": {
+            "href": "/api/v3/types/2",
+            "title": "Milestone"
+        },
+        "priority": {
+            "href": "/api/v3/priorities/9",
+            "title": "High"
+        },
+        "project": {
+            "href": "/api/v3/projects/1",
+            "title": "Demo project"
+        },
+        "status": {
+            "href": "/api/v3/statuses/6",
+            "title": "Scheduled"
+        },
+        "author": {
+            "href": "/api/v3/users/2",
+            "title": "OpenProject Admin"
+        },
+        "responsible": {
+            "href": null
+        },
+        "assignee": {
+            "href": "/api/v3/users/2",
+            "title": "OpenProject Admin"
+        },
+        "version": {
+            "href": null
+        },
+        "ancestors": [],
+        "parent": {
+            "href": null,
+            "title": null
+        },
+        "customActions": []
+    }
+}
