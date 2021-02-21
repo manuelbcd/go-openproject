@@ -11,8 +11,8 @@ import (
 )
 
 /**
-	Error message from OpenProject
- */
+Error message from OpenProject
+*/
 type Error struct {
 	HTTPError     error
 	ErrorMessages []string          `json:"errorMessages"`
@@ -20,8 +20,8 @@ type Error struct {
 }
 
 /**
-	NewOpenProjectError creates a new OpenProject Error
- */
+NewOpenProjectError creates a new OpenProject Error
+*/
 func NewOpenProjectError(resp *Response, httpError error) error {
 	if resp == nil {
 		return errors.Wrap(httpError, "No response returned")
@@ -51,8 +51,8 @@ func NewOpenProjectError(resp *Response, httpError error) error {
 }
 
 /**
-	Error is a short string representing the error
- */
+Error is a short string representing the error
+*/
 func (e *Error) Error() string {
 	if len(e.ErrorMessages) > 0 {
 		// return fmt.Sprintf("%v", e.HTTPError)
@@ -67,8 +67,8 @@ func (e *Error) Error() string {
 }
 
 /**
-	LongError is a full representation of the error as a string
- */
+LongError is a full representation of the error as a string
+*/
 func (e *Error) LongError() string {
 	var msg bytes.Buffer
 	if e.HTTPError != nil {

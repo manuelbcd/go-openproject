@@ -15,20 +15,20 @@ type WorkPackageService struct {
 }
 
 /**
-	searchResult is only a small wrapper around the Search
- */
+searchResult is only a small wrapper around the Search
+*/
 type searchResult struct {
-	WorkPackages  	[]WorkPackage 	`json:"workpackages" structs:"workpackages"`
-	StartAt    		int     		`json:"startAt" structs:"startAt"`
-	MaxResults 		int     		`json:"maxResults" structs:"maxResults"`
-	Total      		int     		`json:"total" structs:"total"`
+	WorkPackages []WorkPackage `json:"workpackages" structs:"workpackages"`
+	StartAt      int           `json:"startAt" structs:"startAt"`
+	MaxResults   int           `json:"maxResults" structs:"maxResults"`
+	Total        int           `json:"total" structs:"total"`
 }
 
 /**
-	WorkPackageFields represents single fields of an OpenProject WorkPackage.
- */
+WorkPackageFields represents single fields of an OpenProject WorkPackage.
+*/
 type WorkPackageFields struct {
-	Type                          IssueType         `json:"issuetype,omitempty" structs:"issuetype,omitempty"`
+	Type IssueType `json:"issuetype,omitempty" structs:"issuetype,omitempty"`
 	// TODO: Add all other fields
 }
 
@@ -42,15 +42,14 @@ type WorkPackage struct {
 }
 
 /**
-	WorkPackage type
- */
+WorkPackage type
+*/
 type IssueType struct {
 	Self        string `json:"self,omitempty" structs:"self,omitempty"`
 	ID          string `json:"id,omitempty" structs:"id,omitempty"`
 	Description string `json:"description,omitempty" structs:"description,omitempty"`
 	Name        string `json:"name,omitempty" structs:"name,omitempty"`
 }
-
 
 /**
 	GetWithContext returns a full representation of the issue for the given OpenProject key.
@@ -82,7 +81,7 @@ func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID s
 }
 
 /**
-	Get wraps GetWithContext using the background context.
+Get wraps GetWithContext using the background context.
 */
 func (s *WorkPackageService) Get(issueID string, options *GetQueryOptions) (*WorkPackage, *Response, error) {
 	return s.GetWithContext(context.Background(), issueID, options)
