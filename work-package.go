@@ -2,8 +2,9 @@ package openproject
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
+
+	"github.com/google/go-querystring/query"
 )
 
 /**
@@ -11,6 +12,16 @@ WorkPackageService handles workpackages for the OpenProject instance / API.
 */
 type WorkPackageService struct {
 	client *Client
+}
+
+/**
+	searchResult is only a small wrapper around the Search
+ */
+type searchResult struct {
+	WorkPackages  	[]WorkPackage 	`json:"workpackages" structs:"workpackages"`
+	StartAt    		int     		`json:"startAt" structs:"startAt"`
+	MaxResults 		int     		`json:"maxResults" structs:"maxResults"`
+	Total      		int     		`json:"total" structs:"total"`
 }
 
 /**
@@ -26,7 +37,7 @@ type WorkPackage struct {
 	GetWithContext returns a full representation of the issue for the given OpenProject key.
  	The given options will be appended to the query string
 */
-func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID string, options *GetQueryOptions) (*Issue, *Response, error) {
+func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID string, options *GetQueryOptions) (*WorkPackage, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/work_packages/%s", workpackageID)
 	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
 	if err != nil {
@@ -41,10 +52,10 @@ func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID s
 		req.URL.RawQuery = q.Encode()
 	}
 
-	issue := new(Issue)
+	issue := new(WorkPackage)
 	resp, err := s.client.Do(req, issue)
 	if err != nil {
-		jerr := NewJiraError(resp, err)
+		jerr := NewOpenProjectError(resp, err)
 		return nil, resp, jerr
 	}
 
@@ -52,8 +63,8 @@ func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID s
 }
 
 /**
-Get wraps GetWithContext using the background context.
+	Get wraps GetWithContext using the background context.
 */
-func (s *WorkPackageService) Get(issueID string, options *GetQueryOptions) (*Issue, *Response, error) {
+func (s *WorkPackageService) Get(issueID string, options *GetQueryOptions) (*WorkPackage, *Response, error) {
 	return s.GetWithContext(context.Background(), issueID, options)
 }

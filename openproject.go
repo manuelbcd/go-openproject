@@ -16,6 +16,8 @@ import (
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
+	"github.com/google/go-querystring/query"
+	"github.com/pkg/errors"
 )
 
 /**
@@ -344,10 +346,6 @@ Sets paging values if response json was parsed to searchResult type
 func (r *Response) populatePageValues(v interface{}) {
 	switch value := v.(type) {
 	case *searchResult:
-		r.StartAt = value.StartAt
-		r.MaxResults = value.MaxResults
-		r.Total = value.Total
-	case *groupMembersResult:
 		r.StartAt = value.StartAt
 		r.MaxResults = value.MaxResults
 		r.Total = value.Total
