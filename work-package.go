@@ -25,6 +25,14 @@ type searchResult struct {
 }
 
 /**
+	WorkPackageFields represents single fields of an OpenProject WorkPackage.
+ */
+type WorkPackageFields struct {
+	Type                          IssueType         `json:"issuetype,omitempty" structs:"issuetype,omitempty"`
+	// TODO: Add all other fields
+}
+
+/**
 Issue represents an OpenProject WorkPackage.
 */
 type WorkPackage struct {
@@ -32,6 +40,17 @@ type WorkPackage struct {
 	ID      string `json:"id,omitempty" structs:"id,omitempty"`
 	Subject string `json:"subject,omitempty" structs:"subject,omitempty"`
 }
+
+/**
+	WorkPackage type
+ */
+type IssueType struct {
+	Self        string `json:"self,omitempty" structs:"self,omitempty"`
+	ID          string `json:"id,omitempty" structs:"id,omitempty"`
+	Description string `json:"description,omitempty" structs:"description,omitempty"`
+	Name        string `json:"name,omitempty" structs:"name,omitempty"`
+}
+
 
 /**
 	GetWithContext returns a full representation of the issue for the given OpenProject key.
