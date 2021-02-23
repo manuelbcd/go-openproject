@@ -8,7 +8,7 @@ https://docs.openproject.org/api
 
 ## Usage example
 
-```
+```go
 import (
 	"encoding/json"
 	"fmt"
