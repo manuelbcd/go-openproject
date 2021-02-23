@@ -19,9 +19,9 @@ func TestWorkPackageService_Get_Success(t *testing.T) {
 		fmt.Fprint(w, testWorkPackageGETResponse)
 	})
 
-	issue, _, err := testClient.WorkPackage.Get("36350", nil)
-	if issue == nil {
-		t.Error("Expected issue. Issue is nil")
+	workpkg, _, err := testClient.WorkPackage.Get("36350", nil)
+	if workpkg == nil {
+		t.Error("Expected work-package. Work-package is nil")
 	}
 	if err != nil {
 		t.Errorf("Error given: %s", err)
@@ -43,12 +43,12 @@ func TestWorkPackageService_Create(t *testing.T) {
 		Subject: "Just another test work-package",
 		Description: &WPDescription {
 			Format: "textile",
-			Raw: "This is just a demo workpackage description",
+			Raw: "This is just a demo work-package description",
 		},
 	}
 	issue, _, err := testClient.WorkPackage.Create(i, "demo-project")
 	if issue == nil {
-		t.Error("Expected issue. Issue is nil")
+		t.Error("Expected work-package. Work-package is nil")
 	}
 	if err != nil {
 		t.Errorf("Error given: %s", err)

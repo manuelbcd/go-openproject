@@ -5,6 +5,7 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"strings"
 	"syscall"
@@ -45,8 +46,10 @@ func main() {
 		},
 	}
 
-	wpResponse, _, err := client.WorkPackage.Create(&i, "demo-project")
+	wpResponse, resp, err := client.WorkPackage.Create(&i, "demo-project")
 	if err != nil {
+		body, err := ioutil.ReadAll(resp.Body)
+		fmt.Printf(string(body))
 		panic(err)
 	}
 

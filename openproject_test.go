@@ -22,8 +22,11 @@ var (
 	testServer *httptest.Server
 )
 
-// setup sets up a test HTTP server along with a openproject.Client that is configured to talk to that test server.
-// Tests should register handlers on mux which provide mock responses for the API method being tested.
+/**
+	setup sets up a test HTTP server along with a openproject.Client that is configured to talk to that test server.
+	Tests should register handlers on mux which provide mock responses for the API method being tested.
+
+ */
 func setup() {
 	// Test server
 	testMux = http.NewServeMux()
