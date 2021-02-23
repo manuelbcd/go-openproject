@@ -26,7 +26,6 @@ type searchResult struct {
 	Total        int           `json:"total" structs:"total"`
 }
 
-
 /**
 	Issue represents an OpenProject WorkPackage.
 */
@@ -46,7 +45,7 @@ type WPDescription struct {
 
 /**
 	WorkPackage form
-	OpenProject API v3 does not allow to create work packages using work_package endpoint POST action.
+	OpenProject API v3 provides a WorkPackage form to get a template of work-packages dynamically
 	A "Form" endpoint is available for that purpose.
  */
 type WPForm struct {
@@ -114,8 +113,8 @@ func (s *WorkPackageService) Get(issueID string, options *GetQueryOptions) (*Wor
 /**
 	CreateWithContext creates a work-package or a sub-task from a JSON representation.
 **/
-func (s *WorkPackageService) CreateWithContext(ctx context.Context, issue *WorkPackage) (*WPForm, *Response, error) {
-	apiEndpoint := "api/v3/work_packages/form"
+func (s *WorkPackageService) CreateWithContext(ctx context.Context, projectName string, issue *WorkPackage) (*WorkPackage, *Response, error) {
+	apiEndpoint := fmt.Sprintf("api/v3/projects/%s/work_packages", projectName)
 	req, err := s.client.NewRequestWithContext(ctx, "POST", apiEndpoint, issue)
 	if err != nil {
 		return nil, nil, err
@@ -126,20 +125,20 @@ func (s *WorkPackageService) CreateWithContext(ctx context.Context, issue *WorkP
 		return nil, resp, err
 	}
 
-	responseForm := new(WPForm)
+	wpResponse := new(WorkPackage)
 	defer resp.Body.Close()
 	data, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return nil, resp, fmt.Errorf("could not read the returned data")
 	}
-	err = json.Unmarshal(data, responseForm)
+	err = json.Unmarshal(data, wpResponse)
 	if err != nil {
 		return nil, resp, fmt.Errorf("could not unmarshall the data into struct")
 	}
-	return responseForm, resp, nil
+	return wpResponse, resp, nil
 }
 
 // Create wraps CreateWithContext using the background context.
-func (s *WorkPackageService) Create(issue *WorkPackage) (*WPForm, *Response, error) {
-	return s.CreateWithContext(context.Background(), issue)
+func (s *WorkPackageService) Create(issue *WorkPackage, projectName string) (*WorkPackage, *Response, error) {
+	return s.CreateWithContext(context.Background(), projectName, issue)
 }
