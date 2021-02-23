@@ -13,8 +13,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-
-    openproj "github.com/manuelbcd/go-openproject"
+    	openproj "github.com/manuelbcd/go-openproject"
 )
 
 const openProjURL = "https://community.openproject.org/"
