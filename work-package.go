@@ -9,9 +9,8 @@ import (
 	"time"
 )
 
-
 /**
-	WorkPackageService handles workpackages for the OpenProject instance / API.
+WorkPackageService handles workpackages for the OpenProject instance / API.
 */
 type WorkPackageService struct {
 	client *Client
@@ -28,9 +27,9 @@ func (t Time) Equal(u Time) bool {
 }
 
 /**
-	UnmarshalJSON will transform the OpenProject time into a time.Time
-	during the transformation of the OpenProject JSON response
- */
+UnmarshalJSON will transform the OpenProject time into a time.Time
+during the transformation of the OpenProject JSON response
+*/
 func (t *Time) UnmarshalJSON(b []byte) error {
 	// Ignore null, like in the main JSON package.
 	if string(b) == "null" {
@@ -45,17 +44,17 @@ func (t *Time) UnmarshalJSON(b []byte) error {
 }
 
 /**
-	MarshalJSON will transform the time.Time into a OpenProject time
-	during the creation of a OpenProject request
- */
+MarshalJSON will transform the time.Time into a OpenProject time
+during the creation of a OpenProject request
+*/
 func (t Time) MarshalJSON() ([]byte, error) {
 	return []byte(time.Time(t).Format("\"2006-01-02T15:04:05Z\"")), nil
 }
 
 /**
-	UnmarshalJSON will transform the OpenProject date into a time.Time
-	during the transformation of the OpenProject JSON response
- */
+UnmarshalJSON will transform the OpenProject date into a time.Time
+during the transformation of the OpenProject JSON response
+*/
 func (t *Date) UnmarshalJSON(b []byte) error {
 	// Ignore null, like in the main JSON package.
 	if string(b) == "null" {
@@ -70,79 +69,78 @@ func (t *Date) UnmarshalJSON(b []byte) error {
 }
 
 /**
-	MarshalJSON will transform the Date object into a short
-	date string as OpenProject expects during the creation of a
-	OpenProject request
- */
+MarshalJSON will transform the Date object into a short
+date string as OpenProject expects during the creation of a
+OpenProject request
+*/
 func (t Date) MarshalJSON() ([]byte, error) {
 	time := time.Time(t)
 	return []byte(time.Format("\"2006-01-02\"")), nil
 }
 
 /**
-	searchResult is only a small wrapper around the Search
+searchResult is only a small wrapper around the Search
 */
 type searchResult struct {
-	WorkPackages 	[]WorkPackage `json:"workpackages" structs:"workpackages"`
-	StartAt      	int           `json:"startAt" structs:"startAt"`
-	MaxResults   	int           `json:"maxResults" structs:"maxResults"`
-	Total        	int           `json:"total" structs:"total"`
+	WorkPackages []WorkPackage `json:"workpackages" structs:"workpackages"`
+	StartAt      int           `json:"startAt" structs:"startAt"`
+	MaxResults   int           `json:"maxResults" structs:"maxResults"`
+	Total        int           `json:"total" structs:"total"`
 }
 
 /**
-	Issue represents an OpenProject WorkPackage.
+Issue represents an OpenProject WorkPackage.
 
-	Please note: Time and Date fields are pointers in order to avoid rendering them when not initialized
+Please note: Time and Date fields are pointers in order to avoid rendering them when not initialized
 */
 type WorkPackage struct {
-	Subject 		string 			`json:"subject,omitempty" structs:"subject,omitempty"`
-	Description		*WPDescription	`json:"description,omitempty" structs:"description,omitempty"`
-	Type 			string			`json:"_type,omitempty" structs:"_type,omitempty"`
-	Id				int				`json:"id,omitempty" structs:"id,omitempty"`
-	CreatedAt		*Time			`json:"createdAt,omitempty" createdAt:"id,omitempty"`
-	UpdatedAt		*Time			`json:"updatedAt,omitempty" updatedAt:"id,omitempty"`
-	StartDate		*Date			`json:"startDate,omitempty" startDate:"id,omitempty"`
-	DueDate			*Date			`json:"dueDate,omitempty" dueDate:"id,omitempty"`
+	Subject     string         `json:"subject,omitempty" structs:"subject,omitempty"`
+	Description *WPDescription `json:"description,omitempty" structs:"description,omitempty"`
+	Type        string         `json:"_type,omitempty" structs:"_type,omitempty"`
+	Id          int            `json:"id,omitempty" structs:"id,omitempty"`
+	CreatedAt   *Time          `json:"createdAt,omitempty" createdAt:"id,omitempty"`
+	UpdatedAt   *Time          `json:"updatedAt,omitempty" updatedAt:"id,omitempty"`
+	StartDate   *Date          `json:"startDate,omitempty" startDate:"id,omitempty"`
+	DueDate     *Date          `json:"dueDate,omitempty" dueDate:"id,omitempty"`
 }
 
 /**
-	WorkPackage type
+WorkPackage type
 */
 type WPDescription struct {
-	Format      	string `json:"format,omitempty" structs:"format,omitempty"`
-	Raw         	string `json:"raw,omitempty" structs:"raw,omitempty"`
-	Html 			string `json:"html,omitempty" structs:"html,omitempty"`
+	Format string `json:"format,omitempty" structs:"format,omitempty"`
+	Raw    string `json:"raw,omitempty" structs:"raw,omitempty"`
+	Html   string `json:"html,omitempty" structs:"html,omitempty"`
 }
 
 /**
-	WorkPackage form
-	OpenProject API v3 provides a WorkPackage form to get a template of work-packages dynamically
-	A "Form" endpoint is available for that purpose.
- */
+WorkPackage form
+OpenProject API v3 provides a WorkPackage form to get a template of work-packages dynamically
+A "Form" endpoint is available for that purpose.
+*/
 type WPForm struct {
-	Type			string 			`json:"_type,omitempty" structs:"_type,omitempty"`
-	Embedded		WPFormEmbedded  `json:"_embedded,omitempty" structs:"_embedded,omitempty"`
-	Links			WPFormLinks		`json:"_links,omitempty" structs:"_links,omitempty"`
+	Type     string         `json:"_type,omitempty" structs:"_type,omitempty"`
+	Embedded WPFormEmbedded `json:"_embedded,omitempty" structs:"_embedded,omitempty"`
+	Links    WPFormLinks    `json:"_links,omitempty" structs:"_links,omitempty"`
 }
 
 /**
-	WPFormEmbedded represents the 'embedded' struct nested in 'form'
- */
+WPFormEmbedded represents the 'embedded' struct nested in 'form'
+*/
 type WPFormEmbedded struct {
-	Payload			WPPayload		`json:"payload,omitempty" structs:"payload,omitempty"`
+	Payload WPPayload `json:"payload,omitempty" structs:"payload,omitempty"`
 }
 
 /**
-	WPPayload represents the 'payload' struct nested in 'form.embedded'
- */
+WPPayload represents the 'payload' struct nested in 'form.embedded'
+*/
 type WPPayload struct {
-	Subject			string			`json:"subject,omitempty" structs:"subject,omitempty"`
+	Subject string `json:"subject,omitempty" structs:"subject,omitempty"`
 
-	StartDate		string			`json:"startDate,omitempty" structs:"startDate,omitempty"`
+	StartDate string `json:"startDate,omitempty" structs:"startDate,omitempty"`
 }
 
 type WPFormLinks struct {
-
 }
 
 /**
@@ -175,7 +173,7 @@ func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID s
 }
 
 /**
-	Get wraps GetWithContext using the background context.
+Get wraps GetWithContext using the background context.
 */
 func (s *WorkPackageService) Get(issueID string, options *GetQueryOptions) (*WorkPackage, *Response, error) {
 	return s.GetWithContext(context.Background(), issueID, options)
