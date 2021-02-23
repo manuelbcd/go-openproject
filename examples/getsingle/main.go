@@ -3,8 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	openproj "go-openproject"
 	"io/ioutil"
+
+	openproj "github.com/manuelbcd/go-openproject"
 )
 
 const openProjURL = "https://community.openproject.org/"

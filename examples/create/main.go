@@ -10,8 +10,8 @@ import (
 	"strings"
 	"syscall"
 
-	openproj "go-openproject"
 	"golang.org/x/crypto/ssh/terminal"
+	openproj "github.com/manuelbcd/go-openproject"
 )
 
 func main() {

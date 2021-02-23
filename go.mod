@@ -1,4 +1,4 @@
-module go-openproject
+module github.com/manuelbcd/go-openproject
 
 go 1.15
 
