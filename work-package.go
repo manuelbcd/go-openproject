@@ -79,16 +79,6 @@ func (t Date) MarshalJSON() ([]byte, error) {
 }
 
 /**
-searchResult is only a small wrapper around the Search
-*/
-type searchResult struct {
-	WorkPackages []WorkPackage `json:"workpackages" structs:"workpackages"`
-	StartAt      int           `json:"startAt" structs:"startAt"`
-	MaxResults   int           `json:"maxResults" structs:"maxResults"`
-	Total        int           `json:"total" structs:"total"`
-}
-
-/**
 Issue represents an OpenProject WorkPackage.
 
 Please note: Time and Date fields are pointers in order to avoid rendering them when not initialized
@@ -141,6 +131,37 @@ type WPPayload struct {
 }
 
 type WPFormLinks struct {
+}
+
+type SearchOperator int32
+
+const (
+	EQUAL       SearchOperator = 0
+	NOTEQUAL    SearchOperator = 1
+	GREATERTHAN SearchOperator = 2
+	LOWERTHAN   SearchOperator = 3
+)
+
+/**
+SearchOptions allows you to specify search parameters.
+When used they will be converted to GET parameters within the URL
+*/
+type SearchOptions struct {
+	Fields []struct {
+		Field    string
+		Operator SearchOperator
+		Value    string
+	}
+}
+
+/**
+searchResult is only a small wrapper around the Search
+*/
+type searchResult struct {
+	WorkPackages []WorkPackage `json:"workpackages" structs:"workpackages"`
+	StartAt      int           `json:"startAt" structs:"startAt"`
+	MaxResults   int           `json:"maxResults" structs:"maxResults"`
+	Total        int           `json:"total" structs:"total"`
 }
 
 /**

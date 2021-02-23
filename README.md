@@ -6,9 +6,11 @@
 ## OpenProject official API documentation
 https://docs.openproject.org/api
 
-## Usage example
+## Usage examples
 
+### Single work-package request
 Basic work-package retrieval (Single work-package with ID 36353 from community.openproject.org)
+Please check [Examples](https://github.com/manuelbcd/go-openproject/tree/master/examples) section for more complex operations.
 
 ```go
 import (
