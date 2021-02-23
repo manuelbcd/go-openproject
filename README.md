@@ -1,6 +1,6 @@
 # OpenProject Go Client Library
 
-[Go](https://golang.org/) client library for [OpenProject](https://www.openproject.org) inspired (more than inspired) in [Go Jira library](https://github.com/andygrunwald/go-jira) 
+[Go](https://golang.org/) client library for [OpenProject](https://www.openproject.org) inspired in [Go Jira library](https://github.com/andygrunwald/go-jira) 
 
 
 ## OpenProject official API documentation
@@ -32,4 +32,4 @@ func main() {
 
 ## Thanks
 
-Thank you very much Andy Grunwald for the inspiration
+Thank you very much [Andy Grunwald](https://github.com/andygrunwald) for the idea and your base code.
