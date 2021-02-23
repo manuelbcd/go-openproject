@@ -45,12 +45,12 @@ func main() {
 		},
 	}
 
-	workpkg, _, err := client.WorkPackage.Create(&i)
+	wpForm, _, err := client.WorkPackage.Create(&i)
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Printf("%s: %+v\n", workpkg.Key, openproj.WorkPackage.Fields.Summary)
+	fmt.Printf("%s: %+v\n", wpForm.Embedded.Payload.Subject, wpForm.Embedded.Payload.StartDate)
 }
 
 

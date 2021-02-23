@@ -50,9 +50,29 @@ type WPDescription struct {
 	A "Form" endpoint is available for that purpose.
  */
 type WPForm struct {
-	_Type		string 			`json:"_type,omitempty" structs:"_type,omitempty"`
-	_Embedded	WPFormEmbedded  `json:"_embedded,omitempty" structs:"_embedded,omitempty"`
-	_Links		WPFormLinks		`json:"_links,omitempty" structs:"_links,omitempty"`
+	Type		string 			`json:"_type,omitempty" structs:"_type,omitempty"`
+	Embedded	WPFormEmbedded  `json:"_embedded,omitempty" structs:"_embedded,omitempty"`
+	Links		WPFormLinks		`json:"_links,omitempty" structs:"_links,omitempty"`
+}
+
+/**
+	WPFormEmbedded represents the 'embedded' struct nested in 'form'
+ */
+type WPFormEmbedded struct {
+	Payload		WPPayload		`json:"payload,omitempty" structs:"payload,omitempty"`
+}
+
+/**
+	WPPayload represents the 'payload' struct nested in 'form.embedded'
+ */
+type WPPayload struct {
+	Subject		string			`json:"subject,omitempty" structs:"subject,omitempty"`
+
+	StartDate	string			`json:"startDate,omitempty" structs:"startDate,omitempty"`
+}
+
+type WPFormLinks struct {
+
 }
 
 /**
@@ -94,7 +114,7 @@ func (s *WorkPackageService) Get(issueID string, options *GetQueryOptions) (*Wor
 /**
 	CreateWithContext creates a work-package or a sub-task from a JSON representation.
 **/
-func (s *WorkPackageService) CreateWithContext(ctx context.Context, issue *WorkPackage) (*WorkPackage, *Response, error) {
+func (s *WorkPackageService) CreateWithContext(ctx context.Context, issue *WorkPackage) (*WPForm, *Response, error) {
 	apiEndpoint := "api/v3/work_packages/form"
 	req, err := s.client.NewRequestWithContext(ctx, "POST", apiEndpoint, issue)
 	if err != nil {
@@ -106,20 +126,20 @@ func (s *WorkPackageService) CreateWithContext(ctx context.Context, issue *WorkP
 		return nil, resp, err
 	}
 
-	responseIssue := new(WorkPackage)
+	responseForm := new(WPForm)
 	defer resp.Body.Close()
 	data, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return nil, resp, fmt.Errorf("could not read the returned data")
 	}
-	err = json.Unmarshal(data, responseIssue)
+	err = json.Unmarshal(data, responseForm)
 	if err != nil {
 		return nil, resp, fmt.Errorf("could not unmarshall the data into struct")
 	}
-	return responseIssue, resp, nil
+	return responseForm, resp, nil
 }
 
 // Create wraps CreateWithContext using the background context.
-func (s *WorkPackageService) Create(issue *WorkPackage) (*WorkPackage, *Response, error) {
+func (s *WorkPackageService) Create(issue *WorkPackage) (*WPForm, *Response, error) {
 	return s.CreateWithContext(context.Background(), issue)
 }
