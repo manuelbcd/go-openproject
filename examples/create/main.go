@@ -3,6 +3,7 @@ package main
 
 import (
 	"bufio"
+	"encoding/json"
 	"fmt"
 	"os"
 	"strings"
@@ -45,12 +46,18 @@ func main() {
 		},
 	}
 
-	wpForm, _, err := client.WorkPackage.Create(&i)
+	wpResponse, _, err := client.WorkPackage.Create(&i, "demo-project")
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Printf("%s: %+v\n", wpForm.Embedded.Payload.Subject, wpForm.Embedded.Payload.StartDate)
+	//fmt.Printf("\nSubject: %s \n StartDate: %s\n", wpResponse.Subject, wpResponse.Description.Html)
+
+	fmt.Printf(prettyPrint(wpResponse))
 }
 
+func prettyPrint(i interface{}) string {
+	s, _ := json.MarshalIndent(i, "", "\t")
+	return string(s)
+}
 
