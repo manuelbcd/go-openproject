@@ -8,23 +8,18 @@ https://docs.openproject.org/api
 
 ## Usage example
 
+Basic work-package retrieval (Single work-package with ID 36353 from community.openproject.org)
+
 ```go
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
-    	openproj "github.com/manuelbcd/go-openproject"
+	openproj "github.com/manuelbcd/go-openproject"
 )
 
 const openProjURL = "https://community.openproject.org/"
 
 func main() {
-	client, err := openproj.NewClient(nil, openProjURL)
-	if err != nil {
-		fmt.Printf("\nerror: %v\n", err)
-		return
-	}
-
+	client, _ := openproj.NewClient(nil, openProjURL)
 	wpResponse, _, err := client.WorkPackage.Get("36353", nil)
 	if err != nil {
 		panic(err)
