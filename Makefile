@@ -1,10 +1,14 @@
-.PHONY: test
+.PHONY: test-coverage
 test: ## Runs all unit, integration and example tests.
 	go test -race -v ./...
 
+.PHONY: lint
+lint: ## Linter code
+    golint ./..
+
 .PHONY: vet
 vet: ## Runs go vet (to detect suspicious constructs).
-	go vet ./...
+    go vet ./...
 
 .PHONY: fmt
 fmt: ## Runs go fmt (to check for go coding guidelines).
