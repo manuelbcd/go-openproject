@@ -2,20 +2,22 @@ package openproject
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 
 	"github.com/google/go-querystring/query"
 )
 
 /**
-WorkPackageService handles workpackages for the OpenProject instance / API.
+	WorkPackageService handles workpackages for the OpenProject instance / API.
 */
 type WorkPackageService struct {
 	client *Client
 }
 
 /**
-searchResult is only a small wrapper around the Search
+	searchResult is only a small wrapper around the Search
 */
 type searchResult struct {
 	WorkPackages []WorkPackage `json:"workpackages" structs:"workpackages"`
@@ -24,31 +26,33 @@ type searchResult struct {
 	Total        int           `json:"total" structs:"total"`
 }
 
-/**
-WorkPackageFields represents single fields of an OpenProject WorkPackage.
-*/
-type WorkPackageFields struct {
-	Type IssueType `json:"issuetype,omitempty" structs:"issuetype,omitempty"`
-	// TODO: Add all other fields
-}
 
 /**
-Issue represents an OpenProject WorkPackage.
+	Issue represents an OpenProject WorkPackage.
 */
 type WorkPackage struct {
-	Type    string `json:"_type,omitempty" structs:"_type,omitempty"`
-	ID      string `json:"id,omitempty" structs:"id,omitempty"`
-	Subject string `json:"subject,omitempty" structs:"subject,omitempty"`
+	Subject 		string 			`json:"subject,omitempty" structs:"subject,omitempty"`
+	Description		*WPDescription	`json:"description,omitempty" structs:"description,omitempty"`
 }
 
 /**
-WorkPackage type
+	WorkPackage type
 */
-type IssueType struct {
-	Self        string `json:"self,omitempty" structs:"self,omitempty"`
-	ID          string `json:"id,omitempty" structs:"id,omitempty"`
-	Description string `json:"description,omitempty" structs:"description,omitempty"`
-	Name        string `json:"name,omitempty" structs:"name,omitempty"`
+type WPDescription struct {
+	Format      string `json:"format,omitempty" structs:"format,omitempty"`
+	Raw         string `json:"raw,omitempty" structs:"raw,omitempty"`
+	Html 		string `json:"html,omitempty" structs:"html,omitempty"`
+}
+
+/**
+	WorkPackage form
+	OpenProject API v3 does not allow to create work packages using work_package endpoint POST action.
+	A "Form" endpoint is available for that purpose.
+ */
+type WPForm struct {
+	_Type		string 			`json:"_type,omitempty" structs:"_type,omitempty"`
+	_Embedded	WPFormEmbedded  `json:"_embedded,omitempty" structs:"_embedded,omitempty"`
+	_Links		WPFormLinks		`json:"_links,omitempty" structs:"_links,omitempty"`
 }
 
 /**
@@ -81,8 +85,41 @@ func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID s
 }
 
 /**
-Get wraps GetWithContext using the background context.
+	Get wraps GetWithContext using the background context.
 */
 func (s *WorkPackageService) Get(issueID string, options *GetQueryOptions) (*WorkPackage, *Response, error) {
 	return s.GetWithContext(context.Background(), issueID, options)
+}
+
+/**
+	CreateWithContext creates a work-package or a sub-task from a JSON representation.
+**/
+func (s *WorkPackageService) CreateWithContext(ctx context.Context, issue *WorkPackage) (*WorkPackage, *Response, error) {
+	apiEndpoint := "api/v3/work_packages/form"
+	req, err := s.client.NewRequestWithContext(ctx, "POST", apiEndpoint, issue)
+	if err != nil {
+		return nil, nil, err
+	}
+	resp, err := s.client.Do(req, nil)
+	if err != nil {
+		// incase of error return the resp for further inspection
+		return nil, resp, err
+	}
+
+	responseIssue := new(WorkPackage)
+	defer resp.Body.Close()
+	data, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, resp, fmt.Errorf("could not read the returned data")
+	}
+	err = json.Unmarshal(data, responseIssue)
+	if err != nil {
+		return nil, resp, fmt.Errorf("could not unmarshall the data into struct")
+	}
+	return responseIssue, resp, nil
+}
+
+// Create wraps CreateWithContext using the background context.
+func (s *WorkPackageService) Create(issue *WorkPackage) (*WorkPackage, *Response, error) {
+	return s.CreateWithContext(context.Background(), issue)
 }

@@ -37,30 +37,20 @@ func main() {
 	}
 
 	i := openproj.WorkPackage{
-		Fields: &openproj.WorkPackageFields{
-			Assignee: &openproj.User{
-				Name: "myuser",
-			},
-			Reporter: &openproj.User{
-				Name: "youruser",
-			},
-			Description: "Test Issue",
-			Type: openproj.IssueType{
-				Name: "Bug",
-			},
-			Project: openproj.Project{
-				Key: "PROJ1",
-			},
-			Summary: "Just a demo workpackage",
+		Subject: "This is my test work package",
+		Description: &openproj.WPDescription {
+			Format: "",
+			Raw: "",
+			Html: "Just a demo workpackage",
 		},
 	}
 
-	issue, _, err := client.WorkPackage.Create(&i)
+	workpkg, _, err := client.WorkPackage.Create(&i)
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Printf("%s: %+v\n", issue.Key, openproj.WorkPackage.Fields.Summary)
+	fmt.Printf("%s: %+v\n", workpkg.Key, openproj.WorkPackage.Fields.Summary)
 }
 
 
