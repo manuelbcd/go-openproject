@@ -40,9 +40,8 @@ func main() {
 	i := openproj.WorkPackage{
 		Subject: "This is my test work package",
 		Description: &openproj.WPDescription {
-			Format: "",
-			Raw: "",
-			Html: "Just a demo workpackage",
+			Format: "textile",
+			Raw: "This is just a demo workpackage description",
 		},
 	}
 
@@ -51,8 +50,10 @@ func main() {
 		panic(err)
 	}
 
-	//fmt.Printf("\nSubject: %s \n StartDate: %s\n", wpResponse.Subject, wpResponse.Description.Html)
+	// Output with particular fields from response
+	fmt.Printf("\n\nSubject: %s \nDescription: %s\n\n", wpResponse.Subject, wpResponse.Description.Raw)
 
+	// Raw output of the whole object (only for debug)
 	fmt.Printf(prettyPrint(wpResponse))
 }
 
