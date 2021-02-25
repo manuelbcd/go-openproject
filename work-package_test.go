@@ -28,6 +28,25 @@ func TestWorkPackageService_Get_Success(t *testing.T) {
 	}
 }
 
+func TestWorkPackageService_Get_SearchListSuccess(t *testing.T) {
+	setup()
+	defer teardown()
+	testMux.HandleFunc("/api/v3/work_packages", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, "GET")
+		testRequestURL(t, r, "/api/v3/work_packages")
+
+		fmt.Fprint(w, testWorkPackageGETResponse)
+	})
+
+	workpkg, _, err := testClient.WorkPackage.Get("36350", nil)
+	if workpkg == nil {
+		t.Error("Expected work-package. Work-package is nil")
+	}
+	if err != nil {
+		t.Errorf("Error given: %s", err)
+	}
+}
+
 func TestWorkPackageService_Create(t *testing.T) {
 	setup()
 	defer teardown()

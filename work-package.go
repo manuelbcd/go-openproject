@@ -133,6 +133,9 @@ type WPPayload struct {
 type WPFormLinks struct {
 }
 
+/**
+Search operator for Get-Workpackages with filters
+*/
 type SearchOperator int32
 
 const (
@@ -143,10 +146,14 @@ const (
 )
 
 /**
-SearchOptions allows you to specify search parameters.
+FilterOptions allows you to specify search parameters for the get-workpackage action
 When used they will be converted to GET parameters within the URL
+Up to now OpenProject only allows "AND" combinations. "OR" combinations feature is under development,
+tracked by this ticket https://community.openproject.org/projects/openproject/work_packages/26837/activity
+
+More information about filters https://docs.openproject.org/api/filters/
 */
-type SearchOptions struct {
+type FilterOptions struct {
 	Fields []struct {
 		Field    string
 		Operator SearchOperator
@@ -168,7 +175,7 @@ type searchResult struct {
 	GetWithContext returns a full representation of the issue for the given OpenProject key.
  	The given options will be appended to the query string
 */
-func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID string, options *GetQueryOptions) (*WorkPackage, *Response, error) {
+func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID string, options *FilterOptions) (*WorkPackage, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/work_packages/%s", workpackageID)
 	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
 	if err != nil {
@@ -196,7 +203,7 @@ func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID s
 /**
 Get wraps GetWithContext using the background context.
 */
-func (s *WorkPackageService) Get(issueID string, options *GetQueryOptions) (*WorkPackage, *Response, error) {
+func (s *WorkPackageService) Get(issueID string, options *FilterOptions) (*WorkPackage, *Response, error) {
 	return s.GetWithContext(context.Background(), issueID, options)
 }
 
