@@ -4,8 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/google/go-querystring/query"
 	"io/ioutil"
+	"net/url"
 	"time"
 )
 
@@ -136,14 +136,19 @@ type WPFormLinks struct {
 /**
 Search operator for Get-Workpackages with filters
 */
-type SearchOperator int32
+type SearchOperator int8
 
 const (
 	EQUAL       SearchOperator = 0
-	NOTEQUAL    SearchOperator = 1
+	DIFFERENT   SearchOperator = 1
 	GREATERTHAN SearchOperator = 2
 	LOWERTHAN   SearchOperator = 3
 )
+
+/**
+Constants to represent OpenProject standard GET parameters
+*/
+const PARAM_FILTERS = "filters"
 
 /**
 FilterOptions allows you to specify search parameters for the get-workpackage action
@@ -154,7 +159,7 @@ tracked by this ticket https://community.openproject.org/projects/openproject/wo
 More information about filters https://docs.openproject.org/api/filters/
 */
 type FilterOptions struct {
-	Fields [] OptionsFields
+	Fields []OptionsFields
 }
 
 type OptionsFields struct {
@@ -185,14 +190,12 @@ func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID s
 	}
 
 	if options != nil {
-		//
-		// TODO: Process options to adapt it to query.Values
-		//
-		q, err := query.Values(options)
+		// q, err := query.Values(options)
 		if err != nil {
 			return nil, nil, err
 		}
-		req.URL.RawQuery = q.Encode()
+		values := options.prepareFilters()
+		req.URL.RawQuery = values.Encode()
 	}
 
 	issue := new(WorkPackage)
@@ -210,6 +213,48 @@ Get wraps GetWithContext using the background context.
 */
 func (s *WorkPackageService) Get(issueID string, options *FilterOptions) (*WorkPackage, *Response, error) {
 	return s.GetWithContext(context.Background(), issueID, options)
+}
+
+/**
+	prepareFilters convert FilterOptions to single URL-Encoded string to be inserted into GET request
+    as parameter.
+	TODO: Improve string concatenation to be more efficient (+ concatenation is not efficient) using strings.Builder
+	TODO: Example of inefficient string concatenation --> filterTemplate += s
+*/
+func (fops *FilterOptions) prepareFilters() url.Values {
+	values := make(url.Values)
+
+	filterTemplate := "["
+	for _, field := range fops.Fields {
+		s := fmt.Sprintf(
+			"{\"%[1]v\":{\"operator\":\"%[2]v\",\"values\":[\"%[3]v\"]}}",
+			field.Field, interpretOperator(field.Operator), field.Value)
+
+		filterTemplate += s
+	}
+	filterTemplate += "]"
+
+	values[PARAM_FILTERS][0] = filterTemplate
+
+	return values
+}
+
+/**
+Interpret Operator collection and return its string
+*/
+func interpretOperator(operator SearchOperator) string {
+	result := "="
+
+	switch operator {
+	case GREATERTHAN:
+		result = ">"
+	case LOWERTHAN:
+		result = "<"
+	case DIFFERENT:
+		result = "<>"
+	}
+
+	return result
 }
 
 /**

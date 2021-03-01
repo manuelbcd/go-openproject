@@ -18,7 +18,17 @@ func main() {
 		return
 	}
 
-	wpResponse, resp, err := client.WorkPackage.Get("36353", nil)
+	opt := &openproj.FilterOptions{
+		Fields: []openproj.OptionsFields{
+			{
+				Field:    "status",
+				Operator: openproj.EQUAL,
+				Value:    "21",
+			},
+		},
+	}
+
+	wpResponse, resp, err := client.WorkPackage.Get("", opt)
 	if err != nil {
 		body, err := ioutil.ReadAll(resp.Body)
 		fmt.Printf(string(body))
