@@ -38,7 +38,17 @@ func TestWorkPackageService_Get_SearchListSuccess(t *testing.T) {
 		fmt.Fprint(w, testWorkPackageGETResponse)
 	})
 
-	workpkg, _, err := testClient.WorkPackage.Get("36350", nil)
+	opt := &FilterOptions{
+		Fields: []OptionsFields{
+			{
+				Field:    "",
+				Operator: EQUAL,
+				Value:    "",
+			},
+		},
+	}
+
+	workpkg, _, err := testClient.WorkPackage.Get("36350", opt)
 	if workpkg == nil {
 		t.Error("Expected work-package. Work-package is nil")
 	}

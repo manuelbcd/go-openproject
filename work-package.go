@@ -154,11 +154,13 @@ tracked by this ticket https://community.openproject.org/projects/openproject/wo
 More information about filters https://docs.openproject.org/api/filters/
 */
 type FilterOptions struct {
-	Fields []struct {
-		Field    string
-		Operator SearchOperator
-		Value    string
-	}
+	Fields [] OptionsFields
+}
+
+type OptionsFields struct {
+	Field    string
+	Operator SearchOperator
+	Value    string
 }
 
 /**
@@ -183,6 +185,9 @@ func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID s
 	}
 
 	if options != nil {
+		//
+		// TODO: Process options to adapt it to query.Values
+		//
 		q, err := query.Values(options)
 		if err != nil {
 			return nil, nil, err
