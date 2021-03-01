@@ -36,7 +36,7 @@ func main() {
 	}
 
 	// Output specific fields from response
-	fmt.Printf("\n\nSubject: %s \nDescription: %s\n\n", wpResponse.Subject, wpResponse.Description.Raw)
+	//fmt.Printf("\n\nSubject: %s \nDescription: %s\n\n", wpResponse.Subject, wpResponse.Description.Raw)
 
 	// Raw output of the whole object (only for debug)
 	fmt.Printf(prettyPrint(wpResponse))

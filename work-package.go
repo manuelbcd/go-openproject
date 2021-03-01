@@ -198,14 +198,14 @@ func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID s
 		req.URL.RawQuery = values.Encode()
 	}
 
-	issue := new(WorkPackage)
-	resp, err := s.client.Do(req, issue)
+	workPackage := new(WorkPackage)
+	resp, err := s.client.Do(req, workPackage)
 	if err != nil {
 		jerr := NewOpenProjectError(resp, err)
 		return nil, resp, jerr
 	}
 
-	return issue, resp, nil
+	return workPackage, resp, nil
 }
 
 /**
@@ -234,7 +234,7 @@ func (fops *FilterOptions) prepareFilters() url.Values {
 	}
 	filterTemplate += "]"
 
-	values[PARAM_FILTERS][0] = filterTemplate
+	values.Add(PARAM_FILTERS, filterTemplate)
 
 	return values
 }
