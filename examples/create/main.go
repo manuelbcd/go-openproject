@@ -20,8 +20,11 @@ func main() {
 	fmt.Print("OpenProject URL: ")
 	openProjURL, _ := r.ReadString('\n')
 
-	fmt.Print("OpenProject Username: ")
+	fmt.Print("OpenProject Username (By default 'apikey'): ")
 	username, _ := r.ReadString('\n')
+	if username == "" {
+		username = "apikey"
+	}
 
 	fmt.Print("OpenProject Password: ")
 	bytePassword, _ := terminal.ReadPassword(int(syscall.Stdin))
@@ -57,7 +60,7 @@ func main() {
 	fmt.Printf("\n\nSubject: %s \nDescription: %s\n\n", wpResponse.Subject, wpResponse.Description.Raw)
 
 	// Raw output of the whole object (only for debug)
-	fmt.Printf(prettyPrint(wpResponse))
+	// fmt.Printf(prettyPrint(wpResponse))
 }
 
 func prettyPrint(i interface{}) string {

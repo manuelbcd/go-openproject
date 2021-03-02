@@ -21,22 +21,6 @@ import (
 )
 
 /**
-	GetQueryOptions specifies the optional parameters for Get methods
- 	TODO: Review and adapt
-*/
-type GetQueryOptions struct {
-	// Fields is the list of fields to return for the issue. By default, all fields are returned.
-	Fields string `url:"fields,omitempty"`
-	Expand string `url:"expand,omitempty"`
-	// Properties is the list of properties to return for the issue. By default no properties are returned.
-	Properties string `url:"properties,omitempty"`
-	// FieldsByKeys if true then fields in issues will be referenced by keys instead of ids
-	FieldsByKeys  bool   `url:"fieldsByKeys,omitempty"`
-	UpdateHistory bool   `url:"updateHistory,omitempty"`
-	ProjectKeys   string `url:"projectKeys,omitempty"`
-}
-
-/**
 httpClient defines an interface for an http.Client implementation
 */
 type httpClient interface {
@@ -279,10 +263,16 @@ func (c *Client) Do(req *http.Request, v interface{}) (*Response, error) {
 		return nil, err
 	}
 
+	// requestDump, err := httputil.DumpResponse(httpResp, true)
+	// if err != nil {
+	// 	fmt.Println(err.Error())
+	// } else {
+	// 	fmt.Println(requestDump)
+	// }
+
 	err = CheckResponse(httpResp)
 	if err != nil {
-		// Even though there was an error, we still return the response
-		// in case the caller wants to inspect it further
+		// In case of error we still return the response
 		return newResponse(httpResp, nil), err
 	}
 
@@ -346,9 +336,8 @@ Sets paging values if response json was parsed to searchResult type
 func (r *Response) populatePageValues(v interface{}) {
 	switch value := v.(type) {
 	case *searchResult:
-		r.StartAt = value.StartAt
-		r.MaxResults = value.MaxResults
 		r.Total = value.Total
+		// TODO: SET THE OTHER VALUES (count, pagesize, offset)
 	}
 }
 
