@@ -35,11 +35,17 @@ func main() {
 		panic(err)
 	}
 
-	// Output specific fields from response
-	// fmt.Printf("\n\nSubject: %s \nDescription: %s\n\n", wpResponse.Subject, wpResponse.Description.Raw)
-
 	// Raw output of the whole object (only for debug)
-	fmt.Printf(prettyPrint(wpResponse))
+	// fmt.Printf(prettyPrint(wpResponse))
+
+	fmt.Printf("\nWorkpackages: %d \n\n", resp.Total)
+
+	for _, wp := range wpResponse {
+		fmt.Printf("\n\nId: %d ", wp.Id)
+		fmt.Printf("\nStatus: %s ", wp.Links.Status.Title)
+		fmt.Printf("Subject: %.*s ", 15, wp.Subject)
+		fmt.Printf("\nDescription: %.*s\n", 25, wp.Description.Raw)
+	}
 }
 
 func prettyPrint(i interface{}) string {

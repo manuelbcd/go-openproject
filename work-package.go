@@ -92,6 +92,8 @@ type WorkPackage struct {
 	UpdatedAt   *Time          `json:"updatedAt,omitempty" updatedAt:"id,omitempty"`
 	StartDate   *Date          `json:"startDate,omitempty" startDate:"id,omitempty"`
 	DueDate     *Date          `json:"dueDate,omitempty" dueDate:"id,omitempty"`
+
+	Links *WPLinks `json:"_links,omitempty" _links:"id,omitempty"`
 }
 
 /**
@@ -101,6 +103,22 @@ type WPDescription struct {
 	Format string `json:"format,omitempty" structs:"format,omitempty"`
 	Raw    string `json:"raw,omitempty" structs:"raw,omitempty"`
 	Html   string `json:"html,omitempty" structs:"html,omitempty"`
+}
+
+/**
+WorkPackage Links
+*/
+type WPLinks struct {
+	// TODO: Complete the full set of Links (attachments, revisions, activities, relations, etc..)
+	Self     WPLinksField `json:"self,omitempty" structs:"self,omitempty"`
+	Type     WPLinksField `json:"type,omitempty" structs:"type,omitempty"`
+	Priority WPLinksField `json:"priority,omitempty" structs:"priority,omitempty"`
+	Status   WPLinksField `json:"status,omitempty" structs:"status,omitempty"`
+}
+
+type WPLinksField struct {
+	Href  string
+	Title string
 }
 
 /**

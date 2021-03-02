@@ -60,7 +60,7 @@ func main() {
 	fmt.Printf("\n\nSubject: %s \nDescription: %s\n\n", wpResponse.Subject, wpResponse.Description.Raw)
 
 	// Raw output of the whole object (only for debug)
-	fmt.Printf(prettyPrint(wpResponse))
+	// fmt.Printf(prettyPrint(wpResponse))
 }
 
 func prettyPrint(i interface{}) string {
