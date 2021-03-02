@@ -20,8 +20,11 @@ func main() {
 	fmt.Print("OpenProject URL: ")
 	openProjURL, _ := r.ReadString('\n')
 
-	fmt.Print("OpenProject Username: ")
+	fmt.Print("OpenProject Username (By default 'apikey'): ")
 	username, _ := r.ReadString('\n')
+	if username == "" {
+		username = "apikey"
+	}
 
 	fmt.Print("OpenProject Password: ")
 	bytePassword, _ := terminal.ReadPassword(int(syscall.Stdin))

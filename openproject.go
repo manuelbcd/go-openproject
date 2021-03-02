@@ -263,10 +263,16 @@ func (c *Client) Do(req *http.Request, v interface{}) (*Response, error) {
 		return nil, err
 	}
 
+	// requestDump, err := httputil.DumpResponse(httpResp, true)
+	// if err != nil {
+	// 	fmt.Println(err.Error())
+	// } else {
+	// 	fmt.Println(requestDump)
+	// }
+
 	err = CheckResponse(httpResp)
 	if err != nil {
-		// Even though there was an error, we still return the response
-		// in case the caller wants to inspect it further
+		// In case of error we still return the response
 		return newResponse(httpResp, nil), err
 	}
 
@@ -330,9 +336,8 @@ Sets paging values if response json was parsed to searchResult type
 func (r *Response) populatePageValues(v interface{}) {
 	switch value := v.(type) {
 	case *searchResult:
-		r.StartAt = value.StartAt
-		r.MaxResults = value.MaxResults
 		r.Total = value.Total
+		// TODO: SET THE OTHER VALUES (count, pagesize, offset)
 	}
 }
 

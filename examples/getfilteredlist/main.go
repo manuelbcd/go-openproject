@@ -8,7 +8,7 @@ import (
 	openproj "github.com/manuelbcd/go-openproject"
 )
 
-const openProjURL = "https://community.openproject.org/"
+const openProjURL = "https://community.openproject.org"
 
 func main() {
 
@@ -28,7 +28,7 @@ func main() {
 		},
 	}
 
-	wpResponse, resp, err := client.WorkPackage.Get("", opt)
+	wpResponse, resp, err := client.WorkPackage.GetList(opt)
 	if err != nil {
 		body, err := ioutil.ReadAll(resp.Body)
 		fmt.Printf(string(body))
@@ -36,7 +36,7 @@ func main() {
 	}
 
 	// Output specific fields from response
-	//fmt.Printf("\n\nSubject: %s \nDescription: %s\n\n", wpResponse.Subject, wpResponse.Description.Raw)
+	// fmt.Printf("\n\nSubject: %s \nDescription: %s\n\n", wpResponse.Subject, wpResponse.Description.Raw)
 
 	// Raw output of the whole object (only for debug)
 	fmt.Printf(prettyPrint(wpResponse))

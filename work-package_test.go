@@ -19,7 +19,7 @@ func TestWorkPackageService_Get_Success(t *testing.T) {
 		fmt.Fprint(w, testWorkPackageGETResponse)
 	})
 
-	workpkg, _, err := testClient.WorkPackage.Get("36350", nil)
+	workpkg, _, err := testClient.WorkPackage.Get("36350")
 	if workpkg == nil {
 		t.Error("Expected work-package. Work-package is nil")
 	}
@@ -48,7 +48,7 @@ func TestWorkPackageService_Get_SearchListSuccess(t *testing.T) {
 		},
 	}
 
-	workpkg, _, err := testClient.WorkPackage.Get("36350", opt)
+	workpkg, _, err := testClient.WorkPackage.GetList(opt)
 	if workpkg == nil {
 		t.Error("Expected work-package. Work-package is nil")
 	}

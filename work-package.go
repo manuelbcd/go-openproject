@@ -172,30 +172,29 @@ type OptionsFields struct {
 searchResult is only a small wrapper around the Search
 */
 type searchResult struct {
-	WorkPackages []WorkPackage `json:"workpackages" structs:"workpackages"`
-	StartAt      int           `json:"startAt" structs:"startAt"`
-	MaxResults   int           `json:"maxResults" structs:"maxResults"`
-	Total        int           `json:"total" structs:"total"`
+	Embedded	 searchEmbedded `json:"_embedded" structs:"_embedded"`
+	Total        int           	`json:"total" structs:"total"`
+	Count      	 int           	`json:"count" structs:"count"`
+	PageSize   	 int          	`json:"pageSize" structs:"pageSize"`
+	Offset		 int			`json:"offset" structs:"offset"`
 }
+
+type searchEmbedded struct {
+	Elements	[]WorkPackage 	`json:"elements" structs:"elements"`
+}
+
+
 
 /**
 	GetWithContext returns a full representation of the issue for the given OpenProject key.
  	The given options will be appended to the query string
 */
-func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID string, options *FilterOptions) (*WorkPackage, *Response, error) {
+func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID string) (*WorkPackage, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/work_packages/%s", workpackageID)
+
 	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
 	if err != nil {
 		return nil, nil, err
-	}
-
-	if options != nil {
-		// q, err := query.Values(options)
-		if err != nil {
-			return nil, nil, err
-		}
-		values := options.prepareFilters()
-		req.URL.RawQuery = values.Encode()
 	}
 
 	workPackage := new(WorkPackage)
@@ -211,8 +210,8 @@ func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID s
 /**
 Get wraps GetWithContext using the background context.
 */
-func (s *WorkPackageService) Get(issueID string, options *FilterOptions) (*WorkPackage, *Response, error) {
-	return s.GetWithContext(context.Background(), issueID, options)
+func (s *WorkPackageService) Get(issueID string) (*WorkPackage, *Response, error) {
+	return s.GetWithContext(context.Background(), issueID)
 }
 
 /**
@@ -260,9 +259,9 @@ func interpretOperator(operator SearchOperator) string {
 /**
 	CreateWithContext creates a work-package or a sub-task from a JSON representation.
 **/
-func (s *WorkPackageService) CreateWithContext(ctx context.Context, projectName string, issue *WorkPackage) (*WorkPackage, *Response, error) {
+func (s *WorkPackageService) CreateWithContext(ctx context.Context, projectName string, workPackage *WorkPackage) (*WorkPackage, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/projects/%s/work_packages", projectName)
-	req, err := s.client.NewRequestWithContext(ctx, "POST", apiEndpoint, issue)
+	req, err := s.client.NewRequestWithContext(ctx, "POST", apiEndpoint, workPackage)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -285,7 +284,46 @@ func (s *WorkPackageService) CreateWithContext(ctx context.Context, projectName 
 	return wpResponse, resp, nil
 }
 
-// Create wraps CreateWithContext using the background context.
-func (s *WorkPackageService) Create(issue *WorkPackage, projectName string) (*WorkPackage, *Response, error) {
-	return s.CreateWithContext(context.Background(), projectName, issue)
+/**
+	Create wraps CreateWithContext using the background context.
+ */
+func (s *WorkPackageService) Create(workPackage *WorkPackage, projectName string) (*WorkPackage, *Response, error) {
+	return s.CreateWithContext(context.Background(), projectName, workPackage)
+}
+
+/**
+	GetListWithContext will retrieve a list of work-packages using filters
+ */
+func (s *WorkPackageService) GetListWithContext(ctx context.Context, options *FilterOptions) ([]WorkPackage, *Response, error) {
+	u := url.URL{
+		Path: "api/v3/work_packages",
+	}
+
+	req, err := s.client.NewRequestWithContext(ctx, "GET", u.String(), nil)
+	if err != nil {
+		return []WorkPackage{}, nil, err
+	}
+
+	if options != nil {
+		// q, err := query.Values(options)
+		if err != nil {
+			return nil, nil, err
+		}
+		values := options.prepareFilters()
+		req.URL.RawQuery = values.Encode()
+	}
+
+	v := new(searchResult)
+	resp, err := s.client.Do(req, v)
+	if err != nil {
+		err = NewOpenProjectError(resp, err)
+	}
+	return v.Embedded.Elements, resp, err
+}
+
+/**
+	GetList wraps GetListWithContext using the background context.
+ */
+func (s *WorkPackageService) GetList(options *FilterOptions) ([]WorkPackage, *Response, error) {
+	return s.GetListWithContext(context.Background(), options)
 }
