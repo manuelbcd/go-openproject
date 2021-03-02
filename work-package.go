@@ -172,18 +172,16 @@ type OptionsFields struct {
 searchResult is only a small wrapper around the Search
 */
 type searchResult struct {
-	Embedded	 searchEmbedded `json:"_embedded" structs:"_embedded"`
-	Total        int           	`json:"total" structs:"total"`
-	Count      	 int           	`json:"count" structs:"count"`
-	PageSize   	 int          	`json:"pageSize" structs:"pageSize"`
-	Offset		 int			`json:"offset" structs:"offset"`
+	Embedded searchEmbedded `json:"_embedded" structs:"_embedded"`
+	Total    int            `json:"total" structs:"total"`
+	Count    int            `json:"count" structs:"count"`
+	PageSize int            `json:"pageSize" structs:"pageSize"`
+	Offset   int            `json:"offset" structs:"offset"`
 }
 
 type searchEmbedded struct {
-	Elements	[]WorkPackage 	`json:"elements" structs:"elements"`
+	Elements []WorkPackage `json:"elements" structs:"elements"`
 }
-
-
 
 /**
 	GetWithContext returns a full representation of the issue for the given OpenProject key.
@@ -285,15 +283,15 @@ func (s *WorkPackageService) CreateWithContext(ctx context.Context, projectName 
 }
 
 /**
-	Create wraps CreateWithContext using the background context.
- */
+Create wraps CreateWithContext using the background context.
+*/
 func (s *WorkPackageService) Create(workPackage *WorkPackage, projectName string) (*WorkPackage, *Response, error) {
 	return s.CreateWithContext(context.Background(), projectName, workPackage)
 }
 
 /**
-	GetListWithContext will retrieve a list of work-packages using filters
- */
+GetListWithContext will retrieve a list of work-packages using filters
+*/
 func (s *WorkPackageService) GetListWithContext(ctx context.Context, options *FilterOptions) ([]WorkPackage, *Response, error) {
 	u := url.URL{
 		Path: "api/v3/work_packages",
@@ -322,8 +320,8 @@ func (s *WorkPackageService) GetListWithContext(ctx context.Context, options *Fi
 }
 
 /**
-	GetList wraps GetListWithContext using the background context.
- */
+GetList wraps GetListWithContext using the background context.
+*/
 func (s *WorkPackageService) GetList(options *FilterOptions) ([]WorkPackage, *Response, error) {
 	return s.GetListWithContext(context.Background(), options)
 }
