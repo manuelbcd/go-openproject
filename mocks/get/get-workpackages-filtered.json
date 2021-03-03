@@ -1,0 +1,1765 @@
+{
+	"_type": "WorkPackageCollection",
+	"total": 2,
+	"count": 2,
+	"pageSize": 50,
+	"offset": 1,
+	"_embedded": {
+		"elements": [{
+				"derivedStartDate": null,
+				"derivedDueDate": null,
+				"_type": "WorkPackage",
+				"id": 26077,
+				"lockVersion": 17,
+				"subject": "Inline creation: all cells in edit mode (not only subject)",
+				"description": {
+					"format": "markdown",
+					"raw": "**Current behavior**\n\n*   Only the subject field is open. All other fields are in show view.\n*   When creating a new work package the default work package type is preselected.\n\n![](/api/v3/attachments/17114/content)\n\n**Expected**\n\n*   Make all cells editable\n\n![](/api/v3/attachments/17115/content)\n\n*   There is a save button and a cancel button on the left (at the position of the +-Button)\n*   We move the cancel button also to the left.\n\n![](/attachments/12050/1502374752425-0.png)\n\n**To be defined**\n\n*   Pressing an enter button saves the work package.\n*   What happens if there is no empty ID column on the left?",
+					"html": "<p class=\"op-uc-p\"><strong>Current behavior</strong></p>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Only the subject field is open. All other fields are in show view.</li>\n<li class=\"op-uc-list--item\">When creating a new work package the default work package type is preselected.</li>\n</ul>\n<p class=\"op-uc-p\"><figure class=\"op-uc-figure\"><div class=\"op-uc-figure--content\"><img src=\"/api/v3/attachments/17114/content\" alt=\"\" class=\"op-uc-image\"></div></figure></p>\n<p class=\"op-uc-p\"><strong>Expected</strong></p>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Make all cells editable</li>\n</ul>\n<p class=\"op-uc-p\"><figure class=\"op-uc-figure\"><div class=\"op-uc-figure--content\"><img src=\"/api/v3/attachments/17115/content\" alt=\"\" class=\"op-uc-image\"></div></figure></p>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">There is a save button and a cancel button on the left (at the position of the +-Button)</li>\n<li class=\"op-uc-list--item\">We move the cancel button also to the left.</li>\n</ul>\n<p class=\"op-uc-p\"><figure class=\"op-uc-figure\"><div class=\"op-uc-figure--content\"><img src=\"/attachments/12050/1502374752425-0.png\" alt=\"\" class=\"op-uc-image\"></div></figure></p>\n<p class=\"op-uc-p\"><strong>To be defined</strong></p>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Pressing an enter button saves the work package.</li>\n<li class=\"op-uc-list--item\">What happens if there is no empty ID column on the left?</li>\n</ul>"
+				},
+				"scheduleManually": false,
+				"startDate": null,
+				"dueDate": null,
+				"estimatedTime": null,
+				"derivedEstimatedTime": null,
+				"createdAt": "2017-08-10T14:15:59Z",
+				"updatedAt": "2020-11-25T07:55:46Z",
+				"position": 467,
+				"storyPoints": null,
+				"remainingTime": null,
+				"customField130": 1,
+				"customField114": 10.0,
+				"customField108": null,
+				"_links": {
+					"attachments": {
+						"href": "/api/v3/work_packages/26077/attachments"
+					},
+					"prepareAttachment": {
+						"href": "/api/v3/work_packages/26077/attachments/prepare",
+						"method": "post"
+					},
+					"self": {
+						"href": "/api/v3/work_packages/26077",
+						"title": "Inline creation: all cells in edit mode (not only subject)"
+					},
+					"schema": {
+						"href": "/api/v3/work_packages/schemas/14-6"
+					},
+					"availableRelationCandidates": {
+						"href": "/api/v3/work_packages/26077/available_relation_candidates",
+						"title": "Potential work packages to relate to"
+					},
+					"activities": {
+						"href": "/api/v3/work_packages/26077/activities"
+					},
+					"relations": {
+						"href": "/api/v3/work_packages/26077/relations"
+					},
+					"revisions": {
+						"href": "/api/v3/work_packages/26077/revisions"
+					},
+					"previewMarkup": {
+						"href": "/api/v3/render/markdown?context=/api/v3/work_packages/26077",
+						"method": "post"
+					},
+					"category": {
+						"href": null
+					},
+					"type": {
+						"href": "/api/v3/types/6",
+						"title": "Feature"
+					},
+					"priority": {
+						"href": "/api/v3/priorities/4",
+						"title": "Medium"
+					},
+					"project": {
+						"href": "/api/v3/projects/14",
+						"title": "OpenProject"
+					},
+					"status": {
+						"href": "/api/v3/statuses/21",
+						"title": "in specification"
+					},
+					"author": {
+						"href": "/api/v3/users/3",
+						"title": "Niels Lindenthal"
+					},
+					"responsible": {
+						"href": null
+					},
+					"assignee": {
+						"href": null
+					},
+					"version": {
+						"href": "/api/v3/versions/26",
+						"title": "Wish List"
+					},
+					"customField1": [],
+					"customField110": {
+						"title": "10.0 = Impacts the vast majority (~80% or greater)",
+						"href": "/api/v3/custom_options/413"
+					},
+					"customField111": {
+						"title": "Low = 0.5x",
+						"href": "/api/v3/custom_options/421"
+					},
+					"customField112": {
+						"title": "High = 100%",
+						"href": "/api/v3/custom_options/423"
+					},
+					"customField113": {
+						"title": "0.5 (M = 1 - 4 weeks)",
+						"href": "/api/v3/custom_options/428"
+					},
+					"customField102": {
+						"href": null,
+						"title": null
+					},
+					"customField129": {
+						"href": null,
+						"title": null
+					},
+					"customField127": [],
+					"ancestors": [],
+					"parent": {
+						"href": null,
+						"title": null
+					},
+					"customActions": []
+				}
+			},
+			{
+				"derivedStartDate": null,
+				"derivedDueDate": null,
+				"_type": "WorkPackage",
+				"id": 30105,
+				"lockVersion": 30,
+				"subject": "Multiple Assignees without group creation",
+				"description": {
+					"format": "markdown",
+					"raw": "# User Problem\n\n## User\n\n_What persona, persona segment, or customer type experiences the problem most acutely?_\n\n*   Project manager\n*   Project member\n\n## Problem\n\n_What problem or job does the user have?_\n\n*   There are work packages that have multiple assignees.\n    *   Pair programming on a feature\n    *   Construction work like painting an entire floor.\n    *   Requirements workshop with multiple users\n    *   ....\n\n## Pain\n\n_What is the primary workaround that users perform that we could remove or replace? Why is it painful?_\n\n*   Adding custom fields of type user.\n    *   Difficult to understand.\n    *   Not linked with notifcations\n    *   Complex configuration\n\n## Solution\n\n*   Allow to add multiple assignees for a work package.\n*   Adapt grouping by assignees\n    *   Work packages table\n    *   Charts\n*   Adapt filters\n*   Adapt cost reports\n    *   ##32579\n*   Adapt notifications\n*   Bulk edit\n\n## Out of Scope for the MVC\n\n_What should NOT be in the minimal viable change, and can be considered for future iterations? Why? Please order them by importance._\n\n*   Change to the filter: It is not possible to filter for work packages that have multiple assignees (all work packages assigned to Person A AND Person B).\n*   Allow for multiple assignees by custom actions.\n*   Adapt bulk edit to allow for multiple assignees\n*   Group by custom fields of type user\n\n## Differentiation\n\n_What do you believe will differentiate us from the current experience or competitive experiences?_\n\n*   Issues tracker\n    *   Redmine does not support this.\n    *   Jira does not support this ([docs](https://confluence.atlassian.com/jira/how-do-i-assign-issues-to-multiple-users-207489749.html)).\n\n## Next iteration\n\n_What is the next solution that would allow us to release meaningful customer value quickly?_\n\n*   ...\n*     \n    \n\n# Launch and Growth\n\n## Measures\n\n_How will you know you solved the problem? Please list measurable, quantitative indicators (preferred) or qualitative ways you plan on assessing the solution?_\n\n*   ...\n\n## Messaging\n\n_If you were to write a press release, how would you describe the value to customers?_\n\n<figure class=\"table op-uc-figure_align-center op-uc-figure\"><table class=\"op-uc-table\"><tbody><tr class=\"op-uc-table--row\"><th class=\"op-uc-table--cell op-uc-table--cell_head\">Headline</th><td class=\"op-uc-table--cell\"></td></tr><tr class=\"op-uc-table--row\"><th class=\"op-uc-table--cell op-uc-table--cell_head\">First Paragraph</th><td class=\"op-uc-table--cell\"></td></tr><tr class=\"op-uc-table--row\"><th class=\"op-uc-table--cell op-uc-table--cell_head\">Customer Quote</th><td class=\"op-uc-table--cell\"></td></tr></tbody></table></figure>\n\n## Go to market\n\n_How are you planning on getting this into users&#39; hands?_",
+					"html": "<h1 id=\"user-problem\" class=\"op-uc-h1\">User Problem<a class=\"op-uc-link_permalink icon-link op-uc-link\" aria-hidden=\"true\" href=\"#user-problem\"></a>\n</h1>\n<h2 id=\"user\" class=\"op-uc-h2\">User<a class=\"op-uc-link_permalink icon-link op-uc-link\" aria-hidden=\"true\" href=\"#user\"></a>\n</h2>\n<p class=\"op-uc-p\"><em>What persona, persona segment, or customer type experiences the problem most acutely?</em></p>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Project manager</li>\n<li class=\"op-uc-list--item\">Project member</li>\n</ul>\n<h2 id=\"problem\" class=\"op-uc-h2\">Problem<a class=\"op-uc-link_permalink icon-link op-uc-link\" aria-hidden=\"true\" href=\"#problem\"></a>\n</h2>\n<p class=\"op-uc-p\"><em>What problem or job does the user have?</em></p>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">There are work packages that have multiple assignees.\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Pair programming on a feature</li>\n<li class=\"op-uc-list--item\">Construction work like painting an entire floor.</li>\n<li class=\"op-uc-list--item\">Requirements workshop with multiple users</li>\n<li class=\"op-uc-list--item\">....</li>\n</ul>\n</li>\n</ul>\n<h2 id=\"pain\" class=\"op-uc-h2\">Pain<a class=\"op-uc-link_permalink icon-link op-uc-link\" aria-hidden=\"true\" href=\"#pain\"></a>\n</h2>\n<p class=\"op-uc-p\"><em>What is the primary workaround that users perform that we could remove or replace? Why is it painful?</em></p>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Adding custom fields of type user.\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Difficult to understand.</li>\n<li class=\"op-uc-list--item\">Not linked with notifcations</li>\n<li class=\"op-uc-list--item\">Complex configuration</li>\n</ul>\n</li>\n</ul>\n<h2 id=\"solution\" class=\"op-uc-h2\">Solution<a class=\"op-uc-link_permalink icon-link op-uc-link\" aria-hidden=\"true\" href=\"#solution\"></a>\n</h2>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Allow to add multiple assignees for a work package.</li>\n<li class=\"op-uc-list--item\">Adapt grouping by assignees\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Work packages table</li>\n<li class=\"op-uc-list--item\">Charts</li>\n</ul>\n</li>\n<li class=\"op-uc-list--item\">Adapt filters</li>\n<li class=\"op-uc-list--item\">Adapt cost reports\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\"><macro class=\"macro--wp-quickinfo\" data-id=\"32579\" data-detailed=\"false\"></macro></li>\n</ul>\n</li>\n<li class=\"op-uc-list--item\">Adapt notifications</li>\n<li class=\"op-uc-list--item\">Bulk edit</li>\n</ul>\n<h2 id=\"out-of-scope-for-the-mvc\" class=\"op-uc-h2\">Out of Scope for the MVC<a class=\"op-uc-link_permalink icon-link op-uc-link\" aria-hidden=\"true\" href=\"#out-of-scope-for-the-mvc\"></a>\n</h2>\n<p class=\"op-uc-p\"><em>What should NOT be in the minimal viable change, and can be considered for future iterations? Why? Please order them by importance.</em></p>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Change to the filter: It is not possible to filter for work packages that have multiple assignees (all work packages assigned to Person A AND Person B).</li>\n<li class=\"op-uc-list--item\">Allow for multiple assignees by custom actions.</li>\n<li class=\"op-uc-list--item\">Adapt bulk edit to allow for multiple assignees</li>\n<li class=\"op-uc-list--item\">Group by custom fields of type user</li>\n</ul>\n<h2 id=\"differentiation\" class=\"op-uc-h2\">Differentiation<a class=\"op-uc-link_permalink icon-link op-uc-link\" aria-hidden=\"true\" href=\"#differentiation\"></a>\n</h2>\n<p class=\"op-uc-p\"><em>What do you believe will differentiate us from the current experience or competitive experiences?</em></p>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Issues tracker\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Redmine does not support this.</li>\n<li class=\"op-uc-list--item\">Jira does not support this (<a href=\"https://confluence.atlassian.com/jira/how-do-i-assign-issues-to-multiple-users-207489749.html\" rel=\"noopener noreferrer\" class=\"op-uc-link\">docs</a>).</li>\n</ul>\n</li>\n</ul>\n<h2 id=\"next-iteration\" class=\"op-uc-h2\">Next iteration<a class=\"op-uc-link_permalink icon-link op-uc-link\" aria-hidden=\"true\" href=\"#next-iteration\"></a>\n</h2>\n<p class=\"op-uc-p\"><em>What is the next solution that would allow us to release meaningful customer value quickly?</em></p>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">...</li>\n<li class=\"op-uc-list--item\">\n</ul>\n<h1 id=\"launch-and-growth\" class=\"op-uc-h1\">Launch and Growth<a class=\"op-uc-link_permalink icon-link op-uc-link\" aria-hidden=\"true\" href=\"#launch-and-growth\"></a>\n</h1>\n<h2 id=\"measures\" class=\"op-uc-h2\">Measures<a class=\"op-uc-link_permalink icon-link op-uc-link\" aria-hidden=\"true\" href=\"#measures\"></a>\n</h2>\n<p class=\"op-uc-p\"><em>How will you know you solved the problem? Please list measurable, quantitative indicators (preferred) or qualitative ways you plan on assessing the solution?</em></p>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">...</li>\n</ul>\n<h2 id=\"messaging\" class=\"op-uc-h2\">Messaging<a class=\"op-uc-link_permalink icon-link op-uc-link\" aria-hidden=\"true\" href=\"#messaging\"></a>\n</h2>\n<p class=\"op-uc-p\"><em>If you were to write a press release, how would you describe the value to customers?</em></p>\n<figure class=\"table op-uc-figure_align-center op-uc-figure\"><div class=\"op-uc-figure--content\"><table class=\"op-uc-table\"><tbody>\n<tr class=\"op-uc-table--row\">\n<th class=\"op-uc-table--cell op-uc-table--cell_head\">Headline</th>\n<td class=\"op-uc-table--cell\"></td>\n</tr>\n<tr class=\"op-uc-table--row\">\n<th class=\"op-uc-table--cell op-uc-table--cell_head\">First Paragraph</th>\n<td class=\"op-uc-table--cell\"></td>\n</tr>\n<tr class=\"op-uc-table--row\">\n<th class=\"op-uc-table--cell op-uc-table--cell_head\">Customer Quote</th>\n<td class=\"op-uc-table--cell\"></td>\n</tr>\n</tbody></table></div></figure>\n<h2 id=\"go-to-market\" class=\"op-uc-h2\">Go to market<a class=\"op-uc-link_permalink icon-link op-uc-link\" aria-hidden=\"true\" href=\"#go-to-market\"></a>\n</h2>\n<p class=\"op-uc-p\"><em>How are you planning on getting this into users' hands?</em></p>"
+				},
+				"scheduleManually": false,
+				"startDate": null,
+				"dueDate": null,
+				"estimatedTime": null,
+				"derivedEstimatedTime": null,
+				"createdAt": "2019-04-26T00:39:03Z",
+				"updatedAt": "2021-02-25T04:51:02Z",
+				"position": 1,
+				"storyPoints": null,
+				"remainingTime": null,
+				"customField130": 23,
+				"customField114": 4.0,
+				"customField108": true,
+				"_links": {
+					"attachments": {
+						"href": "/api/v3/work_packages/30105/attachments"
+					},
+					"prepareAttachment": {
+						"href": "/api/v3/work_packages/30105/attachments/prepare",
+						"method": "post"
+					},
+					"self": {
+						"href": "/api/v3/work_packages/30105",
+						"title": "Multiple Assignees without group creation"
+					},
+					"schema": {
+						"href": "/api/v3/work_packages/schemas/14-8"
+					},
+					"availableRelationCandidates": {
+						"href": "/api/v3/work_packages/30105/available_relation_candidates",
+						"title": "Potential work packages to relate to"
+					},
+					"activities": {
+						"href": "/api/v3/work_packages/30105/activities"
+					},
+					"relations": {
+						"href": "/api/v3/work_packages/30105/relations"
+					},
+					"revisions": {
+						"href": "/api/v3/work_packages/30105/revisions"
+					},
+					"previewMarkup": {
+						"href": "/api/v3/render/markdown?context=/api/v3/work_packages/30105",
+						"method": "post"
+					},
+					"category": {
+						"href": null
+					},
+					"type": {
+						"href": "/api/v3/types/8",
+						"title": "Epic"
+					},
+					"priority": {
+						"href": "/api/v3/priorities/5",
+						"title": "High"
+					},
+					"project": {
+						"href": "/api/v3/projects/14",
+						"title": "OpenProject"
+					},
+					"status": {
+						"href": "/api/v3/statuses/21",
+						"title": "in specification"
+					},
+					"author": {
+						"href": "/api/v3/users/49791",
+						"title": "Anthony Reddic"
+					},
+					"responsible": {
+						"href": null
+					},
+					"assignee": {
+						"href": "/api/v3/users/87",
+						"title": "Jens Ulferts"
+					},
+					"version": {
+						"href": "/api/v3/versions/139",
+						"title": "Product Backlog"
+					},
+					"customField110": {
+						"title": "3.0 = Significant reach (~25% to ~50%)",
+						"href": "/api/v3/custom_options/415"
+					},
+					"customField111": {
+						"title": "High = 2x",
+						"href": "/api/v3/custom_options/419"
+					},
+					"customField112": {
+						"title": "High = 100%",
+						"href": "/api/v3/custom_options/423"
+					},
+					"customField113": {
+						"title": "1.5 (L = 1 - 3 months)",
+						"href": "/api/v3/custom_options/429"
+					},
+					"customField1": [{
+						"title": "Work packages",
+						"href": "/api/v3/custom_options/32"
+					}],
+					"customField102": {
+						"href": null,
+						"title": null
+					},
+					"customField129": {
+						"href": null,
+						"title": null
+					},
+					"ancestors": [],
+					"parent": {
+						"href": null,
+						"title": null
+					},
+					"customActions": []
+				}
+			}
+		],
+		"schemas": {
+			"_type": "Collection",
+			"total": 3,
+			"count": 3,
+			"_embedded": {
+				"elements": [{
+						"_attributeGroups": [{
+								"_type": "WorkPackageFormChildrenQueryGroup",
+								"name": "Features",
+								"relationType": "hierarchy",
+								"_embedded": {
+									"query": {
+										"_type": "Query",
+										"starred": false,
+										"id": 2677,
+										"name": "Embedded table: Features",
+										"createdAt": "2020-10-11T16:52:33Z",
+										"updatedAt": "2020-10-11T16:52:33Z",
+										"filters": [{
+												"_type": "TypeQueryFilter",
+												"name": "Type",
+												"_links": {
+													"schema": {
+														"href": "/api/v3/queries/filter_instance_schemas/type"
+													},
+													"filter": {
+														"href": "/api/v3/queries/filters/type",
+														"title": "Type"
+													},
+													"operator": {
+														"href": "/api/v3/queries/operators/%3D",
+														"title": "is"
+													},
+													"values": [{
+															"href": "/api/v3/types/6",
+															"title": "Feature"
+														},
+														{
+															"href": "/api/v3/types/8",
+															"title": "Epic"
+														}
+													]
+												}
+											},
+											{
+												"_type": "ParentQueryFilter",
+												"name": "Parent",
+												"_links": {
+													"schema": {
+														"href": "/api/v3/queries/filter_instance_schemas/parent"
+													},
+													"filter": {
+														"href": "/api/v3/queries/filters/parent",
+														"title": "Parent"
+													},
+													"operator": {
+														"href": "/api/v3/queries/operators/%3D",
+														"title": "is"
+													},
+													"values": [{
+														"href": "/api/v3/work_packages/{id}",
+														"title": null,
+														"templated": true
+													}]
+												}
+											}
+										],
+										"sums": false,
+										"public": false,
+										"hidden": true,
+										"timelineVisible": false,
+										"showHierarchies": false,
+										"timelineZoomLevel": "auto",
+										"timelineLabels": {},
+										"highlightingMode": "inline",
+										"_links": {
+											"self": {
+												"href": "/api/v3/queries/2677",
+												"title": "Embedded table: Features"
+											},
+											"project": {
+												"href": null
+											},
+											"results": {
+												"href": "/api/v3/work_packages?columns%5B%5D=id&columns%5B%5D=type&columns%5B%5D=subject&columns%5B%5D=status&columns%5B%5D=assignee&columns%5B%5D=version&columns%5B%5D=customField1&columns%5B%5D=project&columns%5B%5D=spentTime&filters=%5B%7B%22type%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%226%22%2C%228%22%5D%7D%7D%2C%7B%22parent%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22%7Bid%7D%22%5D%7D%7D%5D&offset=1&pageSize=50&showHierarchies=false&showSums=false&sortBy=%5B%5B%22version%22%2C%22asc%22%5D%5D"
+											},
+											"schema": {
+												"href": "/api/v3/queries/schema"
+											},
+											"update": {
+												"href": "/api/v3/queries/2677/form",
+												"method": "post"
+											},
+											"user": {
+												"href": null
+											},
+											"sortBy": [{
+												"href": "/api/v3/queries/sort_bys/version-asc",
+												"title": "Version (Ascending)"
+											}],
+											"groupBy": {
+												"href": null,
+												"title": null
+											},
+											"columns": [{
+													"href": "/api/v3/queries/columns/id",
+													"title": "ID"
+												},
+												{
+													"href": "/api/v3/queries/columns/type",
+													"title": "Type"
+												},
+												{
+													"href": "/api/v3/queries/columns/subject",
+													"title": "Subject"
+												},
+												{
+													"href": "/api/v3/queries/columns/status",
+													"title": "Status"
+												},
+												{
+													"href": "/api/v3/queries/columns/assignee",
+													"title": "Assignee"
+												},
+												{
+													"href": "/api/v3/queries/columns/version",
+													"title": "Version"
+												},
+												{
+													"href": "/api/v3/queries/columns/customField1",
+													"title": "Module"
+												},
+												{
+													"href": "/api/v3/queries/columns/project",
+													"title": "Project"
+												},
+												{
+													"href": "/api/v3/queries/columns/spentTime",
+													"title": "Spent time"
+												}
+											],
+											"highlightedAttributes": [{
+													"href": "/api/v3/queries/columns/status",
+													"title": "Status"
+												},
+												{
+													"href": "/api/v3/queries/columns/priority",
+													"title": "Priority"
+												},
+												{
+													"href": "/api/v3/queries/columns/dueDate",
+													"title": "Finish date"
+												}
+											]
+										}
+									}
+								},
+								"_links": {
+									"query": {
+										"href": "/api/v3/queries/2677",
+										"title": "Embedded table: Features"
+									}
+								}
+							},
+							{
+								"_type": "WorkPackageFormChildrenQueryGroup",
+								"name": "Bugs and other work packages",
+								"relationType": "hierarchy",
+								"_embedded": {
+									"query": {
+										"_type": "Query",
+										"starred": false,
+										"id": 2678,
+										"name": "Embedded table: Bugs and other work packages",
+										"createdAt": "2020-10-11T16:52:34Z",
+										"updatedAt": "2020-10-11T16:52:34Z",
+										"filters": [{
+												"_type": "TypeQueryFilter",
+												"name": "Type",
+												"_links": {
+													"schema": {
+														"href": "/api/v3/queries/filter_instance_schemas/type"
+													},
+													"filter": {
+														"href": "/api/v3/queries/filters/type",
+														"title": "Type"
+													},
+													"operator": {
+														"href": "/api/v3/queries/operators/%21",
+														"title": "is not"
+													},
+													"values": [{
+															"href": "/api/v3/types/6",
+															"title": "Feature"
+														},
+														{
+															"href": "/api/v3/types/8",
+															"title": "Epic"
+														}
+													]
+												}
+											},
+											{
+												"_type": "ParentQueryFilter",
+												"name": "Parent",
+												"_links": {
+													"schema": {
+														"href": "/api/v3/queries/filter_instance_schemas/parent"
+													},
+													"filter": {
+														"href": "/api/v3/queries/filters/parent",
+														"title": "Parent"
+													},
+													"operator": {
+														"href": "/api/v3/queries/operators/%3D",
+														"title": "is"
+													},
+													"values": [{
+														"href": "/api/v3/work_packages/{id}",
+														"title": null,
+														"templated": true
+													}]
+												}
+											}
+										],
+										"sums": false,
+										"public": false,
+										"hidden": true,
+										"timelineVisible": false,
+										"showHierarchies": false,
+										"timelineZoomLevel": "auto",
+										"timelineLabels": {},
+										"highlightingMode": "inline",
+										"_links": {
+											"self": {
+												"href": "/api/v3/queries/2678",
+												"title": "Embedded table: Bugs and other work packages"
+											},
+											"project": {
+												"href": null
+											},
+											"results": {
+												"href": "/api/v3/work_packages?columns%5B%5D=id&columns%5B%5D=type&columns%5B%5D=subject&columns%5B%5D=status&columns%5B%5D=assignee&columns%5B%5D=version&columns%5B%5D=customField1&columns%5B%5D=project&columns%5B%5D=spentTime&filters=%5B%7B%22type%22%3A%7B%22operator%22%3A%22%21%22%2C%22values%22%3A%5B%226%22%2C%228%22%5D%7D%7D%2C%7B%22parent%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22%7Bid%7D%22%5D%7D%7D%5D&offset=1&pageSize=50&showHierarchies=false&showSums=false&sortBy=%5B%5B%22id%22%2C%22asc%22%5D%5D"
+											},
+											"schema": {
+												"href": "/api/v3/queries/schema"
+											},
+											"update": {
+												"href": "/api/v3/queries/2678/form",
+												"method": "post"
+											},
+											"user": {
+												"href": null
+											},
+											"sortBy": [{
+												"href": "/api/v3/queries/sort_bys/id-asc",
+												"title": "ID (Ascending)"
+											}],
+											"groupBy": {
+												"href": null,
+												"title": null
+											},
+											"columns": [{
+													"href": "/api/v3/queries/columns/id",
+													"title": "ID"
+												},
+												{
+													"href": "/api/v3/queries/columns/type",
+													"title": "Type"
+												},
+												{
+													"href": "/api/v3/queries/columns/subject",
+													"title": "Subject"
+												},
+												{
+													"href": "/api/v3/queries/columns/status",
+													"title": "Status"
+												},
+												{
+													"href": "/api/v3/queries/columns/assignee",
+													"title": "Assignee"
+												},
+												{
+													"href": "/api/v3/queries/columns/version",
+													"title": "Version"
+												},
+												{
+													"href": "/api/v3/queries/columns/customField1",
+													"title": "Module"
+												},
+												{
+													"href": "/api/v3/queries/columns/project",
+													"title": "Project"
+												},
+												{
+													"href": "/api/v3/queries/columns/spentTime",
+													"title": "Spent time"
+												}
+											],
+											"highlightedAttributes": [{
+													"href": "/api/v3/queries/columns/status",
+													"title": "Status"
+												},
+												{
+													"href": "/api/v3/queries/columns/priority",
+													"title": "Priority"
+												},
+												{
+													"href": "/api/v3/queries/columns/dueDate",
+													"title": "Finish date"
+												}
+											]
+										}
+									}
+								},
+								"_links": {
+									"query": {
+										"href": "/api/v3/queries/2678",
+										"title": "Embedded table: Bugs and other work packages"
+									}
+								}
+							},
+							{
+								"_type": "WorkPackageFormAttributeGroup",
+								"name": "Details",
+								"attributes": [
+									"date",
+									"percentageDone",
+									"priority",
+									"version",
+									"position",
+									"customField1",
+									"customField108"
+								]
+							},
+							{
+								"_type": "WorkPackageFormAttributeGroup",
+								"name": "People",
+								"attributes": [
+									"assignee",
+									"responsible",
+									"customField102",
+									"customField129"
+								]
+							},
+							{
+								"_type": "WorkPackageFormAttributeGroup",
+								"name": "Estimates and time",
+								"attributes": [
+									"estimatedTime",
+									"spentTime",
+									"storyPoints"
+								]
+							},
+							{
+								"_type": "WorkPackageFormAttributeGroup",
+								"name": "RICE prioritization",
+								"attributes": [
+									"customField110",
+									"customField111",
+									"customField112",
+									"customField113",
+									"customField114",
+									"customField130"
+								]
+							}
+						],
+						"_type": "Schema",
+						"_dependencies": [],
+						"lockVersion": {
+							"type": "Integer",
+							"name": "Lock Version",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"id": {
+							"type": "Integer",
+							"name": "ID",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"subject": {
+							"type": "String",
+							"name": "Subject",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"minLength": 1,
+							"maxLength": 255,
+							"options": {}
+						},
+						"description": {
+							"type": "Formattable",
+							"name": "Description",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"scheduleManually": {
+							"type": "Boolean",
+							"name": "Manual scheduling",
+							"required": false,
+							"hasDefault": true,
+							"writable": false,
+							"options": {}
+						},
+						"startDate": {
+							"type": "Date",
+							"name": "Start date",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"dueDate": {
+							"type": "Date",
+							"name": "Finish date",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"derivedStartDate": {
+							"type": "Date",
+							"name": "Derived start date",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"derivedDueDate": {
+							"type": "Date",
+							"name": "Derived finish date",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"estimatedTime": {
+							"type": "Duration",
+							"name": "Estimated time",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"attributeGroup": "Estimates and time",
+							"options": {}
+						},
+						"derivedEstimatedTime": {
+							"type": "Duration",
+							"name": "Derived estimated time",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"createdAt": {
+							"type": "DateTime",
+							"name": "Created on",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"updatedAt": {
+							"type": "DateTime",
+							"name": "Updated on",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"author": {
+							"type": "User",
+							"name": "Author",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"project": {
+							"type": "Project",
+							"name": "Project",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"_links": {}
+						},
+						"parent": {
+							"type": "WorkPackage",
+							"name": "Parent",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"options": {}
+						},
+						"assignee": {
+							"type": "User",
+							"name": "Assignee",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"attributeGroup": "People",
+							"_links": {}
+						},
+						"responsible": {
+							"type": "User",
+							"name": "Accountable",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"attributeGroup": "People",
+							"_links": {}
+						},
+						"type": {
+							"type": "Type",
+							"name": "Type",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"_links": {}
+						},
+						"status": {
+							"type": "Status",
+							"name": "Status",
+							"required": true,
+							"hasDefault": true,
+							"writable": false,
+							"_links": {}
+						},
+						"category": {
+							"type": "Category",
+							"name": "Category",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"_links": {}
+						},
+						"version": {
+							"type": "Version",
+							"name": "Version",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"attributeGroup": "Details",
+							"_links": {}
+						},
+						"priority": {
+							"type": "Priority",
+							"name": "Priority",
+							"required": true,
+							"hasDefault": true,
+							"writable": false,
+							"attributeGroup": "Details",
+							"_links": {}
+						},
+						"overallCosts": {
+							"type": "String",
+							"name": "Overall costs",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"laborCosts": {
+							"type": "String",
+							"name": "Labor costs",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"materialCosts": {
+							"type": "String",
+							"name": "Unit costs",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"costsByType": {
+							"type": "Collection",
+							"name": "Spent units",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"position": {
+							"type": "Integer",
+							"name": "Position",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"attributeGroup": "Details",
+							"options": {}
+						},
+						"storyPoints": {
+							"type": "Integer",
+							"name": "Story Points",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"attributeGroup": "Estimates and time",
+							"options": {}
+						},
+						"remainingTime": {
+							"type": "Duration",
+							"name": "Remaining hours",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"customField130": {
+							"type": "Integer",
+							"name": "Votes",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "RICE prioritization",
+							"options": {
+								"rtl": null
+							}
+						},
+						"customField1": {
+							"type": "[]CustomOption",
+							"name": "Module",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "Details",
+							"_links": {}
+						},
+						"customField110": {
+							"type": "CustomOption",
+							"name": "Reach",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "RICE prioritization",
+							"_links": {}
+						},
+						"customField111": {
+							"type": "CustomOption",
+							"name": "Impact",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "RICE prioritization",
+							"_links": {}
+						},
+						"customField112": {
+							"type": "CustomOption",
+							"name": "Confidence",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "RICE prioritization",
+							"_links": {}
+						},
+						"customField113": {
+							"type": "CustomOption",
+							"name": "Effort (shirt size)",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "RICE prioritization",
+							"_links": {}
+						},
+						"customField114": {
+							"type": "Float",
+							"name": "RICE Score",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "RICE prioritization",
+							"options": {
+								"rtl": null
+							}
+						},
+						"customField102": {
+							"type": "User",
+							"name": "Ordered by",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "People",
+							"_links": {}
+						},
+						"customField108": {
+							"type": "Boolean",
+							"name": "Requires doc change",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "Details",
+							"options": {
+								"rtl": null
+							}
+						},
+						"customField129": {
+							"type": "User",
+							"name": "Signed off by",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "People",
+							"_links": {}
+						},
+						"_links": {
+							"self": {
+								"href": "/api/v3/work_packages/schemas/14-8"
+							}
+						}
+					},
+					{
+						"_attributeGroups": [{
+								"_type": "WorkPackageFormAttributeGroup",
+								"name": "RICE Prioritization",
+								"attributes": [
+									"customField110",
+									"customField111",
+									"customField112",
+									"customField113",
+									"customField114",
+									"customField130",
+									"customField127"
+								]
+							},
+							{
+								"_type": "WorkPackageFormAttributeGroup",
+								"name": "Details",
+								"attributes": [
+									"date",
+									"priority",
+									"version",
+									"customField1",
+									"customField108"
+								]
+							},
+							{
+								"_type": "WorkPackageFormAttributeGroup",
+								"name": "People",
+								"attributes": [
+									"assignee",
+									"responsible",
+									"customField102",
+									"customField129"
+								]
+							},
+							{
+								"_type": "WorkPackageFormAttributeGroup",
+								"name": "Estimates and time",
+								"attributes": [
+									"estimatedTime",
+									"laborCosts",
+									"spentTime"
+								]
+							}
+						],
+						"_type": "Schema",
+						"_dependencies": [],
+						"lockVersion": {
+							"type": "Integer",
+							"name": "Lock Version",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"id": {
+							"type": "Integer",
+							"name": "ID",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"subject": {
+							"type": "String",
+							"name": "Subject",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"minLength": 1,
+							"maxLength": 255,
+							"options": {}
+						},
+						"description": {
+							"type": "Formattable",
+							"name": "Description",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"scheduleManually": {
+							"type": "Boolean",
+							"name": "Manual scheduling",
+							"required": false,
+							"hasDefault": true,
+							"writable": false,
+							"options": {}
+						},
+						"startDate": {
+							"type": "Date",
+							"name": "Start date",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"dueDate": {
+							"type": "Date",
+							"name": "Finish date",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"derivedStartDate": {
+							"type": "Date",
+							"name": "Derived start date",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"derivedDueDate": {
+							"type": "Date",
+							"name": "Derived finish date",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"estimatedTime": {
+							"type": "Duration",
+							"name": "Estimated time",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"attributeGroup": "Estimates and time",
+							"options": {}
+						},
+						"derivedEstimatedTime": {
+							"type": "Duration",
+							"name": "Derived estimated time",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"createdAt": {
+							"type": "DateTime",
+							"name": "Created on",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"updatedAt": {
+							"type": "DateTime",
+							"name": "Updated on",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"author": {
+							"type": "User",
+							"name": "Author",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"project": {
+							"type": "Project",
+							"name": "Project",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"_links": {}
+						},
+						"parent": {
+							"type": "WorkPackage",
+							"name": "Parent",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"options": {}
+						},
+						"assignee": {
+							"type": "User",
+							"name": "Assignee",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"attributeGroup": "People",
+							"_links": {}
+						},
+						"responsible": {
+							"type": "User",
+							"name": "Accountable",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"attributeGroup": "People",
+							"_links": {}
+						},
+						"type": {
+							"type": "Type",
+							"name": "Type",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"_links": {}
+						},
+						"status": {
+							"type": "Status",
+							"name": "Status",
+							"required": true,
+							"hasDefault": true,
+							"writable": false,
+							"_links": {}
+						},
+						"category": {
+							"type": "Category",
+							"name": "Category",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"_links": {}
+						},
+						"version": {
+							"type": "Version",
+							"name": "Version",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"attributeGroup": "Details",
+							"_links": {}
+						},
+						"priority": {
+							"type": "Priority",
+							"name": "Priority",
+							"required": true,
+							"hasDefault": true,
+							"writable": false,
+							"attributeGroup": "Details",
+							"_links": {}
+						},
+						"overallCosts": {
+							"type": "String",
+							"name": "Overall costs",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"laborCosts": {
+							"type": "String",
+							"name": "Labor costs",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"attributeGroup": "Estimates and time",
+							"options": {}
+						},
+						"materialCosts": {
+							"type": "String",
+							"name": "Unit costs",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"costsByType": {
+							"type": "Collection",
+							"name": "Spent units",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"position": {
+							"type": "Integer",
+							"name": "Position",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"storyPoints": {
+							"type": "Integer",
+							"name": "Story Points",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"remainingTime": {
+							"type": "Duration",
+							"name": "Remaining hours",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"customField127": {
+							"type": "[]CustomOption",
+							"name": "Code layer",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "RICE Prioritization",
+							"_links": {}
+						},
+						"customField112": {
+							"type": "CustomOption",
+							"name": "Confidence",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "RICE Prioritization",
+							"_links": {}
+						},
+						"customField113": {
+							"type": "CustomOption",
+							"name": "Effort (shirt size)",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "RICE Prioritization",
+							"_links": {}
+						},
+						"customField111": {
+							"type": "CustomOption",
+							"name": "Impact",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "RICE Prioritization",
+							"_links": {}
+						},
+						"customField1": {
+							"type": "[]CustomOption",
+							"name": "Module",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "Details",
+							"_links": {}
+						},
+						"customField102": {
+							"type": "User",
+							"name": "Ordered by",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "People",
+							"_links": {}
+						},
+						"customField110": {
+							"type": "CustomOption",
+							"name": "Reach",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "RICE Prioritization",
+							"_links": {}
+						},
+						"customField108": {
+							"type": "Boolean",
+							"name": "Requires doc change",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "Details",
+							"options": {
+								"rtl": null
+							}
+						},
+						"customField114": {
+							"type": "Float",
+							"name": "RICE Score",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "RICE Prioritization",
+							"options": {
+								"rtl": null
+							}
+						},
+						"customField129": {
+							"type": "User",
+							"name": "Signed off by",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "People",
+							"_links": {}
+						},
+						"customField130": {
+							"type": "Integer",
+							"name": "Votes",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "RICE Prioritization",
+							"options": {
+								"rtl": null
+							}
+						},
+						"_links": {
+							"self": {
+								"href": "/api/v3/work_packages/schemas/14-6"
+							}
+						}
+					},
+					{
+						"_attributeGroups": [{
+								"_type": "WorkPackageFormAttributeGroup",
+								"name": "Details",
+								"attributes": [
+									"date",
+									"priority",
+									"customField1",
+									"version",
+									"customField5",
+									"customField108",
+									"customField127"
+								]
+							},
+							{
+								"_type": "WorkPackageFormAttributeGroup",
+								"name": "People",
+								"attributes": [
+									"assignee",
+									"customField107",
+									"customField102",
+									"customField129"
+								]
+							},
+							{
+								"_type": "WorkPackageFormAttributeGroup",
+								"name": "Costs",
+								"attributes": [
+									"estimatedTime",
+									"spentTime",
+									"laborCosts"
+								]
+							}
+						],
+						"_type": "Schema",
+						"_dependencies": [],
+						"lockVersion": {
+							"type": "Integer",
+							"name": "Lock Version",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"id": {
+							"type": "Integer",
+							"name": "ID",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"subject": {
+							"type": "String",
+							"name": "Subject",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"minLength": 1,
+							"maxLength": 255,
+							"options": {}
+						},
+						"description": {
+							"type": "Formattable",
+							"name": "Description",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"scheduleManually": {
+							"type": "Boolean",
+							"name": "Manual scheduling",
+							"required": false,
+							"hasDefault": true,
+							"writable": false,
+							"options": {}
+						},
+						"startDate": {
+							"type": "Date",
+							"name": "Start date",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"dueDate": {
+							"type": "Date",
+							"name": "Finish date",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"derivedStartDate": {
+							"type": "Date",
+							"name": "Derived start date",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"derivedDueDate": {
+							"type": "Date",
+							"name": "Derived finish date",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"estimatedTime": {
+							"type": "Duration",
+							"name": "Estimated time",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"attributeGroup": "Costs",
+							"options": {}
+						},
+						"derivedEstimatedTime": {
+							"type": "Duration",
+							"name": "Derived estimated time",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"createdAt": {
+							"type": "DateTime",
+							"name": "Created on",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"updatedAt": {
+							"type": "DateTime",
+							"name": "Updated on",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"author": {
+							"type": "User",
+							"name": "Author",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"project": {
+							"type": "Project",
+							"name": "Project",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"_links": {}
+						},
+						"parent": {
+							"type": "WorkPackage",
+							"name": "Parent",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"options": {}
+						},
+						"assignee": {
+							"type": "User",
+							"name": "Assignee",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"attributeGroup": "People",
+							"_links": {}
+						},
+						"responsible": {
+							"type": "User",
+							"name": "Accountable",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"_links": {}
+						},
+						"type": {
+							"type": "Type",
+							"name": "Type",
+							"required": true,
+							"hasDefault": false,
+							"writable": false,
+							"_links": {}
+						},
+						"status": {
+							"type": "Status",
+							"name": "Status",
+							"required": true,
+							"hasDefault": true,
+							"writable": false,
+							"_links": {}
+						},
+						"category": {
+							"type": "Category",
+							"name": "Category",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"_links": {}
+						},
+						"version": {
+							"type": "Version",
+							"name": "Version",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"attributeGroup": "Details",
+							"_links": {}
+						},
+						"priority": {
+							"type": "Priority",
+							"name": "Priority",
+							"required": true,
+							"hasDefault": true,
+							"writable": false,
+							"attributeGroup": "Details",
+							"_links": {}
+						},
+						"overallCosts": {
+							"type": "String",
+							"name": "Overall costs",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"laborCosts": {
+							"type": "String",
+							"name": "Labor costs",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"attributeGroup": "Costs",
+							"options": {}
+						},
+						"materialCosts": {
+							"type": "String",
+							"name": "Unit costs",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"costsByType": {
+							"type": "Collection",
+							"name": "Spent units",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"position": {
+							"type": "Integer",
+							"name": "Position",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"storyPoints": {
+							"type": "Integer",
+							"name": "Story Points",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"remainingTime": {
+							"type": "Duration",
+							"name": "Remaining hours",
+							"required": false,
+							"hasDefault": false,
+							"writable": false,
+							"options": {}
+						},
+						"customField1": {
+							"type": "[]CustomOption",
+							"name": "Module",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "Details",
+							"_links": {}
+						},
+						"customField5": {
+							"type": "CustomOption",
+							"name": "Bug found in version",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "Details",
+							"_links": {}
+						},
+						"customField107": {
+							"type": "[]CustomOption",
+							"name": "Prio board",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "People",
+							"_links": {}
+						},
+						"customField108": {
+							"type": "Boolean",
+							"name": "Requires doc change",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "Details",
+							"options": {
+								"rtl": null
+							}
+						},
+						"customField102": {
+							"type": "User",
+							"name": "Ordered by",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "People",
+							"_links": {}
+						},
+						"customField127": {
+							"type": "[]CustomOption",
+							"name": "Code layer",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "Details",
+							"_links": {}
+						},
+						"customField129": {
+							"type": "User",
+							"name": "Signed off by",
+							"required": false,
+							"hasDefault": false,
+							"writable": true,
+							"attributeGroup": "People",
+							"_links": {}
+						},
+						"_links": {
+							"self": {
+								"href": "/api/v3/work_packages/schemas/14-1"
+							}
+						}
+					}
+				]
+			},
+			"_links": {
+				"self": {
+					"href": "/api/v3/work_packages/schemas?filters=%5B%7B%3Aid%3D%3E%7B%3Aoperator%3D%3E%22%3D%22%2C+%3Avalues%3D%3E%5B%2214-8%22%2C+%2214-6%22%2C+%2214-1%22%5D%7D%7D%5D"
+				}
+			}
+		}
+	},
+	"_links": {
+		"self": {
+			"href": "/api/v3/work_packages?filters=%5B%7B%22status%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%2221%22%5D%7D%7D%2C%7B%22updatedAt%22%3A%7B%22operator%22%3A%22%3C%3Ed%22%2C%22values%22%3A%5B%222019-06-10T22%3A00%3A00Z%22%2C%222021-06-14T22%3A00%3A00Z%22%5D%7D%7D%5D&offset=1&pageSize=50&showHierarchies=true&showSums=false&sortBy=%5B%5B%22id%22%2C%22asc%22%5D%5D"
+		},
+		"jumpTo": {
+			"href": "/api/v3/work_packages?filters=%5B%7B%22status%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%2221%22%5D%7D%7D%2C%7B%22updatedAt%22%3A%7B%22operator%22%3A%22%3C%3Ed%22%2C%22values%22%3A%5B%222019-06-10T22%3A00%3A00Z%22%2C%222021-06-14T22%3A00%3A00Z%22%5D%7D%7D%5D&offset=%7Boffset%7D&pageSize=50&showHierarchies=true&showSums=false&sortBy=%5B%5B%22id%22%2C%22asc%22%5D%5D",
+			"templated": true
+		},
+		"changeSize": {
+			"href": "/api/v3/work_packages?filters=%5B%7B%22status%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%2221%22%5D%7D%7D%2C%7B%22updatedAt%22%3A%7B%22operator%22%3A%22%3C%3Ed%22%2C%22values%22%3A%5B%222019-06-10T22%3A00%3A00Z%22%2C%222021-06-14T22%3A00%3A00Z%22%5D%7D%7D%5D&offset=1&pageSize=%7Bsize%7D&showHierarchies=true&showSums=false&sortBy=%5B%5B%22id%22%2C%22asc%22%5D%5D",
+			"templated": true
+		},
+		"schemas": {
+			"href": "/api/v3/work_packages/schemas?filters=%5B%7B%3Aid%3D%3E%7B%3Aoperator%3D%3E%22%3D%22%2C+%3Avalues%3D%3E%5B%2214-8%22%2C+%2214-6%22%2C+%2214-1%22%5D%7D%7D%5D"
+		}
+	}
+}

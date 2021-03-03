@@ -4,9 +4,10 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/google/go-querystring/query"
 	"github.com/trivago/tgo/tcontainer"
+
 	"io/ioutil"
+	"net/url"
 	"time"
 )
 
@@ -95,8 +96,9 @@ type WorkPackage struct {
 	DueDate     *Date          `json:"dueDate,omitempty" structs:"dueDate,omitempty"`
 	LockVersion int            `json:"lockVersion,omitempty" structs:"lockVersion,omitempty"`
 	Position    int            `json:"position,omitempty" structs:"position,omitempty"`
+	Custom      tcontainer.MarshalMap
 
-	Custom tcontainer.MarshalMap
+	Links *WPLinks `json:"_links,omitempty" _links:"id,omitempty"`
 }
 
 /**
@@ -106,6 +108,22 @@ type WPDescription struct {
 	Format string `json:"format,omitempty" structs:"format,omitempty"`
 	Raw    string `json:"raw,omitempty" structs:"raw,omitempty"`
 	Html   string `json:"html,omitempty" structs:"html,omitempty"`
+}
+
+/**
+WorkPackage Links
+*/
+type WPLinks struct {
+	// TODO: Complete the full set of Links (attachments, revisions, activities, relations, etc..)
+	Self     WPLinksField `json:"self,omitempty" structs:"self,omitempty"`
+	Type     WPLinksField `json:"type,omitempty" structs:"type,omitempty"`
+	Priority WPLinksField `json:"priority,omitempty" structs:"priority,omitempty"`
+	Status   WPLinksField `json:"status,omitempty" structs:"status,omitempty"`
+}
+
+type WPLinksField struct {
+	Href  string
+	Title string
 }
 
 /**
@@ -146,79 +164,130 @@ type SearchOperator int32
 
 const (
 	EQUAL          SearchOperator = 0 // =
-	NOTEQUAL       SearchOperator = 1 // <>
+	DIFFERENT      SearchOperator = 1 // <>
 	GREATERTHAN    SearchOperator = 2 // >
 	LOWERTHAN      SearchOperator = 3 // <
-	SEARCHSTRING   SearchOperator = 4 // **
+	SEARCHSTRING   SearchOperator = 4 // '**'
 	LIKE           SearchOperator = 5 // ~
 	GREATEROREQUAL SearchOperator = 6 // >=
 	LOWEROREQUAL   SearchOperator = 7 // <=
 )
 
 /**
-SearchOptions allows you to specify search parameters.
-When used they will be converted to GET parameters within the URL
+Constants to represent OpenProject standard GET parameters
 */
-type SearchOptions struct {
-	Fields []struct {
-		Field    string
-		Operator SearchOperator
-		Value    string
-	}
+const PARAM_FILTERS = "filters"
+
+/**
+FilterOptions allows you to specify search parameters for the get-workpackage action
+When used they will be converted to GET parameters within the URL
+Up to now OpenProject only allows "AND" combinations. "OR" combinations feature is under development,
+tracked by this ticket https://community.openproject.org/projects/openproject/work_packages/26837/activity
+
+More information about filters https://docs.openproject.org/api/filters/
+*/
+type FilterOptions struct {
+	Fields []OptionsFields
+}
+
+type OptionsFields struct {
+	Field    string
+	Operator SearchOperator
+	Value    string
 }
 
 /**
 searchResult is only a small wrapper around the Search
 */
 type searchResult struct {
-	WorkPackages []WorkPackage `json:"workpackages" structs:"workpackages"`
-	StartAt      int           `json:"startAt" structs:"startAt"`
-	MaxResults   int           `json:"maxResults" structs:"maxResults"`
-	Total        int           `json:"total" structs:"total"`
+	Embedded searchEmbedded `json:"_embedded" structs:"_embedded"`
+	Total    int            `json:"total" structs:"total"`
+	Count    int            `json:"count" structs:"count"`
+	PageSize int            `json:"pageSize" structs:"pageSize"`
+	Offset   int            `json:"offset" structs:"offset"`
+}
+
+type searchEmbedded struct {
+	Elements []WorkPackage `json:"elements" structs:"elements"`
 }
 
 /**
 	GetWithContext returns a full representation of the issue for the given OpenProject key.
  	The given options will be appended to the query string
 */
-func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID string, options *GetQueryOptions) (*WorkPackage, *Response, error) {
+func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID string) (*WorkPackage, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/work_packages/%s", workpackageID)
+
 	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	if options != nil {
-		q, err := query.Values(options)
-		if err != nil {
-			return nil, nil, err
-		}
-		req.URL.RawQuery = q.Encode()
-	}
-
-	issue := new(WorkPackage)
-	resp, err := s.client.Do(req, issue)
+	workPackage := new(WorkPackage)
+	resp, err := s.client.Do(req, workPackage)
 	if err != nil {
 		jerr := NewOpenProjectError(resp, err)
 		return nil, resp, jerr
 	}
 
-	return issue, resp, nil
+	return workPackage, resp, nil
 }
 
 /**
 Get wraps GetWithContext using the background context.
 */
-func (s *WorkPackageService) Get(issueID string, options *GetQueryOptions) (*WorkPackage, *Response, error) {
-	return s.GetWithContext(context.Background(), issueID, options)
+func (s *WorkPackageService) Get(issueID string) (*WorkPackage, *Response, error) {
+	return s.GetWithContext(context.Background(), issueID)
+}
+
+/**
+	prepareFilters convert FilterOptions to single URL-Encoded string to be inserted into GET request
+    as parameter.
+	TODO: Improve string concatenation to be more efficient (+ concatenation is not efficient) using strings.Builder
+	TODO: Example of inefficient string concatenation --> filterTemplate += s
+*/
+func (fops *FilterOptions) prepareFilters() url.Values {
+	values := make(url.Values)
+
+	filterTemplate := "["
+	for _, field := range fops.Fields {
+		s := fmt.Sprintf(
+			"{\"%[1]v\":{\"operator\":\"%[2]v\",\"values\":[\"%[3]v\"]}}",
+			field.Field, interpretOperator(field.Operator), field.Value)
+
+		filterTemplate += s
+	}
+	filterTemplate += "]"
+
+	values.Add(PARAM_FILTERS, filterTemplate)
+
+	return values
+}
+
+/**
+Interpret Operator collection and return its string
+*/
+func interpretOperator(operator SearchOperator) string {
+	result := "="
+
+	switch operator {
+	case GREATERTHAN:
+		result = ">"
+	case LOWERTHAN:
+		result = "<"
+	case DIFFERENT:
+		result = "<>"
+	}
+
+	return result
 }
 
 /**
 	CreateWithContext creates a work-package or a sub-task from a JSON representation.
 **/
-func (s *WorkPackageService) CreateWithContext(ctx context.Context, projectName string, issue *WorkPackage) (*WorkPackage, *Response, error) {
+func (s *WorkPackageService) CreateWithContext(ctx context.Context, projectName string, workPackage *WorkPackage) (*WorkPackage, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/projects/%s/work_packages", projectName)
-	req, err := s.client.NewRequestWithContext(ctx, "POST", apiEndpoint, issue)
+	req, err := s.client.NewRequestWithContext(ctx, "POST", apiEndpoint, workPackage)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -241,7 +310,46 @@ func (s *WorkPackageService) CreateWithContext(ctx context.Context, projectName 
 	return wpResponse, resp, nil
 }
 
-// Create wraps CreateWithContext using the background context.
-func (s *WorkPackageService) Create(issue *WorkPackage, projectName string) (*WorkPackage, *Response, error) {
-	return s.CreateWithContext(context.Background(), projectName, issue)
+/**
+Create wraps CreateWithContext using the background context.
+*/
+func (s *WorkPackageService) Create(workPackage *WorkPackage, projectName string) (*WorkPackage, *Response, error) {
+	return s.CreateWithContext(context.Background(), projectName, workPackage)
+}
+
+/**
+GetListWithContext will retrieve a list of work-packages using filters
+*/
+func (s *WorkPackageService) GetListWithContext(ctx context.Context, options *FilterOptions) ([]WorkPackage, *Response, error) {
+	u := url.URL{
+		Path: "api/v3/work_packages",
+	}
+
+	req, err := s.client.NewRequestWithContext(ctx, "GET", u.String(), nil)
+	if err != nil {
+		return []WorkPackage{}, nil, err
+	}
+
+	if options != nil {
+		// q, err := query.Values(options)
+		if err != nil {
+			return nil, nil, err
+		}
+		values := options.prepareFilters()
+		req.URL.RawQuery = values.Encode()
+	}
+
+	v := new(searchResult)
+	resp, err := s.client.Do(req, v)
+	if err != nil {
+		err = NewOpenProjectError(resp, err)
+	}
+	return v.Embedded.Elements, resp, err
+}
+
+/**
+GetList wraps GetListWithContext using the background context.
+*/
+func (s *WorkPackageService) GetList(options *FilterOptions) ([]WorkPackage, *Response, error) {
+	return s.GetListWithContext(context.Background(), options)
 }
