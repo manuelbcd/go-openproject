@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/google/go-querystring/query"
+	"github.com/trivago/tgo/tcontainer"
 	"io/ioutil"
 	"time"
 )
@@ -88,10 +89,14 @@ type WorkPackage struct {
 	Description *WPDescription `json:"description,omitempty" structs:"description,omitempty"`
 	Type        string         `json:"_type,omitempty" structs:"_type,omitempty"`
 	Id          int            `json:"id,omitempty" structs:"id,omitempty"`
-	CreatedAt   *Time          `json:"createdAt,omitempty" createdAt:"id,omitempty"`
-	UpdatedAt   *Time          `json:"updatedAt,omitempty" updatedAt:"id,omitempty"`
-	StartDate   *Date          `json:"startDate,omitempty" startDate:"id,omitempty"`
-	DueDate     *Date          `json:"dueDate,omitempty" dueDate:"id,omitempty"`
+	CreatedAt   *Time          `json:"createdAt,omitempty" structs:"createdAt,omitempty"`
+	UpdatedAt   *Time          `json:"updatedAt,omitempty" structs:"updatedAt,omitempty"`
+	StartDate   *Date          `json:"startDate,omitempty" structs:"startDate,omitempty"`
+	DueDate     *Date          `json:"dueDate,omitempty" structs:"dueDate,omitempty"`
+	LockVersion int            `json:"lockVersion,omitempty" structs:"lockVersion,omitempty"`
+	Position    int            `json:"position,omitempty" structs:"position,omitempty"`
+
+	Custom tcontainer.MarshalMap
 }
 
 /**
@@ -133,13 +138,21 @@ type WPPayload struct {
 type WPFormLinks struct {
 }
 
+/**
+Search operators
+Doc. https://docs.openproject.org/api/filters/#header-available-filters-1
+*/
 type SearchOperator int32
 
 const (
-	EQUAL       SearchOperator = 0
-	NOTEQUAL    SearchOperator = 1
-	GREATERTHAN SearchOperator = 2
-	LOWERTHAN   SearchOperator = 3
+	EQUAL          SearchOperator = 0 // =
+	NOTEQUAL       SearchOperator = 1 // <>
+	GREATERTHAN    SearchOperator = 2 // >
+	LOWERTHAN      SearchOperator = 3 // <
+	SEARCHSTRING   SearchOperator = 4 // **
+	LIKE           SearchOperator = 5 // ~
+	GREATEROREQUAL SearchOperator = 6 // >=
+	LOWEROREQUAL   SearchOperator = 7 // <=
 )
 
 /**

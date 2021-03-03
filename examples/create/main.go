@@ -20,7 +20,7 @@ func main() {
 	fmt.Print("OpenProject URL: ")
 	openProjURL, _ := r.ReadString('\n')
 
-	fmt.Print("OpenProject Username: ")
+	fmt.Print("OpenProject Username (Suggested 'apikey'): ")
 	username, _ := r.ReadString('\n')
 
 	fmt.Print("OpenProject Password: ")
