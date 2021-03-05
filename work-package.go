@@ -18,16 +18,6 @@ type WorkPackageService struct {
 	client *Client
 }
 
-// Time represents the Time definition of OpenProject as a time.Time of go
-type Time time.Time
-
-// Date represents the Date definition of OpenProject as a time.Time of go
-type Date time.Time
-
-func (t Time) Equal(u Time) bool {
-	return time.Time(t).Equal(time.Time(u))
-}
-
 /**
 UnmarshalJSON will transform the OpenProject time into a time.Time
 during the transformation of the OpenProject JSON response
@@ -102,13 +92,9 @@ type WorkPackage struct {
 }
 
 /**
-WorkPackage type
+WorkPackageDescription type contains description and format
 */
-type WPDescription struct {
-	Format string `json:"format,omitempty" structs:"format,omitempty"`
-	Raw    string `json:"raw,omitempty" structs:"raw,omitempty"`
-	Html   string `json:"html,omitempty" structs:"html,omitempty"`
-}
+type WPDescription OPGenericDescription
 
 /**
 WorkPackage Links

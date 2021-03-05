@@ -21,6 +21,25 @@ import (
 )
 
 /**
+Generic description is an structure widely used in several OpenProject API objects
+*/
+type OPGenericDescription struct {
+	Format string `json:"format,omitempty" structs:"format,omitempty"`
+	Raw    string `json:"raw,omitempty" structs:"raw,omitempty"`
+	Html   string `json:"html,omitempty" structs:"html,omitempty"`
+}
+
+// Time represents the Time definition of OpenProject as a time.Time of go
+type Time time.Time
+
+// Date represents the Date definition of OpenProject as a time.Time of go
+type Date time.Time
+
+func (t Time) Equal(u Time) bool {
+	return time.Time(t).Equal(time.Time(u))
+}
+
+/**
 httpClient defines an interface for an http.Client implementation
 */
 type httpClient interface {

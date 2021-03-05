@@ -7,10 +7,6 @@ import (
 	"testing"
 )
 
-const (
-	testOpenProjectInstance = "https://community.openproject.org"
-)
-
 var (
 	// testMux is the HTTP request multiplexer used with the test server.
 	testMux *http.ServeMux
