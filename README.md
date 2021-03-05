@@ -31,6 +31,45 @@ func main() {
 }
 ```
 
+### Create a work package
+Create a single work package
+
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+
+	openproj "github.com/manuelbcd/go-openproject"
+)
+
+func main() {
+	openProjURL := "https://youropenproject.url"
+
+	client, err := openproj.NewClient(nil, strings.TrimSpace(openProjURL))
+	if err != nil {
+		fmt.Printf("\nerror: %v\n", err)
+		return
+	}
+
+	i := openproj.WorkPackage{
+		Subject: "This is my test work package",
+		Description: &openproj.WPDescription {
+			Format: "textile",
+			Raw: "This is just a demo workpackage description",
+		},
+	}
+
+	wpResponse, _, err := client.WorkPackage.Create(&i, "demo-project")
+	if err != nil {
+		panic(err)
+	}
+
+	// Output specific fields from response
+	fmt.Printf("\n\nSubject: %s \nDescription: %s\n\n", wpResponse.Subject, wpResponse.Description.Raw)
+```
+
 ## Thanks
 
 Thank you very much [Andy Grunwald](https://github.com/andygrunwald) for the idea and your base code.
