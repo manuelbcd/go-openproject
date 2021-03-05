@@ -2,7 +2,6 @@
 
 [Go](https://golang.org/) client library for [OpenProject](https://www.openproject.org) inspired in [Go Jira library](https://github.com/andygrunwald/go-jira) 
 
-
 ## OpenProject official API documentation
 https://docs.openproject.org/api
 
@@ -10,7 +9,7 @@ https://docs.openproject.org/api
 
 ### Single work-package request
 Basic work-package retrieval (Single work-package with ID 36353 from community.openproject.org)
-Please check [examples](https://github.com/manuelbcd/go-openproject/tree/master/examples) folder for more complex operations.
+Please check [examples](https://github.com/manuelbcd/go-openproject/tree/master/examples) folder for different use-cases.
 
 ```go
 import (
