@@ -333,10 +333,10 @@ API and provides information about paging.
 */
 type Response struct {
 	*http.Response
-	Total      int
-	Count	   int
-	PageSize   int
-	Offset	   int
+	Total    int
+	Count    int
+	PageSize int
+	Offset   int
 }
 
 /**

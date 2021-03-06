@@ -261,6 +261,7 @@ func interpretOperator(operator SearchOperator) string {
 	case DIFFERENT:
 		result = "<>"
 	}
+	//TODO: Complete list of operators
 
 	return result
 }

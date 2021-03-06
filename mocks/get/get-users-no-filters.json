@@ -1,0 +1,103 @@
+{
+  "_type": "Collection",
+  "total": 2,
+  "count": 2,
+  "pageSize": 30,
+  "offset": 1,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "User",
+        "id": 1,
+        "name": "John Smith",
+        "createdAt": "2021-02-18T10:10:46Z",
+        "updatedAt": "2021-03-03T08:13:25Z",
+        "login": "john.smith@acme.com",
+        "admin": true,
+        "firstName": "John",
+        "lastName": "Smith",
+        "email": "john.smith@acme.com",
+        "avatar": "https://secure.gravatar.com/avatar/af5c1e5d637c5bdf7be72b0904272a89?default=404&secure=true",
+        "status": "active",
+        "identityUrl": null,
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "/api/v3/users/1",
+            "title": "John Smith"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%221%22%5D%7D%7D%5D",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/1",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/1",
+            "title": "Update john.smith@acme.com",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "/api/v3/users/1/lock",
+            "title": "Set lock on john.smith@acme.com",
+            "method": "post"
+          }
+        }
+      }, {
+        "_type": "User",
+        "id": 2,
+        "name": "Paul Williams",
+        "createdAt": "2021-02-12T10:10:46Z",
+        "updatedAt": "2021-03-04T08:13:25Z",
+        "login": "paul.williams@acme.com",
+        "admin": true,
+        "firstName": "Paul",
+        "lastName": "Williams",
+        "email": "paul.williams@acme.com",
+        "avatar": "https://secure.gravatar.com/avatar/af5c1e5d637c5bdf7be72b0904272a89?default=404&secure=true",
+        "status": "active",
+        "identityUrl": null,
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "/api/v3/users/2",
+            "title": "Paul Williams"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%221%22%5D%7D%7D%5D",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/2",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/2",
+            "title": "paul.williams@acme.com",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "/api/v3/users/2/lock",
+            "title": "Set lock on paul.williams@acme.com",
+            "method": "post"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/users?offset=1&pageSize=30"
+    },
+    "jumpTo": {
+      "href": "/api/v3/users?offset=%7Boffset%7D&pageSize=30",
+      "templated": true
+    },
+    "changeSize": {
+      "href": "/api/v3/users?offset=1&pageSize=%7Bsize%7D",
+      "templated": true
+    }
+  }
+}
