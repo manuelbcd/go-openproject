@@ -23,7 +23,6 @@ type ProjectElements struct {
 
 /**
 Project structure representing OpenProject project
-TODO: Add fields StatusExplanation and Links
 */
 type Project struct {
 	Type        string           `json:"_type,omitempty" structs:"_type,omitempty"`
@@ -77,7 +76,6 @@ func (s *ProjectService) GetList() (*ProjectList, *Response, error) {
 
 /**
 Retrieve project list with context
-TODO: Allow filtering following the same principles used in work-package
 */
 func (s *ProjectService) GetListWithContext(ctx context.Context) (*ProjectList, *Response, error) {
 	apiEndpoint := "api/v3/projects"

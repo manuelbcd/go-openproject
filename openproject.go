@@ -333,10 +333,10 @@ API and provides information about paging.
 */
 type Response struct {
 	*http.Response
-
-	StartAt    int
-	MaxResults int
 	Total      int
+	Count	   int
+	PageSize   int
+	Offset	   int
 }
 
 /**
@@ -356,7 +356,9 @@ func (r *Response) populatePageValues(v interface{}) {
 	switch value := v.(type) {
 	case *searchResult:
 		r.Total = value.Total
-		// TODO: SET THE OTHER VALUES (count, pagesize, offset)
+		r.Count = value.Count
+		r.PageSize = value.PageSize
+		r.Offset = value.Offset
 	}
 }
 

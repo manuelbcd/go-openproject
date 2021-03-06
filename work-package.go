@@ -100,7 +100,6 @@ type WPDescription OPGenericDescription
 WorkPackage Links
 */
 type WPLinks struct {
-	// TODO: Complete the full set of Links (attachments, revisions, activities, relations, etc..)
 	Self     WPLinksField `json:"self,omitempty" structs:"self,omitempty"`
 	Type     WPLinksField `json:"type,omitempty" structs:"type,omitempty"`
 	Priority WPLinksField `json:"priority,omitempty" structs:"priority,omitempty"`
@@ -229,8 +228,6 @@ func (s *WorkPackageService) Get(issueID string) (*WorkPackage, *Response, error
 /**
 	prepareFilters convert FilterOptions to single URL-Encoded string to be inserted into GET request
     as parameter.
-	TODO: Improve string concatenation to be more efficient (+ concatenation is not efficient) using strings.Builder
-	TODO: Example of inefficient string concatenation --> filterTemplate += s
 */
 func (fops *FilterOptions) prepareFilters() url.Values {
 	values := make(url.Values)
