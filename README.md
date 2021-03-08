@@ -1,6 +1,6 @@
 # OpenProject Go Client Library
 
-[Go](https://golang.org/) client library for [OpenProject](https://www.openproject.org) inspired in [Go Jira library](https://github.com/andygrunwald/go-jira) 
+[Go](https://golang.org/) client library for [OpenProject](https://www.openproject.org)
 
 ## OpenProject official API documentation
 https://docs.openproject.org/api
@@ -79,5 +79,5 @@ func main() {
 | Statuses | GET |
 
 ## Thanks
-
+Inspired in [Go Jira library](https://github.com/andygrunwald/go-jira) 
 Thank you very much [Andy Grunwald](https://github.com/andygrunwald) for the idea and your base code.
