@@ -1,0 +1,439 @@
+{
+  "_type": "Collection",
+  "total": 25,
+  "count": 25,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "Status",
+        "id": 1,
+        "name": "new",
+        "isClosed": false,
+        "color": "#C3FAE8",
+        "isDefault": true,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 1,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/1",
+            "title": "new"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 65,
+        "name": "submitted",
+        "isClosed": false,
+        "color": null,
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 2,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/65",
+            "title": "submitted"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 66,
+        "name": "discussed",
+        "isClosed": false,
+        "color": null,
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 3,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/66",
+            "title": "discussed"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 29,
+        "name": "needs clarification",
+        "isClosed": false,
+        "color": "#EDEDED",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 4,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/29",
+            "title": "needs clarification"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 21,
+        "name": "in specification",
+        "isClosed": false,
+        "color": "#DBE4FF",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 5,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/21",
+            "title": "in specification"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 10,
+        "name": "specified",
+        "isClosed": false,
+        "color": "#63E6BE",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 6,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/10",
+            "title": "specified"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 11,
+        "name": "unconfirmed",
+        "isClosed": false,
+        "color": null,
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 7,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/11",
+            "title": "unconfirmed"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 7,
+        "name": "confirmed",
+        "isClosed": false,
+        "color": "#FFA8A8",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 8,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/7",
+            "title": "confirmed"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 12,
+        "name": "to be scheduled",
+        "isClosed": false,
+        "color": "#FFEC99",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 9,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/12",
+            "title": "to be scheduled"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 13,
+        "name": "scheduled",
+        "isClosed": false,
+        "color": "#D8F5A2",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 10,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/13",
+            "title": "scheduled"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 19,
+        "name": "in progress",
+        "isClosed": false,
+        "color": "#66D9E8",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 11,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/19",
+            "title": "in progress"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 4,
+        "name": "on hold",
+        "isClosed": false,
+        "color": "#FFC078",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 12,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/4",
+            "title": "on hold"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 2,
+        "name": "in development",
+        "isClosed": false,
+        "color": "#66D9E8",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 13,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/2",
+            "title": "in development"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 9,
+        "name": "needs review",
+        "isClosed": false,
+        "color": "#00CC33",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 14,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/9",
+            "title": "needs review"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 16,
+        "name": "in review",
+        "isClosed": false,
+        "color": "#D3F9D8",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 15,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/16",
+            "title": "in review"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 8,
+        "name": "merged",
+        "isClosed": false,
+        "color": "#A5D8FF",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 16,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/8",
+            "title": "merged"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 27,
+        "name": "deployed",
+        "isClosed": true,
+        "color": "#12B886",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 17,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/27",
+            "title": "deployed"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 17,
+        "name": "in test",
+        "isClosed": false,
+        "color": "#0CA678",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 18,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/17",
+            "title": "in test"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 23,
+        "name": "test failed",
+        "isClosed": false,
+        "color": "#C92A2A",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 19,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/23",
+            "title": "test failed"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 3,
+        "name": "tested",
+        "isClosed": true,
+        "color": "#087F5B",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 20,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/3",
+            "title": "tested"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 14,
+        "name": "resolved",
+        "isClosed": true,
+        "color": null,
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 21,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/14",
+            "title": "resolved"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 28,
+        "name": "released",
+        "isClosed": true,
+        "color": "#3399CC",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 22,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/28",
+            "title": "released"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 6,
+        "name": "rejected",
+        "isClosed": true,
+        "color": "#FFA8A8",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 23,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/6",
+            "title": "rejected"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 5,
+        "name": "closed",
+        "isClosed": true,
+        "color": "#DEE2E6",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 24,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/5",
+            "title": "closed"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 63,
+        "name": "prioritized",
+        "isClosed": false,
+        "color": "#D90000",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": null,
+        "position": 25,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/63",
+            "title": "prioritized"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/statuses"
+    }
+  }
+}
