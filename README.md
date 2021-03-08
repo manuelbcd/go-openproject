@@ -2,7 +2,7 @@
 
 [Go](https://golang.org/) client library for [OpenProject](https://www.openproject.org)
 
-## OpenProject official API documentation
+## API doc
 https://docs.openproject.org/api
 
 ## Usage examples
@@ -80,4 +80,5 @@ func main() {
 
 ## Thanks
 Inspired in [Go Jira library](https://github.com/andygrunwald/go-jira) 
+
 Thank you very much [Andy Grunwald](https://github.com/andygrunwald) for the idea and your base code.
