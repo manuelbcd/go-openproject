@@ -32,7 +32,8 @@ type User struct {
 }
 
 /**
-GetWithContext gets user info from Jira using its Account Id
+GetWithContext gets user info from OpenProject using its Account Id
+// TODO: Implement GetList and adapt tests
 */
 func (s *UserService) GetWithContext(ctx context.Context, accountId string) (*User, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/users?id=%s", accountId)

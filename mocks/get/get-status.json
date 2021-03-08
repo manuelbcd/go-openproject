@@ -1,0 +1,17 @@
+{
+  "_type": "Status",
+  "id": 2,
+  "name": "in development",
+  "isClosed": false,
+  "color": "#66D9E8",
+  "isDefault": false,
+  "isReadonly": false,
+  "defaultDoneRatio": null,
+  "position": 13,
+  "_links": {
+    "self": {
+      "href": "/api/v3/statuses/2",
+      "title": "in development"
+    }
+  }
+}

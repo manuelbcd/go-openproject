@@ -64,6 +64,7 @@ type Client struct {
 	WorkPackage    *WorkPackageService
 	Project        *ProjectService
 	User           *UserService
+	Status         *StatusService
 }
 
 /**
@@ -93,6 +94,7 @@ func NewClient(httpClient httpClient, baseURL string) (*Client, error) {
 	c.WorkPackage = &WorkPackageService{client: c}
 	c.Project = &ProjectService{client: c}
 	c.User = &UserService{client: c}
+	c.Status = &StatusService{client: c}
 
 	return c, nil
 }
