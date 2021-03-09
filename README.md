@@ -73,9 +73,9 @@ func main() {
 ## Supported objects
 | Endpoint | Operations |
 | ------------- | ------------- |
-| WorkPackages  | GET/POST  |
-| Projects  | GET  |
-| Users | GET  |
+| WorkPackages  | GET/POST/DELETE |
+| Projects  | GET |
+| Users | GET |
 | Statuses | GET |
 
 ## Thanks
