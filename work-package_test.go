@@ -89,9 +89,29 @@ func TestWorkPackageService_Create(t *testing.T) {
 			Raw:    "This is just a demo work-package description",
 		},
 	}
-	issue, _, err := testClient.WorkPackage.Create(i, "demo-project")
-	if issue == nil {
+	wp, _, err := testClient.WorkPackage.Create(i, "demo-project")
+	if wp == nil {
 		t.Error("Expected work-package. Work-package is nil")
+	}
+	if err != nil {
+		t.Errorf("Error given: %s", err)
+	}
+}
+
+func TestWorkPackageService_Delete(t *testing.T) {
+	setup()
+	defer teardown()
+	testMux.HandleFunc("/api/v3/work_packages/123", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, "DELETE")
+		testRequestURL(t, r, "/api/v3/work_packages/123")
+
+		w.WriteHeader(http.StatusNoContent)
+		fmt.Fprint(w, `{}`)
+	})
+
+	resp, err := testClient.WorkPackage.Delete("123")
+	if resp.StatusCode != 204 {
+		t.Error("Work-package not deleted.")
 	}
 	if err != nil {
 		t.Errorf("Error given: %s", err)
