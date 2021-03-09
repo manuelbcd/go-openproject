@@ -353,10 +353,16 @@ func newResponse(r *http.Response, v interface{}) *Response {
 /**
 Sets paging values if response json was parsed to searchResult type
 (can be extended with other types if they also need paging info)
+TODO: Improve implementation to avoid redundancy without losing efficiency (reflect alternative is not efficient)
 */
 func (r *Response) populatePageValues(v interface{}) {
 	switch value := v.(type) {
-	case *searchResult:
+	case *searchResultWP:
+		r.Total = value.Total
+		r.Count = value.Count
+		r.PageSize = value.PageSize
+		r.Offset = value.Offset
+	case *searchResultUser:
 		r.Total = value.Total
 		r.Count = value.Count
 		r.PageSize = value.PageSize
