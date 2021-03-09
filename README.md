@@ -1,8 +1,8 @@
 # OpenProject Go Client Library
 
-[Go](https://golang.org/) client library for [OpenProject](https://www.openproject.org) inspired in [Go Jira library](https://github.com/andygrunwald/go-jira) 
+[Go](https://golang.org/) client library for [OpenProject](https://www.openproject.org)
 
-## OpenProject official API documentation
+## API doc
 https://docs.openproject.org/api
 
 ## Usage examples
@@ -70,7 +70,15 @@ func main() {
 	fmt.Printf("\n\nSubject: %s \nDescription: %s\n\n", wpResponse.Subject, wpResponse.Description.Raw)
 }
 ```
+## Supported objects
+| Endpoint | Operations |
+| ------------- | ------------- |
+| WorkPackages  | GET/POST  |
+| Projects  | GET  |
+| Users | GET  |
+| Statuses | GET |
 
 ## Thanks
+Inspired in [Go Jira library](https://github.com/andygrunwald/go-jira) 
 
 Thank you very much [Andy Grunwald](https://github.com/andygrunwald) for the idea and your base code.
