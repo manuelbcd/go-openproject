@@ -184,15 +184,15 @@ type OptionsFields struct {
 /**
 searchResult is only a small wrapper around the Search
 */
-type searchResult struct {
-	Embedded searchEmbedded `json:"_embedded" structs:"_embedded"`
-	Total    int            `json:"total" structs:"total"`
-	Count    int            `json:"count" structs:"count"`
-	PageSize int            `json:"pageSize" structs:"pageSize"`
-	Offset   int            `json:"offset" structs:"offset"`
+type searchResultWP struct {
+	Embedded searchEmbeddedWP `json:"_embedded" structs:"_embedded"`
+	Total    int              `json:"total" structs:"total"`
+	Count    int              `json:"count" structs:"count"`
+	PageSize int              `json:"pageSize" structs:"pageSize"`
+	Offset   int              `json:"offset" structs:"offset"`
 }
 
-type searchEmbedded struct {
+type searchEmbeddedWP struct {
 	Elements []WorkPackage `json:"elements" structs:"elements"`
 }
 
@@ -315,15 +315,11 @@ func (s *WorkPackageService) GetListWithContext(ctx context.Context, options *Fi
 	}
 
 	if options != nil {
-		// q, err := query.Values(options)
-		if err != nil {
-			return nil, nil, err
-		}
 		values := options.prepareFilters()
 		req.URL.RawQuery = values.Encode()
 	}
 
-	v := new(searchResult)
+	v := new(searchResultWP)
 	resp, err := s.client.Do(req, v)
 	if err != nil {
 		err = NewOpenProjectError(resp, err)

@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestUserService_Get_Success(t *testing.T) {
+func TestUserService_Get_SearchListNoFiltersSuccess(t *testing.T) {
 	setup()
 	defer teardown()
 	raw, err := ioutil.ReadFile("./mocks/get/get-users-no-filters.json")
@@ -21,10 +21,16 @@ func TestUserService_Get_Success(t *testing.T) {
 		fmt.Fprint(w, string(raw))
 	})
 
-	if user, _, err := testClient.User.Get(""); err != nil {
+	_, resp, err := testClient.User.GetList(nil)
+
+	if resp == nil {
+		t.Errorf("Null response: %+v", resp)
+	}
+	if err != nil {
 		t.Errorf("Error given: %s", err)
-	} else if user == nil {
-		t.Error("Expected user. User is nil")
+	}
+	if resp.Total != 2 {
+		t.Errorf("Total should populate with 2, %v given", resp.Total)
 	}
 }
 

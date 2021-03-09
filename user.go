@@ -3,6 +3,7 @@ package openproject
 import (
 	"context"
 	"fmt"
+	"net/url"
 )
 
 /**
@@ -28,7 +29,22 @@ type User struct {
 	lastName  string `json:"lastName,omitempty" structs:"lastName,omitempty"`
 	Email     string `json:"email,omitempty" structs:"email,omitempty"`
 	Avatar    string `json:"avatar,omitempty" structs:"avatar,omitempty"`
-	Status    bool   `json:"status,omitempty" structs:"status,omitempty"`
+	Status    string `json:"status,omitempty" structs:"status,omitempty"`
+}
+
+/**
+searchResult is only a small wrapper around the Search
+*/
+type searchResultUser struct {
+	Embedded searchEmbeddedUser `json:"_embedded" structs:"_embedded"`
+	Total    int                `json:"total" structs:"total"`
+	Count    int                `json:"count" structs:"count"`
+	PageSize int                `json:"pageSize" structs:"pageSize"`
+	Offset   int                `json:"offset" structs:"offset"`
+}
+
+type searchEmbeddedUser struct {
+	Elements []User `json:"elements" structs:"elements"`
 }
 
 /**
@@ -55,4 +71,37 @@ Get wraps GetWithContext using the background context.
 */
 func (s *UserService) Get(accountId string) (*User, *Response, error) {
 	return s.GetWithContext(context.Background(), accountId)
+}
+
+/**
+GetListWithContext will retrieve a list of users using filters
+*/
+func (s *UserService) GetListWithContext(ctx context.Context, options *FilterOptions) ([]User, *Response, error) {
+	u := url.URL{
+		Path: "api/v3/users",
+	}
+
+	req, err := s.client.NewRequestWithContext(ctx, "GET", u.String(), nil)
+	if err != nil {
+		return []User{}, nil, err
+	}
+
+	if options != nil {
+		values := options.prepareFilters()
+		req.URL.RawQuery = values.Encode()
+	}
+
+	v := new(searchResultUser)
+	resp, err := s.client.Do(req, v)
+	if err != nil {
+		err = NewOpenProjectError(resp, err)
+	}
+	return v.Embedded.Elements, resp, err
+}
+
+/**
+GetList wraps GetListWithContext using the background context.
+*/
+func (s *UserService) GetList(options *FilterOptions) ([]User, *Response, error) {
+	return s.GetListWithContext(context.Background(), options)
 }
