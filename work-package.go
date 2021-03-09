@@ -221,8 +221,8 @@ func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID s
 /**
 Get wraps GetWithContext using the background context.
 */
-func (s *WorkPackageService) Get(issueID string) (*WorkPackage, *Response, error) {
-	return s.GetWithContext(context.Background(), issueID)
+func (s *WorkPackageService) Get(workpackageID string) (*WorkPackage, *Response, error) {
+	return s.GetWithContext(context.Background(), workpackageID)
 }
 
 /**
@@ -332,4 +332,26 @@ GetList wraps GetListWithContext using the background context.
 */
 func (s *WorkPackageService) GetList(options *FilterOptions) ([]WorkPackage, *Response, error) {
 	return s.GetListWithContext(context.Background(), options)
+}
+
+/**
+DeleteWithContext will delete a single work-package.
+*/
+func (s *WorkPackageService) DeleteWithContext(ctx context.Context, workpackageID string) (*Response, error) {
+	apiEndpoint := fmt.Sprintf("api/v3/work_packages/%s", workpackageID)
+
+	req, err := s.client.NewRequestWithContext(ctx, "DELETE", apiEndpoint, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := s.client.Do(req, nil)
+	return resp, err
+}
+
+/**
+Delete wraps DeleteWithContext using the background context.
+*/
+func (s *WorkPackageService) Delete(workpackageID string) (*Response, error) {
+	return s.DeleteWithContext(context.Background(), workpackageID)
 }
