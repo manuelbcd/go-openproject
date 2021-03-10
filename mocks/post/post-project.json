@@ -1,0 +1,69 @@
+{
+  "_type": "Project",
+  "id": 3,
+  "identifier": "my-scrum-project-1",
+  "name": "Scrum project 1",
+  "active": true,
+  "public": true,
+  "description": {
+    "format": "markdown",
+    "raw": "This is a short summary of the goals of another demo Scrum project.",
+    "html": "<p class=\"op-uc-p\">This is a short summary of the goals of another demo Scrum project.</p>"
+  },
+  "createdAt": "2021-03-10T22:17:45Z",
+  "updatedAt": "2021-03-10T22:17:45Z",
+  "status": null,
+  "statusExplanation": {
+    "format": "markdown",
+    "raw": null,
+    "html": ""
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/projects/3",
+      "title": "Scrum project 1"
+    },
+    "createWorkPackage": {
+      "href": "/api/v3/projects/3/work_packages/form",
+      "method": "post"
+    },
+    "createWorkPackageImmediately": {
+      "href": "/api/v3/projects/3/work_packages",
+      "method": "post"
+    },
+    "workPackages": {
+      "href": "/api/v3/projects/3/work_packages"
+    },
+    "categories": {
+      "href": "/api/v3/projects/3/categories"
+    },
+    "versions": {
+      "href": "/api/v3/projects/3/versions"
+    },
+    "memberships": {
+      "href": "/api/v3/memberships?filters=%5B%7B%22project%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%223%22%5D%7D%7D%5D"
+    },
+    "types": {
+      "href": "/api/v3/projects/3/types"
+    },
+    "update": {
+      "href": "/api/v3/projects/3/form",
+      "method": "post"
+    },
+    "updateImmediately": {
+      "href": "/api/v3/projects/3",
+      "method": "patch"
+    },
+    "delete": {
+      "href": "/api/v3/projects/3",
+      "method": "delete"
+    },
+    "schema": {
+      "href": "/api/v3/projects/schema"
+    },
+    "parent": {
+      "href": null,
+      "title": null
+    }
+  }
+}
