@@ -74,7 +74,7 @@ func main() {
 | Endpoint | Operations |
 | ------------- | ------------- |
 | WorkPackages  | GET/POST/DELETE |
-| Projects  | GET |
+| Projects  | GET/POST |
 | Users | GET |
 | Statuses | GET |
 
