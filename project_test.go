@@ -58,3 +58,38 @@ func TestProjectService_Get(t *testing.T) {
 		t.Errorf("Unexpected project name %s", project.Name)
 	}
 }
+
+func TestProjectService_Create(t *testing.T) {
+	setup()
+	defer teardown()
+	raw, err := ioutil.ReadFile("./mocks/post/post-project.json")
+	if err != nil {
+		t.Error(err.Error())
+	}
+	testMux.HandleFunc("/api/v3/projects", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, "POST")
+		testRequestURL(t, r, "/api/v3/projects")
+
+		w.WriteHeader(http.StatusCreated)
+		fmt.Fprint(w, string(raw))
+	})
+
+	p := &Project{
+		Type:   "Project",
+		Name:   "Scrum project 1",
+		Active: true,
+		Public: true,
+		Description: &ProjDescription{
+			Format: "textile",
+			Raw:    "This is a short summary of the goals of another demo Scrum project.",
+			Html:   "<p class=\"op-uc-p\">This is a short summary of the goals of another demo Scrum project.</p>",
+		},
+	}
+	wp, _, err := testClient.Project.Create(p)
+	if wp == nil {
+		t.Error("Expected project but project is nil")
+	}
+	if err != nil {
+		t.Errorf("Error given: %s", err)
+	}
+}

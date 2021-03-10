@@ -2,7 +2,9 @@ package openproject
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 )
 
 /**
@@ -92,4 +94,39 @@ func (s *ProjectService) GetListWithContext(ctx context.Context) (*ProjectList, 
 	}
 
 	return projectList, resp, nil
+}
+
+/**
+	CreateWithContext creates a project from a JSON representation.
+**/
+func (s *ProjectService) CreateWithContext(ctx context.Context, project *Project) (*Project, *Response, error) {
+	apiEndpoint := "api/v3/projects"
+	req, err := s.client.NewRequestWithContext(ctx, "POST", apiEndpoint, project)
+	if err != nil {
+		return nil, nil, err
+	}
+	resp, err := s.client.Do(req, nil)
+	if err != nil {
+		// incase of error return the resp for further inspection
+		return nil, resp, err
+	}
+
+	projResponse := new(Project)
+	defer resp.Body.Close()
+	data, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, resp, fmt.Errorf("could not read the returned data")
+	}
+	err = json.Unmarshal(data, projResponse)
+	if err != nil {
+		return nil, resp, fmt.Errorf("could not unmarshall the data into struct")
+	}
+	return projResponse, resp, nil
+}
+
+/**
+Create wraps CreateWithContext using the background context.
+*/
+func (s *ProjectService) Create(project *Project) (*Project, *Response, error) {
+	return s.CreateWithContext(context.Background(), project)
 }
