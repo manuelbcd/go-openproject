@@ -1,0 +1,45 @@
+{
+  "_type": "User",
+  "id": 4,
+  "name": "John Smith",
+  "createdAt": "2021-03-11T09:10:57Z",
+  "updatedAt": "2021-03-11T09:10:57Z",
+  "login": "john.smith@acme.com",
+  "admin": false,
+  "firstName": "John",
+  "lastName": "Smith",
+  "email": "john.smith@acme.com",
+  "avatar": "https://secure.gravatar.com/avatar/c650f57bf4864e6dfe538f381a062cfe?default=404&secure=true",
+  "status": "active",
+  "identityUrl": null,
+  "language": "en",
+  "_links": {
+    "self": {
+      "href": "/api/v3/users/4",
+      "title": "John Smith"
+    },
+    "memberships": {
+      "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%224%22%5D%7D%7D%5D",
+      "title": "Members"
+    },
+    "showUser": {
+      "href": "/users/4",
+      "type": "text/html"
+    },
+    "updateImmediately": {
+      "href": "/api/v3/users/4",
+      "title": "Update john.smith@acme.com",
+      "method": "patch"
+    },
+    "lock": {
+      "href": "/api/v3/users/4/lock",
+      "title": "Set lock on john.smith@acme.com",
+      "method": "post"
+    },
+    "delete": {
+      "href": "/api/v3/users/4",
+      "title": "Delete john.smith@acme.com",
+      "method": "delete"
+    }
+  }
+}

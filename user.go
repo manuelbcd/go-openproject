@@ -2,7 +2,9 @@ package openproject
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/url"
 )
 
@@ -30,6 +32,8 @@ type User struct {
 	Email     string `json:"email,omitempty" structs:"email,omitempty"`
 	Avatar    string `json:"avatar,omitempty" structs:"avatar,omitempty"`
 	Status    string `json:"status,omitempty" structs:"status,omitempty"`
+	Language  string `json:"language,omitempty" structs:"language,omitempty"`
+	Password  string `json:"password,omitempty" structs:"password,omitempty"`
 }
 
 /**
@@ -104,4 +108,39 @@ GetList wraps GetListWithContext using the background context.
 */
 func (s *UserService) GetList(options *FilterOptions) ([]User, *Response, error) {
 	return s.GetListWithContext(context.Background(), options)
+}
+
+/**
+	CreateWithContext creates a user from a JSON representation.
+**/
+func (s *UserService) CreateWithContext(ctx context.Context, user *User) (*User, *Response, error) {
+	apiEndpoint := "api/v3/users"
+	req, err := s.client.NewRequestWithContext(ctx, "POST", apiEndpoint, user)
+	if err != nil {
+		return nil, nil, err
+	}
+	resp, err := s.client.Do(req, nil)
+	if err != nil {
+		// incase of error return the resp for further inspection
+		return nil, resp, err
+	}
+
+	userResponse := new(User)
+	defer resp.Body.Close()
+	data, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, resp, fmt.Errorf("could not read the returned data")
+	}
+	err = json.Unmarshal(data, userResponse)
+	if err != nil {
+		return nil, resp, fmt.Errorf("could not unmarshall the data into struct")
+	}
+	return userResponse, resp, nil
+}
+
+/**
+Create wraps CreateWithContext using the background context.
+*/
+func (s *UserService) Create(user *User) (*User, *Response, error) {
+	return s.CreateWithContext(context.Background(), user)
 }
