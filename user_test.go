@@ -54,3 +54,38 @@ func TestUserService_GetByID_Success(t *testing.T) {
 		t.Error("Expected user. User is nil")
 	}
 }
+
+func TestUserService_Create(t *testing.T) {
+	setup()
+	defer teardown()
+	raw, err := ioutil.ReadFile("./mocks/post/post-user.json")
+	if err != nil {
+		t.Error(err.Error())
+	}
+	testMux.HandleFunc("/api/v3/users", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, "POST")
+		testRequestURL(t, r, "/api/v3/users")
+
+		w.WriteHeader(http.StatusCreated)
+		fmt.Fprint(w, string(raw))
+	})
+
+	p := &User{
+		Type:      "User",
+		Login:     "john.smith@acme.com",
+		Admin:     false,
+		FirstName: "John",
+		lastName:  "Smith",
+		Email:     "john.smith@acme.com",
+		Status:    "active",
+		Language:  "en",
+		Password:  "AB12345pass",
+	}
+	wp, _, err := testClient.User.Create(p)
+	if wp == nil {
+		t.Error("Expected user but user is nil")
+	}
+	if err != nil {
+		t.Errorf("Error given: %s", err)
+	}
+}
