@@ -75,7 +75,7 @@ func main() {
 | ------------- | ------------- |
 | WorkPackages  | GET/POST/DELETE |
 | Projects  | GET/POST |
-| Users | GET |
+| Users | GET/POST |
 | Statuses | GET |
 
 ## Thanks
