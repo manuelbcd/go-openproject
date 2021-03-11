@@ -144,3 +144,25 @@ Create wraps CreateWithContext using the background context.
 func (s *UserService) Create(user *User) (*User, *Response, error) {
 	return s.CreateWithContext(context.Background(), user)
 }
+
+/**
+DeleteWithContext will delete a single user.
+*/
+func (s *UserService) DeleteWithContext(ctx context.Context, userID string) (*Response, error) {
+	apiEndpoint := fmt.Sprintf("api/v3/users/%s", userID)
+
+	req, err := s.client.NewRequestWithContext(ctx, "DELETE", apiEndpoint, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := s.client.Do(req, nil)
+	return resp, err
+}
+
+/**
+Delete wraps DeleteWithContext using the background context.
+*/
+func (s *UserService) Delete(userID string) (*Response, error) {
+	return s.DeleteWithContext(context.Background(), userID)
+}

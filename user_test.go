@@ -89,3 +89,23 @@ func TestUserService_Create(t *testing.T) {
 		t.Errorf("Error given: %s", err)
 	}
 }
+
+func TestUserService_Delete(t *testing.T) {
+	setup()
+	defer teardown()
+	testMux.HandleFunc("/api/v3/users/4", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, "DELETE")
+		testRequestURL(t, r, "/api/v3/users/4")
+
+		w.WriteHeader(http.StatusNoContent)
+		fmt.Fprint(w, `{}`)
+	})
+
+	resp, err := testClient.User.Delete("4")
+	if resp.StatusCode != 204 {
+		t.Error("User not deleted.")
+	}
+	if err != nil {
+		t.Errorf("Error given: %s", err)
+	}
+}
