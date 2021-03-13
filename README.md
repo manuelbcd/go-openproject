@@ -77,6 +77,7 @@ func main() {
 | Projects  | GET/POST |
 | Users | GET/POST/DELETE |
 | Statuses | GET |
+| Wiki Pages | GET |
 
 ## Thanks
 Inspired in [Go Jira library](https://github.com/andygrunwald/go-jira) 
