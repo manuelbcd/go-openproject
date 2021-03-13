@@ -5,15 +5,6 @@ import (
 	"fmt"
 )
 
-package openproject
-
-import (
-"context"
-"encoding/json"
-"fmt"
-"io/ioutil"
-)
-
 /**
 ProjectService handles wiki-pages for the OpenProject instance / API.
 */
