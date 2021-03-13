@@ -73,11 +73,16 @@ func main() {
 ## Supported objects
 | Endpoint | Operations |
 | ------------- | ------------- |
-| WorkPackages  | GET/POST/DELETE |
+| Attachments  | *pending* |
+| Categories | *pending* |
+| Documents | *pending* |
 | Projects  | GET/POST |
-| Users | GET/POST/DELETE |
+| Queries | *pending* |
+| Schemas | *pending* |
 | Statuses | GET |
+| Users | GET/POST/DELETE |
 | Wiki Pages | GET |
+| WorkPackages  | GET/POST/DELETE |
 
 ## Thanks
 Inspired in [Go Jira library](https://github.com/andygrunwald/go-jira) 
