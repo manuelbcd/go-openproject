@@ -66,6 +66,7 @@ type Client struct {
 	User           *UserService
 	Status         *StatusService
 	WikiPage       *WikiPageService
+	Attachment     *AttachmentService
 }
 
 /**
@@ -97,6 +98,7 @@ func NewClient(httpClient httpClient, baseURL string) (*Client, error) {
 	c.User = &UserService{client: c}
 	c.Status = &StatusService{client: c}
 	c.WikiPage = &WikiPageService{client: c}
+	c.Attachment = &AttachmentService{client: c}
 
 	return c, nil
 }

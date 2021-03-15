@@ -1,0 +1,183 @@
+{
+  "_embedded": {
+    "author": {
+      "_type": "User",
+      "id": 5,
+      "name": "Birthe Lindenthal",
+      "avatar": "https://secure.gravatar.com/avatar/aaf6cca371d5684d5e9468406cca395c?default=404&secure=true",
+      "_links": {
+        "self": {
+          "href": "/api/v3/users/5",
+          "title": "Birthe Lindenthal"
+        },
+        "showUser": {
+          "href": "/users/5",
+          "type": "text/html"
+        }
+      }
+    },
+    "container": {
+      "derivedStartDate": null,
+      "derivedDueDate": null,
+      "_type": "WorkPackage",
+      "id": 17517,
+      "lockVersion": 17,
+      "subject": "Work packages with reduced visibility",
+      "description": {
+        "format": "markdown",
+        "raw": "**As** an OpenProject user  \n**I want** to be able to limit the visibility of work packages to users and groups which I specify  \n**so that** I can have private work packages.\n\n**Acceptance criteria**\n\n*   Restrict WorkPackage visibility by role, independend of project (see Redmine screenshot for Roles configuration)\n*   Private tickets cannot be seen / edited by users who are not allowed to see them:\n    *   Not shown in work package list\n    *   Links to those work packages (e.g. via Wiki syntax) are not functional\n    *   Related work packages, parent &amp; child work packages which are private are not shown",
+        "html": "<p class=\"op-uc-p\"><strong>As</strong> an OpenProject user<br>\n<strong>I want</strong> to be able to limit the visibility of work packages to users and groups which I specify<br>\n<strong>so that</strong> I can have private work packages.</p>\n<p class=\"op-uc-p\"><strong>Acceptance criteria</strong></p>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Restrict WorkPackage visibility by role, independend of project (see Redmine screenshot for Roles configuration)</li>\n<li class=\"op-uc-list--item\">Private tickets cannot be seen / edited by users who are not allowed to see them:\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Not shown in work package list</li>\n<li class=\"op-uc-list--item\">Links to those work packages (e.g. via Wiki syntax) are not functional</li>\n<li class=\"op-uc-list--item\">Related work packages, parent &amp; child work packages which are private are not shown</li>\n</ul>\n</li>\n</ul>"
+      },
+      "scheduleManually": false,
+      "startDate": null,
+      "dueDate": null,
+      "estimatedTime": null,
+      "derivedEstimatedTime": null,
+      "createdAt": "2014-11-20T15:14:18Z",
+      "updatedAt": "2021-02-01T16:07:17Z",
+      "position": 318,
+      "storyPoints": null,
+      "remainingTime": null,
+      "customField108": false,
+      "customField114": 2.0,
+      "customField130": 20,
+      "_links": {
+        "attachments": {
+          "href": "/api/v3/work_packages/17517/attachments"
+        },
+        "prepareAttachment": {
+          "href": "/api/v3/work_packages/17517/attachments/prepare",
+          "method": "post"
+        },
+        "self": {
+          "href": "/api/v3/work_packages/17517",
+          "title": "Work packages with reduced visibility"
+        },
+        "schema": {
+          "href": "/api/v3/work_packages/schemas/14-8"
+        },
+        "availableRelationCandidates": {
+          "href": "/api/v3/work_packages/17517/available_relation_candidates",
+          "title": "Potential work packages to relate to"
+        },
+        "activities": {
+          "href": "/api/v3/work_packages/17517/activities"
+        },
+        "relations": {
+          "href": "/api/v3/work_packages/17517/relations"
+        },
+        "revisions": {
+          "href": "/api/v3/work_packages/17517/revisions"
+        },
+        "previewMarkup": {
+          "href": "/api/v3/render/markdown?context=/api/v3/work_packages/17517",
+          "method": "post"
+        },
+        "category": {
+          "href": null
+        },
+        "type": {
+          "href": "/api/v3/types/8",
+          "title": "Epic"
+        },
+        "priority": {
+          "href": "/api/v3/priorities/5",
+          "title": "High"
+        },
+        "project": {
+          "href": "/api/v3/projects/14",
+          "title": "OpenProject"
+        },
+        "status": {
+          "href": "/api/v3/statuses/1",
+          "title": "new"
+        },
+        "author": {
+          "href": "/api/v3/users/3762",
+          "title": "Robin Wagner"
+        },
+        "responsible": {
+          "href": null
+        },
+        "assignee": {
+          "href": null
+        },
+        "version": {
+          "href": "/api/v3/versions/26",
+          "title": "Wish List"
+        },
+        "customField112": {
+          "title": "High = 100%",
+          "href": "/api/v3/custom_options/423"
+        },
+        "customField113": {
+          "title": "4.5 (XL = 3 - 6 months)",
+          "href": "/api/v3/custom_options/430"
+        },
+        "customField111": {
+          "title": "Massive = 3x",
+          "href": "/api/v3/custom_options/418"
+        },
+        "customField1": [
+          {
+            "title": "Work packages",
+            "href": "/api/v3/custom_options/32"
+          }
+        ],
+        "customField102": {
+          "href": null,
+          "title": null
+        },
+        "customField110": {
+          "title": "3.0 = Significant reach (~25% to ~50%)",
+          "href": "/api/v3/custom_options/415"
+        },
+        "customField129": {
+          "href": null,
+          "title": null
+        },
+        "ancestors": [],
+        "parent": {
+          "href": null,
+          "title": null
+        },
+        "customActions": []
+      }
+    }
+  },
+  "_type": "Attachment",
+  "id": 15713,
+  "fileName": "Rollen-Ticket-Sichtbarkeit.jpg",
+  "fileSize": 111186,
+  "description": {
+    "format": "plain",
+    "raw": null,
+    "html": ""
+  },
+  "contentType": "image/jpeg",
+  "digest": {
+    "algorithm": "md5",
+    "hash": "bf1c2c0359b67e281cc69d21df331a7f"
+  },
+  "createdAt": "2019-05-29T12:07:11Z",
+  "_links": {
+    "self": {
+      "href": "/api/v3/attachments/15713",
+      "title": "Rollen-Ticket-Sichtbarkeit.jpg"
+    },
+    "author": {
+      "href": "/api/v3/users/5",
+      "title": "Birthe Lindenthal"
+    },
+    "container": {
+      "href": "/api/v3/work_packages/17517",
+      "title": "Work packages with reduced visibility"
+    },
+    "staticDownloadLocation": {
+      "href": "/api/v3/attachments/15713/content"
+    },
+    "downloadLocation": {
+      "href": "https://saasdataop.s3.eu-west-1.amazonaws.com/community/attachment/file/15713/Rollen-Ticket-Sichtbarkeit.jpg?response-content-disposition=inline&X-Amz-Expires=600&X-Amz-Date=20210313T191842Z&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIXKW3ATVAU3FXUHA%2F20210313%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-SignedHeaders=host&X-Amz-Signature=8221e9abe4bd11856797a06dea7942171ebe9f75cc6f063d4f7a88f876058131"
+    }
+  }
+}
