@@ -73,7 +73,7 @@ func main() {
 ## Supported objects
 | Endpoint | Operations |
 | ------------- | ------------- |
-| Attachments  | *implementing* |
+| Attachments  | GET |
 | Categories | *pending* |
 | Documents | *pending* |
 | Projects  | GET/POST |
