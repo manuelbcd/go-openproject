@@ -13,18 +13,18 @@ type WikiPageService struct {
 }
 
 /**
-User is the object representing OpenProject users.
+WikiPage is the object representing OpenProject users.
 // TODO: Complete fields and complex fields (_embedded.attachments, links, project, ...)
 */
 type WikiPage struct {
-	Type      string `json:"_type,omitempty" structs:"_type,omitempty"`
-	Id        int    `json:"id,omitempty" structs:"id,omitempty"`
-	Title     string `json:"title,omitempty" structs:"title,omitempty"`
-	Embedded  WikiEmbedded `json:"_embedded,omitempty" structs:"_embedded,omitempty"`
+	Type     string       `json:"_type,omitempty" structs:"_type,omitempty"`
+	Id       int          `json:"id,omitempty" structs:"id,omitempty"`
+	Title    string       `json:"title,omitempty" structs:"title,omitempty"`
+	Embedded WikiEmbedded `json:"_embedded,omitempty" structs:"_embedded,omitempty"`
 }
 
 type WikiEmbedded struct {
-	Project   WikiProject `json:"project,omitempty" structs:"project,omitempty"`
+	Project WikiProject `json:"project,omitempty" structs:"project,omitempty"`
 }
 
 type WikiProject struct {
@@ -46,12 +46,12 @@ func (s *WikiPageService) GetWithContext(ctx context.Context, wikiID string) (*W
 		return nil, nil, err
 	}
 
-	user := new(WikiPage)
-	resp, err := s.client.Do(req, user)
+	wikiPage := new(WikiPage)
+	resp, err := s.client.Do(req, wikiPage)
 	if err != nil {
 		return nil, resp, NewOpenProjectError(resp, err)
 	}
-	return user, resp, nil
+	return wikiPage, resp, nil
 }
 
 /**
