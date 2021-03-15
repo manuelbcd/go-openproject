@@ -17,10 +17,8 @@ import (
 	openproj "github.com/manuelbcd/go-openproject"
 )
 
-const openProjURL = "https://community.openproject.org/"
-
 func main() {
-	client, _ := openproj.NewClient(nil, openProjURL)
+	client, _ := openproj.NewClient(nil, "https://community.openproject.org/")
 	wpResponse, _, err := client.WorkPackage.Get("36353", nil)
 	if err != nil {
 		panic(err)
@@ -45,9 +43,7 @@ import (
 )
 
 func main() {
-	openProjURL := "https://youropenproject.url"
-
-	client, err := openproj.NewClient(nil, strings.TrimSpace(openProjURL))
+	client, err := openproj.NewClient(nil, "https://youropenproject.url")
 	if err != nil {
 		fmt.Printf("\nerror: %v\n", err)
 		return
