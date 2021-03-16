@@ -1,0 +1,15 @@
+{
+  "_type": "Category",
+  "id": 1,
+  "name": "Category 1 (to be changed in Project settings)",
+  "_links": {
+    "self": {
+      "href": "/api/v3/categories/1",
+      "title": "Category 1 (to be changed in Project settings)"
+    },
+    "project": {
+      "href": "/api/v3/projects/1",
+      "title": "Demo project"
+    }
+  }
+}

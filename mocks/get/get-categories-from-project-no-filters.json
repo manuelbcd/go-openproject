@@ -1,0 +1,44 @@
+{
+  "_type": "Collection",
+  "total": 2,
+  "count": 2,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "Category",
+        "id": 1,
+        "name": "Category 1 (to be changed in Project settings)",
+        "_links": {
+          "self": {
+            "href": "/api/v3/categories/1",
+            "title": "Category 1 (to be changed in Project settings)"
+          },
+          "project": {
+            "href": "/api/v3/projects/1",
+            "title": "Demo project"
+          }
+        }
+      },
+      {
+        "_type": "Category",
+        "id": 3,
+        "name": "Just another category",
+        "_links": {
+          "self": {
+            "href": "/api/v3/categories/3",
+            "title": "Just another category"
+          },
+          "project": {
+            "href": "/api/v3/projects/1",
+            "title": "Demo project"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/projects/demo-project/categories"
+    }
+  }
+}
