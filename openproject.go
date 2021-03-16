@@ -314,6 +314,27 @@ func (c *Client) Do(req *http.Request, v interface{}) (*Response, error) {
 }
 
 /**
+Download request a file download
+*/
+func (c *Client) Download(req *http.Request) (*http.Response, error) {
+	httpResp, err := c.client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+
+	// requestDump, err := httputil.DumpResponse(httpResp, true)
+	// if err != nil {
+	// 	fmt.Println(err.Error())
+	// } else {
+	// 	fmt.Println(requestDump)
+	// }
+
+	err = CheckResponse(httpResp)
+
+	return httpResp, err
+}
+
+/**
 CheckResponse checks the API response for errors, and returns them if present.
 A response is considered an error if it has a status code outside the 200 range.
 The caller is responsible to analyze the response body.
