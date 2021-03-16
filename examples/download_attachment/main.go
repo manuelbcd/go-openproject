@@ -27,7 +27,7 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Printf("\nAttachment: %d \n\n", attachmentResp.FileName)
+	fmt.Printf("\nAttachment: %s \n\n", attachmentResp.FileName)
 	// Raw output of the whole object (debug only)
 	fmt.Printf(prettyPrint(attachmentResp))
 

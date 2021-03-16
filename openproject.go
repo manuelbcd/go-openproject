@@ -316,7 +316,7 @@ func (c *Client) Do(req *http.Request, v interface{}) (*Response, error) {
 /**
 Download request a file download
 */
-func (c* Client) Download(req *http.Request) (*http.Response, error) {
+func (c *Client) Download(req *http.Request) (*http.Response, error) {
 	httpResp, err := c.client.Do(req)
 	if err != nil {
 		return nil, err

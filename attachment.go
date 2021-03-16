@@ -3,6 +3,7 @@ package openproject
 import (
 	"context"
 	"fmt"
+	"io/ioutil"
 )
 
 /**
@@ -59,25 +60,25 @@ func (s *AttachmentService) Get(attachmentID string) (*Attachment, *Response, er
 /**
 DownloadWithContext downloads a file from attachment using attachment ID
 */
-func (s *AttachmentService) DownloadWithContext(ctx context.Context, attachmentID string) (*[]byte, *Response, error) {
-	apiEndpoint := fmt.Sprintf("api/v3/attachments/%s", attachmentID)
+func (s *AttachmentService) DownloadWithContext(ctx context.Context, attachmentID string) (*[]byte, error) {
+	apiEndpoint := fmt.Sprintf("api/v3/attachments/%s/content", attachmentID)
 	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	resp, err := s.client.Download(req)
-	download := &make([]byte, resp.Body)
+	respBytes, err := ioutil.ReadAll(resp.Body)
 
 	if err != nil {
-		return nil, resp, NewOpenProjectError(resp, err)
+		return nil, err
 	}
-	return attachment, resp, nil
+	return &respBytes, nil
 }
 
 /**
 Download wraps DownloadWithContext using the background context.
 */
-func (s *AttachmentService) Download(attachmentID string) (*[]byte, *Response, error) {
+func (s *AttachmentService) Download(attachmentID string) (*[]byte, error) {
 	return s.DownloadWithContext(context.Background(), attachmentID)
 }

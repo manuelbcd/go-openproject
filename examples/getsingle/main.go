@@ -18,7 +18,7 @@ func main() {
 		return
 	}
 
-	wpResponse, resp, err := client.WorkPackage.Get("36353", nil)
+	wpResponse, resp, err := client.WorkPackage.Get("36353")
 	if err != nil {
 		body, err := ioutil.ReadAll(resp.Body)
 		fmt.Printf(string(body))
@@ -28,7 +28,7 @@ func main() {
 	// Output specific fields from response
 	fmt.Printf("\n\nSubject: %s \nDescription: %s\n\n", wpResponse.Subject, wpResponse.Description.Raw)
 
-	// Raw output of the whole object (only for debug)
+	// Raw output of the whole object (debug only)
 	fmt.Printf(prettyPrint(wpResponse))
 }
 
