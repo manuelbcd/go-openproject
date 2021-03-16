@@ -34,3 +34,27 @@ func TestCategoryService_Get(t *testing.T) {
 		t.Errorf("Unexpected category name %s", category.Name)
 	}
 }
+
+func TestCategoryService_GetList(t *testing.T) {
+	setup()
+	defer teardown()
+	testAPIEdpoint := "/api/v3/projects/demo-project/categories/"
+
+	raw, err := ioutil.ReadFile("./mocks/get/get-categories-from-project-no-filters.json")
+	if err != nil {
+		t.Error(err.Error())
+	}
+	testMux.HandleFunc(testAPIEdpoint, func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, "GET")
+		testRequestURL(t, r, testAPIEdpoint)
+		fmt.Fprint(w, string(raw))
+	})
+
+	categories, _, err := testClient.Category.GetList("demo-project")
+	if categories == nil {
+		t.Error("Expected category list from project, but received nil")
+	}
+	if err != nil {
+		t.Errorf("Error given: %s", err)
+	}
+}
