@@ -72,7 +72,7 @@ func main() {
 | Attachments (Info) | GET |
 | Attachments (Download) |GET |
 | Categories | GET |
-| Documents | *pending* |
+| Documents | *implementing* |
 | Projects  | GET/POST |
 | Queries | *pending* |
 | Schemas | *pending* |
