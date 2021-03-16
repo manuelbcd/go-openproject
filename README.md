@@ -70,7 +70,7 @@ func main() {
 | Endpoint | Operations |
 | ------------- | ------------- |
 | Attachments  | GET |
-| Categories | *pending* |
+| Categories | GET |
 | Documents | *pending* |
 | Projects  | GET/POST |
 | Queries | *pending* |
