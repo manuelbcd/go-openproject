@@ -82,6 +82,9 @@ func main() {
 | WorkPackages  | GET/POST/DELETE |
 
 ## Thanks
-Inspired in [Go Jira library](https://github.com/andygrunwald/go-jira) 
+Thanks [Wieland](https://github.com/wielinde), [Oliver](https://github.com/oliverguenther) and [OpenProject](https://github.com/opf/openproject) team for your support.
 
 Thank you very much [Andy Grunwald](https://github.com/andygrunwald) for the idea and your base code.
+
+Inspired in [Go Jira library](https://github.com/andygrunwald/go-jira) 
+
