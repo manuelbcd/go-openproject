@@ -35,19 +35,8 @@ GetWithContext returns a single category for the given category ID.
 */
 func (s *CategoryService) GetWithContext(ctx context.Context, categoryID string) (*Category, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/categories/%s", categoryID)
-	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	category := new(Category)
-	resp, err := s.client.Do(req, category)
-	if err != nil {
-		oerr := NewOpenProjectError(resp, err)
-		return nil, resp, oerr
-	}
-
-	return category, resp, nil
+	Obj, Resp, err := GetWithContext(s, ctx, apiEndpoint)
+	return Obj.(*Category), Resp, err
 }
 
 // Get wraps GetWithContext using the background context.

@@ -36,18 +36,9 @@ type AttachmentDigest struct {
 GetWithContext gets a wiki page from OpenProject using its ID
 */
 func (s *AttachmentService) GetWithContext(ctx context.Context, attachmentID string) (*Attachment, *Response, error) {
-	apiEndpoint := fmt.Sprintf("api/v3/attachments/%s", attachmentID)
-	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	attachment := new(Attachment)
-	resp, err := s.client.Do(req, attachment)
-	if err != nil {
-		return nil, resp, NewOpenProjectError(resp, err)
-	}
-	return attachment, resp, nil
+	apiEndPoint := fmt.Sprintf("api/v3/attachments/%s", attachmentID)
+	Obj, Resp, err := GetWithContext(s, ctx, apiEndPoint)
+	return Obj.(*Attachment), Resp, err
 }
 
 /**

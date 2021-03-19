@@ -642,3 +642,44 @@ func cloneRequest(r *http.Request) *http.Request {
 	}
 	return r2
 }
+
+/**
+Generic GetWithContext retrieves object (HTTP GET verb)
+obj can be any main object (attachment, user, project, work-package, etc...) as well as response interface{}
+*/
+func GetWithContext(obj interface{}, ctx context.Context, apiEndPoint string) (interface{}, *Response, error) {
+	var client *Client
+	var resultObj interface{}
+
+	switch obj.(type) {
+	case *AttachmentService:
+		client = obj.(*AttachmentService).client
+		resultObj = new(Attachment)
+	case *CategoryService:
+		client = obj.(*CategoryService).client
+		resultObj = new(Category)
+	case *ProjectService:
+		client = obj.(*ProjectService).client
+		resultObj = new(Project)
+	case *StatusService:
+	case *UserService:
+	case *WikiPageService:
+	case *WorkPackageService:
+	}
+
+	if client == nil {
+		return nil, nil, errors.New("Null client")
+	}
+
+	req, err := client.NewRequestWithContext(ctx, "GET", apiEndPoint, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	resp, err := client.Do(req, resultObj)
+
+	if err != nil {
+		return nil, resp, NewOpenProjectError(resp, err)
+	}
+	return resultObj, resp, nil
+}
