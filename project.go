@@ -49,19 +49,8 @@ GetWithContext returns a single project for the given project key.
 */
 func (s *ProjectService) GetWithContext(ctx context.Context, projectID string) (*Project, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/projects/%s", projectID)
-	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	project := new(Project)
-	resp, err := s.client.Do(req, project)
-	if err != nil {
-		oerr := NewOpenProjectError(resp, err)
-		return nil, resp, oerr
-	}
-
-	return project, resp, nil
+	Obj, Resp, err := GetWithContext(s, ctx, apiEndpoint)
+	return Obj.(*Project), Resp, err
 }
 
 // Get wraps GetWithContext using the background context.
