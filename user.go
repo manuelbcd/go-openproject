@@ -57,17 +57,8 @@ GetWithContext gets user info from OpenProject using its Account Id
 */
 func (s *UserService) GetWithContext(ctx context.Context, accountId string) (*User, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/users?id=%s", accountId)
-	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	user := new(User)
-	resp, err := s.client.Do(req, user)
-	if err != nil {
-		return nil, resp, NewOpenProjectError(resp, err)
-	}
-	return user, resp, nil
+	Obj, Resp, err := GetWithContext(s, ctx, apiEndpoint)
+	return Obj.(*User), Resp, err
 }
 
 /**

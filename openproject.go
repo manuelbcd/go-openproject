@@ -662,13 +662,22 @@ func GetWithContext(obj interface{}, ctx context.Context, apiEndPoint string) (i
 		client = obj.(*ProjectService).client
 		resultObj = new(Project)
 	case *StatusService:
+		client = obj.(*StatusService).client
+		resultObj = new(Status)
 	case *UserService:
+		client = obj.(*UserService).client
+		resultObj = new(User)
 	case *WikiPageService:
+		client = obj.(*WikiPageService).client
+		resultObj = new(WikiPage)
 	case *WorkPackageService:
+		client = obj.(*WorkPackageService).client
+		resultObj = new(WorkPackage)
 	}
 
+	apiEndPoint = strings.TrimRight(apiEndPoint, "/")
 	if client == nil {
-		return nil, nil, errors.New("Null client")
+		return nil, nil, errors.New("Null client, object not identified")
 	}
 
 	req, err := client.NewRequestWithContext(ctx, "GET", apiEndPoint, nil)

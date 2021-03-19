@@ -3,7 +3,6 @@ package openproject
 import (
 	"context"
 	"fmt"
-	"strings"
 )
 
 /**
@@ -34,18 +33,8 @@ GetWithContext gets statuses info from OpenProject using its Account Id
 */
 func (s *StatusService) GetWithContext(ctx context.Context, accountId string) (*Status, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/statuses/%s", accountId)
-	apiEndpoint = strings.TrimRight(apiEndpoint, "/")
-	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	status := new(Status)
-	resp, err := s.client.Do(req, status)
-	if err != nil {
-		return nil, resp, NewOpenProjectError(resp, err)
-	}
-	return status, resp, nil
+	Obj, Resp, err := GetWithContext(s, ctx, apiEndpoint)
+	return Obj.(*Status), Resp, err
 }
 
 /**
