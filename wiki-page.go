@@ -41,17 +41,8 @@ GetWithContext gets a wiki page from OpenProject using its ID
 */
 func (s *WikiPageService) GetWithContext(ctx context.Context, wikiID string) (*WikiPage, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/wiki_pages/%s", wikiID)
-	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	wikiPage := new(WikiPage)
-	resp, err := s.client.Do(req, wikiPage)
-	if err != nil {
-		return nil, resp, NewOpenProjectError(resp, err)
-	}
-	return wikiPage, resp, nil
+	Obj, Resp, err := GetWithContext(s, ctx, apiEndpoint)
+	return Obj.(*WikiPage), Resp, err
 }
 
 /**

@@ -202,20 +202,8 @@ type searchEmbeddedWP struct {
 */
 func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID string) (*WorkPackage, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/work_packages/%s", workpackageID)
-
-	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	workPackage := new(WorkPackage)
-	resp, err := s.client.Do(req, workPackage)
-	if err != nil {
-		jerr := NewOpenProjectError(resp, err)
-		return nil, resp, jerr
-	}
-
-	return workPackage, resp, nil
+	Obj, Resp, err := GetWithContext(s, ctx, apiEndpoint)
+	return Obj.(*WorkPackage), Resp, err
 }
 
 /**
