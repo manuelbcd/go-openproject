@@ -49,19 +49,8 @@ Retrieve category list from project with context
 */
 func (s *CategoryService) GetListWithContext(ctx context.Context, projectID string) (*CategoryList, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/projects/%s/categories", projectID)
-	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	categoryList := new(CategoryList)
-	resp, err := s.client.Do(req, categoryList)
-	if err != nil {
-		oerr := NewOpenProjectError(resp, err)
-		return nil, resp, oerr
-	}
-
-	return categoryList, resp, nil
+	Obj, Resp, err := GetListWithContext(s, ctx, apiEndpoint)
+	return Obj.(*CategoryList), Resp, err
 }
 
 /**
