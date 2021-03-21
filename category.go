@@ -49,7 +49,7 @@ Retrieve category list from project with context
 */
 func (s *CategoryService) GetListWithContext(ctx context.Context, projectID string) (*CategoryList, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/projects/%s/categories", projectID)
-	Obj, Resp, err := GetListWithContext(s, ctx, apiEndpoint)
+	Obj, Resp, err := GetListWithContext(s, ctx, apiEndpoint, nil)
 	return Obj.(*CategoryList), Resp, err
 }
 

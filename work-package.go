@@ -236,25 +236,6 @@ func (fops *FilterOptions) prepareFilters() url.Values {
 }
 
 /**
-Interpret Operator collection and return its string
-*/
-func interpretOperator(operator SearchOperator) string {
-	result := "="
-
-	switch operator {
-	case GREATERTHAN:
-		result = ">"
-	case LOWERTHAN:
-		result = "<"
-	case DIFFERENT:
-		result = "<>"
-	}
-	//TODO: Complete list of operators
-
-	return result
-}
-
-/**
 	CreateWithContext creates a work-package or a sub-task from a JSON representation.
 **/
 func (s *WorkPackageService) CreateWithContext(ctx context.Context, projectName string, workPackage *WorkPackage) (*WorkPackage, *Response, error) {
@@ -297,22 +278,8 @@ func (s *WorkPackageService) GetListWithContext(ctx context.Context, options *Fi
 		Path: "api/v3/work_packages",
 	}
 
-	req, err := s.client.NewRequestWithContext(ctx, "GET", u.String(), nil)
-	if err != nil {
-		return []WorkPackage{}, nil, err
-	}
-
-	if options != nil {
-		values := options.prepareFilters()
-		req.URL.RawQuery = values.Encode()
-	}
-
-	v := new(searchResultWP)
-	resp, err := s.client.Do(req, v)
-	if err != nil {
-		err = NewOpenProjectError(resp, err)
-	}
-	return v.Embedded.Elements, resp, err
+	objList, resp, err := GetListWithContext(s, ctx, u.String(), options)
+	return objList.(*searchResultWP).Embedded.Elements, resp, err
 }
 
 /**

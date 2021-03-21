@@ -48,8 +48,11 @@ func TestStatusService_GetList_Success(t *testing.T) {
 	if statuses == nil {
 		t.Error("Expected status list but received nil")
 	}
+	if statuses.Total != 25 {
+		t.Error(fmt.Sprintf("Expected 25 statuses in response but received %d", 25))
+	}
 	if statuses.Embedded.Elements[3].Name != "needs clarification" {
-		errString := "Expected status name \"needs clarifiaction\" in pos 3 of received list"
+		errString := "Expected status name \"needs clarification\" in pos 3 of received list"
 		errString += fmt.Sprintf("\n (got \"%s\"", statuses.Embedded.Elements[5].Name)
 		t.Error(errString)
 	}

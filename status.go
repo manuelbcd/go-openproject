@@ -13,11 +13,15 @@ type StatusService struct {
 }
 
 // StatusList represent a list of Projects
-type StatusList struct {
-	Embedded StatusElements `json:"_embedded,omitempty" structs:"_embedded,omitempty"`
+type searchResultStatus struct {
+	Embedded statusElements `json:"_embedded,omitempty" structs:"_embedded,omitempty"`
+	Total    int            `json:"total" structs:"total"`
+	Count    int            `json:"count" structs:"count"`
+	PageSize int            `json:"pageSize" structs:"pageSize"`
+	Offset   int            `json:"offset" structs:"offset"`
 }
 
-type StatusElements struct {
+type statusElements struct {
 	Elements []Status `json:"elements,omitempty" structs:"elements,omitempty"`
 }
 
@@ -56,7 +60,7 @@ func (s *StatusService) Get(statusID string) (*Status, *Response, error) {
 /**
 GetList wraps GetListWithContext using the background context.
 */
-func (s *StatusService) GetList() (*StatusList, *Response, error) {
+func (s *StatusService) GetList() (*searchResultStatus, *Response, error) {
 	return s.GetListWithContext(context.Background())
 }
 
@@ -64,8 +68,8 @@ func (s *StatusService) GetList() (*StatusList, *Response, error) {
 Retrieve status list with context
 TODO: Implement search options
 */
-func (s *StatusService) GetListWithContext(ctx context.Context) (*StatusList, *Response, error) {
+func (s *StatusService) GetListWithContext(ctx context.Context) (*searchResultStatus, *Response, error) {
 	apiEndpoint := "api/v3/statuses"
-	Obj, Resp, err := GetListWithContext(s, ctx, apiEndpoint)
-	return Obj.(*StatusList), Resp, err
+	Obj, Resp, err := GetListWithContext(s, ctx, apiEndpoint, nil)
+	return Obj.(*searchResultStatus), Resp, err
 }
