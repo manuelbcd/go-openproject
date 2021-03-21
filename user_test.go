@@ -21,7 +21,7 @@ func TestUserService_Get_SearchListNoFiltersSuccess(t *testing.T) {
 		fmt.Fprint(w, string(raw))
 	})
 
-	_, resp, err := testClient.User.GetList(nil)
+	userList, resp, err := testClient.User.GetList(nil)
 
 	if resp == nil {
 		t.Errorf("Null response: %+v", resp)
@@ -29,8 +29,11 @@ func TestUserService_Get_SearchListNoFiltersSuccess(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error given: %s", err)
 	}
-	if resp.Total != 2 {
+	if userList.Total != 2 {
 		t.Errorf("Total should populate with 2, %v given", resp.Total)
+	}
+	if userList.Embedded.Elements[0].FirstName != "John" {
+		t.Errorf("Expected John as firstName of element 0 but received %s", userList.Embedded.Elements[0].FirstName)
 	}
 }
 

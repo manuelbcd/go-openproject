@@ -15,11 +15,15 @@ type ProjectService struct {
 }
 
 // ProjectList represent a list of Projects
-type ProjectList struct {
-	Embedded ProjectElements `json:"_embedded,omitempty" structs:"_embedded,omitempty"`
+type searchResultProject struct {
+	Embedded projectElements `json:"_embedded,omitempty" structs:"_embedded,omitempty"`
+	Total    int             `json:"total" structs:"total"`
+	Count    int             `json:"count" structs:"count"`
+	PageSize int             `json:"pageSize" structs:"pageSize"`
+	Offset   int             `json:"offset" structs:"offset"`
 }
 
-type ProjectElements struct {
+type projectElements struct {
 	Elements []Project `json:"elements,omitempty" structs:"elements,omitempty"`
 }
 
@@ -61,28 +65,18 @@ func (s *ProjectService) Get(projectID string) (*Project, *Response, error) {
 /**
 GetList wraps GetListWithContext using the background context.
 */
-func (s *ProjectService) GetList() (*ProjectList, *Response, error) {
+func (s *ProjectService) GetList() (*searchResultProject, *Response, error) {
 	return s.GetListWithContext(context.Background())
 }
 
 /**
 Retrieve project list with context
+TODO: Implement search options
 */
-func (s *ProjectService) GetListWithContext(ctx context.Context) (*ProjectList, *Response, error) {
+func (s *ProjectService) GetListWithContext(ctx context.Context) (*searchResultProject, *Response, error) {
 	apiEndpoint := "api/v3/projects"
-	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	projectList := new(ProjectList)
-	resp, err := s.client.Do(req, projectList)
-	if err != nil {
-		oerr := NewOpenProjectError(resp, err)
-		return nil, resp, oerr
-	}
-
-	return projectList, resp, nil
+	Obj, Resp, err := GetListWithContext(s, ctx, apiEndpoint, nil)
+	return Obj.(*searchResultProject), Resp, err
 }
 
 /**

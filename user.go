@@ -71,33 +71,19 @@ func (s *UserService) Get(accountId string) (*User, *Response, error) {
 /**
 GetListWithContext will retrieve a list of users using filters
 */
-func (s *UserService) GetListWithContext(ctx context.Context, options *FilterOptions) ([]User, *Response, error) {
+func (s *UserService) GetListWithContext(ctx context.Context, options *FilterOptions) (*searchResultUser, *Response, error) {
 	u := url.URL{
 		Path: "api/v3/users",
 	}
 
-	req, err := s.client.NewRequestWithContext(ctx, "GET", u.String(), nil)
-	if err != nil {
-		return []User{}, nil, err
-	}
-
-	if options != nil {
-		values := options.prepareFilters()
-		req.URL.RawQuery = values.Encode()
-	}
-
-	v := new(searchResultUser)
-	resp, err := s.client.Do(req, v)
-	if err != nil {
-		err = NewOpenProjectError(resp, err)
-	}
-	return v.Embedded.Elements, resp, err
+	objList, resp, err := GetListWithContext(s, ctx, u.String(), options)
+	return objList.(*searchResultUser), resp, err
 }
 
 /**
 GetList wraps GetListWithContext using the background context.
 */
-func (s *UserService) GetList(options *FilterOptions) ([]User, *Response, error) {
+func (s *UserService) GetList(options *FilterOptions) (*searchResultUser, *Response, error) {
 	return s.GetListWithContext(context.Background(), options)
 }
 

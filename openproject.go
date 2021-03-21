@@ -644,6 +644,25 @@ func cloneRequest(r *http.Request) *http.Request {
 }
 
 /**
+Interpret Operator collection and return its string ( Used in searches like GetList(...) )
+*/
+func interpretOperator(operator SearchOperator) string {
+	result := "="
+
+	switch operator {
+	case GREATERTHAN:
+		result = ">"
+	case LOWERTHAN:
+		result = "<"
+	case DIFFERENT:
+		result = "<>"
+	}
+	//TODO: Complete list of operators
+
+	return result
+}
+
+/**
 getObjectAndClient gets an inputObject (inputObject is an OpenProject object like WorkPackage, WikiPage, Status, etc.)
 and return a pointer to its Client from its service and an instance of the object itself
 */
@@ -689,19 +708,19 @@ func getObjectListAndClient(inputObj interface{}) (client *Client, resultObjList
 		resultObjList = new(CategoryList)
 	case *ProjectService:
 		client = inputObj.(*ProjectService).client
-		// TODO
+		resultObjList = new(searchResultProject)
 	case *StatusService:
 		client = inputObj.(*StatusService).client
-		// TODO
+		resultObjList = new(searchResultStatus)
 	case *UserService:
 		client = inputObj.(*UserService).client
-		// TODO
+		resultObjList = new(searchResultUser)
 	case *WikiPageService:
 		client = inputObj.(*WikiPageService).client
 		// TODO
 	case *WorkPackageService:
 		client = inputObj.(*WorkPackageService).client
-		resultObjList = new(searchResultWP) // TODO check why this object is different to other object-lists
+		resultObjList = new(searchResultWP)
 	}
 
 	return client, resultObjList
@@ -735,12 +754,17 @@ func GetWithContext(obj interface{}, ctx context.Context, apiEndPoint string) (i
 Generic GetListWithContext retrieves list of objects (HTTP GET verb)
 obj list is a collection of any main object (attachment, user, project, work-package, etc...) as well as response interface{}
 */
-func GetListWithContext(obj interface{}, ctx context.Context, apiEndPoint string) (interface{}, *Response, error) {
+func GetListWithContext(obj interface{}, ctx context.Context, apiEndPoint string, options *FilterOptions) (interface{}, *Response, error) {
 	client, resultObjList := getObjectListAndClient(obj)
 	apiEndPoint = strings.TrimRight(apiEndPoint, "/")
 	req, err := client.NewRequestWithContext(ctx, "GET", apiEndPoint, nil)
 	if err != nil {
 		return nil, nil, err
+	}
+
+	if options != nil {
+		values := options.prepareFilters()
+		req.URL.RawQuery = values.Encode()
 	}
 
 	resp, err := client.Do(req, resultObjList)
