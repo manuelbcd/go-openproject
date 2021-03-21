@@ -689,10 +689,10 @@ func getObjectListAndClient(inputObj interface{}) (client *Client, resultObjList
 		resultObjList = new(CategoryList)
 	case *ProjectService:
 		client = inputObj.(*ProjectService).client
-		// TODO
+		resultObjList = new(ProjectList)
 	case *StatusService:
 		client = inputObj.(*StatusService).client
-		// TODO
+		resultObjList = new(StatusList)
 	case *UserService:
 		client = inputObj.(*UserService).client
 		// TODO

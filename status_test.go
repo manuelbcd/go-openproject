@@ -29,7 +29,7 @@ func TestStatusService_GetByID_Success(t *testing.T) {
 	}
 }
 
-func TestStatusService_Get_Success(t *testing.T) {
+func TestStatusService_GetList_Success(t *testing.T) {
 	setup()
 	defer teardown()
 	testAPIEdpoint := "/api/v3/statuses"
@@ -44,9 +44,16 @@ func TestStatusService_Get_Success(t *testing.T) {
 		fmt.Fprint(w, string(raw))
 	})
 
-	if user, _, err := testClient.Status.Get(""); err != nil {
+	statuses, _, err := testClient.Status.GetList()
+	if statuses == nil {
+		t.Error("Expected status list but received nil")
+	}
+	if statuses.Embedded.Elements[3].Name != "needs clarification" {
+		errString := "Expected status name \"needs clarifiaction\" in pos 3 of received list"
+		errString += fmt.Sprintf("\n (got \"%s\"", statuses.Embedded.Elements[5].Name)
+		t.Error(errString)
+	}
+	if err != nil {
 		t.Errorf("Error given: %s", err)
-	} else if user == nil {
-		t.Error("Expected user. User is nil")
 	}
 }

@@ -67,22 +67,12 @@ func (s *ProjectService) GetList() (*ProjectList, *Response, error) {
 
 /**
 Retrieve project list with context
+TODO: Implement search options
 */
 func (s *ProjectService) GetListWithContext(ctx context.Context) (*ProjectList, *Response, error) {
 	apiEndpoint := "api/v3/projects"
-	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	projectList := new(ProjectList)
-	resp, err := s.client.Do(req, projectList)
-	if err != nil {
-		oerr := NewOpenProjectError(resp, err)
-		return nil, resp, oerr
-	}
-
-	return projectList, resp, nil
+	Obj, Resp, err := GetListWithContext(s, ctx, apiEndpoint)
+	return Obj.(*ProjectList), Resp, err
 }
 
 /**
