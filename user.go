@@ -2,9 +2,7 @@ package openproject
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/url"
 )
 
@@ -92,27 +90,8 @@ func (s *UserService) GetList(options *FilterOptions) (*searchResultUser, *Respo
 **/
 func (s *UserService) CreateWithContext(ctx context.Context, user *User) (*User, *Response, error) {
 	apiEndpoint := "api/v3/users"
-	req, err := s.client.NewRequestWithContext(ctx, "POST", apiEndpoint, user)
-	if err != nil {
-		return nil, nil, err
-	}
-	resp, err := s.client.Do(req, nil)
-	if err != nil {
-		// incase of error return the resp for further inspection
-		return nil, resp, err
-	}
-
-	userResponse := new(User)
-	defer resp.Body.Close()
-	data, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return nil, resp, fmt.Errorf("could not read the returned data")
-	}
-	err = json.Unmarshal(data, userResponse)
-	if err != nil {
-		return nil, resp, fmt.Errorf("could not unmarshall the data into struct")
-	}
-	return userResponse, resp, nil
+	userResponse, resp, err := CreateWithContext(s, ctx, apiEndpoint)
+	return userResponse.(*User), resp, err
 }
 
 /**
@@ -126,14 +105,8 @@ func (s *UserService) Create(user *User) (*User, *Response, error) {
 DeleteWithContext will delete a single user.
 */
 func (s *UserService) DeleteWithContext(ctx context.Context, userID string) (*Response, error) {
-	apiEndpoint := fmt.Sprintf("api/v3/users/%s", userID)
-
-	req, err := s.client.NewRequestWithContext(ctx, "DELETE", apiEndpoint, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.client.Do(req, nil)
+	apiEndPoint := fmt.Sprintf("api/v3/users/%s", userID)
+	resp, err := DeleteWithContext(s, ctx, apiEndPoint)
 	return resp, err
 }
 

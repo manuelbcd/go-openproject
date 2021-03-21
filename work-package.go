@@ -2,11 +2,9 @@ package openproject
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"github.com/trivago/tgo/tcontainer"
 
-	"io/ioutil"
 	"net/url"
 	"time"
 )
@@ -238,36 +236,17 @@ func (fops *FilterOptions) prepareFilters() url.Values {
 /**
 	CreateWithContext creates a work-package or a sub-task from a JSON representation.
 **/
-func (s *WorkPackageService) CreateWithContext(ctx context.Context, projectName string, workPackage *WorkPackage) (*WorkPackage, *Response, error) {
+func (s *WorkPackageService) CreateWithContext(ctx context.Context, projectName string) (*WorkPackage, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/projects/%s/work_packages", projectName)
-	req, err := s.client.NewRequestWithContext(ctx, "POST", apiEndpoint, workPackage)
-	if err != nil {
-		return nil, nil, err
-	}
-	resp, err := s.client.Do(req, nil)
-	if err != nil {
-		// incase of error return the resp for further inspection
-		return nil, resp, err
-	}
-
-	wpResponse := new(WorkPackage)
-	defer resp.Body.Close()
-	data, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return nil, resp, fmt.Errorf("could not read the returned data")
-	}
-	err = json.Unmarshal(data, wpResponse)
-	if err != nil {
-		return nil, resp, fmt.Errorf("could not unmarshall the data into struct")
-	}
-	return wpResponse, resp, nil
+	wpResponse, resp, err := CreateWithContext(s, ctx, apiEndpoint)
+	return wpResponse.(*WorkPackage), resp, err
 }
 
 /**
 Create wraps CreateWithContext using the background context.
 */
 func (s *WorkPackageService) Create(workPackage *WorkPackage, projectName string) (*WorkPackage, *Response, error) {
-	return s.CreateWithContext(context.Background(), projectName, workPackage)
+	return s.CreateWithContext(context.Background(), projectName)
 }
 
 /**
@@ -293,14 +272,8 @@ func (s *WorkPackageService) GetList(options *FilterOptions) ([]WorkPackage, *Re
 DeleteWithContext will delete a single work-package.
 */
 func (s *WorkPackageService) DeleteWithContext(ctx context.Context, workpackageID string) (*Response, error) {
-	apiEndpoint := fmt.Sprintf("api/v3/work_packages/%s", workpackageID)
-
-	req, err := s.client.NewRequestWithContext(ctx, "DELETE", apiEndpoint, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	resp, err := s.client.Do(req, nil)
+	apiEndPoint := fmt.Sprintf("api/v3/work_packages/%s", workpackageID)
+	resp, err := DeleteWithContext(s, ctx, apiEndPoint)
 	return resp, err
 }
 
