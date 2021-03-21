@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -730,8 +731,8 @@ func getObjectListAndClient(inputObj interface{}) (client *Client, resultObjList
 Generic GetWithContext retrieves object (HTTP GET verb)
 obj can be any main object (attachment, user, project, work-package, etc...) as well as response interface{}
 */
-func GetWithContext(obj interface{}, ctx context.Context, apiEndPoint string) (interface{}, *Response, error) {
-	client, resultObj := getObjectAndClient(obj)
+func GetWithContext(objService interface{}, ctx context.Context, apiEndPoint string) (interface{}, *Response, error) {
+	client, resultObj := getObjectAndClient(objService)
 	apiEndPoint = strings.TrimRight(apiEndPoint, "/")
 	if client == nil {
 		return nil, nil, errors.New("Null client, object not identified")
@@ -754,8 +755,8 @@ func GetWithContext(obj interface{}, ctx context.Context, apiEndPoint string) (i
 Generic GetListWithContext retrieves list of objects (HTTP GET verb)
 obj list is a collection of any main object (attachment, user, project, work-package, etc...) as well as response interface{}
 */
-func GetListWithContext(obj interface{}, ctx context.Context, apiEndPoint string, options *FilterOptions) (interface{}, *Response, error) {
-	client, resultObjList := getObjectListAndClient(obj)
+func GetListWithContext(objService interface{}, ctx context.Context, apiEndPoint string, options *FilterOptions) (interface{}, *Response, error) {
+	client, resultObjList := getObjectListAndClient(objService)
 	apiEndPoint = strings.TrimRight(apiEndPoint, "/")
 	req, err := client.NewRequestWithContext(ctx, "GET", apiEndPoint, nil)
 	if err != nil {
@@ -774,4 +775,48 @@ func GetListWithContext(obj interface{}, ctx context.Context, apiEndPoint string
 	}
 
 	return resultObjList, resp, nil
+}
+
+/**
+Generic CreateWithContext creates an instance af an object (HTTP POST verb)
+Return the instance of the object rendered into proper struct as interface{} to be cast in the caller
+*/
+func CreateWithContext(objService interface{}, ctx context.Context, apiEndPoint string) (interface{}, *Response, error) {
+	client, resultObj := getObjectAndClient(objService)
+	req, err := client.NewRequestWithContext(ctx, "POST", apiEndPoint, resultObj)
+	if err != nil {
+		return nil, nil, err
+	}
+	resp, err := client.Do(req, nil)
+	if err != nil {
+		// incase of error return the resp for further inspection
+		return nil, resp, err
+	}
+
+	defer resp.Body.Close()
+	data, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, resp, fmt.Errorf("could not read the returned data")
+	}
+	err = json.Unmarshal(data, resultObj)
+	if err != nil {
+		return nil, resp, fmt.Errorf("could not unmarshall the data into struct")
+	}
+	return resultObj, resp, nil
+}
+
+/**
+Generic DeleteWithContext retrieves object (HTTP DELETE verb)
+obj can be any main object (attachment, user, project, work-package, etc...)
+*/
+func DeleteWithContext(objService interface{}, ctx context.Context, apiEndPoint string) (*Response, error) {
+	client, _ := getObjectAndClient(objService)
+	apiEndPoint = strings.TrimRight(apiEndPoint, "/")
+	req, err := client.NewRequestWithContext(ctx, "DELETE", apiEndPoint, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := client.Do(req, nil)
+	return resp, err
 }
