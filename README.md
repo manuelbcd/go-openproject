@@ -69,16 +69,16 @@ func main() {
 ## Supported objects
 | Endpoint | GET single | GET many | POST single | POST many | DELETE single | DELETE many |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| Attachments (Info) | OK | OK | | | | |
-| Attachments (Download) | OK | | | | | |
+| Attachments (Info) | OK | OK | *implementing* | | | |
+| Attachments (Download) | OK | - | - | - | - | - |
 | Categories | OK | OK | | | | |
 | Documents | *implementing* | | | | | |
-| Projects  | OK | OK | OK | | | | |
+| Projects  | OK | OK | OK | *pending* | *pending* | *pending* | *pending* |
 | Queries | *pending* |
 | Schemas | *pending* |
-| Statuses | OK | OK | | | | |
-| Users | OK | OK | OK | | OK | |
-| Wiki Pages | OK | | | | | |
+| Statuses | OK | OK | *pending* | *pending* | *pending* | *pending* |
+| Users | OK | OK | OK | | OK | *pending* |
+| Wiki Pages | OK | *pending* | *pending* | *pending* | *pending* | *pending* |
 | WorkPackages | OK | OK | OK | | OK | |
 
 ## Thanks
