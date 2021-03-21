@@ -644,37 +644,75 @@ func cloneRequest(r *http.Request) *http.Request {
 }
 
 /**
+getObjectAndClient gets an inputObject (inputObject is an OpenProject object like WorkPackage, WikiPage, Status, etc.)
+and return a pointer to its Client from its service and an instance of the object itself
+*/
+func getObjectAndClient(inputObj interface{}) (client *Client, resultObj interface{}) {
+	switch inputObj.(type) {
+	case *AttachmentService:
+		client = inputObj.(*AttachmentService).client
+		resultObj = new(Attachment)
+	case *CategoryService:
+		client = inputObj.(*CategoryService).client
+		resultObj = new(Category)
+	case *ProjectService:
+		client = inputObj.(*ProjectService).client
+		resultObj = new(Project)
+	case *StatusService:
+		client = inputObj.(*StatusService).client
+		resultObj = new(Status)
+	case *UserService:
+		client = inputObj.(*UserService).client
+		resultObj = new(User)
+	case *WikiPageService:
+		client = inputObj.(*WikiPageService).client
+		resultObj = new(WikiPage)
+	case *WorkPackageService:
+		client = inputObj.(*WorkPackageService).client
+		resultObj = new(WorkPackage)
+	}
+
+	return client, resultObj
+}
+
+/**
+getObjectAndClient gets an inputObject (inputObject is an OpenProject object like WorkPackage, WikiPage, Status, etc.)
+and return a pointer to its Client from its service and an instance of the ObjectList
+*/
+func getObjectListAndClient(inputObj interface{}) (client *Client, resultObjList interface{}) {
+	switch inputObj.(type) {
+	case *AttachmentService:
+		client = inputObj.(*AttachmentService).client
+		// TODO
+	case *CategoryService:
+		client = inputObj.(*CategoryService).client
+		resultObjList = new(CategoryList)
+	case *ProjectService:
+		client = inputObj.(*ProjectService).client
+		// TODO
+	case *StatusService:
+		client = inputObj.(*StatusService).client
+		// TODO
+	case *UserService:
+		client = inputObj.(*UserService).client
+		// TODO
+	case *WikiPageService:
+		client = inputObj.(*WikiPageService).client
+		// TODO
+	case *WorkPackageService:
+		client = inputObj.(*WorkPackageService).client
+		resultObjList = new(searchResultWP) // TODO check why this object is different to other object-lists
+	}
+
+	return client, resultObjList
+}
+
+/**
 Generic GetWithContext retrieves object (HTTP GET verb)
 obj can be any main object (attachment, user, project, work-package, etc...) as well as response interface{}
 */
 func GetWithContext(obj interface{}, ctx context.Context, apiEndPoint string) (interface{}, *Response, error) {
-	var client *Client
-	var resultObj interface{}
-
-	switch obj.(type) {
-	case *AttachmentService:
-		client = obj.(*AttachmentService).client
-		resultObj = new(Attachment)
-	case *CategoryService:
-		client = obj.(*CategoryService).client
-		resultObj = new(Category)
-	case *ProjectService:
-		client = obj.(*ProjectService).client
-		resultObj = new(Project)
-	case *StatusService:
-		client = obj.(*StatusService).client
-		resultObj = new(Status)
-	case *UserService:
-		client = obj.(*UserService).client
-		resultObj = new(User)
-	case *WikiPageService:
-		client = obj.(*WikiPageService).client
-		resultObj = new(WikiPage)
-	case *WorkPackageService:
-		client = obj.(*WorkPackageService).client
-		resultObj = new(WorkPackage)
-	}
-
+	client, resultObj := getObjectAndClient(obj)
 	apiEndPoint = strings.TrimRight(apiEndPoint, "/")
 	if client == nil {
 		return nil, nil, errors.New("Null client, object not identified")
@@ -691,4 +729,25 @@ func GetWithContext(obj interface{}, ctx context.Context, apiEndPoint string) (i
 		return nil, resp, NewOpenProjectError(resp, err)
 	}
 	return resultObj, resp, nil
+}
+
+/**
+Generic GetListWithContext retrieves list of objects (HTTP GET verb)
+obj list is a collection of any main object (attachment, user, project, work-package, etc...) as well as response interface{}
+*/
+func GetListWithContext(obj interface{}, ctx context.Context, apiEndPoint string) (interface{}, *Response, error) {
+	client, resultObjList := getObjectListAndClient(obj)
+	apiEndPoint = strings.TrimRight(apiEndPoint, "/")
+	req, err := client.NewRequestWithContext(ctx, "GET", apiEndPoint, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	resp, err := client.Do(req, resultObjList)
+	if err != nil {
+		oerr := NewOpenProjectError(resp, err)
+		return nil, resp, oerr
+	}
+
+	return resultObjList, resp, nil
 }
