@@ -703,7 +703,7 @@ func getObjectListAndClient(inputObj interface{}) (client *Client, resultObjList
 	switch inputObj.(type) {
 	case *AttachmentService:
 		client = inputObj.(*AttachmentService).client
-		// TODO
+		// TODO implement
 	case *CategoryService:
 		client = inputObj.(*CategoryService).client
 		resultObjList = new(CategoryList)
@@ -716,9 +716,8 @@ func getObjectListAndClient(inputObj interface{}) (client *Client, resultObjList
 	case *UserService:
 		client = inputObj.(*UserService).client
 		resultObjList = new(searchResultUser)
-	case *WikiPageService:
-		client = inputObj.(*WikiPageService).client
-		// TODO
+	// WikiPage endpoint does not support POST action
+	// case *WikiPageService:
 	case *WorkPackageService:
 		client = inputObj.(*WorkPackageService).client
 		resultObjList = new(searchResultWP)
