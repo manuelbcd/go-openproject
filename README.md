@@ -67,19 +67,19 @@ func main() {
 }
 ```
 ## Supported objects
-| Endpoint | Operations |
-| ------------- | ------------- |
-| Attachments (Info) | GET |
-| Attachments (Download) |GET |
-| Categories | GET |
-| Documents | *implementing* |
-| Projects  | GET/POST |
+| Endpoint | GET single | GET many | POST single | POST many | DELETE single | DELETE many |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| Attachments (Info) | OK | OK | | | | |
+| Attachments (Download) | OK | | | | | |
+| Categories | OK | OK | | | | |
+| Documents | *implementing* | | | | | |
+| Projects  | OK | OK | OK | | | | |
 | Queries | *pending* |
 | Schemas | *pending* |
-| Statuses | GET |
-| Users | GET/POST/DELETE |
-| Wiki Pages | GET |
-| WorkPackages  | GET/POST/DELETE |
+| Statuses | OK | OK | | | | |
+| Users | OK | OK | OK | | OK | |
+| Wiki Pages | OK | | | | | |
+| WorkPackages | OK | OK | OK | | OK | |
 
 ## Thanks
 Thanks [Wieland](https://github.com/wielinde), [Oliver](https://github.com/oliverguenther) and [OpenProject](https://github.com/opf/openproject) team for your support.
