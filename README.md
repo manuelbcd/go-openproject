@@ -69,10 +69,10 @@ func main() {
 ## Supported objects
 | Endpoint | GET single | GET many | POST single | POST many | DELETE single | DELETE many |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| Attachments (Info) | OK | OK | *implementing* | | | |
+| Attachments (Info) | OK | OK | *implementing* | - | *pending* | - |
 | Attachments (Download) | OK | - | - | - | - | - |
-| Categories | OK | OK | | | | |
-| Documents | *implementing* | | | | | |
+| Categories | OK | OK | - | - | - | - |
+| Documents | *implementing* | - | - | - | - | - |
 | Projects  | OK | OK | OK | *pending* | *pending* | *pending* | *pending* |
 | Queries | *pending* |
 | Schemas | *pending* |
