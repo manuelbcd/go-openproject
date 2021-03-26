@@ -60,3 +60,23 @@ func TestQueryService_GetList_Success(t *testing.T) {
 		t.Errorf("Error given: %s", err)
 	}
 }
+
+func TestQueryService_Delete(t *testing.T) {
+	setup()
+	defer teardown()
+	testMux.HandleFunc("/api/v3/queries/554", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, "DELETE")
+		testRequestURL(t, r, "/api/v3/queries/554")
+
+		w.WriteHeader(http.StatusNoContent)
+		fmt.Fprint(w, `{}`)
+	})
+
+	resp, err := testClient.Query.Delete("554")
+	if resp.StatusCode != 204 {
+		t.Error("Query not deleted.")
+	}
+	if err != nil {
+		t.Errorf("Error given: %s", err)
+	}
+}
