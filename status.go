@@ -66,7 +66,7 @@ func (s *StatusService) GetList() (*searchResultStatus, *Response, error) {
 
 /**
 Retrieve status list with context
-TODO: Implement search options
+TODO: Implement search parameters-options
 */
 func (s *StatusService) GetListWithContext(ctx context.Context) (*searchResultStatus, *Response, error) {
 	apiEndpoint := "api/v3/statuses"

@@ -69,6 +69,7 @@ type Client struct {
 	WikiPage       *WikiPageService
 	Attachment     *AttachmentService
 	Category       *CategoryService
+	Query          *QueryService
 }
 
 /**
@@ -102,6 +103,7 @@ func NewClient(httpClient httpClient, baseURL string) (*Client, error) {
 	c.WikiPage = &WikiPageService{client: c}
 	c.Attachment = &AttachmentService{client: c}
 	c.Category = &CategoryService{client: c}
+	c.Query = &QueryService{client: c}
 
 	return c, nil
 }
@@ -253,9 +255,6 @@ func (c *Client) NewMultiPartRequestWithContext(ctx context.Context, method, url
 		return nil, err
 	}
 
-	// Set required headers
-	req.Header.Set("X-Atlassian-Token", "nocheck")
-
 	// Set authentication information
 	if c.Authentication.authType == authTypeSession {
 		// Set session cookie if there is one
@@ -391,6 +390,11 @@ func (r *Response) populatePageValues(v interface{}) {
 		r.PageSize = value.PageSize
 		r.Offset = value.Offset
 	case *searchResultUser:
+		r.Total = value.Total
+		r.Count = value.Count
+		r.PageSize = value.PageSize
+		r.Offset = value.Offset
+	case *searchResultQuery:
 		r.Total = value.Total
 		r.Count = value.Count
 		r.PageSize = value.PageSize
@@ -678,6 +682,9 @@ func getObjectAndClient(inputObj interface{}) (client *Client, resultObj interfa
 	case *ProjectService:
 		client = inputObj.(*ProjectService).client
 		resultObj = new(Project)
+	case *QueryService:
+		client = inputObj.(*QueryService).client
+		resultObj = new(Query)
 	case *StatusService:
 		client = inputObj.(*StatusService).client
 		resultObj = new(Status)
@@ -710,6 +717,9 @@ func getObjectListAndClient(inputObj interface{}) (client *Client, resultObjList
 	case *ProjectService:
 		client = inputObj.(*ProjectService).client
 		resultObjList = new(searchResultProject)
+	case *QueryService:
+		client = inputObj.(*QueryService).client
+		resultObjList = new(searchResultQuery)
 	case *StatusService:
 		client = inputObj.(*StatusService).client
 		resultObjList = new(searchResultStatus)
