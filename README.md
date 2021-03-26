@@ -69,17 +69,17 @@ func main() {
 ## Supported objects
 | Endpoint | GET single | GET many | POST single | POST many | DELETE single | DELETE many |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| Attachments (Info) | OK | OK | *implementing* | - | *pending* | - |
-| Attachments (Download) | OK | - | - | - | - | - |
-| Categories | OK | OK | - | - | - | - |
+| Attachments (Info) | :heavy_check_mark: | :heavy_check_mark: | *implementing* | - | *pending* | - |
+| Attachments (Download) | :heavy_check_mark: | - | - | - | - | - |
+| Categories | :heavy_check_mark: | :heavy_check_mark: | - | - | - | - |
 | Documents | *implementing* | - | - | - | - | - |
-| Projects  | OK | OK | OK | *pending* | *pending* | *pending* | *pending* |
-| Queries | OK | OK | - | - | OK | - |
+| Projects  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | *pending* | *pending* | *pending* | *pending* |
+| Queries | :heavy_check_mark: | :heavy_check_mark: | - | - | :heavy_check_mark: | - |
 | Schemas | *pending* |
-| Statuses | OK | OK | *pending* | *pending* | *pending* | *pending* |
-| Users | OK | OK | OK | | OK | *pending* |
-| Wiki Pages | OK | *pending* | *pending* | *pending* | *pending* | *pending* |
-| WorkPackages | OK | OK | OK | | OK | |
+| Statuses | :heavy_check_mark: | :heavy_check_mark: | *pending* | *pending* | *pending* | *pending* |
+| Users | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | | :heavy_check_mark: | *pending* |
+| Wiki Pages | :heavy_check_mark: | *pending* | *pending* | *pending* | *pending* | *pending* |
+| WorkPackages | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | | :heavy_check_mark: | |
 
 ## Thanks
 Thanks [Wieland](https://github.com/wielinde), [Oliver](https://github.com/oliverguenther) and [OpenProject](https://github.com/opf/openproject) team for your support.
