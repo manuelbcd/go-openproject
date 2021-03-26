@@ -74,7 +74,7 @@ func main() {
 | Categories | OK | OK | - | - | - | - |
 | Documents | *implementing* | - | - | - | - | - |
 | Projects  | OK | OK | OK | *pending* | *pending* | *pending* | *pending* |
-| Queries | OK | OK | - | - | - | - |
+| Queries | OK | OK | - | - | OK | - |
 | Schemas | *pending* |
 | Statuses | OK | OK | *pending* | *pending* | *pending* | *pending* |
 | Users | OK | OK | OK | | OK | *pending* |
