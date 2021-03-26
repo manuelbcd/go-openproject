@@ -22,10 +22,10 @@ func TestStatusService_GetByID_Success(t *testing.T) {
 		fmt.Fprint(w, string(raw))
 	})
 
-	if user, _, err := testClient.Status.Get("2"); err != nil {
+	if status, _, err := testClient.Status.Get("2"); err != nil {
 		t.Errorf("Error given: %s", err)
-	} else if user == nil {
-		t.Error("Expected user. User is nil")
+	} else if status == nil {
+		t.Error("Expected status. User is nil")
 	}
 }
 
