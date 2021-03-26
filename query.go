@@ -80,3 +80,19 @@ func (s *QueryService) GetListWithContext(ctx context.Context) (*searchResultQue
 	Obj, Resp, err := GetListWithContext(s, ctx, apiEndpoint, nil)
 	return Obj.(*searchResultQuery), Resp, err
 }
+
+/**
+DeleteWithContext will delete a single query object
+*/
+func (s *QueryService) DeleteWithContext(ctx context.Context, queryID string) (*Response, error) {
+	apiEndPoint := fmt.Sprintf("api/v3/queries/%s", queryID)
+	resp, err := DeleteWithContext(s, ctx, apiEndPoint)
+	return resp, err
+}
+
+/**
+Delete wraps DeleteWithContext using the background context.
+*/
+func (s *QueryService) Delete(queryID string) (*Response, error) {
+	return s.DeleteWithContext(context.Background(), queryID)
+}
