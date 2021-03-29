@@ -1,6 +1,8 @@
 package openproject
 
 import (
+	"bytes"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -188,5 +190,251 @@ func testURLParseError(t *testing.T, err error) {
 	}
 	if err, ok := err.(*url.Error); !ok || err.Op != "parse" {
 		t.Errorf("Expected URL parse error, got %+v", err)
+	}
+}
+
+func TestClient_NewRequest_BadURL(t *testing.T) {
+	c, err := NewClient(nil, testOpenProjectInstanceURL)
+	if err != nil {
+		t.Errorf("An error occurred. Expected nil. Got %+v.", err)
+	}
+	_, err = c.NewRequest("GET", ":", nil)
+	testURLParseError(t, err)
+}
+
+func TestClient_NewRequest_BasicAuth(t *testing.T) {
+	c, err := NewClient(nil, testOpenProjectInstanceURL)
+	if err != nil {
+		t.Errorf("An error occurred. Expected nil. Got %+v.", err)
+	}
+
+	c.Authentication.SetBasicAuth("test-user", "test-password")
+
+	inURL := "api/v3/"
+	inBody := &WorkPackage{Id: 1}
+	req, err := c.NewRequest("GET", inURL, inBody)
+
+	if err != nil {
+		t.Errorf("An error occurred. Expected nil. Got %+v.", err)
+	}
+
+	username, password, ok := req.BasicAuth()
+	if !ok || username != "test-user" || password != "test-password" {
+		t.Errorf("An error occurred. Expected basic auth username %s and password %s. Got username %s and password %s.", "test-user", "test-password", username, password)
+	}
+}
+
+func TestClient_NewRequest_EmptyBody(t *testing.T) {
+	c, err := NewClient(nil, testOpenProjectInstanceURL)
+	if err != nil {
+		t.Errorf("An error occurred. Expected nil. Got %+v.", err)
+	}
+	req, err := c.NewRequest("GET", "/", nil)
+	if err != nil {
+		t.Fatalf("NewRequest returned unexpected error: %v", err)
+	}
+	if req.Body != nil {
+		t.Fatalf("constructed request contains a non-nil Body")
+	}
+}
+
+func TestClient_NewMultiPartRequest(t *testing.T) {
+	c, err := NewClient(nil, testOpenProjectInstanceURL)
+	if err != nil {
+		t.Errorf("An error occurred. Expected nil. Got %+v.", err)
+	}
+
+	cookie := &http.Cookie{Name: "testcookie", Value: "testvalue"}
+	c.session = &Session{Cookies: []*http.Cookie{cookie}}
+	c.Authentication.authType = authTypeSession
+
+	inURL := "api/v3/workpackage/"
+	inBuf := bytes.NewBufferString("teststring")
+	req, err := c.NewMultiPartRequest("GET", inURL, inBuf)
+
+	if err != nil {
+		t.Errorf("An error occurred. Expected nil. Got %+v.", err)
+	}
+
+	if len(req.Cookies()) != len(c.session.Cookies) {
+		t.Errorf("An error occurred. Expected %d cookie(s). Got %d.", len(c.session.Cookies), len(req.Cookies()))
+	}
+
+	for i, v := range req.Cookies() {
+		if v.String() != c.session.Cookies[i].String() {
+			t.Errorf("An error occurred. Unexpected cookie. Expected %s, actual %s.", v.String(), c.session.Cookies[i].String())
+		}
+	}
+
+	if req.Header.Get("X-Atlassian-Token") != "nocheck" {
+		t.Errorf("An error occurred. Unexpected X-Atlassian-Token header value. Expected nocheck, actual %s.", req.Header.Get("X-Atlassian-Token"))
+	}
+}
+
+func TestClient_NewMultiPartRequest_BasicAuth(t *testing.T) {
+	c, err := NewClient(nil, testOpenProjectInstanceURL)
+	if err != nil {
+		t.Errorf("An error occurred. Expected nil. Got %+v.", err)
+	}
+
+	c.Authentication.SetBasicAuth("test-user", "test-password")
+
+	inURL := "api/v3/workpackages/"
+	inBuf := bytes.NewBufferString("teststring")
+	req, err := c.NewMultiPartRequest("GET", inURL, inBuf)
+
+	if err != nil {
+		t.Errorf("An error occurred. Expected nil. Got %+v.", err)
+	}
+
+	username, password, ok := req.BasicAuth()
+	if !ok || username != "test-user" || password != "test-password" {
+		t.Errorf("An error occurred. Expected basic auth username %s and password %s. Got username %s and password %s.", "test-user", "test-password", username, password)
+	}
+}
+
+func TestClient_Do(t *testing.T) {
+	setup()
+	defer teardown()
+
+	type foo struct {
+		A string
+	}
+
+	testMux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if m := "GET"; m != r.Method {
+			t.Errorf("Request method = %v, want %v", r.Method, m)
+		}
+		fmt.Fprint(w, `{"A":"a"}`)
+	})
+
+	req, _ := testClient.NewRequest("GET", "/", nil)
+	body := new(foo)
+	testClient.Do(req, body)
+
+	want := &foo{"a"}
+	if !reflect.DeepEqual(body, want) {
+		t.Errorf("Response body = %v, want %v", body, want)
+	}
+}
+
+func TestClient_Do_HTTPResponse(t *testing.T) {
+	setup()
+	defer teardown()
+
+	testMux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if m := "GET"; m != r.Method {
+			t.Errorf("Request method = %v, want %v", r.Method, m)
+		}
+		fmt.Fprint(w, `{"A":"a"}`)
+	})
+
+	req, _ := testClient.NewRequest("GET", "/", nil)
+	res, _ := testClient.Do(req, nil)
+	_, err := ioutil.ReadAll(res.Body)
+
+	if err != nil {
+		t.Errorf("Error on parsing HTTP Response = %v", err.Error())
+	} else if res.StatusCode != 200 {
+		t.Errorf("Response code = %v, want %v", res.StatusCode, 200)
+	}
+}
+
+func TestClient_Do_HTTPError(t *testing.T) {
+	setup()
+	defer teardown()
+
+	testMux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.Error(w, "Bad Request", 400)
+	})
+
+	req, _ := testClient.NewRequest("GET", "/", nil)
+	_, err := testClient.Do(req, nil)
+
+	if err == nil {
+		t.Error("Expected HTTP 400 error.")
+	}
+}
+
+func TestClient_Do_RedirectLoop(t *testing.T) {
+	setup()
+	defer teardown()
+
+	testMux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "/", http.StatusFound)
+	})
+
+	req, _ := testClient.NewRequest("GET", "/", nil)
+	_, err := testClient.Do(req, nil)
+
+	if err == nil {
+		t.Error("Expected error to be returned.")
+	}
+	if err, ok := err.(*url.Error); !ok {
+		t.Errorf("Expected a URL error; got %+v.", err)
+	}
+}
+
+func TestClient_GetBaseURL_WithURL(t *testing.T) {
+	u, err := url.Parse(testOpenProjectInstanceURL)
+	if err != nil {
+		t.Errorf("URL parsing -> Got an error: %s", err)
+	}
+
+	c, err := NewClient(nil, testOpenProjectInstanceURL)
+	if err != nil {
+		t.Errorf("Client creation -> Got an error: %s", err)
+	}
+	if c == nil {
+		t.Error("Expected a client. Got none")
+	}
+
+	if b := c.GetBaseURL(); !reflect.DeepEqual(b, *u) {
+		t.Errorf("Base URLs are not equal. Expected %+v, got %+v", *u, b)
+	}
+}
+
+func TestBasicAuthTransport(t *testing.T) {
+	setup()
+	defer teardown()
+
+	username, password := "username", "password"
+
+	testMux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		u, p, ok := r.BasicAuth()
+		if !ok {
+			t.Errorf("request does not contain basic auth credentials")
+		}
+		if u != username {
+			t.Errorf("request contained basic auth username %q, want %q", u, username)
+		}
+		if p != password {
+			t.Errorf("request contained basic auth password %q, want %q", p, password)
+		}
+	})
+
+	tp := &BasicAuthTransport{
+		Username: username,
+		Password: password,
+	}
+
+	basicAuthClient, _ := NewClient(tp.Client(), testServer.URL)
+	req, _ := basicAuthClient.NewRequest("GET", ".", nil)
+	basicAuthClient.Do(req, nil)
+}
+
+func TestBasicAuthTransport_transport(t *testing.T) {
+	// default transport
+	tp := &BasicAuthTransport{}
+	if tp.transport() != http.DefaultTransport {
+		t.Errorf("Expected http.DefaultTransport to be used.")
+	}
+
+	// custom transport
+	tp = &BasicAuthTransport{
+		Transport: &http.Transport{},
+	}
+	if tp.transport() == http.DefaultTransport {
+		t.Errorf("Expected custom transport to be used.")
 	}
 }
