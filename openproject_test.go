@@ -265,10 +265,6 @@ func TestClient_NewMultiPartRequest(t *testing.T) {
 			t.Errorf("An error occurred. Unexpected cookie. Expected %s, actual %s.", v.String(), c.session.Cookies[i].String())
 		}
 	}
-
-	if req.Header.Get("X-Atlassian-Token") != "nocheck" {
-		t.Errorf("An error occurred. Unexpected X-Atlassian-Token header value. Expected nocheck, actual %s.", req.Header.Get("X-Atlassian-Token"))
-	}
 }
 
 func TestClient_NewMultiPartRequest_BasicAuth(t *testing.T) {
