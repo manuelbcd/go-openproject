@@ -66,6 +66,7 @@ func main() {
 	fmt.Printf("\n\nSubject: %s \nDescription: %s\n\n", wpResponse.Subject, wpResponse.Description.Raw)
 }
 ```
+
 ## Supported objects
 | Endpoint | GET single | GET many | POST single | POST many | DELETE single | DELETE many |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
