@@ -50,12 +50,14 @@ func (s *AttachmentService) DownloadWithContext(ctx context.Context, attachmentI
 	}
 
 	resp, err := s.client.Download(req)
-	respBytes, err := ioutil.ReadAll(resp.Body)
 
 	if err != nil {
 		return nil, err
 	}
-	return &respBytes, nil
+
+	respBytes, err := ioutil.ReadAll(resp.Body)
+
+	return &respBytes, err
 }
 
 // Download wraps DownloadWithContext using the background context.
