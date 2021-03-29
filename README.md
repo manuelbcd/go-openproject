@@ -1,4 +1,6 @@
 # OpenProject Go Client Library
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmanuelbcd%2Fgo-openproject.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmanuelbcd%2Fgo-openproject?ref=badge_shield)
+
 
 [Go](https://golang.org/) client library for [OpenProject](https://www.openproject.org)
 
@@ -87,3 +89,7 @@ Thank you very much [Andy Grunwald](https://github.com/andygrunwald) for the ide
 
 Inspired in [Go Jira library](https://github.com/andygrunwald/go-jira) 
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmanuelbcd%2Fgo-openproject.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmanuelbcd%2Fgo-openproject?ref=badge_large)
