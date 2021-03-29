@@ -211,7 +211,7 @@ func TestClient_NewRequest_BasicAuth(t *testing.T) {
 	c.Authentication.SetBasicAuth("test-user", "test-password")
 
 	inURL := "api/v3/"
-	inBody := &WorkPackage{Id: 1}
+	inBody := &WorkPackage{ID: 1}
 	req, err := c.NewRequest("GET", inURL, inBody)
 
 	if err != nil {
