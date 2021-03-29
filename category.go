@@ -5,9 +5,7 @@ import (
 	"fmt"
 )
 
-/**
-CategoryService handles categories for the OpenProject instance / API.
-*/
+// CategoryService handles categories for the OpenProject instance / API.
 type CategoryService struct {
 	client *Client
 }
@@ -17,25 +15,22 @@ type CategoryList struct {
 	Embedded CategoryElements `json:"_embedded,omitempty" structs:"_embedded,omitempty"`
 }
 
+// CategoryElements is the list of elements nested within CategoryList
 type CategoryElements struct {
 	Elements []Category `json:"elements,omitempty" structs:"elements,omitempty"`
 }
 
-/**
-Work-package categories
-*/
+// Category wraps Work-package categories
 type Category struct {
 	Type string `json:"_type,omitempty" structs:"_type,omitempty"`
 	ID   int    `json:"id,omitempty" structs:"id,omitempty"`
 	Name string `json:"name,omitempty" structs:"name,omitempty"`
 }
 
-/**
-GetWithContext returns a single category for the given category ID.
-*/
+// GetWithContext returns a single category for the given category ID.
 func (s *CategoryService) GetWithContext(ctx context.Context, categoryID string) (*Category, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/categories/%s", categoryID)
-	Obj, Resp, err := GetWithContext(s, ctx, apiEndpoint)
+	Obj, Resp, err := GetWithContext(ctx, s, apiEndpoint)
 	return Obj.(*Category), Resp, err
 }
 
@@ -44,18 +39,14 @@ func (s *CategoryService) Get(categoryID string) (*Category, *Response, error) {
 	return s.GetWithContext(context.Background(), categoryID)
 }
 
-/**
-Retrieve category list from project with context
-*/
+// GetListWithContext retrieve category list from project with context
 func (s *CategoryService) GetListWithContext(ctx context.Context, projectID string) (*CategoryList, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/projects/%s/categories", projectID)
-	Obj, Resp, err := GetListWithContext(s, ctx, apiEndpoint, nil)
+	Obj, Resp, err := GetListWithContext(ctx, s, apiEndpoint, nil)
 	return Obj.(*CategoryList), Resp, err
 }
 
-/**
-GetList wraps GetListWithContext using the background context.
-*/
+// GetList wraps GetListWithContext using the background context.
 func (s *CategoryService) GetList(projectID string) (*CategoryList, *Response, error) {
 	return s.GetListWithContext(context.Background(), projectID)
 }

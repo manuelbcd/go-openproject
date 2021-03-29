@@ -15,9 +15,7 @@ const (
 	authTypeSession = 2
 )
 
-/**
-AuthenticationService handles authentication for the OpenProject instance / API.
-*/
+// AuthenticationService handles authentication for the OpenProject instance / API.
 type AuthenticationService struct {
 	client *Client
 
@@ -31,9 +29,7 @@ type AuthenticationService struct {
 	password string
 }
 
-/**
-Session represents a Session JSON response by the OpenProject API.
-*/
+// Session represents a Session JSON response by the OpenProject API.
 type Session struct {
 	Self    string `json:"self,omitempty"`
 	Name    string `json:"name,omitempty"`
@@ -50,13 +46,11 @@ type Session struct {
 	Cookies []*http.Cookie
 }
 
-/**
-AcquireSessionCookieWithContext creates a new session for a user in OpenProject.
-Once a session has been successfully created it can be used to access any of OpenProject's remote APIs and also the web UI by passing the appropriate HTTP Cookie header.
-The header will by automatically applied to every API request.
-Note that it is generally preferrable to use HTTP BASIC authentication with the REST API.
-Deprecated: Use CookieAuthTransport instead
-*/
+// AcquireSessionCookieWithContext creates a new session for a user in OpenProject.
+// Once a session has been successfully created it can be used to access any of OpenProject's remote APIs and also the web UI by passing the appropriate HTTP Cookie header.
+// The header will by automatically applied to every API request.
+// Note that it is generally preferable to use HTTP BASIC authentication with the REST API.
+// Deprecated: Use CookieAuthTransport instead
 func (s *AuthenticationService) AcquireSessionCookieWithContext(ctx context.Context, username, password string) (bool, error) {
 	apiEndpoint := "rest/auth/1/session"
 	body := struct {
@@ -92,27 +86,21 @@ func (s *AuthenticationService) AcquireSessionCookieWithContext(ctx context.Cont
 	return true, nil
 }
 
-/**
-AcquireSessionCookie wraps AcquireSessionCookieWithContext using the background context.
-Deprecated: Use CookieAuthTransport instead
-*/
+// AcquireSessionCookie wraps AcquireSessionCookieWithContext using the background context.
+// Deprecated: Use CookieAuthTransport instead
 func (s *AuthenticationService) AcquireSessionCookie(username, password string) (bool, error) {
 	return s.AcquireSessionCookieWithContext(context.Background(), username, password)
 }
 
-/**
-SetBasicAuth sets username and password for the basic auth against the OpenProject instance.
-Deprecated: Use BasicAuthTransport instead
-*/
+// SetBasicAuth sets username and password for the basic auth against the OpenProject instance.
+// Deprecated: Use BasicAuthTransport instead
 func (s *AuthenticationService) SetBasicAuth(username, password string) {
 	s.username = username
 	s.password = password
 	s.authType = authTypeBasic
 }
 
-/**
-Authenticated reports if the current Client has authentication details for OpenProject
-*/
+// Authenticated reports if the current Client has authentication details for OpenProject
 func (s *AuthenticationService) Authenticated() bool {
 	if s != nil {
 		if s.authType == authTypeSession {
@@ -125,12 +113,9 @@ func (s *AuthenticationService) Authenticated() bool {
 	return false
 }
 
-/**
-LogoutWithContext logs out the current user that has been authenticated and the session in the client is destroyed.
-Deprecated: Use CookieAuthTransport to create base client.  Logging out is as simple as not using the
-client anymore
-
-*/
+// LogoutWithContext logs out the current user that has been authenticated and the session in the client is destroyed.
+// Deprecated: Use CookieAuthTransport to create base client.  Logging out is as simple as not using the
+// client anymore
 func (s *AuthenticationService) LogoutWithContext(ctx context.Context) error {
 	if s.authType != authTypeSession || s.client.session == nil {
 		return fmt.Errorf("no user is authenticated")
@@ -157,19 +142,14 @@ func (s *AuthenticationService) LogoutWithContext(ctx context.Context) error {
 
 }
 
-/**
-Logout wraps LogoutWithContext using the background context.
-
-Deprecated: Use CookieAuthTransport to create base client.  Logging out is as simple as not using the
-client anymore
-*/
+// Logout wraps LogoutWithContext using the background context.
+// Deprecated: Use CookieAuthTransport to create base client.  Logging out is as simple as not using the
+// client anymore
 func (s *AuthenticationService) Logout() error {
 	return s.LogoutWithContext(context.Background())
 }
 
-/**
-GetCurrentUserWithContext gets the details of the current user.
-*/
+// GetCurrentUserWithContext gets the details of the current user.
 func (s *AuthenticationService) GetCurrentUserWithContext(ctx context.Context) (*Session, error) {
 	if s == nil {
 		return nil, fmt.Errorf("authentication Service is not instantiated")
@@ -208,9 +188,7 @@ func (s *AuthenticationService) GetCurrentUserWithContext(ctx context.Context) (
 	return ret, nil
 }
 
-/**
-GetCurrentUser wraps GetCurrentUserWithContext using the background context.
-*/
+// GetCurrentUser wraps GetCurrentUserWithContext using the background context.
 func (s *AuthenticationService) GetCurrentUser() (*Session, error) {
 	return s.GetCurrentUserWithContext(context.Background())
 }

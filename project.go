@@ -7,15 +7,13 @@ import (
 	"io/ioutil"
 )
 
-/**
-ProjectService handles projects for the OpenProject instance / API.
-*/
+// ProjectService handles projects for the OpenProject instance / API.
 type ProjectService struct {
 	client *Client
 }
 
-// ProjectList represent a list of Projects
-type searchResultProject struct {
+// SearchResultProject represent a list of Projects
+type SearchResultProject struct {
 	Embedded projectElements `json:"_embedded,omitempty" structs:"_embedded,omitempty"`
 	Total    int             `json:"total" structs:"total"`
 	Count    int             `json:"count" structs:"count"`
@@ -23,13 +21,12 @@ type searchResultProject struct {
 	Offset   int             `json:"offset" structs:"offset"`
 }
 
+// ProjectElements represent elements within SearchResultProject
 type projectElements struct {
 	Elements []Project `json:"elements,omitempty" structs:"elements,omitempty"`
 }
 
-/**
-Project structure representing OpenProject project
-*/
+// Project structure representing OpenProject project
 type Project struct {
 	Type        string           `json:"_type,omitempty" structs:"_type,omitempty"`
 	ID          int              `json:"id,omitempty" structs:"id,omitempty"`
@@ -43,17 +40,13 @@ type Project struct {
 	Status      string           `json:"status,omitempty" structs:"status,omitempty"`
 }
 
-/**
-WorkPackageDescription type contains description and format
-*/
+// ProjDescription type contains description and format
 type ProjDescription OPGenericDescription
 
-/**
-GetWithContext returns a single project for the given project key.
-*/
+// GetWithContext returns a single project for the given project key.
 func (s *ProjectService) GetWithContext(ctx context.Context, projectID string) (*Project, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/projects/%s", projectID)
-	Obj, Resp, err := GetWithContext(s, ctx, apiEndpoint)
+	Obj, Resp, err := GetWithContext(ctx, s, apiEndpoint)
 	return Obj.(*Project), Resp, err
 }
 
@@ -62,26 +55,20 @@ func (s *ProjectService) Get(projectID string) (*Project, *Response, error) {
 	return s.GetWithContext(context.Background(), projectID)
 }
 
-/**
-GetList wraps GetListWithContext using the background context.
-*/
-func (s *ProjectService) GetList() (*searchResultProject, *Response, error) {
+// GetList wraps GetListWithContext using the background context.
+func (s *ProjectService) GetList() (*SearchResultProject, *Response, error) {
 	return s.GetListWithContext(context.Background())
 }
 
-/**
-Retrieve project list with context
-TODO: Implement search options
-*/
-func (s *ProjectService) GetListWithContext(ctx context.Context) (*searchResultProject, *Response, error) {
+// GetListWithContext retrieve project list with context
+// TODO: Implement search options
+func (s *ProjectService) GetListWithContext(ctx context.Context) (*SearchResultProject, *Response, error) {
 	apiEndpoint := "api/v3/projects"
-	Obj, Resp, err := GetListWithContext(s, ctx, apiEndpoint, nil)
-	return Obj.(*searchResultProject), Resp, err
+	Obj, Resp, err := GetListWithContext(ctx, s, apiEndpoint, nil)
+	return Obj.(*SearchResultProject), Resp, err
 }
 
-/**
-	CreateWithContext creates a project from a JSON representation.
-**/
+// CreateWithContext creates a project from a JSON representation.
 func (s *ProjectService) CreateWithContext(ctx context.Context, project *Project) (*Project, *Response, error) {
 	apiEndpoint := "api/v3/projects"
 	req, err := s.client.NewRequestWithContext(ctx, "POST", apiEndpoint, project)
@@ -107,9 +94,7 @@ func (s *ProjectService) CreateWithContext(ctx context.Context, project *Project
 	return projResponse, resp, nil
 }
 
-/**
-Create wraps CreateWithContext using the background context.
-*/
+// Create wraps CreateWithContext using the background context.
 func (s *ProjectService) Create(project *Project) (*Project, *Response, error) {
 	return s.CreateWithContext(context.Background(), project)
 }

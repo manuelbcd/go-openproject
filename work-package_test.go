@@ -48,7 +48,7 @@ func TestWorkPackageService_Get_SearchListSuccess(t *testing.T) {
 		Fields: []OptionsFields{
 			{
 				Field:    "status",
-				Operator: EQUAL,
+				Operator: Equal,
 				Value:    "21",
 			},
 		},
