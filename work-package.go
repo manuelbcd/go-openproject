@@ -160,7 +160,7 @@ type OptionsFields struct {
 	Value    string
 }
 
-// searchResultWP is only a small wrapper around the Search
+// SearchResultWP is only a small wrapper around the Search
 type SearchResultWP struct {
 	Embedded SearchEmbeddedWP `json:"_embedded" structs:"_embedded"`
 	Total    int              `json:"total" structs:"total"`
@@ -169,6 +169,7 @@ type SearchResultWP struct {
 	Offset   int              `json:"offset" structs:"offset"`
 }
 
+// SearchEmbeddedWP represent elements within WorkPackage list
 type SearchEmbeddedWP struct {
 	Elements []WorkPackage `json:"elements" structs:"elements"`
 }
