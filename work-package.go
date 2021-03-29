@@ -61,17 +61,17 @@ func (t Date) MarshalJSON() ([]byte, error) {
 // WorkPackage represents an OpenProject ticket or issue
 // Please note: Time and Date fields are pointers in order to avoid rendering them when not initialized
 type WorkPackage struct {
-	Subject     string         `json:"subject,omitempty" structs:"subject,omitempty"`
-	Description *WPDescription `json:"description,omitempty" structs:"description,omitempty"`
-	Type        string         `json:"_type,omitempty" structs:"_type,omitempty"`
-	ID          int            `json:"id,omitempty" structs:"id,omitempty"`
-	CreatedAt   *Time          `json:"createdAt,omitempty" structs:"createdAt,omitempty"`
-	UpdatedAt   *Time          `json:"updatedAt,omitempty" structs:"updatedAt,omitempty"`
-	StartDate   *Date          `json:"startDate,omitempty" structs:"startDate,omitempty"`
-	DueDate     *Date          `json:"dueDate,omitempty" structs:"dueDate,omitempty"`
-	LockVersion int            `json:"lockVersion,omitempty" structs:"lockVersion,omitempty"`
-	Position    int            `json:"position,omitempty" structs:"position,omitempty"`
-	Custom      tcontainer.MarshalMap
+	Subject     string                `json:"subject,omitempty" structs:"subject,omitempty"`
+	Description *WPDescription        `json:"description,omitempty" structs:"description,omitempty"`
+	Type        string                `json:"_type,omitempty" structs:"_type,omitempty"`
+	ID          int                   `json:"id,omitempty" structs:"id,omitempty"`
+	CreatedAt   *Time                 `json:"createdAt,omitempty" structs:"createdAt,omitempty"`
+	UpdatedAt   *Time                 `json:"updatedAt,omitempty" structs:"updatedAt,omitempty"`
+	StartDate   *Date                 `json:"startDate,omitempty" structs:"startDate,omitempty"`
+	DueDate     *Date                 `json:"dueDate,omitempty" structs:"dueDate,omitempty"`
+	LockVersion int                   `json:"lockVersion,omitempty" structs:"lockVersion,omitempty"`
+	Position    int                   `json:"position,omitempty" structs:"position,omitempty"`
+	Custom      tcontainer.MarshalMap `json:"custom,omitempty" structs:"custom,omitempty"`
 
 	Links *WPLinks `json:"_links,omitempty" _links:"id,omitempty"`
 }
