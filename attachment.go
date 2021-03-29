@@ -6,20 +6,16 @@ import (
 	"io/ioutil"
 )
 
-/**
-Attachment service handles attachments for the OpenProject instance / API.
-*/
+// AttachmentService handles attachments for the OpenProject instance / API.
 type AttachmentService struct {
 	client *Client
 }
 
-/**
-Attachment is the object representing OpenProject attachments.
+// Attachment is the object representing OpenProject attachments.
 // TODO: Complete fields and complex fields (user, links, downloadlocation, container...)
-*/
 type Attachment struct {
 	Type        string               `json:"_type,omitempty" structs:"_type,omitempty"`
-	Id          int                  `json:"id,omitempty" structs:"id,omitempty"`
+	ID          int                  `json:"id,omitempty" structs:"id,omitempty"`
 	FileName    string               `json:"filename,omitempty" structs:"filename,omitempty"`
 	FileSize    int                  `json:"filesize,omitempty" structs:"filesize,omitempty"`
 	Description OPGenericDescription `json:"description,omitempty" structs:"description,omitempty"`
@@ -27,30 +23,25 @@ type Attachment struct {
 	Digest      AttachmentDigest     `json:"digest,omitempty" structs:"digest,omitempty"`
 }
 
+// AttachmentDigest wraps algorithm and hash
 type AttachmentDigest struct {
 	Algorithm string `json:"algorithm,omitempty" structs:"algorithm,omitempty"`
 	Hash      string `json:"hash,omitempty" structs:"hash,omitempty"`
 }
 
-/**
-GetWithContext gets a wiki page from OpenProject using its ID
-*/
+// GetWithContext gets a wiki page from OpenProject using its ID
 func (s *AttachmentService) GetWithContext(ctx context.Context, attachmentID string) (*Attachment, *Response, error) {
 	apiEndPoint := fmt.Sprintf("api/v3/attachments/%s", attachmentID)
-	Obj, Resp, err := GetWithContext(s, ctx, apiEndPoint)
+	Obj, Resp, err := GetWithContext(ctx, s, apiEndPoint)
 	return Obj.(*Attachment), Resp, err
 }
 
-/**
-Get wraps GetWithContext using the background context.
-*/
+// Get wraps GetWithContext using the background context.
 func (s *AttachmentService) Get(attachmentID string) (*Attachment, *Response, error) {
 	return s.GetWithContext(context.Background(), attachmentID)
 }
 
-/**
-DownloadWithContext downloads a file from attachment using attachment ID
-*/
+// DownloadWithContext downloads a file from attachment using attachment ID
 func (s *AttachmentService) DownloadWithContext(ctx context.Context, attachmentID string) (*[]byte, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/attachments/%s/content", attachmentID)
 	req, err := s.client.NewRequestWithContext(ctx, "GET", apiEndpoint, nil)
@@ -67,9 +58,7 @@ func (s *AttachmentService) DownloadWithContext(ctx context.Context, attachmentI
 	return &respBytes, nil
 }
 
-/**
-Download wraps DownloadWithContext using the background context.
-*/
+// Download wraps DownloadWithContext using the background context.
 func (s *AttachmentService) Download(attachmentID string) (*[]byte, error) {
 	return s.DownloadWithContext(context.Background(), attachmentID)
 }

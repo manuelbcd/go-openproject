@@ -22,7 +22,7 @@ func main() {
 		Fields: []openproj.OptionsFields{
 			{
 				Field:    "status",
-				Operator: openproj.EQUAL,
+				Operator: openproj.Equal,
 				Value:    "21",
 			},
 		},
@@ -41,7 +41,7 @@ func main() {
 	fmt.Printf("\nWorkpackages: %d \n\n", resp.Total)
 
 	for _, wp := range wpResponse {
-		fmt.Printf("\n\nId: %d ", wp.Id)
+		fmt.Printf("\n\nId: %d ", wp.ID)
 		fmt.Printf("\nStatus: %s ", wp.Links.Status.Title)
 		fmt.Printf("Subject: %.*s ", 15, wp.Subject)
 		fmt.Printf("\nDescription: %.*s\n", 25, wp.Description.Raw)

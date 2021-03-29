@@ -1,6 +1,5 @@
 package main
 
-
 import (
 	"bufio"
 	"encoding/json"
@@ -10,8 +9,8 @@ import (
 	"strings"
 	"syscall"
 
-	"golang.org/x/crypto/ssh/terminal"
 	openproj "github.com/manuelbcd/go-openproject"
+	"golang.org/x/crypto/ssh/terminal"
 )
 
 func main() {
@@ -43,9 +42,9 @@ func main() {
 
 	i := openproj.WorkPackage{
 		Subject: "This is my test work package",
-		Description: &openproj.WPDescription {
+		Description: &openproj.WPDescription{
 			Format: "textile",
-			Raw: "This is just a demo workpackage description",
+			Raw:    "This is just a demo workpackage description",
 		},
 	}
 
@@ -67,4 +66,3 @@ func prettyPrint(i interface{}) string {
 	s, _ := json.MarshalIndent(i, "", "\t")
 	return string(s)
 }
-

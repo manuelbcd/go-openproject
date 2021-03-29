@@ -82,7 +82,7 @@ func TestProjectService_Create(t *testing.T) {
 		Description: &ProjDescription{
 			Format: "textile",
 			Raw:    "This is a short summary of the goals of another demo Scrum project.",
-			Html:   "<p class=\"op-uc-p\">This is a short summary of the goals of another demo Scrum project.</p>",
+			HTML:   "<p class=\"op-uc-p\">This is a short summary of the goals of another demo Scrum project.</p>",
 		},
 	}
 	wp, _, err := testClient.Project.Create(p)
