@@ -1,5 +1,6 @@
 # OpenProject Go Client Library
 [![codecov](https://codecov.io/gh/manuelbcd/go-openproject/branch/master/graph/badge.svg?token=C945C180MG)](https://codecov.io/gh/manuelbcd/go-openproject)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [Go](https://golang.org/) client library for [OpenProject](https://www.openproject.org)
 
