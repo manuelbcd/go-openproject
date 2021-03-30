@@ -77,7 +77,7 @@ func main() {
 | Categories | :heavy_check_mark: | :heavy_check_mark: | - | - | - | - |
 | Documents | *implementing* | - | - | - | - | - |
 | Projects  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | *pending* | *pending* | *pending* | *pending* |
-| Queries | :heavy_check_mark: | :heavy_check_mark: | - | - | :heavy_check_mark: | - |
+| Queries | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | - | :heavy_check_mark: | - |
 | Schemas | *pending* |
 | Statuses | :heavy_check_mark: | :heavy_check_mark: | *pending* | *pending* | *pending* | *pending* |
 | Users | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | | :heavy_check_mark: | *pending* |
