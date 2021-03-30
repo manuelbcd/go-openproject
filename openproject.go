@@ -45,6 +45,12 @@ type OPGenericDescription struct {
 	HTML   string `json:"html,omitempty" structs:"html,omitempty"`
 }
 
+// OPGenericLink is an structure widely used in several OpenProject API objects
+type OPGenericLink struct {
+	Href string `json:"href,omitempty" structs:"href,omitempty"`
+	Name string `json:"name,omitempty" structs:"name,omitempty"`
+}
+
 // Time represents the Time definition of OpenProject as a time.Time of go
 type Time time.Time
 
@@ -483,9 +489,9 @@ func GetListWithContext(ctx context.Context, objService interface{}, apiEndPoint
 
 // CreateWithContext (generic) creates an instance af an object (HTTP POST verb)
 // Return the instance of the object rendered into proper struct as interface{} to be cast in the caller
-func CreateWithContext(ctx context.Context, objService interface{}, apiEndPoint string) (interface{}, *Response, error) {
+func CreateWithContext(ctx context.Context, object interface{}, objService interface{}, apiEndPoint string) (interface{}, *Response, error) {
 	client, resultObj := getObjectAndClient(objService)
-	req, err := client.NewRequestWithContext(ctx, "POST", apiEndPoint, resultObj)
+	req, err := client.NewRequestWithContext(ctx, "POST", apiEndPoint, object)
 	if err != nil {
 		return nil, nil, err
 	}

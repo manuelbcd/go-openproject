@@ -61,6 +61,47 @@ func TestQueryService_GetList_Success(t *testing.T) {
 	}
 }
 
+func TestQueryService_Create(t *testing.T) {
+	setup()
+	defer teardown()
+	raw, err := ioutil.ReadFile("./mocks/post/post-query.json")
+	if err != nil {
+		t.Error(err.Error())
+	}
+	testMux.HandleFunc("/api/v3/queries", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, "POST")
+		testRequestURL(t, r, "/api/v3/queries")
+
+		w.WriteHeader(http.StatusCreated)
+		fmt.Fprint(w, string(raw))
+	})
+
+	i := &Query{
+		Name:    "My filter-query",
+		Starred: true,
+		Project: "/api/v3/projects/1",
+		Columns: []OPGenericLink{
+			{Href: "/api/v3/queries/columns/id"},
+			{Href: "/api/v3/queries/columns/subject"},
+			{Href: "/api/v3/queries/columns/status"},
+		},
+		SortBy: []OPGenericLink{
+			{Href: "/api/v3/queries/sort_bys/id-asc"},
+		},
+		TimelineVisible: true,
+		Hidden:          false,
+		Public:          false,
+		Sums:            false,
+	}
+	wp, _, err := testClient.Query.Create(i)
+	if wp == nil {
+		t.Error("Expected query object. Query object is nil")
+	}
+	if err != nil {
+		t.Errorf("Error given: %s", err)
+	}
+}
+
 func TestQueryService_Delete(t *testing.T) {
 	setup()
 	defer teardown()
