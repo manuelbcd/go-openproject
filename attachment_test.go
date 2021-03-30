@@ -62,3 +62,21 @@ func TestAttachmentService_Download(t *testing.T) {
 		t.Errorf("Unexpected downloaded filesize %d", len(*file))
 	}
 }
+
+func TestAttachmentService_Download_BadStatus(t *testing.T) {
+	setup()
+	defer teardown()
+	testAPIEdpoint := "/api/v3/attachments/5/content"
+
+	testMux.HandleFunc(testAPIEdpoint, func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, "GET")
+		testRequestURL(t, r, testAPIEdpoint)
+		w.WriteHeader(http.StatusForbidden)
+	})
+
+	_, err := testClient.Attachment.Download("5")
+
+	if err == nil {
+		t.Errorf("Error %d expected but null received", http.StatusForbidden)
+	}
+}
