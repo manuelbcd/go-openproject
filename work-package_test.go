@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"reflect"
 	"testing"
+	"time"
 )
 
 func TestWorkPackageService_Get_Success(t *testing.T) {
@@ -122,13 +123,17 @@ func TestWorkPackageService_Delete(t *testing.T) {
 }
 
 func TestWorkPackageFields_MarshalJSON_OmitsEmptyFields(t *testing.T) {
+	thisDate, _ := time.Parse("2006-01-02T15:04:05-0700", "2020-12-31")
+	thisDateTime := Time(thisDate)
+
 	i := &WorkPackage{
 		Description: &WPDescription{
 			Format: "html",
 			Raw:    "Content example",
 			HTML:   "<html>Content example</html>",
 		},
-		Type: "Task",
+		CreatedAt: &thisDateTime,
+		Type:      "Task",
 	}
 
 	rawdata, err := json.Marshal(i)
@@ -161,12 +166,16 @@ func TestWorkPackageFields_MarshalJSON_OmitsEmptyFields(t *testing.T) {
 }
 
 func TestWorkPackageCustomFields_MarshalJSON_Success(t *testing.T) {
+	thisDate, _ := time.Parse("2006-01-02T15:04:05-0700", "2020-12-31")
+	thisDateTime := Time(thisDate)
+
 	i := &WorkPackage{
 		Description: &WPDescription{
 			Format: "html",
 			Raw:    "Content example",
 			HTML:   "<html>Content example</html>",
 		},
+		CreatedAt: &thisDateTime,
 		Custom: tcontainer.MarshalMap{
 			"customfield_A": "testA",
 		},

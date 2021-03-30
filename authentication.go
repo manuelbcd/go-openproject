@@ -113,42 +113,6 @@ func (s *AuthenticationService) Authenticated() bool {
 	return false
 }
 
-// LogoutWithContext logs out the current user that has been authenticated and the session in the client is destroyed.
-// Deprecated: Use CookieAuthTransport to create base client.  Logging out is as simple as not using the
-// client anymore
-func (s *AuthenticationService) LogoutWithContext(ctx context.Context) error {
-	if s.authType != authTypeSession || s.client.session == nil {
-		return fmt.Errorf("no user is authenticated")
-	}
-
-	apiEndpoint := "rest/auth/1/session"
-	req, err := s.client.NewRequestWithContext(ctx, "DELETE", apiEndpoint, nil)
-	if err != nil {
-		return fmt.Errorf("creating the request to log the user out failed : %s", err)
-	}
-
-	resp, err := s.client.Do(req, nil)
-	if err != nil {
-		return fmt.Errorf("error sending the logout request: %s", err)
-	}
-	if resp.StatusCode != 204 {
-		return fmt.Errorf("the logout was unsuccessful with status %d", resp.StatusCode)
-	}
-
-	// If logout successful, delete session
-	s.client.session = nil
-
-	return nil
-
-}
-
-// Logout wraps LogoutWithContext using the background context.
-// Deprecated: Use CookieAuthTransport to create base client.  Logging out is as simple as not using the
-// client anymore
-func (s *AuthenticationService) Logout() error {
-	return s.LogoutWithContext(context.Background())
-}
-
 // GetCurrentUserWithContext gets the details of the current user.
 func (s *AuthenticationService) GetCurrentUserWithContext(ctx context.Context) (*Session, error) {
 	if s == nil {
