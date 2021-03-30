@@ -3,8 +3,6 @@ package openproject
 import (
 	"bytes"
 	"context"
-	"crypto/sha256"
-	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -12,11 +10,9 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
-	"sort"
 	"strings"
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
 	"github.com/google/go-querystring/query"
 	"github.com/pkg/errors"
 )
@@ -402,168 +398,6 @@ func (t *BasicAuthTransport) transport() http.RoundTripper {
 		return t.Transport
 	}
 	return http.DefaultTransport
-}
-
-// CookieAuthTransport is an http.RoundTripper that authenticates all requests
-// using cookie-based authentication.
-// Note that it is generally preferable to use HTTP BASIC authentication with the REST API.
-type CookieAuthTransport struct {
-	Username string
-	Password string
-	AuthURL  string
-
-	// SessionObject is the authenticated cookie string.s
-	// It's passed in each call to prove the client is authenticated.
-	SessionObject []*http.Cookie
-
-	// Transport is the underlying HTTP transport to use when making requests.
-	// It will default to http.DefaultTransport if nil.
-	Transport http.RoundTripper
-}
-
-// RoundTrip adds the session object to the request.
-func (t *CookieAuthTransport) RoundTrip(req *http.Request) (*http.Response, error) {
-	if t.SessionObject == nil {
-		err := t.setSessionObject()
-		if err != nil {
-			return nil, errors.Wrap(err, "cookieauth: no session object has been set")
-		}
-	}
-
-	req2 := cloneRequest(req) // per RoundTripper contract
-	for _, cookie := range t.SessionObject {
-		// Don't add an empty value cookie to the request
-		if cookie.Value != "" {
-			req2.AddCookie(cookie)
-		}
-	}
-
-	return t.transport().RoundTrip(req2)
-}
-
-// Client returns an *http.Client that makes requests that are authenticated
-// using cookie authentication
-func (t *CookieAuthTransport) Client() *http.Client {
-	return &http.Client{Transport: t}
-}
-
-// setSessionObject attempts to authenticate the user and set
-// the session object (e.g. cookie)
-func (t *CookieAuthTransport) setSessionObject() error {
-	req, err := t.buildAuthRequest()
-	if err != nil {
-		return err
-	}
-
-	var authClient = &http.Client{
-		Timeout: time.Second * 60,
-	}
-	resp, err := authClient.Do(req)
-	if err != nil {
-		return err
-	}
-
-	t.SessionObject = resp.Cookies()
-	return nil
-}
-
-// getAuthRequest assembles the request to get the authenticated cookie
-func (t *CookieAuthTransport) buildAuthRequest() (*http.Request, error) {
-	body := struct {
-		Username string `json:"username"`
-		Password string `json:"password"`
-	}{
-		t.Username,
-		t.Password,
-	}
-
-	b := new(bytes.Buffer)
-	json.NewEncoder(b).Encode(body)
-
-	req, err := http.NewRequest("POST", t.AuthURL, b)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Set("Content-Type", "application/json")
-	return req, nil
-}
-
-func (t *CookieAuthTransport) transport() http.RoundTripper {
-	if t.Transport != nil {
-		return t.Transport
-	}
-	return http.DefaultTransport
-}
-
-// JWTAuthTransport is an http.RoundTripper that authenticates all requests
-// using JWT based authentication.
-// NOTE: this form of auth should be used by add-ons installed from the Atlassian marketplace.
-type JWTAuthTransport struct {
-	Secret []byte
-	Issuer string
-
-	// Transport is the underlying HTTP transport to use when making requests.
-	// It will default to http.DefaultTransport if nil.
-	Transport http.RoundTripper
-}
-
-// Client JWTAuthTransport
-func (t *JWTAuthTransport) Client() *http.Client {
-	return &http.Client{Transport: t}
-}
-
-// transport JWTAuthTransport
-func (t *JWTAuthTransport) transport() http.RoundTripper {
-	if t.Transport != nil {
-		return t.Transport
-	}
-	return http.DefaultTransport
-}
-
-// RoundTrip adds the session object to the request.
-func (t *JWTAuthTransport) RoundTrip(req *http.Request) (*http.Response, error) {
-	req2 := cloneRequest(req) // per RoundTripper contract
-	exp := time.Duration(59) * time.Second
-	qsh := t.createQueryStringHash(req.Method, req2.URL)
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"iss": t.Issuer,
-		"iat": time.Now().Unix(),
-		"exp": time.Now().Add(exp).Unix(),
-		"qsh": qsh,
-	})
-
-	jwtStr, err := token.SignedString(t.Secret)
-	if err != nil {
-		return nil, errors.Wrap(err, "jwtAuth: error signing JWT")
-	}
-
-	req2.Header.Set("Authorization", fmt.Sprintf("JWT %s", jwtStr))
-	return t.transport().RoundTrip(req2)
-}
-
-// CreateQueryStringHash
-func (t *JWTAuthTransport) createQueryStringHash(httpMethod string, openprojURL *url.URL) string {
-	canonicalRequest := t.canonicalizeRequest(httpMethod, openprojURL)
-	h := sha256.Sum256([]byte(canonicalRequest))
-	return hex.EncodeToString(h[:])
-}
-
-// CanonicalizeRequest
-func (t *JWTAuthTransport) canonicalizeRequest(httpMethod string, openprojURL *url.URL) string {
-	path := "/" + strings.Replace(strings.Trim(openprojURL.Path, "/"), "&", "%26", -1)
-
-	var canonicalQueryString []string
-	for k, v := range openprojURL.Query() {
-		if k == "jwt" {
-			continue
-		}
-		param := url.QueryEscape(k)
-		value := url.QueryEscape(strings.Join(v, ""))
-		canonicalQueryString = append(canonicalQueryString, strings.Replace(strings.Join([]string{param, value}, "="), "+", "%20", -1))
-	}
-	sort.Strings(canonicalQueryString)
-	return fmt.Sprintf("%s&%s&%s", strings.ToUpper(httpMethod), path, strings.Join(canonicalQueryString, "&"))
 }
 
 // cloneRequest returns a clone of the provided *http.Request.

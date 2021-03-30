@@ -1,9 +1,12 @@
 package openproject
 
 import (
+	"encoding/json"
 	"fmt"
+	"github.com/trivago/tgo/tcontainer"
 	"io/ioutil"
 	"net/http"
+	"reflect"
 	"testing"
 )
 
@@ -115,5 +118,73 @@ func TestWorkPackageService_Delete(t *testing.T) {
 	}
 	if err != nil {
 		t.Errorf("Error given: %s", err)
+	}
+}
+
+func TestWorkPackageFields_MarshalJSON_OmitsEmptyFields(t *testing.T) {
+	i := &WorkPackage{
+		Description: &WPDescription{
+			Format: "html",
+			Raw:    "Content example",
+			HTML:   "<html>Content example</html>",
+		},
+		Type: "Task",
+	}
+
+	rawdata, err := json.Marshal(i)
+	if err != nil {
+		t.Errorf("Expected nil err, received %s", err)
+	}
+
+	// convert json to map and see if unset keys are there
+	issuef := tcontainer.NewMarshalMap()
+	err = json.Unmarshal(rawdata, &issuef)
+	if err != nil {
+		t.Errorf("Expected nil err, received %s", err)
+	}
+
+	_, err = issuef.Int("description/html")
+	if err == nil {
+		t.Error("Expected non nil error, received nil")
+	}
+
+	// verify that the field that should be there, is.
+	name, err := issuef.String("description/raw")
+	if err != nil {
+		t.Errorf("Expected nil err, received %s", err)
+	}
+
+	if name != "Content example" {
+		t.Errorf("Expected Story, received %s", name)
+	}
+
+}
+
+func TestWorkPackageCustomFields_MarshalJSON_Success(t *testing.T) {
+	i := &WorkPackage{
+		Description: &WPDescription{
+			Format: "html",
+			Raw:    "Content example",
+			HTML:   "<html>Content example</html>",
+		},
+		Custom: tcontainer.MarshalMap{
+			"customfield_A": "testA",
+		},
+	}
+
+	bytes, err := json.Marshal(i)
+	if err != nil {
+		t.Errorf("Expected nil err, received %s", err)
+	}
+
+	received := new(WorkPackage)
+	// the order of json might be different. so unmarshal it again and compare objects
+	err = json.Unmarshal(bytes, received)
+	if err != nil {
+		t.Errorf("Expected nil err, received %s", err)
+	}
+
+	if !reflect.DeepEqual(i, received) {
+		t.Errorf("Received object different from expected. Expected %+v, received %+v", i, received)
 	}
 }
