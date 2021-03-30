@@ -118,29 +118,6 @@ type WPPayload struct {
 type WPFormLinks struct {
 }
 
-// SearchOperator represents Search operators by custom type const
-// Doc. https://docs.openproject.org/api/filters/#header-available-filters-1
-type SearchOperator int32
-
-const (
-	// Equal 			'='
-	Equal SearchOperator = 0
-	// Different 		'<>'
-	Different SearchOperator = 1
-	// GreaterThan 		'>'
-	GreaterThan SearchOperator = 2
-	// LowerThan 		'<'
-	LowerThan SearchOperator = 3
-	// SearchString 	'**'
-	SearchString SearchOperator = 4
-	// Like is 			'~'
-	Like SearchOperator = 5
-	// GreaterOrEqual is'>='
-	GreaterOrEqual SearchOperator = 6
-	// LowerOrEqual is 	'<='
-	LowerOrEqual SearchOperator = 7
-)
-
 // Constants to represent OpenProject standard GET parameters
 const paramFilters = "filters"
 
@@ -196,7 +173,7 @@ func (fops *FilterOptions) prepareFilters() url.Values {
 	for _, field := range fops.Fields {
 		s := fmt.Sprintf(
 			"{\"%[1]v\":{\"operator\":\"%[2]v\",\"values\":[\"%[3]v\"]}}",
-			field.Field, interpretOperator(field.Operator), field.Value)
+			field.Field, field.Operator, field.Value)
 
 		filterTemplate += s
 	}

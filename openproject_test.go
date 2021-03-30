@@ -160,30 +160,6 @@ func TestClient_NewRequest(t *testing.T) {
 	}
 }
 
-func TestClient_NewRawRequest(t *testing.T) {
-	c, err := NewClient(nil, testOpenProjectInstanceURL)
-	if err != nil {
-		t.Errorf("An error occurred. Expected nil. Got %+v.", err)
-	}
-
-	inURL, outURL := "api/v3/workpackages/", testOpenProjectInstanceURL+"api/v3/workpackages/"
-
-	outBody := `{"id":1}` + "\n"
-	inBody := outBody
-	req, _ := c.NewRawRequest("GET", inURL, strings.NewReader(outBody))
-
-	// Test that relative URL was expanded
-	if got, want := req.URL.String(), outURL; got != want {
-		t.Errorf("NewRawRequest(%q) URL is %v, want %v", inURL, got, want)
-	}
-
-	// Test that body was JSON encoded
-	body, _ := ioutil.ReadAll(req.Body)
-	if got, want := string(body), outBody; got != want {
-		t.Errorf("NewRawRequest(%v) Body is %v, want %v", inBody, got, want)
-	}
-}
-
 func testURLParseError(t *testing.T, err error) {
 	if err == nil {
 		t.Errorf("Expected error to be returned")
