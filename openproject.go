@@ -9,12 +9,33 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"reflect"
 	"strings"
 	"time"
 
-	"github.com/google/go-querystring/query"
 	"github.com/pkg/errors"
+)
+
+// SearchOperator represents Search operators by custom type const
+// Doc. https://docs.openproject.org/api/filters/#header-available-filters-1
+type SearchOperator string
+
+const (
+	// Equal operator
+	Equal SearchOperator = "="
+	// Different operator
+	Different SearchOperator = "<>"
+	// GreaterThan operator
+	GreaterThan SearchOperator = ">"
+	// LowerThan operator
+	LowerThan SearchOperator = "<"
+	// SearchString operator
+	SearchString SearchOperator = "**"
+	// Like operator
+	Like SearchOperator = "~"
+	// GreaterOrEqual operator
+	GreaterOrEqual SearchOperator = ">="
+	// LowerOrEqual operator
+	LowerOrEqual SearchOperator = "<="
 )
 
 // OPGenericDescription is an structure widely used in several OpenProject API objects
@@ -97,49 +118,6 @@ func NewClient(httpClient httpClient, baseURL string) (*Client, error) {
 	return c, nil
 }
 
-// NewRawRequestWithContext creates an API request.
-// A relative URL can be provided in urlStr, in which case it is resolved relative to the baseURL of the Client.
-// Allows using an optional native io.Reader for sourcing the request body.
-func (c *Client) NewRawRequestWithContext(ctx context.Context, method, urlStr string, body io.Reader) (*http.Request, error) {
-	rel, err := url.Parse(urlStr)
-	if err != nil {
-		return nil, err
-	}
-	// Relative URLs should be specified without a preceding slash since baseURL will have the trailing slash
-	rel.Path = strings.TrimLeft(rel.Path, "/")
-
-	u := c.baseURL.ResolveReference(rel)
-
-	req, err := newRequestWithContext(ctx, method, u.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Set("Content-Type", "application/json")
-
-	// Set authentication information
-	if c.Authentication.authType == authTypeSession {
-		// Set session cookie if there is one
-		if c.session != nil {
-			for _, cookie := range c.session.Cookies {
-				req.AddCookie(cookie)
-			}
-		}
-	} else if c.Authentication.authType == authTypeBasic {
-		// Set basic auth information
-		if c.Authentication.username != "" {
-			req.SetBasicAuth(c.Authentication.username, c.Authentication.password)
-		}
-	}
-
-	return req, nil
-}
-
-// NewRawRequest wraps NewRawRequestWithContext using the background context.
-func (c *Client) NewRawRequest(method, urlStr string, body io.Reader) (*http.Request, error) {
-	return c.NewRawRequestWithContext(context.Background(), method, urlStr, body)
-}
-
 // NewRequestWithContext creates an API request.
 // A relative URL can be provided in urlStr, in which case it is resolved relative to the baseURL of the Client.
 // If specified, the value pointed to by body is JSON encoded and included as the request body.
@@ -190,28 +168,6 @@ func (c *Client) NewRequestWithContext(ctx context.Context, method, urlStr strin
 // NewRequest wraps NewRequestWithContext using the background context.
 func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Request, error) {
 	return c.NewRequestWithContext(context.Background(), method, urlStr, body)
-}
-
-// addOptions adds the parameters in opt as URL query parameters to s.  opt
-// must be a struct whose fields may contain "url" tags.
-func addOptions(s string, opt interface{}) (string, error) {
-	v := reflect.ValueOf(opt)
-	if v.Kind() == reflect.Ptr && v.IsNil() {
-		return s, nil
-	}
-
-	u, err := url.Parse(s)
-	if err != nil {
-		return s, err
-	}
-
-	qs, err := query.Values(opt)
-	if err != nil {
-		return s, err
-	}
-
-	u.RawQuery = qs.Encode()
-	return u.String(), nil
 }
 
 // NewMultiPartRequestWithContext creates an API request including a multi-part file.
@@ -412,23 +368,6 @@ func cloneRequest(r *http.Request) *http.Request {
 		r2.Header[k] = append([]string(nil), s...)
 	}
 	return r2
-}
-
-// Interpret Operator collection and return its string ( Used in searches like GetList(...) )
-func interpretOperator(operator SearchOperator) string {
-	result := "="
-
-	switch operator {
-	case GreaterThan:
-		result = ">"
-	case LowerThan:
-		result = "<"
-	case Different:
-		result = "<>"
-	}
-	//TODO: Complete list of operators
-
-	return result
 }
 
 // getObjectAndClient gets an inputObject (inputObject is an OpenProject object like WorkPackage, WikiPage, Status, etc.)
