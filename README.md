@@ -1,6 +1,7 @@
 # OpenProject Go Client Library
 [![codecov](https://codecov.io/gh/manuelbcd/go-openproject/branch/master/graph/badge.svg?token=C945C180MG)](https://codecov.io/gh/manuelbcd/go-openproject)
 [![Go Report Card](https://goreportcard.com/badge/github.com/manuelbcd/go-openproject)](https://goreportcard.com/report/github.com/manuelbcd/go-openproject)
+[![Go Reference](https://pkg.go.dev/badge/github.com/manuelbcd/go-openproject.svg)](https://pkg.go.dev/github.com/manuelbcd/go-openproject)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [Go](https://golang.org/) client library for [OpenProject](https://www.openproject.org)
