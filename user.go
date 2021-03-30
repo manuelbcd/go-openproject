@@ -75,7 +75,7 @@ func (s *UserService) GetList(options *FilterOptions) (*SearchResultUser, *Respo
 // CreateWithContext creates a user from a JSON representation.
 func (s *UserService) CreateWithContext(ctx context.Context, user *User) (*User, *Response, error) {
 	apiEndpoint := "api/v3/users"
-	userResponse, resp, err := CreateWithContext(ctx, s, apiEndpoint)
+	userResponse, resp, err := CreateWithContext(ctx, user, s, apiEndpoint)
 	return userResponse.(*User), resp, err
 }
 

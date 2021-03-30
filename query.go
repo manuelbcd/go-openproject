@@ -27,16 +27,23 @@ type QueryElements struct {
 // Query is the object representing OpenProject queries.
 // TODO: Complete fields (i.e. timelineVisible, showHierarchies, timelineZoomLevel, showHierarchies, etc...
 type Query struct {
-	Type      string        `json:"_type,omitempty" structs:"_type,omitempty"`
-	Starred   bool          `json:"starred,omitempty" structs:"starred,omitempty"`
-	ID        int           `json:"id,omitempty" structs:"id,omitempty"`
-	Name      string        `json:"name,omitempty" structs:"name,omitempty"`
-	CreatedAt *Time         `json:"createdAt,omitempty" structs:"createdAt,omitempty"`
-	UpdatedAt *Time         `json:"updatedAt,omitempty" structs:"updatedAt,omitempty"`
-	Filters   []QueryFilter `json:"filters,omitempty" structs:"filters,omitempty"`
-	Sums      bool          `json:"sums,omitempty" structs:"sums,omitempty"`
-	Public    bool          `json:"public,omitempty" structs:"public,omitempty"`
-	Hidden    bool          `json:"hidden,omitempty" structs:"hidden,omitempty"`
+	Type             string          `json:"_type,omitempty" structs:"_type,omitempty"`
+	Starred          bool            `json:"starred,omitempty" structs:"starred,omitempty"`
+	ID               int             `json:"id,omitempty" structs:"id,omitempty"`
+	Name             string          `json:"name,omitempty" structs:"name,omitempty"`
+	Project          string          `json:"project,omitempty" structs:"columns,omitempty"`
+	CreatedAt        *Time           `json:"createdAt,omitempty" structs:"createdAt,omitempty"`
+	UpdatedAt        *Time           `json:"updatedAt,omitempty" structs:"updatedAt,omitempty"`
+	Filters          []QueryFilter   `json:"filters,omitempty" structs:"filters,omitempty"`
+	Sums             bool            `json:"sums,omitempty" structs:"sums,omitempty"`
+	Public           bool            `json:"public,omitempty" structs:"public,omitempty"`
+	Hidden           bool            `json:"hidden,omitempty" structs:"hidden,omitempty"`
+	TimelineVisible  bool            `json:"timelineVisible,omitempty" structs:"timelineVisible,omitempty"`
+	HighlightingMode string          `json:"highlightingMode,omitempty" structs:"highlightingMode,omitempty"`
+	ShowHierarchies  bool            `json:"showHierarchies,omitempty" structs:"showHierarchies,omitempty"`
+	Columns          []OPGenericLink `json:"columns,omitempty" structs:"columns,omitempty"`
+	GroupBy          []OPGenericLink `json:"groupBy,omitempty" structs:"groupBy,omitempty"`
+	SortBy           []OPGenericLink `json:"sortBy,omitempty" structs:"sortBy,omitempty"`
 }
 
 // QueryFilter filters within a query
@@ -58,17 +65,29 @@ func (s *QueryService) Get(queryID string) (*Query, *Response, error) {
 	return s.GetWithContext(context.Background(), queryID)
 }
 
-// GetList wraps GetListWithContext using the background context.
-func (s *QueryService) GetList() (*SearchResultQuery, *Response, error) {
-	return s.GetListWithContext(context.Background())
-}
-
 // GetListWithContext Retrieve status list with context
 // TODO: Implement search parameters-options
 func (s *QueryService) GetListWithContext(ctx context.Context) (*SearchResultQuery, *Response, error) {
 	apiEndpoint := "api/v3/queries"
 	Obj, Resp, err := GetListWithContext(ctx, s, apiEndpoint, nil)
 	return Obj.(*SearchResultQuery), Resp, err
+}
+
+// GetList wraps GetListWithContext using the background context.
+func (s *QueryService) GetList() (*SearchResultQuery, *Response, error) {
+	return s.GetListWithContext(context.Background())
+}
+
+// CreateWithContext creates a query from a JSON representation.
+func (s *QueryService) CreateWithContext(ctx context.Context, queryObj *Query) (*Query, *Response, error) {
+	apiEndpoint := "api/v3/queries"
+	wpResponse, resp, err := CreateWithContext(ctx, queryObj, s, apiEndpoint)
+	return wpResponse.(*Query), resp, err
+}
+
+// Create wraps CreateWithContext using the background context.
+func (s *QueryService) Create(queryObj *Query) (*Query, *Response, error) {
+	return s.CreateWithContext(context.Background(), queryObj)
 }
 
 // DeleteWithContext will delete a single query object

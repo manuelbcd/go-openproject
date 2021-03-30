@@ -185,15 +185,15 @@ func (fops *FilterOptions) prepareFilters() url.Values {
 }
 
 // CreateWithContext creates a work-package or a sub-task from a JSON representation.
-func (s *WorkPackageService) CreateWithContext(ctx context.Context, projectName string) (*WorkPackage, *Response, error) {
+func (s *WorkPackageService) CreateWithContext(ctx context.Context, wpObject *WorkPackage, projectName string) (*WorkPackage, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/projects/%s/work_packages", projectName)
-	wpResponse, resp, err := CreateWithContext(ctx, s, apiEndpoint)
+	wpResponse, resp, err := CreateWithContext(ctx, wpObject, s, apiEndpoint)
 	return wpResponse.(*WorkPackage), resp, err
 }
 
 // Create wraps CreateWithContext using the background context.
-func (s *WorkPackageService) Create(workPackage *WorkPackage, projectName string) (*WorkPackage, *Response, error) {
-	return s.CreateWithContext(context.Background(), projectName)
+func (s *WorkPackageService) Create(wpObject *WorkPackage, projectName string) (*WorkPackage, *Response, error) {
+	return s.CreateWithContext(context.Background(), wpObject, projectName)
 }
 
 // GetListWithContext will retrieve a list of work-packages using filters

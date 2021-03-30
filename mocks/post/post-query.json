@@ -1,0 +1,292 @@
+{
+  "_type": "Query",
+  "starred": false,
+  "id": 39,
+  "name": "My filter-query",
+  "createdAt": "2021-03-30T16:55:47Z",
+  "updatedAt": "2021-03-30T16:55:47Z",
+  "filters": [
+    {
+      "_type": "StatusQueryFilter",
+      "name": "Status",
+      "_links": {
+        "schema": {
+          "href": "/api/v3/queries/filter_instance_schemas/status"
+        },
+        "filter": {
+          "href": "/api/v3/queries/filters/status",
+          "title": "Status"
+        },
+        "operator": {
+          "href": "/api/v3/queries/operators/o",
+          "title": "open"
+        },
+        "values": []
+      }
+    },
+    {
+      "_type": "AssigneeQueryFilter",
+      "name": "Assignee",
+      "_links": {
+        "schema": {
+          "href": "/api/v3/queries/filter_instance_schemas/assignee"
+        },
+        "filter": {
+          "href": "/api/v3/queries/filters/assignee",
+          "title": "Assignee"
+        },
+        "operator": {
+          "href": "/api/v3/queries/operators/%3D",
+          "title": "is"
+        },
+        "values": [
+          {
+            "href": "/api/v3/users/me",
+            "title": "me"
+          }
+        ]
+      }
+    }
+  ],
+  "sums": false,
+  "public": false,
+  "hidden": false,
+  "timelineVisible": false,
+  "showHierarchies": true,
+  "timelineZoomLevel": "auto",
+  "timelineLabels": {},
+  "highlightingMode": "inline",
+  "_embedded": {
+    "project": {
+      "_type": "Project",
+      "id": 1,
+      "identifier": "demo-project",
+      "name": "Demo project",
+      "active": true,
+      "public": true,
+      "description": {
+        "format": "markdown",
+        "raw": "This is a short summary of the goals of this demo project.",
+        "html": "<p class=\"op-uc-p\">This is a short summary of the goals of this demo project.</p>"
+      },
+      "createdAt": "2021-02-18T10:10:47Z",
+      "updatedAt": "2021-02-18T10:10:47Z",
+      "status": "on track",
+      "statusExplanation": {
+        "format": "markdown",
+        "raw": "All tasks are on schedule. The people involved know their tasks. The system is completely set up.",
+        "html": "<p class=\"op-uc-p\">All tasks are on schedule. The people involved know their tasks. The system is completely set up.</p>"
+      },
+      "_links": {
+        "self": {
+          "href": "/api/v3/projects/1",
+          "title": "Demo project"
+        },
+        "createWorkPackage": {
+          "href": "/api/v3/projects/1/work_packages/form",
+          "method": "post"
+        },
+        "createWorkPackageImmediately": {
+          "href": "/api/v3/projects/1/work_packages",
+          "method": "post"
+        },
+        "workPackages": {
+          "href": "/api/v3/projects/1/work_packages"
+        },
+        "categories": {
+          "href": "/api/v3/projects/1/categories"
+        },
+        "versions": {
+          "href": "/api/v3/projects/1/versions"
+        },
+        "memberships": {
+          "href": "/api/v3/memberships?filters=%5B%7B%22project%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%221%22%5D%7D%7D%5D"
+        },
+        "types": {
+          "href": "/api/v3/projects/1/types"
+        },
+        "update": {
+          "href": "/api/v3/projects/1/form",
+          "method": "post"
+        },
+        "updateImmediately": {
+          "href": "/api/v3/projects/1",
+          "method": "patch"
+        },
+        "delete": {
+          "href": "/api/v3/projects/1",
+          "method": "delete"
+        },
+        "schema": {
+          "href": "/api/v3/projects/schema"
+        },
+        "parent": {
+          "href": null,
+          "title": null
+        }
+      }
+    },
+    "user": {
+      "_type": "User",
+      "id": 1,
+      "name": "John Smith",
+      "createdAt": "2021-02-18T10:10:46Z",
+      "updatedAt": "2021-03-30T16:08:19Z",
+      "login": "john.smith@acme.com",
+      "admin": true,
+      "firstName": "John",
+      "lastName": "Smith",
+      "email": "john.smith@acme.com",
+      "avatar": "https://secure.gravatar.com/avatar/af5c1e5d637c5bdf7be72b0904272a89?default=404&secure=true",
+      "status": "active",
+      "identityUrl": null,
+      "language": "en",
+      "_links": {
+        "self": {
+          "href": "/api/v3/users/1",
+          "title": "John Smith"
+        },
+        "memberships": {
+          "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%221%22%5D%7D%7D%5D",
+          "title": "Members"
+        },
+        "showUser": {
+          "href": "/users/1",
+          "type": "text/html"
+        },
+        "updateImmediately": {
+          "href": "/api/v3/users/1",
+          "title": "Update john.smith@acme.com",
+          "method": "patch"
+        },
+        "lock": {
+          "href": "/api/v3/users/1/lock",
+          "title": "Set lock on john.smith@acme.com",
+          "method": "post"
+        }
+      }
+    },
+    "sortBy": [
+      {
+        "_type": "QuerySortBy",
+        "id": "id-asc",
+        "name": "ID (Ascending)",
+        "_links": {
+          "self": {
+            "href": "/api/v3/queries/sort_bys/id-asc",
+            "title": "ID (Ascending)"
+          },
+          "column": {
+            "href": "/api/v3/queries/columns/id",
+            "title": "ID"
+          },
+          "direction": {
+            "href": "urn:openproject-org:api:v3:queries:directions:asc",
+            "title": "Ascending"
+          }
+        }
+      }
+    ],
+    "columns": [
+      {
+        "_type": "QueryColumn::Property",
+        "id": "id",
+        "name": "ID",
+        "_links": {
+          "self": {
+            "href": "/api/v3/queries/columns/id",
+            "title": "ID"
+          }
+        }
+      },
+      {
+        "_type": "QueryColumn::Property",
+        "id": "subject",
+        "name": "Subject",
+        "_links": {
+          "self": {
+            "href": "/api/v3/queries/columns/subject",
+            "title": "Subject"
+          }
+        }
+      },
+      {
+        "_type": "QueryColumn::Property",
+        "id": "status",
+        "name": "Status",
+        "_links": {
+          "self": {
+            "href": "/api/v3/queries/columns/status",
+            "title": "Status"
+          }
+        }
+      }
+    ],
+    "highlightedAttributes": []
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/queries/39",
+      "title": "My filter-query"
+    },
+    "project": {
+      "href": "/api/v3/projects/1",
+      "title": "Demo project"
+    },
+    "results": {
+      "href": "/api/v3/projects/1/work_packages?columns%5B%5D=id&columns%5B%5D=subject&columns%5B%5D=status&filters=%5B%7B%22status%22%3A%7B%22operator%22%3A%22o%22%2C%22values%22%3A%5B%5D%7D%7D%2C%7B%22assignee%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22me%22%5D%7D%7D%5D&offset=1&pageSize=20&showHierarchies=true&showSums=false&sortBy=%5B%5B%22id%22%2C%22asc%22%5D%5D"
+    },
+    "star": {
+      "href": "/api/v3/queries/39/star",
+      "method": "patch"
+    },
+    "schema": {
+      "href": "/api/v3/projects/demo-project/queries/schema"
+    },
+    "update": {
+      "href": "/api/v3/queries/39/form",
+      "method": "post"
+    },
+    "updateImmediately": {
+      "href": "/api/v3/queries/39",
+      "method": "patch"
+    },
+    "updateOrderedWorkPackages": {
+      "href": "/api/v3/queries/39/order",
+      "method": "put"
+    },
+    "delete": {
+      "href": "/api/v3/queries/39",
+      "method": "delete"
+    },
+    "user": {
+      "href": "/api/v3/users/1",
+      "title": "John Smith"
+    },
+    "sortBy": [
+      {
+        "href": "/api/v3/queries/sort_bys/id-asc",
+        "title": "ID (Ascending)"
+      }
+    ],
+    "groupBy": {
+      "href": null,
+      "title": null
+    },
+    "columns": [
+      {
+        "href": "/api/v3/queries/columns/id",
+        "title": "ID"
+      },
+      {
+        "href": "/api/v3/queries/columns/subject",
+        "title": "Subject"
+      },
+      {
+        "href": "/api/v3/queries/columns/status",
+        "title": "Status"
+      }
+    ],
+    "highlightedAttributes": []
+  }
+}
