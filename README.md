@@ -71,7 +71,7 @@ func main() {
 ```
 ## Supported objects
 | Endpoint | GET single | GET many | POST | PUT | DELETE single | DELETE many |
-| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| ------------- | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
 | Attachments (Info) | :heavy_check_mark: | :heavy_check_mark: | *implementing* | - | *pending* | - |
 | Attachments (Download) | :heavy_check_mark: | - | - | - | - | - |
 | Categories | :heavy_check_mark: | :heavy_check_mark: | - | - | - | - |
