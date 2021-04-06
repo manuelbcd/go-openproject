@@ -70,19 +70,19 @@ func main() {
 }
 ```
 ## Supported objects
-| Endpoint | GET single | GET many | POST | PUT | DELETE single | DELETE many |
-| ------------- | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| Attachments (Info) | :heavy_check_mark: | :heavy_check_mark: | *implementing* | - | *pending* | - |
-| Attachments (Download) | :heavy_check_mark: | - | - | - | - | - |
-| Categories | :heavy_check_mark: | :heavy_check_mark: | - | - | - | - |
-| Documents | *implementing* | - | - | - | - | - |
-| Projects  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | *pending* | *pending* | *pending* | *pending* |
-| Queries | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | - | :heavy_check_mark: | - |
+| Endpoint | GET single | GET many | POST | PUT | DELETE single |
+| ------------- | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
+| Attachments (Info) | :heavy_check_mark: | :heavy_check_mark: | *implementing* | - | *pending* |
+| Attachments (Download) | :heavy_check_mark: | - | - | - | - |
+| Categories | :heavy_check_mark: | :heavy_check_mark: | - | - | - |
+| Documents | *implementing* | - | - | - | - |
+| Projects  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | *pending* | *pending* | *pending* |
+| Queries | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | - | :heavy_check_mark: |
 | Schemas | *pending* |
-| Statuses | :heavy_check_mark: | :heavy_check_mark: | *pending* | *pending* | *pending* | *pending* |
-| Users | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | | :heavy_check_mark: | *pending* |
-| Wiki Pages | :heavy_check_mark: | *pending* | *pending* | *pending* | *pending* | *pending* |
-| WorkPackages | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | | :heavy_check_mark: | |
+| Statuses | :heavy_check_mark: | :heavy_check_mark: | *pending* | *pending* | *pending* |
+| Users | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | | :heavy_check_mark: |
+| Wiki Pages | :heavy_check_mark: | *pending* | *pending* | *pending* | *pending* |
+| WorkPackages | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | | :heavy_check_mark: | 
 
 ## Thanks
 Thanks [Wieland](https://github.com/wielinde), [Oliver](https://github.com/oliverguenther) and [OpenProject](https://github.com/opf/openproject) team for your support.
