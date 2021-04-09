@@ -6,6 +6,8 @@
 
 [Go](https://golang.org/) client library for [OpenProject](https://www.openproject.org)
 
+![Openproject client library written in Go](./go-openproject.png)
+
 ## API doc
 https://docs.openproject.org/api
 
