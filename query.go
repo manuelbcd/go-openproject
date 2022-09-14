@@ -3,6 +3,7 @@ package openproject
 import (
 	"context"
 	"fmt"
+	"math"
 )
 
 // QueryService handles statuses from the OpenProject instance / API.
@@ -13,10 +14,15 @@ type QueryService struct {
 // SearchResultQuery represent a list of Projects
 type SearchResultQuery struct {
 	Embedded statusElements `json:"_embedded,omitempty" structs:"_embedded,omitempty"`
-	Total    int            `json:"total" structs:"total"`
-	Count    int            `json:"count" structs:"count"`
-	PageSize int            `json:"pageSize" structs:"pageSize"`
-	Offset   int            `json:"offset" structs:"offset"`
+	PaginationParam
+}
+
+func (s *SearchResultQuery) TotalPage() int {
+	return int(math.Ceil(float64(s.Total) / float64(s.PageSize)))
+}
+
+func (s *SearchResultQuery) ConcatEmbed(states interface{}) {
+	s.Embedded.Elements = append(s.Embedded.Elements, states.(*SearchResultQuery).Embedded.Elements...)
 }
 
 // QueryElements array of elements within a query
@@ -57,6 +63,9 @@ type QueryFilter struct {
 func (s *QueryService) GetWithContext(ctx context.Context, queryID string) (*Query, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/queries/%s", queryID)
 	Obj, Resp, err := GetWithContext(ctx, s, apiEndpoint)
+	if err != nil {
+		return nil, Resp, err
+	}
 	return Obj.(*Query), Resp, err
 }
 
@@ -67,21 +76,27 @@ func (s *QueryService) Get(queryID string) (*Query, *Response, error) {
 
 // GetListWithContext Retrieve status list with context
 // TODO: Implement search parameters-options
-func (s *QueryService) GetListWithContext(ctx context.Context) (*SearchResultQuery, *Response, error) {
+func (s *QueryService) GetListWithContext(ctx context.Context, offset int, pageSize int) (*SearchResultQuery, *Response, error) {
 	apiEndpoint := "api/v3/queries"
-	Obj, Resp, err := GetListWithContext(ctx, s, apiEndpoint, nil)
+	Obj, Resp, err := GetListWithContext(ctx, s, apiEndpoint, nil, offset, pageSize)
+	if err != nil {
+		return nil, Resp, err
+	}
 	return Obj.(*SearchResultQuery), Resp, err
 }
 
 // GetList wraps GetListWithContext using the background context.
-func (s *QueryService) GetList() (*SearchResultQuery, *Response, error) {
-	return s.GetListWithContext(context.Background())
+func (s *QueryService) GetList(offset int, pageSize int) (*SearchResultQuery, *Response, error) {
+	return s.GetListWithContext(context.Background(), offset, pageSize)
 }
 
 // CreateWithContext creates a query from a JSON representation.
 func (s *QueryService) CreateWithContext(ctx context.Context, queryObj *Query) (*Query, *Response, error) {
 	apiEndpoint := "api/v3/queries"
 	wpResponse, resp, err := CreateWithContext(ctx, queryObj, s, apiEndpoint)
+	if err != nil {
+		return nil, resp, err
+	}
 	return wpResponse.(*Query), resp, err
 }
 

@@ -40,13 +40,13 @@ func (s *CategoryService) Get(categoryID string) (*Category, *Response, error) {
 }
 
 // GetListWithContext retrieve category list from project with context
-func (s *CategoryService) GetListWithContext(ctx context.Context, projectID string) (*CategoryList, *Response, error) {
+func (s *CategoryService) GetListWithContext(ctx context.Context, projectID string, offset int, pageSize int) (*CategoryList, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/projects/%s/categories", projectID)
-	Obj, Resp, err := GetListWithContext(ctx, s, apiEndpoint, nil)
+	Obj, Resp, err := GetListWithContext(ctx, s, apiEndpoint, nil, offset, pageSize)
 	return Obj.(*CategoryList), Resp, err
 }
 
 // GetList wraps GetListWithContext using the background context.
-func (s *CategoryService) GetList(projectID string) (*CategoryList, *Response, error) {
-	return s.GetListWithContext(context.Background(), projectID)
+func (s *CategoryService) GetList(projectID string, offset int, pageSize int) (*CategoryList, *Response, error) {
+	return s.GetListWithContext(context.Background(), projectID, offset, pageSize)
 }

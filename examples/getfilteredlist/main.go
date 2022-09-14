@@ -28,7 +28,7 @@ func main() {
 		},
 	}
 
-	wpResponse, resp, err := client.WorkPackage.GetList(opt)
+	wpResponse, resp, err := client.WorkPackage.GetList(opt, 0, 10)
 	if err != nil {
 		body, err := ioutil.ReadAll(resp.Body)
 		fmt.Printf(string(body))

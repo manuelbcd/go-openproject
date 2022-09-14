@@ -1,0 +1,424 @@
+{
+  "_type": "Collection",
+  "total": 25,
+  "count": 10,
+  "pageSize": 10,
+  "offset": 1,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "User",
+        "id": 1,
+        "name": "",
+        "createdAt": "2021-02-18T10:10:46Z",
+        "updatedAt": "2021-02-18T10:10:46Z",
+        "login": "q.mtjz@utkhpw.ph",
+        "admin": true,
+        "firstName": "Brian",
+        "lastName": "Smith",
+        "email": "Brian Smith@test.com",
+        "avatar": "http://txpgrjly.tn/mvdtdl",
+        "status": "active",
+        "identityUrl": "",
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "http://irxsc.tw/mwbczxn",
+            "title": "Brian Smith"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/1",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/1",
+            "title": "Update d.ivveggf@ijj.pro",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "api/v3/users/1/lock",
+            "title": "Set lock on h.taeoca@pikhwhfslm.ly",
+            "method": "post"
+          }
+        }
+      },
+      {
+        "_type": "User",
+        "id": 2,
+        "name": "",
+        "createdAt": "2021-02-18T10:10:46Z",
+        "updatedAt": "2021-02-18T10:10:46Z",
+        "login": "n.eyund@ohsmg.tk",
+        "admin": true,
+        "firstName": "Larry",
+        "lastName": "Williams",
+        "email": "Larry Williams@test.com",
+        "avatar": "http://hyxpcm.fj/ivkscysowu",
+        "status": "active",
+        "identityUrl": "",
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "http://xvyehdhak.se/tkjsjmjl",
+            "title": "Larry Williams"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/2",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/2",
+            "title": "Update o.kyqkexqndn@ybqybuple.la",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "api/v3/users/2/lock",
+            "title": "Set lock on e.rnyfamenx@nxaleuditf.ge",
+            "method": "post"
+          }
+        }
+      },
+      {
+        "_type": "User",
+        "id": 3,
+        "name": "",
+        "createdAt": "2021-02-18T10:10:46Z",
+        "updatedAt": "2021-02-18T10:10:46Z",
+        "login": "h.xwodjryt@npfinwyk.is",
+        "admin": false,
+        "firstName": "Larry",
+        "lastName": "Lewis",
+        "email": "Larry Lewis@test.com",
+        "avatar": "http://qxxmthtc.mil/ryvjheyo",
+        "status": "active",
+        "identityUrl": "",
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "http://vlfcz.ng/yewjhjy",
+            "title": "Larry Lewis"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/3",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/3",
+            "title": "Update i.lelzscifwz@jjjtuxvm.com.cn",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "api/v3/users/3/lock",
+            "title": "Set lock on o.mylsv@lywkhwct.tc",
+            "method": "post"
+          }
+        }
+      },
+      {
+        "_type": "User",
+        "id": 4,
+        "name": "",
+        "createdAt": "2021-02-18T10:10:46Z",
+        "updatedAt": "2021-02-18T10:10:46Z",
+        "login": "m.ptwdkfke@uobyhzl.gt",
+        "admin": true,
+        "firstName": "Robert",
+        "lastName": "Young",
+        "email": "Robert Young@test.com",
+        "avatar": "http://exxeodb.qa/ijoqytb",
+        "status": "active",
+        "identityUrl": "",
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "http://mfgbpphkoo.gl/krdb",
+            "title": "Robert Young"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/4",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/4",
+            "title": "Update d.hyxorp@knxk.bv",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "api/v3/users/4/lock",
+            "title": "Set lock on x.lohkg@hotn.sy",
+            "method": "post"
+          }
+        }
+      },
+      {
+        "_type": "User",
+        "id": 5,
+        "name": "",
+        "createdAt": "2021-02-18T10:10:46Z",
+        "updatedAt": "2021-02-18T10:10:46Z",
+        "login": "p.lfjt@esyki.pl",
+        "admin": false,
+        "firstName": "Shirley",
+        "lastName": "Davis",
+        "email": "Shirley Davis@test.com",
+        "avatar": "http://lkn.ae/qetq",
+        "status": "active",
+        "identityUrl": "",
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "http://evspt.jp/hfvhnjvsz",
+            "title": "Shirley Davis"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/5",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/5",
+            "title": "Update m.ehbnk@xqudn.ml",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "api/v3/users/5/lock",
+            "title": "Set lock on g.ftpruqi@vkxjjgmljd.mn",
+            "method": "post"
+          }
+        }
+      },
+      {
+        "_type": "User",
+        "id": 6,
+        "name": "",
+        "createdAt": "2021-02-18T10:10:46Z",
+        "updatedAt": "2021-02-18T10:10:46Z",
+        "login": "e.eizxpubw@qhs.cu",
+        "admin": false,
+        "firstName": "Eric",
+        "lastName": "Williams",
+        "email": "Eric Williams@test.com",
+        "avatar": "http://qmmke.ye/sukonff",
+        "status": "active",
+        "identityUrl": "",
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "http://szch.gr/idlq",
+            "title": "Eric Williams"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/6",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/6",
+            "title": "Update p.vgbn@esmdvwba.coop",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "api/v3/users/6/lock",
+            "title": "Set lock on h.pfhjcmjz@hldvgl.to",
+            "method": "post"
+          }
+        }
+      },
+      {
+        "_type": "User",
+        "id": 7,
+        "name": "",
+        "createdAt": "2021-02-18T10:10:46Z",
+        "updatedAt": "2021-02-18T10:10:46Z",
+        "login": "l.hjh@stwys.li",
+        "admin": false,
+        "firstName": "Sarah",
+        "lastName": "Clark",
+        "email": "Sarah Clark@test.com",
+        "avatar": "http://mfzjkdspy.md/efbziprw",
+        "status": "active",
+        "identityUrl": "",
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "http://berbqxbd.cn/asuw",
+            "title": "Sarah Clark"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/7",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/7",
+            "title": "Update d.iqenmmstk@emwoaicdg.bf",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "api/v3/users/7/lock",
+            "title": "Set lock on d.pypmmm@vzqg.ad",
+            "method": "post"
+          }
+        }
+      },
+      {
+        "_type": "User",
+        "id": 8,
+        "name": "",
+        "createdAt": "2021-02-18T10:10:46Z",
+        "updatedAt": "2021-02-18T10:10:46Z",
+        "login": "s.zeltdsvt@moypy.nc",
+        "admin": true,
+        "firstName": "Jeffrey",
+        "lastName": "Williams",
+        "email": "Jeffrey Williams@test.com",
+        "avatar": "http://acnlmhgn.ao/dwdbo",
+        "status": "active",
+        "identityUrl": "",
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "http://cqsjqplou.sl/udavyr",
+            "title": "Jeffrey Williams"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/8",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/8",
+            "title": "Update b.ipmuk@sojnsu.vg",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "api/v3/users/8/lock",
+            "title": "Set lock on p.gftop@dan.info",
+            "method": "post"
+          }
+        }
+      },
+      {
+        "_type": "User",
+        "id": 9,
+        "name": "",
+        "createdAt": "2021-02-18T10:10:46Z",
+        "updatedAt": "2021-02-18T10:10:46Z",
+        "login": "u.hliwphcmr@gjlbcmhvd.gd",
+        "admin": true,
+        "firstName": "Jose",
+        "lastName": "Jones",
+        "email": "Jose Jones@test.com",
+        "avatar": "http://qdjpl.gov.cn/kyhvjcqtl",
+        "status": "active",
+        "identityUrl": "",
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "http://ukxqvjyu.mr/equ",
+            "title": "Jose Jones"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/9",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/9",
+            "title": "Update n.ymhohj@sqmvufcjt.zw",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "api/v3/users/9/lock",
+            "title": "Set lock on p.vwwshh@aqwqdyhjd.gy",
+            "method": "post"
+          }
+        }
+      },
+      {
+        "_type": "User",
+        "id": 10,
+        "name": "",
+        "createdAt": "2021-02-18T10:10:46Z",
+        "updatedAt": "2021-02-18T10:10:46Z",
+        "login": "e.blcu@iijbcgs.tv",
+        "admin": true,
+        "firstName": "Anthony",
+        "lastName": "Miller",
+        "email": "Anthony Miller@test.com",
+        "avatar": "http://vznjkep.co/niln",
+        "status": "active",
+        "identityUrl": "",
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "http://woghnvpsu.cq/zkm",
+            "title": "Anthony Miller"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/10",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/10",
+            "title": "Update w.rfows@tmyiekoo.bf",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "api/v3/users/10/lock",
+            "title": "Set lock on d.doyednsne@scpkmi.pa",
+            "method": "post"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/users?offset=1&pageSize=10"
+    },
+    "jumpTo": {
+      "href": "/api/v3/users?offset=%7Boffset%7D&pageSize=10",
+      "templated": true
+    },
+    "changeSize": {
+      "href": "/api/v3/users?offset=1&pageSize=%7Bsize%7D",
+      "templated": true
+    }
+  }
+}

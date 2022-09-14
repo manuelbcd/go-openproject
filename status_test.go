@@ -44,7 +44,7 @@ func TestStatusService_GetList_Success(t *testing.T) {
 		fmt.Fprint(w, string(raw))
 	})
 
-	statuses, _, err := testClient.Status.GetList()
+	statuses, _, err := testClient.Status.GetList(0, 10)
 	if statuses == nil {
 		t.Error("Expected status list but received nil")
 	}

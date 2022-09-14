@@ -44,7 +44,7 @@ func TestQueryService_GetList_Success(t *testing.T) {
 		fmt.Fprint(w, string(raw))
 	})
 
-	queries, _, err := testClient.Query.GetList()
+	queries, _, err := testClient.Query.GetList(0, 10)
 	if queries == nil {
 		t.Error("Expected query list but received nil")
 	}

@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"strconv"
 	"strings"
 	"time"
 
@@ -50,6 +51,22 @@ type OPGenericLink struct {
 	Href string `json:"href,omitempty" structs:"href,omitempty"`
 	Name string `json:"name,omitempty" structs:"name,omitempty"`
 }
+
+type PaginationParam struct {
+	Total    int `json:"total" structs:"total"`
+	Count    int `json:"count" structs:"count"`
+	PageSize int `json:"pageSize" structs:"pageSize"`
+	Offset   int `json:"offset" structs:"offset"`
+}
+
+type IPaginationResponse interface {
+	TotalPage() int
+	ConcatEmbed(interface{})
+}
+
+// Pagination parameters
+const kOffset = "offset"
+const kPageSize = "pageSize"
 
 // Time represents the Time definition of OpenProject as a time.Time of go
 type Time time.Time
@@ -465,7 +482,8 @@ func GetWithContext(ctx context.Context, objService interface{}, apiEndPoint str
 
 // GetListWithContext (generic) retrieves list of objects (HTTP GET verb)
 // obj list is a collection of any main object (attachment, user, project, work-package, etc...) as well as response interface{}
-func GetListWithContext(ctx context.Context, objService interface{}, apiEndPoint string, options *FilterOptions) (interface{}, *Response, error) {
+func GetListWithContext(ctx context.Context, objService interface{}, apiEndPoint string,
+	options *FilterOptions, offset int, pageSize int) (interface{}, *Response, error) {
 	client, resultObjList := getObjectListAndClient(objService)
 	apiEndPoint = strings.TrimRight(apiEndPoint, "/")
 	req, err := client.NewRequestWithContext(ctx, "GET", apiEndPoint, nil)
@@ -473,10 +491,14 @@ func GetListWithContext(ctx context.Context, objService interface{}, apiEndPoint
 		return nil, nil, err
 	}
 
+	values := make(url.Values)
+	values.Add(kOffset, strconv.Itoa(offset))
+	values.Add(kPageSize, strconv.Itoa(pageSize))
+
 	if options != nil {
-		values := options.prepareFilters()
-		req.URL.RawQuery = values.Encode()
+		values = options.prepareFilters(values)
 	}
+	req.URL.RawQuery = values.Encode()
 
 	resp, err := client.Do(req, resultObjList)
 	if err != nil {
