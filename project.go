@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"math"
 )
 
 // ProjectService handles projects for the OpenProject instance / API.
@@ -15,10 +16,15 @@ type ProjectService struct {
 // SearchResultProject represent a list of Projects
 type SearchResultProject struct {
 	Embedded projectElements `json:"_embedded,omitempty" structs:"_embedded,omitempty"`
-	Total    int             `json:"total" structs:"total"`
-	Count    int             `json:"count" structs:"count"`
-	PageSize int             `json:"pageSize" structs:"pageSize"`
-	Offset   int             `json:"offset" structs:"offset"`
+	PaginationParam
+}
+
+func (s *SearchResultProject) TotalPage() int {
+	return int(math.Ceil(float64(s.Total) / float64(s.PageSize)))
+}
+
+func (s *SearchResultProject) ConcatEmbed(proj interface{}) {
+	s.Embedded.Elements = append(s.Embedded.Elements, proj.(*SearchResultProject).Embedded.Elements...)
 }
 
 // ProjectElements represent elements within SearchResultProject
@@ -47,6 +53,9 @@ type ProjDescription OPGenericDescription
 func (s *ProjectService) GetWithContext(ctx context.Context, projectID string) (*Project, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/projects/%s", projectID)
 	Obj, Resp, err := GetWithContext(ctx, s, apiEndpoint)
+	if err != nil {
+		return nil, Resp, err
+	}
 	return Obj.(*Project), Resp, err
 }
 
@@ -56,15 +65,18 @@ func (s *ProjectService) Get(projectID string) (*Project, *Response, error) {
 }
 
 // GetList wraps GetListWithContext using the background context.
-func (s *ProjectService) GetList() (*SearchResultProject, *Response, error) {
-	return s.GetListWithContext(context.Background())
+func (s *ProjectService) GetList(offset int, pageSize int) (*SearchResultProject, *Response, error) {
+	return s.GetListWithContext(context.Background(), offset, pageSize)
 }
 
 // GetListWithContext retrieve project list with context
 // TODO: Implement search options
-func (s *ProjectService) GetListWithContext(ctx context.Context) (*SearchResultProject, *Response, error) {
+func (s *ProjectService) GetListWithContext(ctx context.Context, offset int, pageSize int) (*SearchResultProject, *Response, error) {
 	apiEndpoint := "api/v3/projects"
-	Obj, Resp, err := GetListWithContext(ctx, s, apiEndpoint, nil)
+	Obj, Resp, err := GetListWithContext(ctx, s, apiEndpoint, nil, offset, pageSize)
+	if err != nil {
+		return nil, Resp, err
+	}
 	return Obj.(*SearchResultProject), Resp, err
 }
 

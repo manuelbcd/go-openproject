@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/trivago/tgo/tcontainer"
+	"math"
 
 	"net/url"
 	"time"
@@ -140,10 +141,15 @@ type OptionsFields struct {
 // SearchResultWP is only a small wrapper around the Search
 type SearchResultWP struct {
 	Embedded SearchEmbeddedWP `json:"_embedded" structs:"_embedded"`
-	Total    int              `json:"total" structs:"total"`
-	Count    int              `json:"count" structs:"count"`
-	PageSize int              `json:"pageSize" structs:"pageSize"`
-	Offset   int              `json:"offset" structs:"offset"`
+	PaginationParam
+}
+
+func (s *SearchResultWP) TotalPage() int {
+	return int(math.Ceil(float64(s.Total) / float64(s.PageSize)))
+}
+
+func (s *SearchResultWP) ConcatEmbed(wp interface{}) {
+	s.Embedded.Elements = append(s.Embedded.Elements, wp.(*SearchResultWP).Embedded.Elements...)
 }
 
 // SearchEmbeddedWP represent elements within WorkPackage list
@@ -156,6 +162,9 @@ type SearchEmbeddedWP struct {
 func (s *WorkPackageService) GetWithContext(ctx context.Context, workpackageID string) (*WorkPackage, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/work_packages/%s", workpackageID)
 	Obj, Resp, err := GetWithContext(ctx, s, apiEndpoint)
+	if err != nil {
+		return nil, Resp, err
+	}
 	return Obj.(*WorkPackage), Resp, err
 }
 
@@ -165,9 +174,13 @@ func (s *WorkPackageService) Get(workpackageID string) (*WorkPackage, *Response,
 }
 
 //	prepareFilters convert FilterOptions to single URL-Encoded string to be inserted into GET request
+//
 // as parameter.
-func (fops *FilterOptions) prepareFilters() url.Values {
-	values := make(url.Values)
+func (fops *FilterOptions) prepareFilters(oldValues url.Values) url.Values {
+	values := oldValues
+	if oldValues == nil {
+		values = make(url.Values)
+	}
 
 	filterTemplate := "["
 	for _, field := range fops.Fields {
@@ -188,6 +201,9 @@ func (fops *FilterOptions) prepareFilters() url.Values {
 func (s *WorkPackageService) CreateWithContext(ctx context.Context, wpObject *WorkPackage, projectName string) (*WorkPackage, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/projects/%s/work_packages", projectName)
 	wpResponse, resp, err := CreateWithContext(ctx, wpObject, s, apiEndpoint)
+	if err != nil {
+		return nil, resp, err
+	}
 	return wpResponse.(*WorkPackage), resp, err
 }
 
@@ -197,18 +213,21 @@ func (s *WorkPackageService) Create(wpObject *WorkPackage, projectName string) (
 }
 
 // GetListWithContext will retrieve a list of work-packages using filters
-func (s *WorkPackageService) GetListWithContext(ctx context.Context, options *FilterOptions) ([]WorkPackage, *Response, error) {
+func (s *WorkPackageService) GetListWithContext(ctx context.Context, options *FilterOptions, offset int, pageSize int) ([]WorkPackage, *Response, error) {
 	u := url.URL{
 		Path: "api/v3/work_packages",
 	}
 
-	objList, resp, err := GetListWithContext(ctx, s, u.String(), options)
+	objList, resp, err := GetListWithContext(ctx, s, u.String(), options, offset, pageSize)
+	if err != nil {
+		return nil, resp, err
+	}
 	return objList.(*SearchResultWP).Embedded.Elements, resp, err
 }
 
 // GetList wraps GetListWithContext using the background context.
-func (s *WorkPackageService) GetList(options *FilterOptions) ([]WorkPackage, *Response, error) {
-	return s.GetListWithContext(context.Background(), options)
+func (s *WorkPackageService) GetList(options *FilterOptions, offset int, pageSize int) ([]WorkPackage, *Response, error) {
+	return s.GetListWithContext(context.Background(), options, offset, pageSize)
 }
 
 // DeleteWithContext will delete a single work-package.

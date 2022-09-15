@@ -21,7 +21,7 @@ func TestUserService_Get_SearchListNoFiltersSuccess(t *testing.T) {
 		fmt.Fprint(w, string(raw))
 	})
 
-	userList, resp, err := testClient.User.GetList(nil)
+	userList, resp, err := testClient.User.GetList(nil, 0, 10)
 
 	if resp == nil {
 		t.Errorf("Null response: %+v", resp)

@@ -22,7 +22,7 @@ func TestProjectService_GetList(t *testing.T) {
 		fmt.Fprint(w, string(raw))
 	})
 
-	projects, _, err := testClient.Project.GetList()
+	projects, _, err := testClient.Project.GetList(0, 10)
 	if projects == nil {
 		t.Error("Expected project list but received nil")
 	}

@@ -38,6 +38,9 @@ type WikiProject struct {
 func (s *WikiPageService) GetWithContext(ctx context.Context, wikiID string) (*WikiPage, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/wiki_pages/%s", wikiID)
 	Obj, Resp, err := GetWithContext(ctx, s, apiEndpoint)
+	if err != nil {
+		return nil, Resp, err
+	}
 	return Obj.(*WikiPage), Resp, err
 }
 

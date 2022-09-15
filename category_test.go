@@ -50,7 +50,7 @@ func TestCategoryService_GetList(t *testing.T) {
 		fmt.Fprint(w, string(raw))
 	})
 
-	categories, _, err := testClient.Category.GetList("demo-project")
+	categories, _, err := testClient.Category.GetList("demo-project", 0, 10)
 	if categories == nil {
 		t.Error("Expected category list from project, but received nil")
 	}

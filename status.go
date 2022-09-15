@@ -3,6 +3,9 @@ package openproject
 import (
 	"context"
 	"fmt"
+	"github.com/pkg/errors"
+	"math"
+	"sync"
 )
 
 // StatusService handles statuses from the OpenProject instance / API.
@@ -13,10 +16,17 @@ type StatusService struct {
 // SearchResultStatus represent a list of Statuses
 type SearchResultStatus struct {
 	Embedded statusElements `json:"_embedded,omitempty" structs:"_embedded,omitempty"`
-	Total    int            `json:"total" structs:"total"`
-	Count    int            `json:"count" structs:"count"`
-	PageSize int            `json:"pageSize" structs:"pageSize"`
-	Offset   int            `json:"offset" structs:"offset"`
+	PaginationParam
+	lock *sync.RWMutex
+}
+
+func (s *SearchResultStatus) TotalPage() int {
+	return int(math.Ceil(float64(s.Total) / float64(s.PageSize)))
+}
+
+func (s *SearchResultStatus) ConcatEmbed(status interface{}) {
+	s.lock.Lock()
+	s.Embedded.Elements = append(s.Embedded.Elements, status.(*SearchResultStatus).Embedded.Elements...)
 }
 
 // statusElements array wraps elemets within searchResultStatus
@@ -42,6 +52,9 @@ type Status struct {
 func (s *StatusService) GetWithContext(ctx context.Context, statusID string) (*Status, *Response, error) {
 	apiEndpoint := fmt.Sprintf("api/v3/statuses/%s", statusID)
 	Obj, Resp, err := GetWithContext(ctx, s, apiEndpoint)
+	if err != nil {
+		return nil, Resp, err
+	}
 	return Obj.(*Status), Resp, err
 }
 
@@ -51,14 +64,21 @@ func (s *StatusService) Get(statusID string) (*Status, *Response, error) {
 }
 
 // GetList wraps GetListWithContext using the background context.
-func (s *StatusService) GetList() (*SearchResultStatus, *Response, error) {
-	return s.GetListWithContext(context.Background())
+func (s *StatusService) GetList(offset int, pageSize int) (*SearchResultStatus, *Response, error) {
+	return s.GetListWithContext(context.Background(), offset, pageSize)
 }
 
 // GetListWithContext Retrieve status list with context
-// TODO: Implement search parameters-options
-func (s *StatusService) GetListWithContext(ctx context.Context) (*SearchResultStatus, *Response, error) {
+func (s *StatusService) GetListWithContext(ctx context.Context, offset int, pageSize int) (*SearchResultStatus, *Response, error) {
 	apiEndpoint := "api/v3/statuses"
-	Obj, Resp, err := GetListWithContext(ctx, s, apiEndpoint, nil)
+	Obj, Resp, err := GetListWithContext(ctx, s, apiEndpoint, nil, offset, pageSize)
+	if err != nil {
+		return nil, Resp, err
+	}
+	status, success := Obj.(*SearchResultStatus)
+	if !success {
+		return nil, nil, errors.New("convert to SearchResultStatus failed")
+	}
+	status.lock = &sync.RWMutex{}
 	return Obj.(*SearchResultStatus), Resp, err
 }

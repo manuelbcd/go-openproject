@@ -58,7 +58,7 @@ func TestWorkPackageService_Get_SearchListSuccess(t *testing.T) {
 		},
 	}
 
-	_, resp, err := testClient.WorkPackage.GetList(opt)
+	_, resp, err := testClient.WorkPackage.GetList(opt, 0, 10)
 
 	if resp == nil {
 		t.Errorf("Null response: %+v", resp)
