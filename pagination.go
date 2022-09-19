@@ -4,11 +4,16 @@ import (
 	"sync"
 )
 
-type SaveBox struct {
+type saveBox struct {
 	Index int
 	Res   interface{}
 }
 
+// AutoPageTurn auto page turn
+// @notice Use careful when dealing large amounts of data because it will set all objects in memory.
+// Usage case:
+//
+//	users, err := AutoPageTurn(nil, 10, testClient.User.GetList)
 func AutoPageTurn[T IPaginationResponse](filter *FilterOptions, pageSize int,
 	fetch func(*FilterOptions, int, int) (T, *Response, error)) (T, error) {
 	var res T
@@ -31,9 +36,10 @@ func AutoPageTurn[T IPaginationResponse](filter *FilterOptions, pageSize int,
 	offset += 1
 	wg.Add(totalPage - 1)
 
-	var box []SaveBox
-	box = append(box, SaveBox{Index: 1, Res: res})
+	var box []saveBox
+	box = append(box, saveBox{Index: 1, Res: res})
 
+	// use more goroutine for speed up
 	for i := offset; i <= totalPage; i++ {
 		go func(offset int) {
 			defer wg.Done()
@@ -41,12 +47,14 @@ func AutoPageTurn[T IPaginationResponse](filter *FilterOptions, pageSize int,
 			if err != nil {
 				return
 			}
-			box = append(box, SaveBox{Index: offset, Res: pageRes})
+			box = append(box, saveBox{Index: offset, Res: pageRes})
 			offset += 1
 		}(i)
 	}
+
+	// wait all goroutine done
 	wg.Wait()
-	// sort
+	// sort, use simple bubble sort -_-
 	for i := 0; i < len(box); i++ {
 		for j := i; j < len(box); j++ {
 			if box[i].Index > box[j].Index {

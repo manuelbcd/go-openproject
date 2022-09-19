@@ -2,182 +2,164 @@
   "_embedded": {
     "author": {
       "_type": "User",
-      "id": 5,
-      "name": "Birthe Lindenthal",
-      "avatar": "https://secure.gravatar.com/avatar/aaf6cca371d5684d5e9468406cca395c?default=404&secure=true",
+      "id": 85,
+      "name": "Julia Pape",
+      "avatar": "https://secure.gravatar.com/avatar/2e55675f52e79de276b81ac06301beaf?default=404&secure=true",
       "_links": {
         "self": {
-          "href": "/api/v3/users/5",
-          "title": "Birthe Lindenthal"
-        },
-        "showUser": {
-          "href": "/users/5",
-          "type": "text/html"
+          "href": "/api/v3/users/85",
+          "title": "Julia Pape"
         }
       }
     },
     "container": {
-      "derivedStartDate": null,
-      "derivedDueDate": null,
-      "_type": "WorkPackage",
-      "id": 17517,
-      "lockVersion": 17,
-      "subject": "Work packages with reduced visibility",
-      "description": {
-        "format": "markdown",
-        "raw": "**As** an OpenProject user  \n**I want** to be able to limit the visibility of work packages to users and groups which I specify  \n**so that** I can have private work packages.\n\n**Acceptance criteria**\n\n*   Restrict WorkPackage visibility by role, independend of project (see Redmine screenshot for Roles configuration)\n*   Private tickets cannot be seen / edited by users who are not allowed to see them:\n    *   Not shown in work package list\n    *   Links to those work packages (e.g. via Wiki syntax) are not functional\n    *   Related work packages, parent &amp; child work packages which are private are not shown",
-        "html": "<p class=\"op-uc-p\"><strong>As</strong> an OpenProject user<br>\n<strong>I want</strong> to be able to limit the visibility of work packages to users and groups which I specify<br>\n<strong>so that</strong> I can have private work packages.</p>\n<p class=\"op-uc-p\"><strong>Acceptance criteria</strong></p>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Restrict WorkPackage visibility by role, independend of project (see Redmine screenshot for Roles configuration)</li>\n<li class=\"op-uc-list--item\">Private tickets cannot be seen / edited by users who are not allowed to see them:\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Not shown in work package list</li>\n<li class=\"op-uc-list--item\">Links to those work packages (e.g. via Wiki syntax) are not functional</li>\n<li class=\"op-uc-list--item\">Related work packages, parent &amp; child work packages which are private are not shown</li>\n</ul>\n</li>\n</ul>"
-      },
-      "scheduleManually": false,
-      "startDate": null,
-      "dueDate": null,
-      "estimatedTime": null,
-      "derivedEstimatedTime": null,
-      "createdAt": "2014-11-20T15:14:18Z",
-      "updatedAt": "2021-02-01T16:07:17Z",
-      "position": 318,
-      "storyPoints": null,
-      "remainingTime": null,
-      "customField108": false,
-      "customField114": 2.0,
-      "customField130": 20,
+      "_type": "Grid",
+      "id": 1803,
+      "rowCount": 5,
+      "columnCount": 3,
+      "options": {},
+      "widgets": [
+        {
+          "_type": "GridWidget",
+          "id": 4772,
+          "identifier": "custom_text",
+          "startRow": 1,
+          "endRow": 4,
+          "startColumn": 3,
+          "endColumn": 4,
+          "options": {
+            "name": "Cross-platform",
+            "text": {
+              "format": "markdown",
+              "raw": "OpenProject is an open source project collaboration software. It supports project teams throughout the whole project management life-cycle.  \nYou can get more information about the following topics:\n\n**Feature Tour**  \nLearn more about OpenProject features and published plugins.  \n[go to features ›](https://www.openproject.com/collaboration-software-features/)\n\n**OpenProject Professional Services**  \nWould you like to use OpenProject in the cloud or book professional enterprise services.  \n[find out more ›](https://www.openproject.org/)\n\n**Download and installation**  \nHere you can find information about how to download and install your own OpenProject instance, either manually or by packager.  \n[find out more ›](https://www.openproject.org/download-and-installation/)\n\n**Develop OpenProject**  \nThis is the place to find all the information around code, development and workflow of OpenProject.  \n[find out more ›](https://docs.openproject.org/development)\n\n**Blog**  \nOur OpenProject News moved to a new Blog.  \n[read the articles ›](https://www.openproject.org/blog/)\n\n**Help**  \nYou will find support on our new [Help](https://www.openproject.org/help/) page (including user guides).  \n[go to Forums ›](https://community.openproject.com/projects/openproject/boards)  \n[go to Shortcuts ›](https://www.openproject.org/help/keyboard-shortcuts-access-keys/)  \n[go to Glossary ›](https://www.openproject.org/help/glossary/)\n\n**Cannot find an answer? - Contact us.**  \nIf you have questions or comments and cannot find your answer right away, write us an e-mail: info@openproject.org.",
+              "html": "<p class=\"op-uc-p\">OpenProject is an open source project collaboration software. It supports project teams throughout the whole project management life-cycle.<br>\nYou can get more information about the following topics:</p>\n<p class=\"op-uc-p\"><strong>Feature Tour</strong><br>\nLearn more about OpenProject features and published plugins.<br>\n<a href=\"https://www.openproject.com/collaboration-software-features/\" rel=\"noopener noreferrer\" class=\"op-uc-link\">go to features ›</a></p>\n<p class=\"op-uc-p\"><strong>OpenProject Professional Services</strong><br>\nWould you like to use OpenProject in the cloud or book professional enterprise services.<br>\n<a href=\"https://www.openproject.org/\" rel=\"noopener noreferrer\" class=\"op-uc-link\">find out more ›</a></p>\n<p class=\"op-uc-p\"><strong>Download and installation</strong><br>\nHere you can find information about how to download and install your own OpenProject instance, either manually or by packager.<br>\n<a href=\"https://www.openproject.org/download-and-installation/\" rel=\"noopener noreferrer\" class=\"op-uc-link\">find out more ›</a></p>\n<p class=\"op-uc-p\"><strong>Develop OpenProject</strong><br>\nThis is the place to find all the information around code, development and workflow of OpenProject.<br>\n<a href=\"https://docs.openproject.org/development\" rel=\"noopener noreferrer\" class=\"op-uc-link\">find out more ›</a></p>\n<p class=\"op-uc-p\"><strong>Blog</strong><br>\nOur OpenProject News moved to a new Blog.<br>\n<a href=\"https://www.openproject.org/blog/\" rel=\"noopener noreferrer\" class=\"op-uc-link\">read the articles ›</a></p>\n<p class=\"op-uc-p\"><strong>Help</strong><br>\nYou will find support on our new <a href=\"https://www.openproject.org/help/\" rel=\"noopener noreferrer\" class=\"op-uc-link\">Help</a> page (including user guides).<br>\n<a href=\"https://community.openproject.com/projects/openproject/boards\" rel=\"noopener noreferrer\" class=\"op-uc-link\">go to Forums ›</a><br>\n<a href=\"https://www.openproject.org/help/keyboard-shortcuts-access-keys/\" rel=\"noopener noreferrer\" class=\"op-uc-link\">go to Shortcuts ›</a><br>\n<a href=\"https://www.openproject.org/help/glossary/\" rel=\"noopener noreferrer\" class=\"op-uc-link\">go to Glossary ›</a></p>\n<p class=\"op-uc-p\"><strong>Cannot find an answer? - Contact us.</strong><br>\nIf you have questions or comments and cannot find your answer right away, write us an e-mail: <a href=\"mailto:info@openproject.org\" class=\"op-uc-link\">info@openproject.org</a>.</p>"
+            }
+          }
+        },
+        {
+          "_type": "GridWidget",
+          "id": 5430,
+          "identifier": "members",
+          "startRow": 4,
+          "endRow": 5,
+          "startColumn": 1,
+          "endColumn": 4,
+          "options": {
+            "name": "Members"
+          }
+        },
+        {
+          "_type": "GridWidget",
+          "id": 6679,
+          "identifier": "work_packages_table",
+          "startRow": 5,
+          "endRow": 6,
+          "startColumn": 1,
+          "endColumn": 4,
+          "options": {
+            "name": "RELEASE PLAN",
+            "queryId": "2828"
+          }
+        },
+        {
+          "_type": "GridWidget",
+          "id": 7735,
+          "identifier": "work_packages_calendar",
+          "startRow": 1,
+          "endRow": 3,
+          "startColumn": 1,
+          "endColumn": 2,
+          "options": {
+            "name": "Calendar"
+          }
+        },
+        {
+          "_type": "GridWidget",
+          "id": 7736,
+          "identifier": "project_details",
+          "startRow": 2,
+          "endRow": 3,
+          "startColumn": 2,
+          "endColumn": 3,
+          "options": {
+            "name": "Project details"
+          }
+        },
+        {
+          "_type": "GridWidget",
+          "id": 7737,
+          "identifier": "project_description",
+          "startRow": 1,
+          "endRow": 2,
+          "startColumn": 2,
+          "endColumn": 3,
+          "options": {
+            "name": "Project description"
+          }
+        },
+        {
+          "_type": "GridWidget",
+          "id": 7797,
+          "identifier": "work_packages_graph",
+          "startRow": 3,
+          "endRow": 4,
+          "startColumn": 1,
+          "endColumn": 3,
+          "options": {
+            "name": "OpenProject 12.2 RELEASE",
+            "queryId": "3440",
+            "chartType": "bar"
+          }
+        }
+      ],
+      "createdAt": "2012-09-21T13:37:45Z",
+      "updatedAt": "2022-07-18T06:56:22Z",
       "_links": {
         "attachments": {
-          "href": "/api/v3/work_packages/17517/attachments"
+          "href": "/api/v3/grids/1803/attachments"
         },
-        "prepareAttachment": {
-          "href": "/api/v3/work_packages/17517/attachments/prepare",
-          "method": "post"
+        "scope": {
+          "href": "/projects/openproject",
+          "type": "text/html"
         },
         "self": {
-          "href": "/api/v3/work_packages/17517",
-          "title": "Work packages with reduced visibility"
-        },
-        "schema": {
-          "href": "/api/v3/work_packages/schemas/14-8"
-        },
-        "availableRelationCandidates": {
-          "href": "/api/v3/work_packages/17517/available_relation_candidates",
-          "title": "Potential work packages to relate to"
-        },
-        "activities": {
-          "href": "/api/v3/work_packages/17517/activities"
-        },
-        "relations": {
-          "href": "/api/v3/work_packages/17517/relations"
-        },
-        "revisions": {
-          "href": "/api/v3/work_packages/17517/revisions"
-        },
-        "previewMarkup": {
-          "href": "/api/v3/render/markdown?context=/api/v3/work_packages/17517",
-          "method": "post"
-        },
-        "category": {
-          "href": null
-        },
-        "type": {
-          "href": "/api/v3/types/8",
-          "title": "Epic"
-        },
-        "priority": {
-          "href": "/api/v3/priorities/5",
-          "title": "High"
-        },
-        "project": {
-          "href": "/api/v3/projects/14",
-          "title": "OpenProject"
-        },
-        "status": {
-          "href": "/api/v3/statuses/1",
-          "title": "new"
-        },
-        "author": {
-          "href": "/api/v3/users/3762",
-          "title": "Robin Wagner"
-        },
-        "responsible": {
-          "href": null
-        },
-        "assignee": {
-          "href": null
-        },
-        "version": {
-          "href": "/api/v3/versions/26",
-          "title": "Wish List"
-        },
-        "customField112": {
-          "title": "High = 100%",
-          "href": "/api/v3/custom_options/423"
-        },
-        "customField113": {
-          "title": "4.5 (XL = 3 - 6 months)",
-          "href": "/api/v3/custom_options/430"
-        },
-        "customField111": {
-          "title": "Massive = 3x",
-          "href": "/api/v3/custom_options/418"
-        },
-        "customField1": [
-          {
-            "title": "Work packages",
-            "href": "/api/v3/custom_options/32"
-          }
-        ],
-        "customField102": {
-          "href": null,
-          "title": null
-        },
-        "customField110": {
-          "title": "3.0 = Significant reach (~25% to ~50%)",
-          "href": "/api/v3/custom_options/415"
-        },
-        "customField129": {
-          "href": null,
-          "title": null
-        },
-        "ancestors": [],
-        "parent": {
-          "href": null,
-          "title": null
-        },
-        "customActions": []
+          "href": "/api/v3/grids/1803"
+        }
       }
     }
   },
   "_type": "Attachment",
-  "id": 15713,
-  "fileName": "Rollen-Ticket-Sichtbarkeit.jpg",
-  "fileSize": 111186,
+  "id": 5,
+  "fileName": "Leerzeile.png",
+  "fileSize": 891,
   "description": {
     "format": "plain",
-    "raw": null,
+    "raw": "",
     "html": ""
   },
-  "contentType": "image/jpeg",
+  "contentType": "image/png",
   "digest": {
     "algorithm": "md5",
-    "hash": "bf1c2c0359b67e281cc69d21df331a7f"
+    "hash": "8f33bb27545f6a774a01aa5b55fc58f7"
   },
-  "createdAt": "2019-05-29T12:07:11Z",
+  "createdAt": "2012-09-26T09:53:39Z",
   "_links": {
     "self": {
-      "href": "/api/v3/attachments/15713",
-      "title": "Rollen-Ticket-Sichtbarkeit.jpg"
+      "href": "/api/v3/attachments/5",
+      "title": "Leerzeile.png"
     },
     "author": {
-      "href": "/api/v3/users/5",
-      "title": "Birthe Lindenthal"
+      "href": "/api/v3/users/85",
+      "title": "Julia Pape"
     },
     "container": {
-      "href": "/api/v3/work_packages/17517",
-      "title": "Work packages with reduced visibility"
+      "href": "/api/v3/grids/1803"
     },
     "staticDownloadLocation": {
-      "href": "/api/v3/attachments/15713/content"
+      "href": "/api/v3/attachments/5/content"
     },
     "downloadLocation": {
-      "href": "https://saasdataop.s3.eu-west-1.amazonaws.com/community/attachment/file/15713/Rollen-Ticket-Sichtbarkeit.jpg?response-content-disposition=inline&X-Amz-Expires=600&X-Amz-Date=20210313T191842Z&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIXKW3ATVAU3FXUHA%2F20210313%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-SignedHeaders=host&X-Amz-Signature=8221e9abe4bd11856797a06dea7942171ebe9f75cc6f063d4f7a88f876058131"
+      "href": "https://rgw1.netways.de/saasdataop/community/attachment/file/5/Leerzeile.png?response-content-disposition=inline&AWSAccessKeyId=c98f3ee5-8ef0-40b7-ad68-90e396d26a90&Signature=FZbwYxIEoo1MZNO8bTWZj6nfavo%3D&Expires=1663225764"
     }
   }
 }

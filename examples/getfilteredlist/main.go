@@ -40,12 +40,20 @@ func main() {
 
 	fmt.Printf("\nWorkpackages: %d \n\n", resp.Total)
 
-	for _, wp := range wpResponse {
+	for _, wp := range wpResponse.Embedded.Elements {
 		fmt.Printf("\n\nId: %d ", wp.ID)
 		fmt.Printf("\nStatus: %s ", wp.Links.Status.Title)
 		fmt.Printf("Subject: %.*s ", 15, wp.Subject)
 		fmt.Printf("\nDescription: %.*s\n", 25, wp.Description.Raw)
 	}
+
+	// Or you can use auto page turn
+	// Use careful when dealing large amounts of data because it will set all objects in memory.
+	allUser, err := openproj.AutoPageTurn(opt, 20, client.User.GetList)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("\n%s", prettyPrint(allUser))
 }
 
 func prettyPrint(i interface{}) string {
