@@ -30,7 +30,7 @@ func TestAttachmentService_Get(t *testing.T) {
 		t.Error("Expected attachment. Attachment is nil")
 		return
 	}
-	if attachment.FileName != "Rollen-Ticket-Sichtbarkeit.jpg" {
+	if attachment.FileName != "Leerzeile.png" {
 		t.Errorf("Unexpected attachment filename %s", attachment.FileName)
 	}
 }

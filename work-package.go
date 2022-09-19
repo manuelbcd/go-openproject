@@ -60,19 +60,29 @@ func (t Date) MarshalJSON() ([]byte, error) {
 }
 
 // WorkPackage represents an OpenProject ticket or issue
-// Please note: Time and Date fields are pointers in order to avoid rendering them when not initialized
 type WorkPackage struct {
-	Subject     string                `json:"subject,omitempty" structs:"subject,omitempty"`
-	Description *WPDescription        `json:"description,omitempty" structs:"description,omitempty"`
-	Type        string                `json:"_type,omitempty" structs:"_type,omitempty"`
-	ID          int                   `json:"id,omitempty" structs:"id,omitempty"`
-	CreatedAt   *Time                 `json:"createdAt,omitempty" structs:"createdAt,omitempty"`
-	UpdatedAt   *Time                 `json:"updatedAt,omitempty" structs:"updatedAt,omitempty"`
-	StartDate   *Date                 `json:"startDate,omitempty" structs:"startDate,omitempty"`
-	DueDate     *Date                 `json:"dueDate,omitempty" structs:"dueDate,omitempty"`
-	LockVersion int                   `json:"lockVersion,omitempty" structs:"lockVersion,omitempty"`
-	Position    int                   `json:"position,omitempty" structs:"position,omitempty"`
-	Custom      tcontainer.MarshalMap `json:"custom,omitempty" structs:"custom,omitempty"`
+	DerivedStartDate     interface{}           `json:"derivedStartDate,omitempty"`
+	DerivedDueDate       interface{}           `json:"derivedDueDate,omitempty"`
+	SpentTime            string                `json:"spentTime,omitempty"`
+	LaborCosts           string                `json:"laborCosts,omitempty"`
+	MaterialCosts        string                `json:"materialCosts,omitempty"`
+	OverallCosts         string                `json:"overallCosts,omitempty"`
+	Subject              string                `json:"subject,omitempty" structs:"subject,omitempty"`
+	Description          *WPDescription        `json:"description,omitempty" structs:"description,omitempty"`
+	Type                 string                `json:"_type,omitempty" structs:"_type,omitempty"`
+	ID                   int                   `json:"id,omitempty" structs:"id,omitempty"`
+	CreatedAt            *Time                 `json:"createdAt,omitempty" structs:"createdAt,omitempty"`
+	UpdatedAt            *Time                 `json:"updatedAt,omitempty" structs:"updatedAt,omitempty"`
+	StartDate            *Date                 `json:"startDate,omitempty" structs:"startDate,omitempty"`
+	ScheduleManually     bool                  `json:"scheduleManually,omitempty"`
+	DueDate              *Date                 `json:"dueDate,omitempty" structs:"dueDate,omitempty"`
+	LockVersion          int                   `json:"lockVersion,omitempty" structs:"lockVersion,omitempty"`
+	Position             int                   `json:"position,omitempty" structs:"position,omitempty"`
+	Custom               tcontainer.MarshalMap `json:"custom,omitempty" structs:"custom,omitempty"`
+	EstimatedTime        string                `json:"estimatedTime,omitempty"`
+	DerivedEstimatedTime interface{}           `json:"derivedEstimatedTime,omitempty"`
+	PercentageDone       int                   `json:"percentageDone,omitempty"`
+	RemainingTime        string                `json:"remainingTime,omitempty"`
 
 	Links *WPLinks `json:"_links,omitempty" _links:"id,omitempty"`
 }
@@ -82,16 +92,71 @@ type WPDescription OPGenericDescription
 
 // WPLinks are WorkPackage Links
 type WPLinks struct {
-	Self     WPLinksField `json:"self,omitempty" structs:"self,omitempty"`
-	Type     WPLinksField `json:"type,omitempty" structs:"type,omitempty"`
-	Priority WPLinksField `json:"priority,omitempty" structs:"priority,omitempty"`
-	Status   WPLinksField `json:"status,omitempty" structs:"status,omitempty"`
-}
-
-// WPLinksField link and title
-type WPLinksField struct {
-	Href  string
-	Title string
+	Self                        *OPGenericLink  `json:"self,omitempty"`
+	Update                      *OPGenericLink  `json:"update,omitempty"`
+	Schema                      *OPGenericLink  `json:"schema,omitempty"`
+	UpdateImmediately           *OPGenericLink  `json:"updateImmediately,omitempty"`
+	Delete                      *OPGenericLink  `json:"delete,omitempty"`
+	LogTime                     *OPGenericLink  `json:"logTime,omitempty"`
+	Move                        *OPGenericLink  `json:"move,omitempty"`
+	Copy                        *OPGenericLink  `json:"copy,omitempty"`
+	Pdf                         *OPGenericLink  `json:"pdf,omitempty"`
+	Atom                        *OPGenericLink  `json:"atom,omitempty"`
+	AvailableRelationCandidates *OPGenericLink  `json:"availableRelationCandidates,omitempty"`
+	CustomFields                *OPGenericLink  `json:"customFields,omitempty"`
+	ConfigureForm               *OPGenericLink  `json:"configureForm,omitempty"`
+	Activities                  *OPGenericLink  `json:"activities,omitempty"`
+	AvailableWatchers           *OPGenericLink  `json:"availableWatchers,omitempty"`
+	Relations                   *OPGenericLink  `json:"relations,omitempty"`
+	Revisions                   *OPGenericLink  `json:"revisions,omitempty"`
+	Watchers                    *OPGenericLink  `json:"watchers,omitempty"`
+	AddRelation                 *OPGenericLink  `json:"addRelation,omitempty"`
+	AddChild                    *OPGenericLink  `json:"addChild,omitempty"`
+	ChangeParent                *OPGenericLink  `json:"changeParent,omitempty"`
+	AddComment                  *OPGenericLink  `json:"addComment,omitempty"`
+	PreviewMarkup               *OPGenericLink  `json:"previewMarkup,omitempty"`
+	TimeEntries                 *OPGenericLink  `json:"timeEntries,omitempty"`
+	Category                    *OPGenericLink  `json:"category,omitempty"`
+	Type                        *OPGenericLink  `json:"type,omitempty"`
+	Priority                    *OPGenericLink  `json:"priority,omitempty"`
+	Project                     *OPGenericLink  `json:"project,omitempty"`
+	Status                      *OPGenericLink  `json:"status,omitempty"`
+	Author                      *OPGenericLink  `json:"author,omitempty"`
+	Responsible                 *OPGenericLink  `json:"responsible,omitempty"`
+	Assignee                    *OPGenericLink  `json:"assignee,omitempty"`
+	Version                     *OPGenericLink  `json:"version,omitempty"`
+	LogCosts                    *OPGenericLink  `json:"logCosts,omitempty"`
+	ShowCosts                   *OPGenericLink  `json:"showCosts,omitempty"`
+	CostsByType                 *OPGenericLink  `json:"costsByType,omitempty"`
+	GithubPullRequests          *OPGenericLink  `json:"github_pull_requests,omitempty"`
+	Parent                      *OPGenericLink  `json:"parent,omitempty"`
+	Ancestors                   []OPGenericLink `json:"ancestors,omitempty"`
+	CustomActions               []OPGenericLink `json:"customActions,omitempty"`
+	RemoveWatcher               struct {
+		Href      string `json:"href,omitempty"`
+		Method    string `json:"method,omitempty"`
+		Templated bool   `json:"templated,omitempty"`
+	} `json:"removeWatcher,omitempty"`
+	AddWatcher struct {
+		Href    string `json:"href,omitempty"`
+		Method  string `json:"method,omitempty"`
+		Payload struct {
+			User struct {
+				Href string `json:"href,omitempty"`
+			} `json:"user,omitempty"`
+		} `json:"payload,omitempty"`
+		Templated bool `json:"templated,omitempty"`
+	} `json:"addWatcher,omitempty"`
+	CustomField1 []interface{} `json:"customField1,omitempty"`
+	Watch        struct {
+		Href    string `json:"href,omitempty"`
+		Method  string `json:"method,omitempty"`
+		Payload struct {
+			User struct {
+				Href string `json:"href,omitempty"`
+			} `json:"user,omitempty"`
+		} `json:"payload,omitempty"`
+	} `json:"watch,omitempty"`
 }
 
 // WPForm represents WorkPackage form
@@ -183,12 +248,16 @@ func (fops *FilterOptions) prepareFilters(oldValues url.Values) url.Values {
 	}
 
 	filterTemplate := "["
-	for _, field := range fops.Fields {
+	for idx, field := range fops.Fields {
 		s := fmt.Sprintf(
 			"{\"%[1]v\":{\"operator\":\"%[2]v\",\"values\":[\"%[3]v\"]}}",
 			field.Field, field.Operator, field.Value)
 
 		filterTemplate += s
+
+		if idx != len(fops.Fields)-1 {
+			filterTemplate += ","
+		}
 	}
 	filterTemplate += "]"
 
@@ -213,7 +282,7 @@ func (s *WorkPackageService) Create(wpObject *WorkPackage, projectName string) (
 }
 
 // GetListWithContext will retrieve a list of work-packages using filters
-func (s *WorkPackageService) GetListWithContext(ctx context.Context, options *FilterOptions, offset int, pageSize int) ([]WorkPackage, *Response, error) {
+func (s *WorkPackageService) GetListWithContext(ctx context.Context, options *FilterOptions, offset int, pageSize int) (*SearchResultWP, *Response, error) {
 	u := url.URL{
 		Path: "api/v3/work_packages",
 	}
@@ -222,11 +291,11 @@ func (s *WorkPackageService) GetListWithContext(ctx context.Context, options *Fi
 	if err != nil {
 		return nil, resp, err
 	}
-	return objList.(*SearchResultWP).Embedded.Elements, resp, err
+	return objList.(*SearchResultWP), resp, err
 }
 
 // GetList wraps GetListWithContext using the background context.
-func (s *WorkPackageService) GetList(options *FilterOptions, offset int, pageSize int) ([]WorkPackage, *Response, error) {
+func (s *WorkPackageService) GetList(options *FilterOptions, offset int, pageSize int) (*SearchResultWP, *Response, error) {
 	return s.GetListWithContext(context.Background(), options, offset, pageSize)
 }
 
