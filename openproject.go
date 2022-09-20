@@ -85,6 +85,7 @@ type Client struct {
 	Attachment     *AttachmentService
 	Category       *CategoryService
 	Query          *QueryService
+	Activities     *ActivitiesService
 }
 
 // NewClient returns a new OpenProject API client.
@@ -117,6 +118,7 @@ func NewClient(httpClient httpClient, baseURL string) (*Client, error) {
 	c.Attachment = &AttachmentService{client: c}
 	c.Category = &CategoryService{client: c}
 	c.Query = &QueryService{client: c}
+	c.Activities = &ActivitiesService{client: c}
 
 	return c, nil
 }
@@ -337,7 +339,6 @@ type BasicAuthTransport struct {
 // basic auth and return the RoundTripper for this transport type.
 func (t *BasicAuthTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	req2 := cloneRequest(req) // per RoundTripper contract
-
 	req2.SetBasicAuth(t.Username, t.Password)
 	return t.transport().RoundTrip(req2)
 }
@@ -401,6 +402,9 @@ func getObjectAndClient(inputObj interface{}) (client *Client, resultObj interfa
 	case *WorkPackageService:
 		client = inputObj.(*WorkPackageService).client
 		resultObj = new(WorkPackage)
+	case *ActivitiesService:
+		client = inputObj.(*ActivitiesService).client
+		resultObj = new(Activity)
 	}
 
 	return client, resultObj
@@ -433,6 +437,9 @@ func getObjectListAndClient(inputObj interface{}) (client *Client, resultObjList
 	case *WorkPackageService:
 		client = inputObj.(*WorkPackageService).client
 		resultObjList = new(SearchResultWP)
+	case *ActivitiesService:
+		client = inputObj.(*ActivitiesService).client
+		resultObjList = new(Activities)
 	}
 
 	return client, resultObjList
