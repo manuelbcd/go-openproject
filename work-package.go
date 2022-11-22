@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/trivago/tgo/tcontainer"
 	"math"
+	"strings"
 
 	"net/url"
 	"time"
@@ -249,9 +250,22 @@ func (fops *FilterOptions) prepareFilters(oldValues url.Values) url.Values {
 
 	filterTemplate := "["
 	for idx, field := range fops.Fields {
+		value := ""
+		if strings.Contains(field.Value, ",") {
+			parts := strings.Split(field.Value, ",")
+			for i, part := range parts {
+				value += fmt.Sprintf(`"%s"`, part)
+				if i < len(parts)-1 {
+					value += ","
+				}
+			}
+		} else {
+			value = `"` + field.Value + `"`
+		}
+
 		s := fmt.Sprintf(
-			"{\"%[1]v\":{\"operator\":\"%[2]v\",\"values\":[\"%[3]v\"]}}",
-			field.Field, field.Operator, field.Value)
+			"{\"%[1]v\":{\"operator\":\"%[2]v\",\"values\":[%[3]v]}}",
+			field.Field, field.Operator, value)
 
 		filterTemplate += s
 

@@ -13,22 +13,31 @@ type UserService struct {
 }
 
 // User is the object representing OpenProject users.
-// TODO: Complete object with fields identityUrl, language, _links
 type User struct {
-	Type      string `json:"_type,omitempty" structs:"_type,omitempty"`
-	ID        int    `json:"id,omitempty" structs:"id,omitempty"`
-	Name      string `json:"name,omitempty" structs:"name,omitempty"`
-	CreatedAt *Time  `json:"createdAt,omitempty" structs:"createdAt,omitempty"`
-	UpdatedAt *Time  `json:"updatedAt,omitempty" structs:"updatedAt,omitempty"`
-	Login     string `json:"login,omitempty" structs:"login,omitempty"`
-	Admin     bool   `json:"admin,omitempty" structs:"admin,omitempty"`
-	FirstName string `json:"firstName,omitempty" structs:"firstName,omitempty"`
-	lastName  string `json:"lastName,omitempty" structs:"lastName,omitempty"`
-	Email     string `json:"email,omitempty" structs:"email,omitempty"`
-	Avatar    string `json:"avatar,omitempty" structs:"avatar,omitempty"`
-	Status    string `json:"status,omitempty" structs:"status,omitempty"`
-	Language  string `json:"language,omitempty" structs:"language,omitempty"`
-	Password  string `json:"password,omitempty" structs:"password,omitempty"`
+	Type        string      `json:"_type,omitempty" structs:"_type,omitempty"`
+	ID          int         `json:"id,omitempty" structs:"id,omitempty"`
+	Name        string      `json:"name,omitempty" structs:"name,omitempty"`
+	CreatedAt   *Time       `json:"createdAt,omitempty" structs:"createdAt,omitempty"`
+	UpdatedAt   *Time       `json:"updatedAt,omitempty" structs:"updatedAt,omitempty"`
+	Login       string      `json:"login,omitempty" structs:"login,omitempty"`
+	Admin       bool        `json:"admin,omitempty" structs:"admin,omitempty"`
+	FirstName   string      `json:"firstName,omitempty" structs:"firstName,omitempty"`
+	LastName    string      `json:"lastName,omitempty" structs:"lastName,omitempty"`
+	Email       string      `json:"email,omitempty" structs:"email,omitempty"`
+	Avatar      string      `json:"avatar,omitempty" structs:"avatar,omitempty"`
+	Status      string      `json:"status,omitempty" structs:"status,omitempty"`
+	IdentityURL interface{} `json:"identityUrl,omitempty"`
+	Language    string      `json:"language,omitempty" structs:"language,omitempty"`
+	Password    string      `json:"password,omitempty" structs:"password,omitempty"`
+	Links       struct {
+		Self              *OPGenericLink `json:"self,omitempty" structs:"self,omitempty"`
+		Memberships       *OPGenericLink `json:"memberships,omitempty" structs:"memberships,omitempty"`
+		ShowUser          *OPGenericLink `json:"showUser,omitempty" structs:"showUser,omitempty"`
+		UpdateImmediately *OPGenericLink `json:"updateImmediately,omitempty" structs:"updateImmediately,omitempty"`
+		Lock              *OPGenericLink `json:"lock,omitempty" structs:"lock,omitempty"`
+		Delete            *OPGenericLink `json:"delete,omitempty" structs:"delete,omitempty"`
+		AuthSource        *OPGenericLink `json:"authSource,omitempty" structs:"authSource,omitempty"`
+	} `json:"_links,omitempty" structs:"_links,omitempty"`
 }
 
 // SearchResultUser is a small wrapper around the Search

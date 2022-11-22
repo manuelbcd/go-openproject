@@ -389,7 +389,7 @@ func getObjectAndClient(inputObj interface{}) (client *Client, resultObj interfa
 		resultObj = new(Project)
 	case *QueryService:
 		client = inputObj.(*QueryService).client
-		resultObj = new(Query)
+		resultObj = new(QueryResult)
 	case *StatusService:
 		client = inputObj.(*StatusService).client
 		resultObj = new(Status)

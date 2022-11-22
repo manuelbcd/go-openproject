@@ -34,16 +34,34 @@ type projectElements struct {
 
 // Project structure representing OpenProject project
 type Project struct {
-	Type        string           `json:"_type,omitempty" structs:"_type,omitempty"`
-	ID          int              `json:"id,omitempty" structs:"id,omitempty"`
-	Identifier  string           `json:"identifier,omitempty" structs:"identifier,omitempty"`
-	Name        string           `json:"name,omitempty" structs:"name,omitempty"`
-	Active      bool             `json:"active,omitempty" structs:"active,omitempty"`
-	Public      bool             `json:"public,omitempty" structs:"public,omitempty"`
-	Description *ProjDescription `json:"description,omitempty" structs:"description,omitempty"`
-	CreatedAt   *Time            `json:"createdAt,omitempty" structs:"createdAt,omitempty"`
-	UpdatedAt   *Time            `json:"updatedAt,omitempty" structs:"updatedAt,omitempty"`
-	Status      string           `json:"status,omitempty" structs:"status,omitempty"`
+	Type              string           `json:"_type,omitempty" structs:"_type,omitempty"`
+	ID                int              `json:"id,omitempty" structs:"id,omitempty"`
+	Identifier        string           `json:"identifier,omitempty" structs:"identifier,omitempty"`
+	Name              string           `json:"name,omitempty" structs:"name,omitempty"`
+	Active            bool             `json:"active,omitempty" structs:"active,omitempty"`
+	Public            bool             `json:"public,omitempty" structs:"public,omitempty"`
+	Description       *ProjDescription `json:"description,omitempty" structs:"description,omitempty"`
+	CreatedAt         *Time            `json:"createdAt,omitempty" structs:"createdAt,omitempty"`
+	UpdatedAt         *Time            `json:"updatedAt,omitempty" structs:"updatedAt,omitempty"`
+	Status            string           `json:"status,omitempty" structs:"status,omitempty"`
+	StatusExplanation *ProjDescription `json:"statusExplanation,omitempty" structs:"statusExplanation,omitempty"`
+	Links             struct {
+		Self                         *OPGenericLink `json:"self,omitempty" structs:"self,omitempty"`
+		CreateWorkPackage            *OPGenericLink `json:"createWorkPackage,omitempty" structs:"createWorkPackage,omitempty"`
+		CreateWorkPackageImmediately *OPGenericLink `json:"createWorkPackageImmediately,omitempty" structs:"createWorkPackageImmediately,omitempty"`
+		WorkPackages                 *OPGenericLink `json:"workPackages,omitempty" structs:"workPackages,omitempty"`
+		Categories                   *OPGenericLink `json:"categories,omitempty" structs:"categories,omitempty"`
+		Versions                     *OPGenericLink `json:"versions,omitempty" structs:"versions,omitempty"`
+		Memberships                  *OPGenericLink `json:"memberships,omitempty" structs:"memberships,omitempty"`
+		Types                        *OPGenericLink `json:"types,omitempty" structs:"types,omitempty"`
+		Update                       *OPGenericLink `json:"update,omitempty" structs:"update,omitempty"`
+		UpdateImmediately            *OPGenericLink `json:"updateImmediately,omitempty" structs:"updateImmediately,omitempty"`
+		Delete                       *OPGenericLink `json:"delete,omitempty" structs:"delete,omitempty"`
+		Schema                       *OPGenericLink `json:"schema,omitempty" structs:"schema,omitempty"`
+		Status                       *OPGenericLink `json:"status,omitempty" structs:"status,omitempty"`
+		Ancestors                    []interface{}  `json:"ancestors,omitempty"`
+		Parent                       *OPGenericLink `json:"parent,omitempty" structs:"parent,omitempty"`
+	} `json:"_links,omitempty" structs:"_links,omitempty"`
 }
 
 // ProjDescription type contains description and format

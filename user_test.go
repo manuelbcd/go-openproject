@@ -78,7 +78,7 @@ func TestUserService_Create(t *testing.T) {
 		Login:     "john.smith@acme.com",
 		Admin:     false,
 		FirstName: "John",
-		lastName:  "Smith",
+		LastName:  "Smith",
 		Email:     "john.smith@acme.com",
 		Status:    "active",
 		Language:  "en",
