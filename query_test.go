@@ -119,10 +119,6 @@ func TestQueryService_Delete(t *testing.T) {
 		testRequestURL(t, r, "/api/v3/queries/554")
 
 		w.WriteHeader(http.StatusNoContent)
-		_, err := fmt.Fprint(w, `{}`)
-		if err != nil {
-			t.Error(err)
-		}
 	})
 
 	resp, err := testClient.Query.Delete("554")

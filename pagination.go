@@ -1,7 +1,8 @@
 package openproject
 
 import (
-	"sync"
+	"fmt"
+	rbt "github.com/emirpasic/gods/trees/redblacktree"
 )
 
 type saveBox struct {
@@ -32,39 +33,61 @@ func AutoPageTurn[T IPaginationResponse](filter *FilterOptions, pageSize int,
 		return res, nil
 	}
 	totalPage := res.TotalPage()
-	wg := &sync.WaitGroup{}
-	offset += 1
-	wg.Add(totalPage - 1)
 
-	var box []saveBox
-	box = append(box, saveBox{Index: 1, Res: res})
-
+	box := make(chan saveBox)
 	// use more goroutine for speed up
 	for i := offset; i <= totalPage; i++ {
-		go func(offset int) {
-			defer wg.Done()
-			pageRes, _, err := fetch(filter, offset, pageSize)
-			if err != nil {
-				return
-			}
-			box = append(box, saveBox{Index: offset, Res: pageRes})
-			offset += 1
-		}(i)
+		go request(box, filter, pageSize, i, fetch)
 	}
 
-	// wait all goroutine done
-	wg.Wait()
-	// sort, use simple bubble sort -_-
-	for i := 0; i < len(box); i++ {
-		for j := i; j < len(box); j++ {
-			if box[i].Index > box[j].Index {
-				box[i], box[j] = box[j], box[i]
+	// Sort by red-black tree
+	t := addResToTree(box, res.TotalPage())
+	var tmpRes T
+	for _, key := range t.Keys() {
+		b, found := t.Get(key)
+		if found {
+			bx := b.(T)
+			if isInterfaceZero(tmpRes) {
+				tmpRes = bx
+			} else {
+				tmpRes.ConcatEmbed(bx)
 			}
 		}
 	}
-	var tmpRes = box[1].Res.(T)
-	for i := 1; i < len(box); i++ {
-		tmpRes.ConcatEmbed(box[i].Res.(T))
-	}
+
 	return tmpRes, nil
+}
+
+func addResToTree(collection <-chan saveBox, size int) *rbt.Tree {
+	t := rbt.NewWithIntComparator()
+	for i := 0; i < size; i++ {
+		res := <-collection
+		fmt.Printf("get res %+v", res)
+		t.Put(res.Index, res.Res)
+	}
+	return t
+}
+
+func request[T IPaginationResponse](ch chan<- saveBox, filter *FilterOptions, pageSize int, idx int, fetch func(*FilterOptions, int, int) (T, *Response, error)) {
+	pageRes, _, err := fetch(filter, idx, pageSize)
+	if err != nil {
+		return
+	}
+	ch <- saveBox{Index: idx, Res: pageRes}
+}
+
+func isInterfaceZero[T any](val T) bool {
+	switch v := any(val).(type) {
+	case *SearchResultProject:
+		return v == nil
+	case *SearchResultQuery:
+		return v == nil
+	case *SearchResultStatus:
+		return v == nil
+	case *SearchResultUser:
+		return v == nil
+	case *SearchResultWP:
+		return v == nil
+	}
+	return false
 }
