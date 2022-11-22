@@ -53,9 +53,10 @@ func TestQueryService_GetList_Success(t *testing.T) {
 	queries, _, err := testClient.Query.GetList(0, 10)
 	if queries == nil {
 		t.Error("Expected query list but received nil")
+		return
 	}
 	if queries.Total != 25 {
-		t.Error(fmt.Sprintf("Expected 25 queries in response but received %d", 25))
+		t.Errorf("Expected 25 queries in response but received %d", 25)
 	}
 	if queries.Embedded.Elements[0].Name != "Never" {
 		errString := "Expected query name \"Never\" in pos 1 of received list"

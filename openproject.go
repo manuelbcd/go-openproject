@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -377,33 +376,33 @@ func cloneRequest(r *http.Request) *http.Request {
 // getObjectAndClient gets an inputObject (inputObject is an OpenProject object like WorkPackage, WikiPage, Status, etc.)
 // and return a pointer to its Client from its service and an instance of the object itself
 func getObjectAndClient(inputObj interface{}) (client *Client, resultObj interface{}) {
-	switch inputObj.(type) {
+	switch c := inputObj.(type) {
 	case *AttachmentService:
-		client = inputObj.(*AttachmentService).client
+		client = c.client
 		resultObj = new(Attachment)
 	case *CategoryService:
-		client = inputObj.(*CategoryService).client
+		client = c.client
 		resultObj = new(Category)
 	case *ProjectService:
-		client = inputObj.(*ProjectService).client
+		client = c.client
 		resultObj = new(Project)
 	case *QueryService:
-		client = inputObj.(*QueryService).client
+		client = c.client
 		resultObj = new(QueryResult)
 	case *StatusService:
-		client = inputObj.(*StatusService).client
+		client = c.client
 		resultObj = new(Status)
 	case *UserService:
-		client = inputObj.(*UserService).client
+		client = c.client
 		resultObj = new(User)
 	case *WikiPageService:
-		client = inputObj.(*WikiPageService).client
+		client = c.client
 		resultObj = new(WikiPage)
 	case *WorkPackageService:
-		client = inputObj.(*WorkPackageService).client
+		client = c.client
 		resultObj = new(WorkPackage)
 	case *ActivitiesService:
-		client = inputObj.(*ActivitiesService).client
+		client = c.client
 		resultObj = new(Activity)
 	}
 
@@ -413,32 +412,32 @@ func getObjectAndClient(inputObj interface{}) (client *Client, resultObj interfa
 // getObjectAndClient gets an inputObject (inputObject is an OpenProject object like WorkPackage, WikiPage, Status, etc.)
 // and return a pointer to its Client from its service and an instance of the ObjectList
 func getObjectListAndClient(inputObj interface{}) (client *Client, resultObjList interface{}) {
-	switch inputObj.(type) {
+	switch c := inputObj.(type) {
 	case *AttachmentService:
-		client = inputObj.(*AttachmentService).client
+		client = c.client
 		// TODO implement
 	case *CategoryService:
-		client = inputObj.(*CategoryService).client
+		client = c.client
 		resultObjList = new(CategoryList)
 	case *ProjectService:
-		client = inputObj.(*ProjectService).client
+		client = c.client
 		resultObjList = new(SearchResultProject)
 	case *QueryService:
-		client = inputObj.(*QueryService).client
+		client = c.client
 		resultObjList = new(SearchResultQuery)
 	case *StatusService:
-		client = inputObj.(*StatusService).client
+		client = c.client
 		resultObjList = new(SearchResultStatus)
 	case *UserService:
-		client = inputObj.(*UserService).client
+		client = c.client
 		resultObjList = new(SearchResultUser)
 	// WikiPage endpoint does not support POST action
 	// case *WikiPageService:
 	case *WorkPackageService:
-		client = inputObj.(*WorkPackageService).client
+		client = c.client
 		resultObjList = new(SearchResultWP)
 	case *ActivitiesService:
-		client = inputObj.(*ActivitiesService).client
+		client = c.client
 		resultObjList = new(Activities)
 	}
 
@@ -511,7 +510,7 @@ func CreateWithContext(ctx context.Context, object interface{}, objService inter
 	}
 
 	defer resp.Body.Close()
-	data, err := ioutil.ReadAll(resp.Body)
+	data, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, resp, fmt.Errorf("could not read the returned data")
 	}

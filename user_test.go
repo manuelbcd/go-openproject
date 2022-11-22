@@ -2,15 +2,15 @@ package openproject
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
+	"os"
 	"testing"
 )
 
 func TestUserService_Get_SearchListNoFiltersSuccess(t *testing.T) {
 	setup()
 	defer teardown()
-	raw, err := ioutil.ReadFile("./mocks/get/get-users-no-filters.json")
+	raw, err := os.ReadFile("./mocks/get/get-users-no-filters.json")
 	if err != nil {
 		t.Error(err.Error())
 	}
@@ -40,7 +40,7 @@ func TestUserService_Get_SearchListNoFiltersSuccess(t *testing.T) {
 func TestUserService_GetByID_Success(t *testing.T) {
 	setup()
 	defer teardown()
-	raw, err := ioutil.ReadFile("./mocks/get/get-user.json")
+	raw, err := os.ReadFile("./mocks/get/get-user.json")
 	if err != nil {
 		t.Error(err.Error())
 	}
@@ -61,7 +61,7 @@ func TestUserService_GetByID_Success(t *testing.T) {
 func TestUserService_Create(t *testing.T) {
 	setup()
 	defer teardown()
-	raw, err := ioutil.ReadFile("./mocks/post/post-user.json")
+	raw, err := os.ReadFile("./mocks/post/post-user.json")
 	if err != nil {
 		t.Error(err.Error())
 	}

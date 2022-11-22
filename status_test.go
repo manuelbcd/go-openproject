@@ -2,8 +2,8 @@ package openproject
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
+	"os"
 	"testing"
 )
 
@@ -11,7 +11,7 @@ func TestStatusService_GetByID_Success(t *testing.T) {
 	setup()
 	defer teardown()
 	testAPIEdpoint := "/api/v3/statuses/2"
-	raw, err := ioutil.ReadFile("./mocks/get/get-status.json")
+	raw, err := os.ReadFile("./mocks/get/get-status.json")
 	if err != nil {
 		t.Error(err.Error())
 	}
@@ -33,7 +33,7 @@ func TestStatusService_GetList_Success(t *testing.T) {
 	setup()
 	defer teardown()
 	testAPIEdpoint := "/api/v3/statuses"
-	raw, err := ioutil.ReadFile("./mocks/get/get-statuses-no-filters.json")
+	raw, err := os.ReadFile("./mocks/get/get-statuses-no-filters.json")
 	if err != nil {
 		t.Error(err.Error())
 	}
@@ -47,9 +47,10 @@ func TestStatusService_GetList_Success(t *testing.T) {
 	statuses, _, err := testClient.Status.GetList(0, 10)
 	if statuses == nil {
 		t.Error("Expected status list but received nil")
+		return
 	}
 	if statuses.Total != 25 {
-		t.Error(fmt.Sprintf("Expected 25 statuses in response but received %d", 25))
+		t.Errorf("Expected 25 statuses in response but received %d", 25)
 	}
 	if statuses.Embedded.Elements[3].Name != "needs clarification" {
 		errString := "Expected status name \"needs clarification\" in pos 3 of received list"

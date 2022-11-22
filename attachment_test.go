@@ -2,8 +2,8 @@ package openproject
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
+	"os"
 	"testing"
 )
 
@@ -12,7 +12,7 @@ func TestAttachmentService_Get(t *testing.T) {
 	defer teardown()
 	testAPIEdpoint := "/api/v3/attachments/5"
 
-	raw, err := ioutil.ReadFile("./mocks/get/get-attachment-from-workpackage.json")
+	raw, err := os.ReadFile("./mocks/get/get-attachment-from-workpackage.json")
 	if err != nil {
 		t.Error(err.Error())
 	}
@@ -40,7 +40,7 @@ func TestAttachmentService_Download(t *testing.T) {
 	defer teardown()
 	testAPIEdpoint := "/api/v3/attachments/5/content"
 
-	raw, err := ioutil.ReadFile("./mocks/get/download-attachment-file.jpg")
+	raw, err := os.ReadFile("./mocks/get/download-attachment-file.jpg")
 	if err != nil {
 		t.Error(err.Error())
 	}

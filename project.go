@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"math"
 )
 
@@ -113,7 +113,7 @@ func (s *ProjectService) CreateWithContext(ctx context.Context, project *Project
 
 	projResponse := new(Project)
 	defer resp.Body.Close()
-	data, err := ioutil.ReadAll(resp.Body)
+	data, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, resp, fmt.Errorf("could not read the returned data")
 	}

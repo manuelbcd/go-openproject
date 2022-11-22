@@ -78,7 +78,7 @@ func (s *UserService) Get(accountID string) (*User, *Response, error) {
 // GetListWithContext will retrieve a list of users using filters
 func (s *UserService) GetListWithContext(ctx context.Context, options *FilterOptions, offset int, pageSize int) (*SearchResultUser, *Response, error) {
 	u := url.URL{
-		Path: fmt.Sprintf("api/v3/users"),
+		Path: "api/v3/users",
 	}
 
 	objList, resp, err := GetListWithContext(ctx, s, u.String(), options, offset, pageSize)

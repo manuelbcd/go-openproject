@@ -3,9 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
-
 	openproj "github.com/manuelbcd/go-openproject"
+	"io"
 )
 
 const openProjURL = "https://community.openproject.org/"
@@ -20,8 +19,8 @@ func main() {
 
 	wpResponse, resp, err := client.WorkPackage.Get("36353")
 	if err != nil {
-		body, err := ioutil.ReadAll(resp.Body)
-		fmt.Printf(string(body))
+		body, err := io.ReadAll(resp.Body)
+		fmt.Print(string(body))
 		panic(err)
 	}
 
@@ -29,7 +28,7 @@ func main() {
 	fmt.Printf("\n\nSubject: %s \nDescription: %s\n\n", wpResponse.Subject, wpResponse.Description.Raw)
 
 	// Raw output of the whole object (debug only)
-	fmt.Printf(prettyPrint(wpResponse))
+	fmt.Print(prettyPrint(wpResponse))
 }
 
 func prettyPrint(i interface{}) string {

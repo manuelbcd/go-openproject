@@ -3,9 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
-
 	openproj "github.com/manuelbcd/go-openproject"
+	"io"
 )
 
 const openProjURL = "https://community.openproject.org"
@@ -30,8 +29,8 @@ func main() {
 
 	wpResponse, resp, err := client.WorkPackage.GetList(opt, 0, 10)
 	if err != nil {
-		body, err := ioutil.ReadAll(resp.Body)
-		fmt.Printf(string(body))
+		body, err := io.ReadAll(resp.Body)
+		fmt.Print(string(body))
 		panic(err)
 	}
 

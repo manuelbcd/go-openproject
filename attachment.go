@@ -3,7 +3,7 @@ package openproject
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"time"
 )
 
@@ -112,7 +112,7 @@ func (s *AttachmentService) DownloadWithContext(ctx context.Context, attachmentI
 		return nil, err
 	}
 
-	respBytes, err := ioutil.ReadAll(resp.Body)
+	respBytes, err := io.ReadAll(resp.Body)
 
 	return &respBytes, err
 }

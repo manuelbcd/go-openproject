@@ -2,8 +2,8 @@ package openproject
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
+	"os"
 	"testing"
 )
 
@@ -12,7 +12,7 @@ func TestProjectService_GetList(t *testing.T) {
 	defer teardown()
 	testAPIEdpoint := "/api/v3/projects"
 
-	raw, err := ioutil.ReadFile("./mocks/get/get-projects-no-filters.json")
+	raw, err := os.ReadFile("./mocks/get/get-projects-no-filters.json")
 	if err != nil {
 		t.Error(err.Error())
 	}
@@ -36,7 +36,7 @@ func TestProjectService_Get(t *testing.T) {
 	defer teardown()
 	testAPIEdpoint := "/api/v3/projects/2"
 
-	raw, err := ioutil.ReadFile("./mocks/get/get-project.json")
+	raw, err := os.ReadFile("./mocks/get/get-project.json")
 	if err != nil {
 		t.Error(err.Error())
 	}
@@ -62,7 +62,7 @@ func TestProjectService_Get(t *testing.T) {
 func TestProjectService_Create(t *testing.T) {
 	setup()
 	defer teardown()
-	raw, err := ioutil.ReadFile("./mocks/post/post-project.json")
+	raw, err := os.ReadFile("./mocks/post/post-project.json")
 	if err != nil {
 		t.Error(err.Error())
 	}
