@@ -1,0 +1,275 @@
+{
+  "_type": "Collection",
+  "total": 6,
+  "count": 6,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "Activity",
+        "id": 357805,
+        "comment": {
+          "format": "markdown",
+          "raw": "",
+          "html": ""
+        },
+        "details": [
+          {
+            "format": "custom",
+            "raw": "Type set to Bug",
+            "html": "<strong>Type</strong> set to <i title=\"Bug\">Bug</i>"
+          },
+          {
+            "format": "custom",
+            "raw": "Project set to OpenProject",
+            "html": "<strong>Project</strong> set to <i title=\"OpenProject\">OpenProject</i>"
+          },
+          {
+            "format": "custom",
+            "raw": "Subject set to Wrong error message when trying to log time for a placeholder user",
+            "html": "<strong>Subject</strong> set to <i title=\"Wrong error message when trying to log time for a placeholder user\">Wrong error message when trying to log time for a placeholder user</i>"
+          },
+          {
+            "format": "custom",
+            "raw": "Description set (/journals/357805/diff/description)",
+            "html": "<strong>Description</strong> set (<a class=\"description-details\" href=\"/journals/357805/diff/description\">Details</a>)"
+          },
+          {
+            "format": "custom",
+            "raw": "Status set to confirmed",
+            "html": "<strong>Status</strong> set to <i title=\"confirmed\">confirmed</i>"
+          },
+          {
+            "format": "custom",
+            "raw": "Priority set to Low",
+            "html": "<strong>Priority</strong> set to <i title=\"Low\">Low</i>"
+          },
+          {
+            "format": "custom",
+            "raw": "Version set to 11.2.0",
+            "html": "<strong>Version</strong> set to <i title=\"11.2.0\">11.2.0</i>"
+          },
+          {
+            "format": "custom",
+            "raw": "Author set to Max Mutzge",
+            "html": "<strong>Author</strong> set to <i title=\"Max Mutzge\">Max Mutzge</i>"
+          },
+          {
+            "format": "custom",
+            "raw": "Progress (%) changed from 0 to 0",
+            "html": "<strong>Progress (%)</strong> changed from <i title=\"0\">0</i> <strong>to</strong> <i title=\"0\">0</i>"
+          },
+          {
+            "format": "custom",
+            "raw": "Manual scheduling activated",
+            "html": "<strong>Manual scheduling</strong> activated"
+          },
+          {
+            "format": "custom",
+            "raw": "Working days set to include non-working days",
+            "html": "<strong>Working days</strong> set to <i title=\"include non-working days\">include non-working days</i>"
+          },
+          {
+            "format": "custom",
+            "raw": "File image.png added",
+            "html": "<strong>File</strong> <a href=\"https://community.openproject.org/api/v3/attachments/20684/content\">image.png</a> added"
+          },
+          {
+            "format": "custom",
+            "raw": "File image.png added",
+            "html": "<strong>File</strong> <a href=\"https://community.openproject.org/api/v3/attachments/20683/content\">image.png</a> added"
+          },
+          {
+            "format": "custom",
+            "raw": "Requires doc change set to No",
+            "html": "<strong>Requires doc change</strong> set to <i title=\"No\">No</i>"
+          }
+        ],
+        "version": 1,
+        "createdAt": "2021-02-23T16:52:57Z",
+        "updatedAt": "2021-02-23T16:52:57Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/activities/357805"
+          },
+          "workPackage": {
+            "href": "/api/v3/work_packages/36353",
+            "title": "Wrong error message when trying to log time for a placeholder user"
+          },
+          "user": {
+            "href": "/api/v3/users/67841"
+          }
+        }
+      },
+      {
+        "_type": "Activity",
+        "id": 357978,
+        "comment": {
+          "format": "markdown",
+          "raw": "",
+          "html": ""
+        },
+        "details": [
+          {
+            "format": "custom",
+            "raw": "Status changed from confirmed to in development",
+            "html": "<strong>Status</strong> changed from <i title=\"confirmed\">confirmed</i> <strong>to</strong> <i title=\"in development\">in development</i>"
+          },
+          {
+            "format": "custom",
+            "raw": "Assignee set to Oliver Günther",
+            "html": "<strong>Assignee</strong> set to <i title=\"Oliver Günther\">Oliver Günther</i>"
+          }
+        ],
+        "version": 2,
+        "createdAt": "2021-02-24T14:37:20Z",
+        "updatedAt": "2021-02-24T14:37:20Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/activities/357978"
+          },
+          "workPackage": {
+            "href": "/api/v3/work_packages/36353",
+            "title": "Wrong error message when trying to log time for a placeholder user"
+          },
+          "user": {
+            "href": "/api/v3/users/9177"
+          }
+        }
+      },
+      {
+        "_type": "Activity::Comment",
+        "id": 358124,
+        "comment": {
+          "format": "markdown",
+          "raw": "necessary docs change: unit costs can&#39;t be logged for placeholder users",
+          "html": "<p class=\"op-uc-p\">necessary docs change: unit costs can't be logged for placeholder users</p>"
+        },
+        "details": [
+          {
+            "format": "custom",
+            "raw": "Requires doc change changed from No to Yes",
+            "html": "<strong>Requires doc change</strong> changed from <i title=\"No\">No</i> <strong>to</strong> <i title=\"Yes\">Yes</i>"
+          }
+        ],
+        "version": 4,
+        "createdAt": "2021-02-25T14:01:48Z",
+        "updatedAt": "2021-02-25T14:01:48Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/activities/358124"
+          },
+          "workPackage": {
+            "href": "/api/v3/work_packages/36353",
+            "title": "Wrong error message when trying to log time for a placeholder user"
+          },
+          "user": {
+            "href": "/api/v3/users/67841"
+          }
+        }
+      },
+      {
+        "_type": "Activity",
+        "id": 358265,
+        "comment": {
+          "format": "markdown",
+          "raw": "",
+          "html": ""
+        },
+        "details": [
+          {
+            "format": "custom",
+            "raw": "Status changed from in development to needs review",
+            "html": "<strong>Status</strong> changed from <i title=\"in development\">in development</i> <strong>to</strong> <i title=\"needs review\">needs review</i>"
+          },
+          {
+            "format": "custom",
+            "raw": "Assignee deleted (Oliver Günther)",
+            "html": "<strong>Assignee</strong> deleted (<strike><i title=\"Oliver Günther\">Oliver Günther</i></strike>)"
+          }
+        ],
+        "version": 5,
+        "createdAt": "2021-02-26T13:30:59Z",
+        "updatedAt": "2021-02-26T13:30:59Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/activities/358265"
+          },
+          "workPackage": {
+            "href": "/api/v3/work_packages/36353",
+            "title": "Wrong error message when trying to log time for a placeholder user"
+          },
+          "user": {
+            "href": "/api/v3/users/9177"
+          }
+        }
+      },
+      {
+        "_type": "Activity",
+        "id": 358350,
+        "comment": {
+          "format": "markdown",
+          "raw": "",
+          "html": ""
+        },
+        "details": [
+          {
+            "format": "custom",
+            "raw": "Status changed from needs review to merged",
+            "html": "<strong>Status</strong> changed from <i title=\"needs review\">needs review</i> <strong>to</strong> <i title=\"merged\">merged</i>"
+          }
+        ],
+        "version": 6,
+        "createdAt": "2021-02-26T19:33:40Z",
+        "updatedAt": "2021-02-26T19:33:40Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/activities/358350"
+          },
+          "workPackage": {
+            "href": "/api/v3/work_packages/36353",
+            "title": "Wrong error message when trying to log time for a placeholder user"
+          },
+          "user": {
+            "href": "/api/v3/users/9177"
+          }
+        }
+      },
+      {
+        "_type": "Activity::Comment",
+        "id": 358937,
+        "comment": {
+          "format": "markdown",
+          "raw": "Placeholder users can no longer be selected from dropdown menu. Thank you for fixing this!",
+          "html": "<p class=\"op-uc-p\">Placeholder users can no longer be selected from dropdown menu. Thank you for fixing this!</p>"
+        },
+        "details": [
+          {
+            "format": "custom",
+            "raw": "Status changed from merged to closed",
+            "html": "<strong>Status</strong> changed from <i title=\"merged\">merged</i> <strong>to</strong> <i title=\"closed\">closed</i>"
+          }
+        ],
+        "version": 8,
+        "createdAt": "2021-03-03T14:38:22Z",
+        "updatedAt": "2021-03-03T14:38:22Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/activities/358937"
+          },
+          "workPackage": {
+            "href": "/api/v3/work_packages/36353",
+            "title": "Wrong error message when trying to log time for a placeholder user"
+          },
+          "user": {
+            "href": "/api/v3/users/3762"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/work_packages/36353/activities"
+    }
+  }
+}

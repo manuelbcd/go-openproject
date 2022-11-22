@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 
 	openproj "github.com/manuelbcd/go-openproject"
@@ -22,20 +22,20 @@ func main() {
 	// Get attachment info
 	attachmentResp, resp, err := client.Attachment.Get("15713")
 	if err != nil {
-		body, err := ioutil.ReadAll(resp.Body)
-		fmt.Printf(string(body))
+		body, err := io.ReadAll(resp.Body)
+		fmt.Print(string(body))
 		panic(err)
 	}
 
 	fmt.Printf("\nAttachment: %s \n\n", attachmentResp.FileName)
 	// Raw output of the whole object (debug only)
-	fmt.Printf(prettyPrint(attachmentResp))
+	fmt.Print(prettyPrint(attachmentResp))
 
 	// Download attachment file
 	attachmentFile, err := client.Attachment.Download("15713")
 	if err != nil {
-		body, err := ioutil.ReadAll(resp.Body)
-		fmt.Printf(string(body))
+		body, err := io.ReadAll(resp.Body)
+		fmt.Print(string(body))
 		panic(err)
 	}
 

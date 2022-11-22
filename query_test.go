@@ -2,8 +2,8 @@ package openproject
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
+	"os"
 	"testing"
 )
 
@@ -11,7 +11,7 @@ func TestQueryService_GetByID_Success(t *testing.T) {
 	setup()
 	defer teardown()
 	testAPIEdpoint := "/api/v3/queries/1"
-	raw, err := ioutil.ReadFile("./mocks/get/get-query.json")
+	raw, err := os.ReadFile("./mocks/get/get-query.json")
 	if err != nil {
 		t.Error(err.Error())
 	}
@@ -19,13 +19,16 @@ func TestQueryService_GetByID_Success(t *testing.T) {
 		testMethod(t, r, "GET")
 		testRequestURL(t, r, testAPIEdpoint)
 
-		fmt.Fprint(w, string(raw))
+		_, err := fmt.Fprint(w, string(raw))
+		if err != nil {
+			t.Error(err)
+		}
 	})
 
 	if query, _, err := testClient.Query.Get("1"); err != nil {
 		t.Errorf("Error given: %s", err)
 	} else if query == nil {
-		t.Error("Expected user. Query is nil")
+		t.Error("Expected user. QueryResult is nil")
 	}
 }
 
@@ -33,7 +36,7 @@ func TestQueryService_GetList_Success(t *testing.T) {
 	setup()
 	defer teardown()
 	testAPIEdpoint := "/api/v3/queries"
-	raw, err := ioutil.ReadFile("./mocks/get/get-queries-no-filters.json")
+	raw, err := os.ReadFile("./mocks/get/get-queries-no-filters.json")
 	if err != nil {
 		t.Error(err.Error())
 	}
@@ -41,15 +44,19 @@ func TestQueryService_GetList_Success(t *testing.T) {
 		testMethod(t, r, "GET")
 		testRequestURL(t, r, testAPIEdpoint)
 
-		fmt.Fprint(w, string(raw))
+		_, err := fmt.Fprint(w, string(raw))
+		if err != nil {
+			t.Error(err)
+		}
 	})
 
-	queries, _, err := testClient.Query.GetList()
+	queries, _, err := testClient.Query.GetList(0, 10)
 	if queries == nil {
 		t.Error("Expected query list but received nil")
+		return
 	}
 	if queries.Total != 25 {
-		t.Error(fmt.Sprintf("Expected 25 queries in response but received %d", 25))
+		t.Errorf("Expected 25 queries in response but received %d", 25)
 	}
 	if queries.Embedded.Elements[0].Name != "Never" {
 		errString := "Expected query name \"Never\" in pos 1 of received list"
@@ -64,7 +71,7 @@ func TestQueryService_GetList_Success(t *testing.T) {
 func TestQueryService_Create(t *testing.T) {
 	setup()
 	defer teardown()
-	raw, err := ioutil.ReadFile("./mocks/post/post-query.json")
+	raw, err := os.ReadFile("./mocks/post/post-query.json")
 	if err != nil {
 		t.Error(err.Error())
 	}
@@ -73,10 +80,13 @@ func TestQueryService_Create(t *testing.T) {
 		testRequestURL(t, r, "/api/v3/queries")
 
 		w.WriteHeader(http.StatusCreated)
-		fmt.Fprint(w, string(raw))
+		_, err2 := fmt.Fprint(w, string(raw))
+		if err2 != nil {
+			t.Error(err2)
+		}
 	})
 
-	i := &Query{
+	i := &QueryResult{
 		Name:    "My filter-query",
 		Starred: true,
 		Project: "/api/v3/projects/1",
@@ -95,7 +105,7 @@ func TestQueryService_Create(t *testing.T) {
 	}
 	wp, _, err := testClient.Query.Create(i)
 	if wp == nil {
-		t.Error("Expected query object. Query object is nil")
+		t.Error("Expected query object. QueryResult object is nil")
 	}
 	if err != nil {
 		t.Errorf("Error given: %s", err)
@@ -110,12 +120,11 @@ func TestQueryService_Delete(t *testing.T) {
 		testRequestURL(t, r, "/api/v3/queries/554")
 
 		w.WriteHeader(http.StatusNoContent)
-		fmt.Fprint(w, `{}`)
 	})
 
 	resp, err := testClient.Query.Delete("554")
 	if resp.StatusCode != 204 {
-		t.Error("Query not deleted.")
+		t.Error("QueryResult not deleted.")
 	}
 	if err != nil {
 		t.Errorf("Error given: %s", err)

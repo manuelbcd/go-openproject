@@ -1,0 +1,224 @@
+{
+  "_type": "Collection",
+  "total": 25,
+  "count": 5,
+  "pageSize": 10,
+  "offset": 3,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "User",
+        "id": 21,
+        "name": "",
+        "createdAt": "2021-02-18T10:10:46Z",
+        "updatedAt": "2021-02-18T10:10:46Z",
+        "login": "q.lsispfopg@rylzihp.ec",
+        "admin": true,
+        "firstName": "Helen",
+        "lastName": "Johnson",
+        "email": "Helen Johnson@test.com",
+        "avatar": "http://llieqv.iq/jel",
+        "status": "active",
+        "identityUrl": "",
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "http://ovlb.kw/rwhkm",
+            "title": "Helen Johnson"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/21",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/21",
+            "title": "Update q.xvrjxqnki@jlqsm.kp",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "api/v3/users/21/lock",
+            "title": "Set lock on h.eyzgb@qeiwv.ms",
+            "method": "post"
+          }
+        }
+      },
+      {
+        "_type": "User",
+        "id": 22,
+        "name": "",
+        "createdAt": "2021-02-18T10:10:46Z",
+        "updatedAt": "2021-02-18T10:10:46Z",
+        "login": "e.ylvgrcm@ejyt.com.cn",
+        "admin": false,
+        "firstName": "Charles",
+        "lastName": "Lewis",
+        "email": "Charles Lewis@test.com",
+        "avatar": "http://xybnd.sh/aqskc",
+        "status": "active",
+        "identityUrl": "",
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "http://qetiett.bn/kouxe",
+            "title": "Charles Lewis"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/22",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/22",
+            "title": "Update u.xtrcrn@eitrqvjq.dj",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "api/v3/users/22/lock",
+            "title": "Set lock on e.ouvrmlkum@ptbeenwdkm.mv",
+            "method": "post"
+          }
+        }
+      },
+      {
+        "_type": "User",
+        "id": 23,
+        "name": "",
+        "createdAt": "2021-02-18T10:10:46Z",
+        "updatedAt": "2021-02-18T10:10:46Z",
+        "login": "u.wbeqchp@isdeel.it",
+        "admin": false,
+        "firstName": "Scott",
+        "lastName": "Lee",
+        "email": "Scott Lee@test.com",
+        "avatar": "http://cpip.yu/cmv",
+        "status": "active",
+        "identityUrl": "",
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "http://vkmqaaxf.se/datord",
+            "title": "Scott Lee"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/23",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/23",
+            "title": "Update t.raxyvkvlgu@kowy.gb",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "api/v3/users/23/lock",
+            "title": "Set lock on s.apdk@nyjqye.中国互联.网络",
+            "method": "post"
+          }
+        }
+      },
+      {
+        "_type": "User",
+        "id": 24,
+        "name": "",
+        "createdAt": "2021-02-18T10:10:46Z",
+        "updatedAt": "2021-02-18T10:10:46Z",
+        "login": "g.rstsizb@tsdyeb.mw",
+        "admin": false,
+        "firstName": "Ruth",
+        "lastName": "White",
+        "email": "Ruth White@test.com",
+        "avatar": "http://kziwujmwl.li/bdjwbg",
+        "status": "active",
+        "identityUrl": "",
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "http://oskinmbh.se/byyijhqm",
+            "title": "Ruth White"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/24",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/24",
+            "title": "Update j.kpyek@jrrwhv.hr",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "api/v3/users/24/lock",
+            "title": "Set lock on d.zuthggdb@riuh.ru",
+            "method": "post"
+          }
+        }
+      },
+      {
+        "_type": "User",
+        "id": 25,
+        "name": "",
+        "createdAt": "2021-02-18T10:10:46Z",
+        "updatedAt": "2021-02-18T10:10:46Z",
+        "login": "t.ngnqsle@utnz.mn",
+        "admin": false,
+        "firstName": "Sandra",
+        "lastName": "Lee",
+        "email": "Sandra Lee@test.com",
+        "avatar": "http://gifk.jm/twvcfps",
+        "status": "active",
+        "identityUrl": "",
+        "language": "en",
+        "_links": {
+          "self": {
+            "href": "http://chpdruew.bh/pijsvulp",
+            "title": "Sandra Lee"
+          },
+          "memberships": {
+            "href": "/api/v3/memberships",
+            "title": "Members"
+          },
+          "showUser": {
+            "href": "/users/25",
+            "type": "text/html"
+          },
+          "updateImmediately": {
+            "href": "/api/v3/users/25",
+            "title": "Update k.rgjxzsmf@bkru.pt",
+            "method": "patch"
+          },
+          "lock": {
+            "href": "api/v3/users/25/lock",
+            "title": "Set lock on f.qwiqf@vteq.gt",
+            "method": "post"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/users?offset=3&pageSize=10"
+    },
+    "jumpTo": {
+      "href": "/api/v3/users?offset=%7Boffset%7D&pageSize=10",
+      "templated": true
+    },
+    "changeSize": {
+      "href": "/api/v3/users?offset=3&pageSize=%7Bsize%7D",
+      "templated": true
+    }
+  }
+}

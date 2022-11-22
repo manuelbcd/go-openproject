@@ -3,7 +3,7 @@ package openproject
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
@@ -28,10 +28,10 @@ var (
 	testServer *httptest.Server
 )
 
-/**
+/*
+*
 setup sets up a test HTTP server along with a openproject.Client that is configured to talk to that test server.
 Tests should register handlers on mux which provide mock responses for the API method being tested.
-
 */
 func setup() {
 	// Test server
@@ -59,21 +59,21 @@ func testRequestURL(t *testing.T, r *http.Request, want string) {
 	}
 }
 
-func testRequestParams(t *testing.T, r *http.Request, want map[string]string) {
-	params := r.URL.Query()
-
-	if len(params) != len(want) {
-		t.Errorf("Request params: %d, want %d", len(params), len(want))
-	}
-
-	for key, val := range want {
-		if got := params.Get(key); val != got {
-			t.Errorf("Request params: %s, want %s", got, val)
-		}
-
-	}
-
-}
+//func testRequestParams(t *testing.T, r *http.Request, want map[string]string) {
+//	params := r.URL.Query()
+//
+//	if len(params) != len(want) {
+//		t.Errorf("Request params: %d, want %d", len(params), len(want))
+//	}
+//
+//	for key, val := range want {
+//		if got := params.Get(key); val != got {
+//			t.Errorf("Request params: %s, want %s", got, val)
+//		}
+//
+//	}
+//
+//}
 
 func TestNewClient_WrongUrl(t *testing.T) {
 	c, err := NewClient(nil, "://community.openproject.org")
@@ -154,7 +154,7 @@ func TestClient_NewRequest(t *testing.T) {
 	}
 
 	// Test that body was JSON encoded
-	body, _ := ioutil.ReadAll(req.Body)
+	body, _ := io.ReadAll(req.Body)
 	if got, want := string(body), outBody; got != want {
 		t.Errorf("NewRequest(%v) Body is %v, want %v", inBody, got, want)
 	}
@@ -303,7 +303,7 @@ func TestClient_Do_HTTPResponse(t *testing.T) {
 
 	req, _ := testClient.NewRequest("GET", "/", nil)
 	res, _ := testClient.Do(req, nil)
-	_, err := ioutil.ReadAll(res.Body)
+	_, err := io.ReadAll(res.Body)
 
 	if err != nil {
 		t.Errorf("Error on parsing HTTP Response = %v", err.Error())

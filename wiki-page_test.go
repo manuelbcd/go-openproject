@@ -2,8 +2,8 @@ package openproject
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
+	"os"
 	"testing"
 )
 
@@ -12,7 +12,7 @@ func TestWikiPageService_Get(t *testing.T) {
 	defer teardown()
 	testAPIEdpoint := "/api/v3/wiki_pages/1"
 
-	raw, err := ioutil.ReadFile("./mocks/get/get-wikipage.json")
+	raw, err := os.ReadFile("./mocks/get/get-wikipage.json")
 	if err != nil {
 		t.Error(err.Error())
 	}

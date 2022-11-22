@@ -6,9 +6,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/url"
+	"strconv"
 	"strings"
 	"time"
 
@@ -38,18 +38,14 @@ const (
 	LowerOrEqual SearchOperator = "<="
 )
 
-// OPGenericDescription is an structure widely used in several OpenProject API objects
-type OPGenericDescription struct {
-	Format string `json:"format,omitempty" structs:"format,omitempty"`
-	Raw    string `json:"raw,omitempty" structs:"raw,omitempty"`
-	HTML   string `json:"html,omitempty" structs:"html,omitempty"`
+type IPaginationResponse interface {
+	TotalPage() int
+	ConcatEmbed(interface{})
 }
 
-// OPGenericLink is an structure widely used in several OpenProject API objects
-type OPGenericLink struct {
-	Href string `json:"href,omitempty" structs:"href,omitempty"`
-	Name string `json:"name,omitempty" structs:"name,omitempty"`
-}
+// Pagination parameters
+const kOffset = "offset"
+const kPageSize = "pageSize"
 
 // Time represents the Time definition of OpenProject as a time.Time of go
 type Time time.Time
@@ -88,6 +84,7 @@ type Client struct {
 	Attachment     *AttachmentService
 	Category       *CategoryService
 	Query          *QueryService
+	Activities     *ActivitiesService
 }
 
 // NewClient returns a new OpenProject API client.
@@ -120,6 +117,7 @@ func NewClient(httpClient httpClient, baseURL string) (*Client, error) {
 	c.Attachment = &AttachmentService{client: c}
 	c.Category = &CategoryService{client: c}
 	c.Query = &QueryService{client: c}
+	c.Activities = &ActivitiesService{client: c}
 
 	return c, nil
 }
@@ -340,7 +338,6 @@ type BasicAuthTransport struct {
 // basic auth and return the RoundTripper for this transport type.
 func (t *BasicAuthTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	req2 := cloneRequest(req) // per RoundTripper contract
-
 	req2.SetBasicAuth(t.Username, t.Password)
 	return t.transport().RoundTrip(req2)
 }
@@ -379,31 +376,34 @@ func cloneRequest(r *http.Request) *http.Request {
 // getObjectAndClient gets an inputObject (inputObject is an OpenProject object like WorkPackage, WikiPage, Status, etc.)
 // and return a pointer to its Client from its service and an instance of the object itself
 func getObjectAndClient(inputObj interface{}) (client *Client, resultObj interface{}) {
-	switch inputObj.(type) {
+	switch c := inputObj.(type) {
 	case *AttachmentService:
-		client = inputObj.(*AttachmentService).client
+		client = c.client
 		resultObj = new(Attachment)
 	case *CategoryService:
-		client = inputObj.(*CategoryService).client
+		client = c.client
 		resultObj = new(Category)
 	case *ProjectService:
-		client = inputObj.(*ProjectService).client
+		client = c.client
 		resultObj = new(Project)
 	case *QueryService:
-		client = inputObj.(*QueryService).client
-		resultObj = new(Query)
+		client = c.client
+		resultObj = new(QueryResult)
 	case *StatusService:
-		client = inputObj.(*StatusService).client
+		client = c.client
 		resultObj = new(Status)
 	case *UserService:
-		client = inputObj.(*UserService).client
+		client = c.client
 		resultObj = new(User)
 	case *WikiPageService:
-		client = inputObj.(*WikiPageService).client
+		client = c.client
 		resultObj = new(WikiPage)
 	case *WorkPackageService:
-		client = inputObj.(*WorkPackageService).client
+		client = c.client
 		resultObj = new(WorkPackage)
+	case *ActivitiesService:
+		client = c.client
+		resultObj = new(Activity)
 	}
 
 	return client, resultObj
@@ -412,30 +412,33 @@ func getObjectAndClient(inputObj interface{}) (client *Client, resultObj interfa
 // getObjectAndClient gets an inputObject (inputObject is an OpenProject object like WorkPackage, WikiPage, Status, etc.)
 // and return a pointer to its Client from its service and an instance of the ObjectList
 func getObjectListAndClient(inputObj interface{}) (client *Client, resultObjList interface{}) {
-	switch inputObj.(type) {
+	switch c := inputObj.(type) {
 	case *AttachmentService:
-		client = inputObj.(*AttachmentService).client
+		client = c.client
 		// TODO implement
 	case *CategoryService:
-		client = inputObj.(*CategoryService).client
+		client = c.client
 		resultObjList = new(CategoryList)
 	case *ProjectService:
-		client = inputObj.(*ProjectService).client
+		client = c.client
 		resultObjList = new(SearchResultProject)
 	case *QueryService:
-		client = inputObj.(*QueryService).client
+		client = c.client
 		resultObjList = new(SearchResultQuery)
 	case *StatusService:
-		client = inputObj.(*StatusService).client
+		client = c.client
 		resultObjList = new(SearchResultStatus)
 	case *UserService:
-		client = inputObj.(*UserService).client
+		client = c.client
 		resultObjList = new(SearchResultUser)
 	// WikiPage endpoint does not support POST action
 	// case *WikiPageService:
 	case *WorkPackageService:
-		client = inputObj.(*WorkPackageService).client
+		client = c.client
 		resultObjList = new(SearchResultWP)
+	case *ActivitiesService:
+		client = c.client
+		resultObjList = new(Activities)
 	}
 
 	return client, resultObjList
@@ -465,7 +468,8 @@ func GetWithContext(ctx context.Context, objService interface{}, apiEndPoint str
 
 // GetListWithContext (generic) retrieves list of objects (HTTP GET verb)
 // obj list is a collection of any main object (attachment, user, project, work-package, etc...) as well as response interface{}
-func GetListWithContext(ctx context.Context, objService interface{}, apiEndPoint string, options *FilterOptions) (interface{}, *Response, error) {
+func GetListWithContext(ctx context.Context, objService interface{}, apiEndPoint string,
+	options *FilterOptions, offset int, pageSize int) (interface{}, *Response, error) {
 	client, resultObjList := getObjectListAndClient(objService)
 	apiEndPoint = strings.TrimRight(apiEndPoint, "/")
 	req, err := client.NewRequestWithContext(ctx, "GET", apiEndPoint, nil)
@@ -473,10 +477,14 @@ func GetListWithContext(ctx context.Context, objService interface{}, apiEndPoint
 		return nil, nil, err
 	}
 
+	values := make(url.Values)
+	values.Add(kOffset, strconv.Itoa(offset))
+	values.Add(kPageSize, strconv.Itoa(pageSize))
+
 	if options != nil {
-		values := options.prepareFilters()
-		req.URL.RawQuery = values.Encode()
+		values = options.prepareFilters(values)
 	}
+	req.URL.RawQuery = values.Encode()
 
 	resp, err := client.Do(req, resultObjList)
 	if err != nil {
@@ -502,7 +510,7 @@ func CreateWithContext(ctx context.Context, object interface{}, objService inter
 	}
 
 	defer resp.Body.Close()
-	data, err := ioutil.ReadAll(resp.Body)
+	data, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, resp, fmt.Errorf("could not read the returned data")
 	}

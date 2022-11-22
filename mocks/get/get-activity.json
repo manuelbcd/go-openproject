@@ -1,0 +1,36 @@
+{
+  "_type": "Activity",
+  "id": 357978,
+  "comment": {
+    "format": "markdown",
+    "raw": "",
+    "html": ""
+  },
+  "details": [
+    {
+      "format": "custom",
+      "raw": "Status changed from confirmed to in development",
+      "html": "<strong>Status</strong> changed from <i title=\"confirmed\">confirmed</i> <strong>to</strong> <i title=\"in development\">in development</i>"
+    },
+    {
+      "format": "custom",
+      "raw": "Assignee set to Oliver Günther",
+      "html": "<strong>Assignee</strong> set to <i title=\"Oliver Günther\">Oliver Günther</i>"
+    }
+  ],
+  "version": 2,
+  "createdAt": "2021-02-24T14:37:20Z",
+  "updatedAt": "2021-02-24T14:37:20Z",
+  "_links": {
+    "self": {
+      "href": "/api/v3/activities/357978"
+    },
+    "workPackage": {
+      "href": "/api/v3/work_packages/36353",
+      "title": "Wrong error message when trying to log time for a placeholder user"
+    },
+    "user": {
+      "href": "/api/v3/users/9177"
+    }
+  }
+}

@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/trivago/tgo/tcontainer"
-	"io/ioutil"
 	"net/http"
+	"os"
 	"reflect"
 	"testing"
 	"time"
@@ -14,7 +14,7 @@ import (
 func TestWorkPackageService_Get_Success(t *testing.T) {
 	setup()
 	defer teardown()
-	raw, err := ioutil.ReadFile("./mocks/get/get-workpackage.json")
+	raw, err := os.ReadFile("./mocks/get/get-workpackage.json")
 	if err != nil {
 		t.Error(err.Error())
 	}
@@ -37,7 +37,7 @@ func TestWorkPackageService_Get_Success(t *testing.T) {
 func TestWorkPackageService_Get_SearchListSuccess(t *testing.T) {
 	setup()
 	defer teardown()
-	raw, err := ioutil.ReadFile("./mocks/get/get-workpackages-filtered.json")
+	raw, err := os.ReadFile("./mocks/get/get-workpackages-filtered.json")
 	if err != nil {
 		t.Error(err.Error())
 	}
@@ -58,7 +58,7 @@ func TestWorkPackageService_Get_SearchListSuccess(t *testing.T) {
 		},
 	}
 
-	_, resp, err := testClient.WorkPackage.GetList(opt)
+	_, resp, err := testClient.WorkPackage.GetList(opt, 0, 10)
 
 	if resp == nil {
 		t.Errorf("Null response: %+v", resp)
@@ -74,7 +74,7 @@ func TestWorkPackageService_Get_SearchListSuccess(t *testing.T) {
 func TestWorkPackageService_Create(t *testing.T) {
 	setup()
 	defer teardown()
-	raw, err := ioutil.ReadFile("./mocks/post/post-workpackage.json")
+	raw, err := os.ReadFile("./mocks/post/post-workpackage.json")
 	if err != nil {
 		t.Error(err.Error())
 	}

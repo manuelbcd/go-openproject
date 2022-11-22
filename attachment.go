@@ -3,7 +3,8 @@ package openproject
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
+	"time"
 )
 
 // AttachmentService handles attachments for the OpenProject instance / API.
@@ -12,15 +13,71 @@ type AttachmentService struct {
 }
 
 // Attachment is the object representing OpenProject attachments.
-// TODO: Complete fields and complex fields (user, links, downloadlocation, container...)
 type Attachment struct {
-	Type        string               `json:"_type,omitempty" structs:"_type,omitempty"`
-	ID          int                  `json:"id,omitempty" structs:"id,omitempty"`
-	FileName    string               `json:"filename,omitempty" structs:"filename,omitempty"`
-	FileSize    int                  `json:"filesize,omitempty" structs:"filesize,omitempty"`
-	Description OPGenericDescription `json:"description,omitempty" structs:"description,omitempty"`
-	ContentType string               `json:"contentType,omitempty" structs:"contentType,omitempty"`
-	Digest      AttachmentDigest     `json:"digest,omitempty" structs:"digest,omitempty"`
+	Embedded struct {
+		Author struct {
+			Type   string `json:"_type,omitempty"`
+			ID     int    `json:"id,omitempty"`
+			Name   string `json:"name,omitempty"`
+			Avatar string `json:"avatar,omitempty"`
+			Links  struct {
+				Self OPGenericLink `json:"self,omitempty"`
+			} `json:"_links,omitempty"`
+		} `json:"author,omitempty"`
+		Container struct {
+			Type        string `json:"_type,omitempty"`
+			ID          int    `json:"id,omitempty"`
+			RowCount    int    `json:"rowCount,omitempty"`
+			ColumnCount int    `json:"columnCount,omitempty"`
+			Options     struct {
+			} `json:"options,omitempty"`
+			Widgets []struct {
+				Type        string `json:"_type,omitempty"`
+				ID          int    `json:"id,omitempty"`
+				Identifier  string `json:"identifier,omitempty"`
+				StartRow    int    `json:"startRow,omitempty"`
+				EndRow      int    `json:"endRow,omitempty"`
+				StartColumn int    `json:"startColumn,omitempty"`
+				EndColumn   int    `json:"endColumn,omitempty"`
+				Options     struct {
+					Name string `json:"name,omitempty"`
+					Text struct {
+						Format string `json:"format,omitempty"`
+						Raw    string `json:"raw,omitempty"`
+						HTML   string `json:"html,omitempty"`
+					} `json:"text,omitempty"`
+					QueryID   string `json:"queryId,omitempty"`
+					ChartType string `json:"chartType,omitempty"`
+				} `json:"options,omitempty"`
+			} `json:"widgets,omitempty"`
+			CreatedAt time.Time `json:"createdAt,omitempty"`
+			UpdatedAt time.Time `json:"updatedAt,omitempty"`
+			Links     struct {
+				Attachments OPGenericLink `json:"attachments,omitempty"`
+				Scope       OPGenericLink `json:"scope,omitempty"`
+				Self        OPGenericLink `json:"self,omitempty"`
+			} `json:"_links,omitempty"`
+		} `json:"container,omitempty"`
+	} `json:"_embedded,omitempty"`
+	Type        string `json:"_type,omitempty"`
+	ID          int    `json:"id,omitempty"`
+	FileName    string `json:"fileName,omitempty"`
+	FileSize    int    `json:"fileSize,omitempty"`
+	Description struct {
+		Format string `json:"format,omitempty"`
+		Raw    string `json:"raw,omitempty"`
+		HTML   string `json:"html,omitempty"`
+	} `json:"description,omitempty"`
+	ContentType string           `json:"contentType,omitempty"`
+	Digest      AttachmentDigest `json:"digest,omitempty"`
+	CreatedAt   time.Time        `json:"createdAt,omitempty"`
+	Links       struct {
+		Self                   OPGenericLink `json:"self,omitempty"`
+		Author                 OPGenericLink `json:"author,omitempty"`
+		Container              OPGenericLink `json:"container,omitempty"`
+		StaticDownloadLocation OPGenericLink `json:"staticDownloadLocation,omitempty"`
+		DownloadLocation       OPGenericLink `json:"downloadLocation,omitempty"`
+	} `json:"_links,omitempty"`
 }
 
 // AttachmentDigest wraps algorithm and hash
@@ -55,7 +112,7 @@ func (s *AttachmentService) DownloadWithContext(ctx context.Context, attachmentI
 		return nil, err
 	}
 
-	respBytes, err := ioutil.ReadAll(resp.Body)
+	respBytes, err := io.ReadAll(resp.Body)
 
 	return &respBytes, err
 }

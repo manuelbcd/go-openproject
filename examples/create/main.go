@@ -2,15 +2,14 @@ package main
 
 import (
 	"bufio"
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"strings"
 	"syscall"
 
 	openproj "github.com/manuelbcd/go-openproject"
-	"golang.org/x/crypto/ssh/terminal"
+	"golang.org/x/term"
 )
 
 func main() {
@@ -26,7 +25,7 @@ func main() {
 	}
 
 	fmt.Print("OpenProject Password: ")
-	bytePassword, _ := terminal.ReadPassword(int(syscall.Stdin))
+	bytePassword, _ := term.ReadPassword(int(syscall.Stdin))
 	password := string(bytePassword)
 
 	tp := openproj.BasicAuthTransport{
@@ -50,8 +49,8 @@ func main() {
 
 	wpResponse, resp, err := client.WorkPackage.Create(&i, "demo-project")
 	if err != nil {
-		body, err := ioutil.ReadAll(resp.Body)
-		fmt.Printf(string(body))
+		body, err := io.ReadAll(resp.Body)
+		fmt.Print(string(body))
 		panic(err)
 	}
 
@@ -62,7 +61,7 @@ func main() {
 	// fmt.Printf(prettyPrint(wpResponse))
 }
 
-func prettyPrint(i interface{}) string {
-	s, _ := json.MarshalIndent(i, "", "\t")
-	return string(s)
-}
+//func prettyPrint(i interface{}) string {
+//	s, _ := json.MarshalIndent(i, "", "\t")
+//	return string(s)
+//}
